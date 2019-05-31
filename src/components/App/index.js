@@ -9,9 +9,14 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import ItemPage from '../Item';
+import ResultsPage from '../Results';
+import SearchPage from '../Search';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
+import Results from '../Results';
+import Item from '../Item';
 
 const App = () => (
   <Router>
@@ -28,6 +33,9 @@ const App = () => (
         component={PasswordForgetPage}
       />
       <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.SEARCH} component={SearchPage} />
+      <Route path={ROUTES.RESULTS} component={ResultsPage} />
+      <Route path={ROUTES.ITEM} component={ItemPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>
