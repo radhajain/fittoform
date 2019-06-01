@@ -1,0 +1,32 @@
+.inner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.search-container {
+    text-align: center;
+}
+
+.search-text {
+    color: white;
+    font-size: 50px;
+}
+
+.search-input {
+    text-decoration: underline;
+}
+
+input {
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 50px;
+    text-decoration: underline;
+    width: 220px;
+}
+
+input:focus {
+    outline: none;
+}

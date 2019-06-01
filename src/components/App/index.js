@@ -15,8 +15,7 @@ import SearchPage from '../Search';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
-import Results from '../Results';
-import Item from '../Item';
+
 
 const App = () => (
   <Router>
