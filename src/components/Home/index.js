@@ -18,7 +18,7 @@ class HomePage extends Component {
       <InstagramEmbed
         url='https://www.instagram.com/p/BwtEozUhmtL/'
         maxWidth={320}
-        hideCaption={false}
+        hideCaption={true}
         containerTagName='div'
         protocol=''
         injectScript
