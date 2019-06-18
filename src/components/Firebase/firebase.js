@@ -35,7 +35,9 @@ class Firebase {
   // *** User API ***
 
  user = uid => this.db.ref(`users/${uid}`);
-
+ measurements = () => this.db.ref('measurements');
+ dressGroup = groupid => this.db.ref(`dressgroup/${groupid}`)
+ dress = dressid => this.db.ref(`dresses/${dressid}`)
  users = () => this.db.ref('users');
 }
 

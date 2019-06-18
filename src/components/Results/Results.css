@@ -1,4 +1,15 @@
 .results-grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
+
+.results-col {
+    width: 32%
+}
+
+@media (max-width: 400px) {
+    .results-grid {
+      display: block;
+    }
+  }
