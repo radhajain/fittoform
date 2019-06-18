@@ -1,38 +1,84 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
+import './Results.css';
 
 class Results extends Component {
     constructor(props) {
         super(props);
-        this.state = this.props.location.state;
-        this.setState({
+        this.state = {
+            bust: this.props.location.state.bust,
+            height: this.props.location.state.height,
+            hips: this.props.location.state.hips,
+            waist: this.props.location.state.waist,
+            size: this.props.location.state.size,
             closestMeasurements: [],
             dressGroupId: null,
             dressesIDs: [],
-            dresses: []
-        });
+            // dresses: [],
+            dresses: [
+                {
+                    img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
+                    price: '$50',
+                    name: 'T-shirt dress',
+                    brand: 'superdown',
+                    link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
+                },
+                {
+                    img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
+                    price: '$50',
+                    name: 'T-shirt dress',
+                    brand: 'superdown',
+                    link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
+                },
+                {
+                    img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
+                    price: '$50',
+                    name: 'T-shirt dress',
+                    brand: 'superdown',
+                    link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
+                },
+                {
+                    img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
+                    price: '$50',
+                    name: 'T-shirt dress',
+                    brand: 'superdown',
+                    link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
+                },
+                {
+                    img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
+                    price: '$50',
+                    name: 'T-shirt dress',
+                    brand: 'superdown',
+                    link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
+                },
+                {
+                    img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
+                    price: '$50',
+                    name: 'T-shirt dress',
+                    brand: 'superdown',
+                    link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
+                },
+            ]
+        };
+        console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
         this.getBestDressesID = this.getBestDressesID.bind(this);
+        this.goToItemView = this.goToItemView.bind(this);
     }
 
     componentDidMount() {
-        this.getBestDressGroupID();
-        this.getBestDressesID();
-        var dressesInfo = []
-        // for(dressID in this.state.dressesIDs) {
-        //     currDressInfo = this.getDressesInfo(dressID);
-        //     dressesInfo.push(currDressInfo);
-        // }
+        // this.getBestDressGroupID();
+        // this.getBestDressesID();
+        // var dressesInfo = []
 
-
-        this.state.dressesID.forEach(id => {
-            const dress = {}
-            this.props.firebase.dresses(id).on('value', snapshot => {
-                dress = snapshot.val();
-            });
-            dressesInfo.push(dress);
-        })
-        this.setState({dresses: dressesInfo});
+        // this.state.dressesID.forEach(id => {
+        //     const dress = {}
+        //     this.props.firebase.dresses(id).on('value', snapshot => {
+        //         dress = snapshot.val();
+        //     });
+        //     dressesInfo.push(dress);
+        // })
+        // this.setState({dresses: dressesInfo});
     }
 
     getBestDressGroupID() {
@@ -55,7 +101,7 @@ class Results extends Component {
 
     getBestDressesID() {
         //Gets the array of dress IDs from the groupID. Populates this.dressesIDs
-        this.props.firebase.dressgroup(this.dressGroupId).on('value', snapshot => {
+        this.props.firebase.dressGroup(this.dressGroupId).on('value', snapshot => {
             this.setState({dressesIDs: snapshot.val()});
         });
     }
@@ -66,29 +112,31 @@ class Results extends Component {
         });
     }
 
-    // componentDidMount() { 
+    goToItemView(selectedItem) {
+        // this.props.history.push({
+        //     pathname: '/item',
+        //     item: {selectedItem},
+        //     // height: this.state.height,
+        //     // waist: this.state.waist,
+        //     // hips: this.state.hips,
+        //     // bust: this.state.bust,
+        //     // size: this.state.size,
+        //     // closestMeasurements: this.state.closestMeasurements,
+        //     // dresses: this.state.dresses
+        // });
 
-    //     this.getBestDressGroup();
-
-    //     this.getBestDressesID();
-
-        
-        
-    //     //For all measurements of that height:
-    //         //Find min difference squared
-    //     //Get group id of dress collection with those measurements
-    //     //For each dress id in group id
-    //         //Populate state with dress object
-
-
-
-    //     // this.props.firebase.items().on('value', snapshot => {
-    //     // console.log(snapshot);
-    //     //   this.setState({
-    //     //     items: snapshot.val(),
-    //     //   });
-    //     // });
-    // }
+        this.props.history.push({
+            pathname: '/item',
+            state: {
+                item: selectedItem,
+                height: this.state.height,
+                waist: this.state.waist,
+                hips: this.state.hips,
+                bust: this.state.bust,
+                size: this.state.size
+            }
+        });
+    }
 
     render() {
         const users = this.state;
@@ -97,11 +145,15 @@ class Results extends Component {
             <h1>Results</h1>
             <p>Results for {this.state.height} in women that are size: {this.state.bust}, {this.state.waist}, {this.state.hips}</p>
             <div className="results-grid">
-                <div className="results-col">
-                    <img src='https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg' />
-                    <p>$50</p>
-                </div>
-
+                {this.state.dresses.map((dress, key) => {
+                    return (
+                        <div className="results-col" onClick={() => this.goToItemView(dress)} key={key}>
+                            <img src='https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg' className="results-img" />
+                            <p>$50</p>
+                        </div>
+                    );
+                })}
+               
             </div>
           </div>
         );

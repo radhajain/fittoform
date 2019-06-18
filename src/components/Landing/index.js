@@ -123,7 +123,7 @@ class Landing extends React.Component {
         <div className="landing-container-intro landing-child">
           <div style={{width: '80%', textAlign: 'left'}}>
             <p className="landing-title">Easily find a summer dress with the perfect fit. Recommended by women with the same body as you.</p>
-            <p className="landing-desc">No more scrolling, tabs and uncertainty. Fit to Form gives you a curated set of clothing, that will fit you perfectly, so you can buy with confidence.</p>
+            <p className="landing-desc">No more scrolling, tabs and uncertainty. Fit to Form gives you a curated set of clothing that might as well have been tailored for you, so you can buy with confidence.</p>
           </div>
         </div>
         <div className="landing-container-first landing-child">

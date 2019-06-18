@@ -8,8 +8,28 @@
     width: 32%
 }
 
+.results-img {
+    height: 383px;
+    width: 230px;
+}
+
 @media (max-width: 400px) {
     .results-grid {
       display: block;
     }
   }
+
+
+@media (max-width: 690px ) {
+    .results-col {
+        width: 50%;
+    }
+}
+
+@media (max-width: 380px ) {
+    .results-col {
+        width: 100%;
+        text-align: center;
+    }
+}
+ 
