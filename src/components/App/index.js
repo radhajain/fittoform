@@ -12,6 +12,7 @@ import AdminPage from '../Admin';
 import ItemPage from '../Item';
 import ResultsPage from '../Results';
 import SearchPage from '../Search';
+import AddItem from '../AddItem';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -37,6 +38,7 @@ const App = () => (
       <Route path={ROUTES.ITEM} component={ItemPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.ADDITEM} component={AddItem} />
     </div>
   </Router>
 );

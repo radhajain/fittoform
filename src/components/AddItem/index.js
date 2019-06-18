@@ -1,9 +1,13 @@
-import firebase from 'firebase'
 import React, { Component } from 'react';
+import firebase from 'firebase';
+import { withFirebase } from'../Firebase';
+import { fromRenderProps } from 'recompose';
+require('firebase/auth')
 
 class AddItem extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
             dressLink: '',
             size: '',
@@ -14,6 +18,26 @@ class AddItem extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getUserData = this.getUserData.bind(this);
+        firebase.auth().onAuthStateChanged(function(authUser) {
+          if (authUser) {
+            console.log(authUser);
+            var uid = authUser.uid;
+            console.log(uid);
+            let UserRef = this.props.firebase.user(uid);
+            console.log(UserRef);
+            UserRef.on('value', (snapshot) => {
+              this.setState({
+                userID: snapshot.key
+              });
+              let user = snapshot.val();
+              this.setState({
+                user: user
+              });
+            });
+            // console.log(this.state)this.getUserData(authUser.uid);
+          } 
+        });
     }
 
     handleChange(e) {
@@ -24,16 +48,64 @@ class AddItem extends Component {
 
       handleSubmit(e) {
         e.preventDefault();
-        const itemsRef = firebase.database().ref('items');
-        const item = {
+        //Create the dress ref
+        // TODO: need to check if dress doesn't already exist
+        const dressesRef = firebase.database().ref('dresses');
+        const dressItem = {
           dressLink: this.state.dressLink,
-          size: this.state.size,
-          color: this.state.color,
-          rating: this.state.rating,
-          review: this.state.review
+          color: this.state.color
         }
-        console.log(item);
-        itemsRef.push(item);
+        console.log(dressItem);
+        dressesRef.push(dressItem).then((snap) => {
+          this.state.dressID = snap.key
+        });
+       
+        //Create the review ref
+        const reviewsRef = firebase.database().ref('reviews');
+        const reviewItem = {
+          userID: this.state.userID,
+          dressID: this.state.dressID,
+          comment: this.state.comment,
+          size: this.state.size,
+          rating: this.state.rating
+        }
+        console.log(reviewItem);
+        reviewsRef.push(reviewItem).then((snap) => {
+          this.state.reviewID = snap.key
+        });
+        // TODO: add reviewID to dress object
+
+        //Create the measurements ref
+        const measurementsRef = firebase.database().ref('measurements');
+        //var userMeasurmentsKey = [this.state.user.height, this.state.user.waist, this.state.user.bust, this.state.user.hips];
+        var userMeasurmentsKey = [65, 24, 33, 36];
+        measurementsRef.on('value', snapshot => {
+          if (snapshot.hasChild(userMeasurmentsKey)) {
+            //If user measurements exist, get the groupID
+            this.state.dressGroupID = snapshot.value();
+          } 
+        });
+        if (!this.state.dressGroupID) {
+          //create groupIDDresses
+          const groupIDDressesRef = firebase.database().ref('groupIDDresses');
+          const groupIDDressesItem = {
+            dress: this.state.dressID,
+            rating: this.state.rating
+          }
+          var groupIDDresses = groupIDDressesRef.push(groupIDDressesItem);
+          var groupIDDressesID = groupIDDresses.name();
+          //Push groupIDDressref to measurements
+          measurementsRef.child(userMeasurmentsKey).setValue(groupIDDressesID);
+        } else {
+          //Add dress to groupDressID
+          const groupIDDressesRef = firebase.database().ref('groupIDDresses');
+          const groupIDDresses = {
+            dress: this.state.dressID,
+            rating: this.state.rating
+          }
+          groupIDDressesRef.push(groupIDDresses);
+        }
+
         this.setState({
           dressLink: '',
           size: '',
@@ -43,25 +115,46 @@ class AddItem extends Component {
         });
       }
 
-      componentDidMount() {
-        const itemsRef = firebase.database().ref('items');
-        itemsRef.on('value', (snapshot) => {
-          let items = snapshot.val();
-          let newState = [];
-          for (let item in items) {
-            newState.push({
-              id: item,
-              dressLink: items[item].dressLink,
-              size: items[item].size,
-              color: items[item].color,
-              rating: items[item].rating,
-              review: items[item].review
-            });
-          }
+      getUserData(uid) {
+        console.log(uid);
+        let UserRef = this.props.firebase.user(uid);
+        console.log(UserRef);
+        UserRef.on('value', (snapshot) => {
           this.setState({
-            items: newState
+            userID: snapshot.key
+          });
+          let user = snapshot.val();
+          this.setState({
+            user: user
           });
         });
+        console.log(this.state)
+      }
+
+      componentDidMount() {
+  
+
+
+
+
+        // const itemsRef = firebase.database().ref('items');
+        // itemsRef.on('value', (snapshot) => {
+        //   let items = snapshot.val();
+        //   let newState = [];
+        //   for (let item in items) {
+        //     newState.push({
+        //       id: item,
+        //       dressLink: items[item].dressLink,
+        //       size: items[item].size,
+        //       color: items[item].color,
+        //       rating: items[item].rating,
+        //       review: items[item].review
+        //     });
+        //   }
+        //   this.setState({
+        //     items: newState
+        //   });
+        // });
       }
 
     render() {
@@ -89,4 +182,4 @@ class AddItem extends Component {
     }
  }
 
-export default AddItem;
+export default withFirebase(AddItem);

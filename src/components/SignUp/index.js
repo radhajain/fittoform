@@ -24,11 +24,41 @@ class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
+    //this.props in the future should have all of the following populated fields:
+    /*
+       currPage: 'Onboarding1',
+        name: null,
+        heightFt: null,
+        heightIn: null,
+        size: null,
+        inches: null,
+        waistIn: null,
+        hipsIn: null,
+        bustIn: null,
+        insideLegIn: null,
+        favoriteJeansBrand: null,
+        favoriteJeansSize: null
+    */
+
+    console.log(this.props);
+
     this.state = { ...INITIAL_STATE };
   }
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
+
+    //const name = this.props.name;
+    //const heightFt = this.props.heightFt;
+    //const heightIn = this.props.heightIn;
+    //const size = this.props.size;
+    //const inches = this.props.inches;
+    //const waistIn= this.props.waistIn;
+    //const hipsIn = this.props.hipsIn;
+    //const insideLegIn = this.props.insideLegIn;
+    //const favoriteJeansBrand = this.props.favoriteJeansBrand;
+    //const favoriteJeansSize = this.props.favoriteJeansSize;
+    //const savedItems = 'none';
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -38,7 +68,15 @@ class SignUpFormBase extends Component {
           .user(authUser.user.uid)
           .set({
             username,
-            email,
+            email
+            //name,  
+            //heightFt,
+            //heightIn,
+            //size,
+            //inches,
+            //waistIn,
+           // hipsIn,
+           // bustIn
           });
       })
       .then(authUser => {
