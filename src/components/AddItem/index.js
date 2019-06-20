@@ -163,4 +163,5 @@ class AddItem extends Component {
     }
  }
 
-export default withFirebase(AddItem);
+//export default withFirebase(AddItem);
+export default AddItem;
