@@ -1,0 +1,14 @@
+.signout-btn {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    border: 1px solid black;
+    float: right;
+}
+
+.signout-btn:hover {
+    background-color: black;
+    color: white;
+}
