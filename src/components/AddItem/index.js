@@ -110,7 +110,7 @@ class AddItem extends Component {
           rating: '',
           review: ''
         });
-      }
+      //}
 
       
 
