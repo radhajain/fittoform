@@ -38,6 +38,7 @@ const App = () => (
       <Route path={ROUTES.ITEM} component={ItemPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.ADDITEM} component={AddItem} />
     </div>
   </Router>
 );
