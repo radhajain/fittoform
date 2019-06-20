@@ -138,7 +138,8 @@ class AddItem extends Component {
           bust: this.state.bust,
           hips: this.state.hips
         };
-        this.getGroupIDIfExists(userMeasurments).then(this.addDressToGroup);
+        // TODO: fix below
+        //this.getGroupIDIfExists(userMeasurments).then(this.addDressToGroup);
       }
 
       handleSubmit(e) {
