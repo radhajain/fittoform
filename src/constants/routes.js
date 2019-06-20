@@ -8,4 +8,4 @@ export const PASSWORD_FORGET = '/pw-forget';
 export const SEARCH = '/search';
 export const RESULTS = '/results';
 export const ITEM = '/item';
-export const ADDITEM = '/additem';
+//export const ADDITEM = '/additem';
