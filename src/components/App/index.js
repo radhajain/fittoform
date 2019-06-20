@@ -7,6 +7,7 @@ import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
+import AddItemPage from '../AddItem';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import ItemPage from '../Item';
