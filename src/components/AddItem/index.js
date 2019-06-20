@@ -22,7 +22,7 @@ class AddItem extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.getUserData = this.getUserData.bind(this);
+        //this.getUserData = this.getUserData.bind(this);
     }
 
     handleChange(e) {
