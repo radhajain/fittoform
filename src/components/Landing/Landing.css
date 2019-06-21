@@ -48,6 +48,12 @@
     background: linear-gradient(#FCC6D0, #FEE7EC)
 }
 
+.landing-container-fourth {
+    background: linear-gradient(#FEE7EC, #FFF7F9);
+    display: flex;
+    flex-direction: column;
+    
+}
 
 .landing-input {
     background: none;
@@ -58,6 +64,20 @@
     text-align: center;
     width: 70px;
     font-size: 1.5em;
+}
+
+.landing-input-email {
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: gray;
+    font-family: 'Albertus', sans-serif;
+    text-align: left;
+    width: 270px;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
 }
 
 .landing-input:focus {

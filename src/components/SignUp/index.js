@@ -7,7 +7,6 @@ import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
     <SignUpForm />
   </div>
 );
@@ -110,40 +109,155 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
-        {error && <p>{error.message}</p>}
-      </form>
+
+      <div className="landing-parent">
+      <div className="landing-container-first landing-child">
+        <div className="landing-search-content">
+            <form>
+              <label className="landing-search-label">
+                I am
+                <input
+                  name="heightft"
+                  type="number"
+                  className="landing-input"
+                  onChange={this.handleInputChange} />
+                ft, 
+                <input
+                  name="heightin"
+                  type="number"
+                  className="landing-input"
+                  onChange={this.handleInputChange} />
+                in tall.
+              </label>
+            </form>
+          </div>
+      </div>
+      <div className="landing-container-second landing-child">
+        <div className="landing-search-content">
+            <form>
+              <label className="landing-search-label">
+                I normally wear US size
+                <input
+                  name="size"
+                  type="number"
+                  className="landing-input"
+                  onChange={this.addUSSize} />
+              </label>
+            </form>
+          </div>
+      </div>
+      <div className="landing-container-third landing-child">
+        <div className="landing-search-content">
+          <p className="landing-desc">On me, size 2 is generally fits:</p>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <div className="landing-desc" style={{display:'block'}}>
+                WAIST
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.5)}>Too small</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.25)}>Tight</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyWaist(0)}>Perfect</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.25)}>Loose</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Large</button>
+                </div>
+            </div>
+            <div className="landing-desc" style={{marginLeft: 100, marginRight: 100}}>
+                HIPS
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <button className="landing-size-buttons" onClick={() => this.modifyHips(0.5)}>Too small</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyHips(0.25)}>Tight</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyHips(0)}>Perfect</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.25)}>Loose</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.5)}>Large</button>
+                </div>
+            </div>
+            <div className="landing-desc">
+                BUST
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <button className="landing-size-buttons" onClick={() => this.modifyBust(0.5)}>Too small</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyBust(0.25)}>Tight</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyBust(0)}>Perfect</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.25)}>Loose</button>
+                <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.5)}>Large</button>
+                </div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+
+          <div className="landing-container-fourth landing-child">
+          <form onSubmit={this.onSubmit}>
+            <input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Full Name"
+              className="landing-input-email"
+            />
+            <input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+              className="landing-input-email"
+            />
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+              className="landing-input-email"
+            />
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
+              className="landing-input-email"
+            />
+            {/* <button disabled={isInvalid} type="submit">
+              Sign Up
+            </button>
+            {error && <p>{error.message}</p>} */}
+          </form>
+       
+        <div>
+            <Link to= {{
+              pathname: '/results',
+              state: {
+                height: this.state.height,
+                waist: this.state.waist,
+                hips: this.state.hips,
+                bust: this.state.bust,
+                size: this.state.size
+              }}}><button disabled={isInvalid} className="landing-results-btn" type="submit">See dresses picked for my size</button></Link>
+              {error && <p>{error.message}</p>}
+          </div>
+        </div>
+
+
+
+          
+
+  
+          
+       
+
+        
+
+    
+     
+     
+    </div>
+     
+
+
+
+      
     );
   }
 }

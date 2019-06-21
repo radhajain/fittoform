@@ -1,6 +1,7 @@
 import React from 'react';
 import './Landing.css';
 import { Link } from 'react-router-dom';
+import './Landing.css'
 
 //TODO: change so that the user cannot scroll to next page if they haven't filled out the previous field
 class Landing extends React.Component {
