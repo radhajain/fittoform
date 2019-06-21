@@ -24,9 +24,10 @@ class AddItem extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getUserData = this.getUserData.bind(this);
+        this.getDressID = this.getDressID.bind(this);
         this.createDressID = this.createDressID.bind(this);
         this.createReviewID = this.createReviewID.bind(this);
-        this.measurementsToGroupID = this.measurementsToGroupID.bind(this);
+        this.addDressToGroup = this.addDressToGroup.bind(this);
     }
 
     handleChange(e) {
@@ -34,23 +35,47 @@ class AddItem extends Component {
           [e.target.name]: e.target.value
         });
         console.log(this.state);
+    }
+
+      getDressID() {
+        //Create the dress ref
+        // check if dress doesn't already exist -- still some synchronisation issues here
+        const dressesRef = firebase.database().ref('dresses');
+          dressesRef.once('value', snapshot => {
+            snapshot.forEach((DBdress) => {
+              console.log(DBdress.val())
+              if (DBdress.val().dressLink === this.state.dressLink) {
+                //If user measurements exist, get the groupID
+                this.setState({dressID: DBdress.key}, () => {
+                  console.log("MAtched existing dress")
+                  this.createReviewID();
+                });
+              }
+            });
+            this.createDressID();
+          });
       }
 
+
       createDressID() {
-        //Create the dress ref
-        // TODO: need to check if dress doesn't already exist
-        const dressesRef = firebase.database().ref('dresses');
-        const newDressRef = dressesRef.push();
-        newDressRef.set({
-          dressLink: this.state.dressLink,
-          color: this.state.color
-        });
-        var newDressKey = newDressRef.key;
-        this.setState({dressID: newDressKey}, () => {
-          console.log("CREATE DRESS DONE")
-          console.log(this.state);
+        console.log(this.state.dressID);
+        if (!this.state.dressID) {
+          const dressesRef = firebase.database().ref('dresses');
+          const newDressRef = dressesRef.push();
+          newDressRef.set({
+            dressLink: this.state.dressLink,
+            color: this.state.color
+          });
+          var newDressKey = newDressRef.key;
+          this.setState({dressID: newDressKey}, () => {
+            console.log("CREATE DRESS DONE")
+            console.log(this.state);
+            this.createReviewID();
+          });
+        } else {
           this.createReviewID();
-        });
+        }
+
       }
 
   
@@ -71,29 +96,49 @@ class AddItem extends Component {
         this.setState({reviewID: newReviewKey}, () => {
           console.log("REVIEW CREATED");
           console.log(this.state);
-          this.measurementsToGroupID();
+          this.getGroupIDIfExists();
         });
       }
 
       measurementsExist(mts, DBmts) {
+        console.log(DBmts);
         return (mts.height === DBmts.height && mts.waist === DBmts.waist && mts.bust === DBmts.bust && mts.hips === DBmts.hips);
       }
 
 
-      getGroupIDIfExists(userMeasurments) {
+      getGroupIDIfExists() {
+        const userMeasurments = {
+          height: this.state.height,
+          waist: this.state.waist,
+          bust: this.state.bust,
+          hips: this.state.hips
+        };
         const measurementsRef = firebase.database().ref('measurements');
         measurementsRef.once('value', snapshot => {
           snapshot.forEach((DBmts) => {
-            if (this.measurementsExist(userMeasurments, DBmts)) {
+            if (this.measurementsExist(userMeasurments, DBmts.val())) {
               //If user measurements exist, get the groupID
-              this.setState({dressGroupID: DBmts.value()});
+              this.setState({dressGroupID: DBmts.val().groupIDDresses}, () => {
+                console.log("MAtched existing measurements")
+                this.addDressToGroup();
+              });
             }
-          }); 
+          });
+          this.addDressToGroup() ;
         });
+
       }
 
       addDressToGroup() {
-        if (!this.state.dressGroupID) {
+        if (this.state.dressGroupID) {
+          const groupIDDressesRef = firebase.database().ref('groupIDDresses').child(this.state.dressGroupID);
+          //TODO: Need to check if dress already exists in group id -- if so, update rating
+          const newDressRef = groupIDDressesRef.push();
+          newDressRef.set({
+            dress: this.state.dressID,
+            rating: this.state.rating
+          });
+        } else {
           //create groupIDDresses
           const groupIDDressesRef = firebase.database().ref('groupIDDresses');
           const newGroupIDDressesRef = groupIDDressesRef.push();
@@ -101,54 +146,31 @@ class AddItem extends Component {
             dress: this.state.dressID,
             rating: this.state.rating
           });
+          //Push groupIDDressref to measurements
+          const measurementsRef = firebase.database().ref('measurements');
+          var newMeasurementRef = measurementsRef.push();
           var newGroupIDDressesKey = newGroupIDDressesRef.key;
           this.setState({groupIDDressesID: newGroupIDDressesKey}, () => {
               console.log("NEW GROUP ID CREATED");
               console.log(this.state);
-          });
-          //Push groupIDDressref to measurements
-          const measurementsRef = firebase.database().ref('measurements');
-          var newMeasurementRef = measurementsRef.push();
-          newMeasurementRef.set({
-            height: this.state.height,
-            waist: this.state.waist,
-            bust: this.state.bust,
-            hips: this.state.hips,
-            groupIDDresses: newGroupIDDressesKey
-          });
-        } else {
-          //TODOOOOO
-          //Add dress to groupDressID
-          const groupIDDressesRef = firebase.database().ref('groupIDDresses');
-          const groupIDDresses = {
-            dress: this.state.dressID,
-            rating: this.state.rating
-          }
-          groupIDDressesRef.push(groupIDDresses);
+              newMeasurementRef.set({
+                height: this.state.height,
+                waist: this.state.waist,
+                bust: this.state.bust,
+                hips: this.state.hips,
+                groupIDDresses: newGroupIDDressesKey
+              });
+          });    
         }
       }
 
 
-
-      measurementsToGroupID() {
-        //Create the measurements ref
-        const userMeasurments = {
-          height: this.state.height,
-          waist: this.state.waist,
-          bust: this.state.bust,
-          hips: this.state.hips
-        };
-        // TODO: fix below
-        //this.getGroupIDIfExists(userMeasurments).then(this.addDressToGroup);
-      }
-
       handleSubmit(e) {
         e.preventDefault();
         this.createDressID();
-        // this.createReviewID();
-        // this.measurementsToGroupID();
       }
 
+      //TODO: get user id
       getUserData(uid) {
         console.log(uid);
         let UserRef = this.props.firebase.user(uid);
@@ -166,29 +188,7 @@ class AddItem extends Component {
       }
 
       componentDidMount() {
-  
 
-
-
-
-        // const itemsRef = firebase.database().ref('items');
-        // itemsRef.on('value', (snapshot) => {
-        //   let items = snapshot.val();
-        //   let newState = [];
-        //   for (let item in items) {
-        //     newState.push({
-        //       id: item,
-        //       dressLink: items[item].dressLink,
-        //       size: items[item].size,
-        //       color: items[item].color,
-        //       rating: items[item].rating,
-        //       review: items[item].review
-        //     });
-        //   }
-        //   this.setState({
-        //     items: newState
-        //   });
-        // });
       }
 
     render() {
