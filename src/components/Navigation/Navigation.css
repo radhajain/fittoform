@@ -13,8 +13,8 @@
 }
 
 .navbar.long {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 .nav-list {
@@ -40,7 +40,8 @@
 }
 
 .nav-left-panel {
-    flex: 0 0 20%;
+    flex: 0 0 10%;
+    float: left;
 }
 
 .nav-center-panel {
@@ -48,11 +49,12 @@
 }
 
 .nav-right-panel {
-    flex: 0 0 20%;
+    flex: 0 0 30%;
     flex-direction: column;
-    justify-content: center;
     align-content: center;
     vertical-align: middle;
+    float: right;
+    width: 100%;
 }
 
 .nav-inner {
@@ -70,8 +72,27 @@
 }
 
 .nav-right-icons {
-    margin-top: 12px;
+    margin-top: 50%;
     flex-direction: column;
-    justify-content: center;
     align-content: center;
+}
+
+.signin-btn {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    border: 1px solid white;
+    float: right;
+}
+
+.signin-btn:hover {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    border: 1px solid white;
+    float: right;
 }
