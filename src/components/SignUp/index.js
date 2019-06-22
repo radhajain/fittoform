@@ -142,7 +142,6 @@ class SignUpFormBase extends Component {
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
-
         {error && <p>{error.message}</p>}
       </form>
     );
@@ -150,9 +149,7 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </p>
+  <p class="message">Not registered? <Link to={ROUTES.SIGN_UP}>Create an account</Link></p>
 );
 
 const SignUpForm = compose(
