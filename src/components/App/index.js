@@ -13,6 +13,7 @@ import ItemPage from '../Item';
 import ResultsPage from '../Results';
 import SearchPage from '../Search';
 import AddItem from '../AddItem';
+import HowItWorks from '../HowItWorks';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -38,6 +39,7 @@ const App = () => (
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.ADDITEM} component={AddItem} />
+      <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
     </div>
   </Router>
 );

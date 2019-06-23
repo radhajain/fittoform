@@ -124,95 +124,31 @@ class Landing extends React.Component {
         <div className="landing-container-intro landing-child">
           <div style={{width: '80%', textAlign: 'left'}}>
             <p className="landing-title">Easily find a summer dress with the perfect fit. Recommended by women with the same body as you.</p>
-            <p className="landing-desc">No more scrolling, tabs and uncertainty. Fit to Form gives you a curated set of clothing that might as well have been tailored for you, so you can buy with confidence.</p>
+            <p className="landing-desc">Finally, the end of fitting rooms and returns. Our dresses have been tried and tested by women of your exact measurements so you don’t have to. Only see dresses guaranteed to fit you so you can focus on the styles you like. No more scrolling, tabs and uncertainty. Fit to Form gives you a curated set of clothing that might as well have been tailored for you, so you can buy with confidence.</p>
+            <button className="landing-results-btn">See dresses picked for my size</button>
           </div>
         </div>
         <div className="landing-container-first landing-child">
-          <div className="landing-search-content">
-              <form>
-                <label className="landing-search-label">
-                  I am
-                  <input
-                    name="heightft"
-                    type="number"
-                    className="landing-input"
-                    onChange={this.handleInputChange} />
-                  ft, 
-                  <input
-                    name="heightin"
-                    type="number"
-                    className="landing-input"
-                    onChange={this.handleInputChange} />
-                  in tall.
-                </label>
-              </form>
+          <div style={{width: '80%', textAlign: 'left'}}>
+              <p className="landing-title">We’re here to get rid of the uncertainties of shopping</p>
+              <ul className="landing-desc">
+                <li>We know how important fit is to looking good and we’re here to make sure you know which dresses will fit you best</li>
+                <li>Brands and even items can have inconsistent sizing so we’re here to clear the confusion and let you know if any size will fit you perfectly</li>
+                <li>There’s nothing as sad as having to return the dress you so desperately wanted to work, we will make sure all our dresses fit exactly as you imagined</li>
+              </ul>
             </div>
         </div>
         <div className="landing-container-second landing-child">
-          <div className="landing-search-content">
-              <form>
-                <label className="landing-search-label">
-                  I normally wear US size
-                  <input
-                    name="size"
-                    type="number"
-                    className="landing-input"
-                    onChange={this.addUSSize} />
-                </label>
-              </form>
-            </div>
-        </div>
-        <div className="landing-container-third landing-child">
-          <div className="landing-search-content">
-            <p className="landing-desc">On me, size 2 is generally fits:</p>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-              <div className="landing-desc" style={{display:'block'}}>
-                  WAIST
-                  <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.5)}>Too small</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.25)}>Tight</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(0)}>Perfect</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.25)}>Loose</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Large</button>
-                  </div>
-              </div>
-              <div className="landing-desc" style={{marginLeft: 100, marginRight: 100}}>
-                  HIPS
-                  <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(0.5)}>Too small</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(0.25)}>Tight</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(0)}>Perfect</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.25)}>Loose</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.5)}>Large</button>
-                  </div>
-              </div>
-              <div className="landing-desc">
-                  BUST
-                  <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(0.5)}>Too small</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(0.25)}>Tight</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(0)}>Perfect</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.25)}>Loose</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.5)}>Large</button>
-                  </div>
-              </div>
-            </div>
-            <div>
-              <Link to= {{
-                pathname: '/results',
-                state: {
-                  height: this.state.height,
-                  waist: this.state.waist,
-                  hips: this.state.hips,
-                  bust: this.state.bust,
-                  size: this.state.size
-                }}}><button className="landing-results-btn">See dresses picked for my size</button></Link>
-            </div>
-            
+          <div style={{width: '80%', textAlign: 'left'}}>
+            <p className="landing-title" style={{textAlign: "center"}}>How it works</p>
+            <ul>
+              <li>1. Tell us your measurements</li>
+              <li>2. Search for dresses</li>
+              <li>3. Pick the styles you like and read reviews from other women of your exact measurements who have tried this dress on</li>
+            </ul>
+            <button className="landing-results-btn">See dresses picked for my size</button>
           </div>
-
         </div>
-       
       </div>
     );
   }
