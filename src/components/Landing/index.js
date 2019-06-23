@@ -168,31 +168,31 @@ class Landing extends React.Component {
               <div className="landing-desc" style={{display:'block'}}>
                   WAIST
                   <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.5)}>Too small</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.25)}>Tight</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(1)}>Too small</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.5)}>Tight</button>
                   <button className="landing-size-buttons" onClick={() => this.modifyWaist(0)}>Perfect</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.25)}>Loose</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Large</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Loose</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyWaist(-1)}>Large</button>
                   </div>
               </div>
               <div className="landing-desc" style={{marginLeft: 100, marginRight: 100}}>
                   HIPS
                   <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(0.5)}>Too small</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(0.25)}>Tight</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyHips(1)}>Too small</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyHips(0.5)}>Tight</button>
                   <button className="landing-size-buttons" onClick={() => this.modifyHips(0)}>Perfect</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.25)}>Loose</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.5)}>Large</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.5)}>Loose</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyHips(-1)}>Large</button>
                   </div>
               </div>
               <div className="landing-desc">
                   BUST
                   <div style={{display: 'flex', flexDirection: 'column'}}>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(0.5)}>Too small</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(0.25)}>Tight</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyBust(1)}>Too small</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyBust(0.5)}>Tight</button>
                   <button className="landing-size-buttons" onClick={() => this.modifyBust(0)}>Perfect</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.25)}>Loose</button>
-                  <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.5)}>Large</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.5)}>Loose</button>
+                  <button className="landing-size-buttons" onClick={() => this.modifyBust(-1)}>Large</button>
                   </div>
               </div>
             </div>
