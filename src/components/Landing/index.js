@@ -11,6 +11,7 @@ import dress4 from '../../assets/images/landing-4-4.jpg';
 import dress5 from '../../assets/images/landing-4-5.jpg';
 import dress6 from '../../assets/images/landing-4-6.jpg';
 import dress7 from '../../assets/images/landing-4-7.jpg';
+import Footer from '../Footer';
 
 
 //TODO: change so that the user cannot scroll to next page if they haven't filled out the previous field
@@ -78,7 +79,7 @@ class Landing extends React.Component {
                 <div className="landing-container-inner" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)', height: '80%', zIndex: 100, position: 'relative'}}>
                     <div className="landing-third-content"> 
                         <p className="landing-third-title">Women like you have tried on these dresses.</p>
-                        <p className="landing-third-desc">Brands and even items can have inconsistent sizing. We show you a curated selection of dresses that we know will make you look fantastic.</p>
+                        <p className="landing-third-desc">Brands and even items can have inconsistent sizing. Every piece of item on our site has been tried on by real women  who are the same size as you. We show you a curated selection of dresses that we know will make you look fantastic. </p>
                     </div>
                 </div>
             </div>
@@ -109,9 +110,7 @@ class Landing extends React.Component {
 
                 </div>
             </div>
-            <div className="landing-footer">
-
-            </div>
+            <Footer />
        
       </div>
     );
