@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
-import Logo from '../../assets//images/insta1.jpeg';
+
 import './Footer.css'
 
 const Footer = () => (

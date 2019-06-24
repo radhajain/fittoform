@@ -1,10 +1,11 @@
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#3C1123;
   padding:20px 0 10px;
   font-size:15px;
   line-height:24px;
-  color:#737373;
+  color:white;
+  font-family: 'Futura', sans-serif;
 }
 
 .row
@@ -59,7 +60,7 @@
 
 .footer-links a
 {
-  color:#737373
+  color:white;
 }
 
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
@@ -80,7 +81,8 @@
 }
 .copyright-text
 {
-  margin:0
+  margin:0;
+  color:#737373;
 }
 
 .social-icons
