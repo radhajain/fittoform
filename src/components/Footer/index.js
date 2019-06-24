@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import IGLogo from '../../assets/images/ig-logo.png'
 import * as ROUTES from '../../constants/routes';
 
 import './Footer.css'
@@ -18,12 +18,16 @@ const Footer = () => (
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li><a href="">About Us</a></li>
-              {/* <li><a href="">Contact Us</a></li> */}
+              <li><a href="">FAQs</a></li>
             </ul>
-            <ul class="social-icons">
-              <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>  
-            </ul>
+            <div class="footer-social-icons">
+                <a style={{display: "table-cell"}} href="https://www.instagram.com/fit.to.form/" target="_blank">
+                    <img src={IGLogo} style={{width: 35}}/>
+                </a> 
+            </div>
           </div>
+
+          
         </div>
         <hr></hr>
       </div>

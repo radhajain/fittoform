@@ -13,54 +13,10 @@ class Results extends Component {
             hips: this.props.location.state.hips,
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
-            closestMeasurementsID: '',
+            closestMeasurements: '',
             dressGroupID: null,
             dressesIDs: [],
             dresses: [],
-            // dresses: [
-            //     {
-            //         img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
-            //         price: '$50',
-            //         name: 'T-shirt dress',
-            //         brand: 'superdown',
-            //         link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
-            //     },
-            //     {
-            //         img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
-            //         price: '$50',
-            //         name: 'T-shirt dress',
-            //         brand: 'superdown',
-            //         link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
-            //     },
-            //     {
-            //         img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
-            //         price: '$50',
-            //         name: 'T-shirt dress',
-            //         brand: 'superdown',
-            //         link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
-            //     },
-            //     {
-            //         img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
-            //         price: '$50',
-            //         name: 'T-shirt dress',
-            //         brand: 'superdown',
-            //         link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
-            //     },
-            //     {
-            //         img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
-            //         price: '$50',
-            //         name: 'T-shirt dress',
-            //         brand: 'superdown',
-            //         link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
-            //     },
-            //     {
-            //         img: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg',
-            //         price: '$50',
-            //         name: 'T-shirt dress',
-            //         brand: 'superdown',
-            //         link: 'https://is4.revolveassets.com/images/p4/n/c/BTWR-WD407_V1.jpg'
-            //     },
-            // ]
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -77,7 +33,6 @@ class Results extends Component {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
         // and this.state.dressGroupId
         var lowestDiff = Number.MAX_VALUE;
-        var dressGroup
         this.props.firebase.measurements().on('value', snapshot => {
             snapshot.forEach(measurement => {
                 //gets measurements with the minimum difference to current user
@@ -90,7 +45,7 @@ class Results extends Component {
                 if (Math.sqrt(diffSq) < lowestDiff) {
                     lowestDiff =  Math.sqrt(diffSq);
                     console.log("updating state");
-                    this.setState({closestMeasurementsID: measurement.key});
+                    this.setState({closestMeasurements: values});
                     this.setState({dressGroupID: values.dressGroupID})
                 }
             });
@@ -167,21 +122,26 @@ class Results extends Component {
     render() {
         const users = this.state;
         return (
-            <div>
-            <h1>Results</h1>
-            <p>Results for {this.state.height} in women that are size: {this.state.bust}, {this.state.waist}, {this.state.hips}</p>
-            <div className="results-grid">
-                {this.state.dresses.map((dress, key) => {
-                    return (
-                        <div className="results-col" onClick={() => this.goToItemView(dress)} key={key}>
-                            <img src={dress.img} className="results-img" />
-                            <p>${dress.price}</p>
-                        </div>
-                    );
-                })}
-               
+        <div className="results-container-outer">
+            <div className="results-container-inner">
+                <p>Dresses that will look good on you</p>
+                <p>Picked for your measurements:{this.state.height} inches tall, {this.state.bust}B, {this.state.waist}W, {this.state.hips}H</p>
+                <p>Recommended by other women that are {this.state.closestMeasurements.height} inches tall, {this.state.closestMeasurements.bust}B, {this.state.closestMeasurements.waist}W, {this.state.closestMeasurements.hips}H</p>
+                <div className="results-grid">
+                    {this.state.dresses.map((dress, key) => {
+                        return (
+                            <div className="results-col" onClick={() => this.goToItemView(dress)} key={key}>
+                                <div>
+                                    <img src={dress.img} className="results-img" />
+                                    <p className="results-price">${dress.price}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                
+                </div>
             </div>
-          </div>
+        </div>
         );
     }
  }
