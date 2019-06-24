@@ -40,7 +40,6 @@ const App = () => (
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.ADDITEM} component={AddItem} />
       <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
-      <Footer />
     </div>
   </Router>
 );
