@@ -1,3 +1,17 @@
+.results-container-outer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-container-inner {
+    padding: 20px 20px;
+    width: 80%;
+    height: 90%;
+}
+
 .results-grid {
     display: flex;
     flex-wrap: wrap;
@@ -5,7 +19,14 @@
 }
 
 .results-col {
-    width: 32%
+    width: 32%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-price {
+    text-align: center;
 }
 
 .results-img {

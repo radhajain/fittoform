@@ -163,7 +163,7 @@ class Landing extends React.Component {
         </div>
         <div className="landing-container-third landing-child">
           <div className="landing-search-content">
-            <p className="landing-desc">On me, size 2 is generally fits:</p>
+            <p className="landing-desc">On me, size {this.state.size} is generally fits:</p>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
               <div className="landing-desc" style={{display:'block'}}>
                   WAIST

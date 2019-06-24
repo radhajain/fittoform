@@ -260,15 +260,15 @@ class AddItem extends Component {
                 <input className="add-input" type="text" name="dressLink" placeholder="What's the link to your dress?" onChange={this.handleChange} value={this.state.dressLink} />
                 <input className="add-input" type="text" name="brand" placeholder="What brand is the dress?" onChange={this.handleChange} value={this.state.brand} />
                 <input className="add-input" type="text" name="name" placeholder="What is the name of the dress?" onChange={this.handleChange} value={this.state.name} />
-                <input className="add-input" type="text" name="length" placeholder="How long is the dress? e.g. mini, midi, maxi" onChange={this.handleChange} value={this.state.length} />
+                <input className="add-input" type="text" name="length" placeholder="How long is the dress? e.g. mini, midi, maxi, knee" onChange={this.handleChange} value={this.state.length} />
                 <input className="add-input" type="number" name="price" placeholder="How much was the dress?" onChange={this.handleChange} value={this.state.price} />
                 <input className="add-input" type="text" name="img" placeholder="What's the link to the image?" onChange={this.handleChange} value={this.state.img} />
                 <input className="add-input" type="text" name="neckline" placeholder="What's the neckline? e.g. high, normal, plunge" onChange={this.handleChange} value={this.state.neckline} />
                 <input className="add-input" type="text" name="straps" placeholder="What's the straps? e.g. strapless, short-sleeve, off-shoulder, asymmetric, tank " onChange={this.handleChange} value={this.state.straps} />
                 <input className="add-input" type="text" name="bra" placeholder="What type of bra do you wear with it? e.g. any, strapless, none" onChange={this.handleChange} value={this.state.bra} />
-                <input className="add-input" type="text" name="style" placeholder="What's the style of the dress? e.g. bodycon, fit-and-flare, shift, t-shirt, wrap" onChange={this.handleChange} value={this.state.style} />
+                <input className="add-input" type="text" name="style" placeholder="What's the style of the dress? e.g. bodycon, fit-and-flare, shift, t-shirt, wrap, shift" onChange={this.handleChange} value={this.state.style} />
                 <input className="add-input" type="text" name="occassion" placeholder="What occassion? e.g. Night-out, Island-Vibes, Wedding-guest, Daytime-cute, Safe-For-Work, Day-to-Night" onChange={this.handleChange} value={this.state.occassion} />
-                <input className="add-input" type="text" name="material" placeholder="What's the material of the dress? e.g. jersey, silk, lace, beaded, denim, chiffon, cotton, leather, linen, sequin, velvet" onChange={this.handleChange} value={this.state.material} />
+                <input className="add-input" type="text" name="material" placeholder="What's the material of the dress? e.g. jersey, silk, lace, beaded, denim, chiffon, cotton, leather, linen, sequin, velvet, crepe" onChange={this.handleChange} value={this.state.material} />
                 <input className="add-input" type="text" name="size" placeholder="What size did you buy?" onChange={this.handleChange} value={this.state.size}/>
                 <input className="add-input" type="text" name="color" placeholder="What color did you buy?" onChange={this.handleChange} value={this.state.color}/>
                 <input className="add-input" type="number" name="rating" placeholder="What would you rate this dress from 1-10?" onChange={this.handleChange} value={this.state.rating}/>
