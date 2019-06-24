@@ -16,7 +16,6 @@ import dress7 from '../../assets/images/landing-4-7.jpg';
 import Footer from '../Footer';
 
 
-//TODO: change so that the user cannot scroll to next page if they haven't filled out the previous field
 class Landing extends React.Component {
   constructor(props) {
     super(props);
@@ -32,10 +31,12 @@ class Landing extends React.Component {
                     <div className="landing-intro-content">
                         <p className="landing-title">We try on dresses so you don't have to.</p>
                         <p className="landing-desc">It is hard to know what fits well when online shopping. We show you a curated set of dresses, recommended by real women with the same measurements as you. Buy with confidence, every time.</p>
-                        <button className="landing-callToAction">
-                            Find your perfect dress
-                            <img src={WhiteArrow} className="landing-whitearrow"/>
-                        </button>
+                        <Link to='/search'>
+                            <button className="landing-callToAction">
+                                Find your perfect dress
+                                <img src={WhiteArrow} className="landing-whitearrow"/>
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <div className="landing-howitworks-outer"> 
@@ -108,10 +109,12 @@ class Landing extends React.Component {
                     <div className="landing-fourth-content"> 
                         <p className="landing-fourth-title">You're the stylist.</p>
                         <p className="landing-fourth-desc">No commitments, no subscriptions, no fees.  We are just giving you the tools to find the pieces and styles you want - and the knowledge that they will flatter you. </p>
-                        <button className="landing-callToAction">
-                            Try it out
-                            <img src={WhiteArrow} style={{paddingLeft: 15}}/>
-                        </button>
+                        <Link to='/search'>
+                            <button className="landing-callToAction">
+                                Try it out
+                                <img src={WhiteArrow} className="landing-whitearrow"/>
+                            </button>
+                        </Link>
                     </div>
 
                 </div>
