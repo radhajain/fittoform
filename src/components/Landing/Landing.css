@@ -211,7 +211,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 1050px;
+    height: 90%;
 }
 
 .landing-third-sm {
@@ -344,9 +344,7 @@
         width: 90%;
     }
 
-    .landing-third-img {
-        width: 950px;
-    }
+
 }
 
 
@@ -366,7 +364,7 @@
     }
 
     .landing-third-img {
-        width: 98%;
+        height: 70%;
     }
 
     .landing-third-content {
@@ -501,6 +499,17 @@
     .dress1 {
         display: none;
     }
+
+    .landing-third-img {
+        display: none;
+    }
+
+    .landing-third-sm {
+        display: block;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 }
 
 @media (max-width: 622px) {
@@ -548,16 +557,7 @@
 
 
 @media (max-width: 497px) {
-    .landing-third-img {
-        display: none;
-    }
 
-    .landing-third-sm {
-        display: block;
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
-    }
 
     .landing-third-content {
         min-width: unset;
