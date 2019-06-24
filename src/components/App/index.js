@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
+import Footer from '../Footer';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
@@ -40,6 +41,7 @@ const App = () => (
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.ADDITEM} component={AddItem} />
       <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
+      <Footer />
     </div>
   </Router>
 );
