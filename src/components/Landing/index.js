@@ -85,7 +85,7 @@ class Landing extends React.Component {
                         <p className="landing-third-desc">Brands and even items can have inconsistent sizing. Every piece of item on our site has been tried on by real women  who are the same size as you. We show you a curated selection of dresses that we know will make you look fantastic. </p>
                     </div>
                     <div>
-                    <img src={wrapSM} className="landing-third-sm"/>
+                        <img src={wrapSM} className="landing-third-sm"/>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,6 @@ class Landing extends React.Component {
                     </div>
 
                 </div>
-                
             </div>
             <Footer />
       </div>
