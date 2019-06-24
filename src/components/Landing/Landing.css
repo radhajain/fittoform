@@ -18,7 +18,7 @@
 }
 
 .landing-child {
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -38,6 +38,23 @@
     height: 100vh;
     position: relative;
 
+}
+
+.landing-intro-hero {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-intro-content {
+    width: 70%;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.landing-whitearrow {
+    padding-left: 15px;
 }
 
 .futura {
@@ -100,7 +117,7 @@
 .landing-howitworks-steps {
     display: flex;
     flex-direction: row;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 
@@ -119,6 +136,7 @@
 .landing-howitworks-box {
     flex-basis: 30%;
     padding: 20px 20px;
+    min-width: 140px;
 }
 
 /* --------------------------------- */
@@ -175,7 +193,6 @@
     font-size: 1.25em;
     color: #E8DCDC;
     width: 80%;
-
 }
 
 .landing-2-rightImg {
@@ -194,6 +211,11 @@
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 1050px;
+}
+
+.landing-third-sm {
+    display: none;
 }
 
 .landing-third-content {
@@ -236,6 +258,20 @@
     width: 500px;
 }
 
+.landing-fourth-title {
+    background-color: #E8DCDC;
+    color: black;
+    font-family: 'Albertus', sans-serif;
+    font-size: 2.5em;
+}
+
+.landing-fourth-desc {
+    font-family: 'Futura', sans-serif;
+    font-size: 1.25em;
+    color: #E8DCDC;
+    width: 80%;
+}
+
 
 .landing-fourth-flex-grid {
     display: flex;
@@ -259,37 +295,283 @@
 
 /* ------------------------------------------- */
 
-/* FOOTER  */
 
-.landing-footer {
-    height: 30vh;
-    background-color: #3C1123;
+@media (max-width: 1514px) {
+    .dress7 {
+        display: none;
+    }
 }
 
+@media (max-width: 1507px) {
+    .landing-second-title {
+        font-size: 2em;
+    }
+}
 
+@media (max-width: 1423px) {
+    .landing-third-content {
+        margin-top: 0px;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 1085px) {
+@media (max-width: 1315px) {
     .dress4 {
         display: none;
     }
 }
 
+@media (max-width: 1301px) {
+    .landing-fourth-img2 {
+        height: 270px;
+    }
+}
 
-@media (max-width: 1397px) {
-    .dress7 {
+
+@media (max-width: 1207px) {
+    .landing-second-title {
+        font-size: 1.75em;
+    }
+
+    .dress6 {
         display: none;
     }
 }
+
+
+
+@media (max-width: 1085px) {
+    .landing-desc {
+        width: 90%;
+    }
+
+    .landing-third-img {
+        width: 950px;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .landing-fourth-img {
+        height: 370px;
+    }
+}
+
+@media (max-width: 977px) {
+    .landing-title {
+        font-size: 2em;
+    }
+
+    .landing-callToAction {
+        margin: 32px 0px;
+    }
+
+    .landing-third-img {
+        width: 98%;
+    }
+
+    .landing-third-content {
+        width: 90%;
+        padding-left: 50px;
+    }
+
+    .landing-third-desc {
+        width: 80%;
+        float: right;
+        margin-top: 0px;
+    }
+
+    .landing-fourth-row2 {
+        width: calc(100% - 400px);
+    }
+
+    .landing-fourth-content {
+        bottom: 250px;
+    }
+
+    .landing-fourth-page {
+        padding-top: 200px;
+    }
+}
+
+@media (max-width: 940px) {
+    .dress2 {
+        display: none;
+    }
+
+    .landing-third-title {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 845px) {
+    .dress5 {
+        display: none;
+    }
+}
+
+
+@media (max-width: 796px) {
+    .landing-callToAction {
+        padding: 12px 20px;
+    }
+
+    .landing-howitworks-steps {
+        margin-bottom: 0px;
+    }
+}
+
+
+@media (max-width: 780px) {
+   .landing-intro-content {
+       margin-top: 0px;
+   }
+
+   .landing-title {
+       font-size: 1.75em;
+   }
+
+   .landing-callToAction {
+       margin: 28px 0px;
+   }
+}
+
+@media (max-width: 688px) {
+    .landing-intro-content {
+        width: 80%;
+        text-align: left;
+    }
+
+}
+
+@media (max-width: 633px) {
+    .landing-howitworks-box {
+        min-width: 180px;
+        flex-basis: 100%;
+        padding: 5px 20px;
+    }
+    
+    .landing-howitworks-steps {
+        flex-wrap: wrap;
+    }
+
+    .landing-intro-hero {
+        height: 60vh;
+    }
+
+    .landing-howitworks-outer {
+        position: relative;
+        z-index: 100;
+    }
+
+    .landing-intro-content {
+        margin-top: 50px;
+    }
+
+    .landing-child {
+        height: 120vh;
+    }
+
+    .landing-container-intro {
+        height: 120vh;
+    }
+
+    .landing-intro-hero {
+        height: 70vh;
+    }
+
+    .landing-second-title {
+        font-size: 2em;
+    }
+
+    .landing-third-content {
+        margin-top: 70px;
+    }
+
+    .landing-third-img {
+        bottom: 250px;
+    }
+
+    .landing-fourth-content {
+        position: initial;
+        width: 80%;
+        margin-left: 10%;
+
+    }
+
+    .dress1 {
+        display: none;
+    }
+}
+
+@media (max-width: 571px) {
+    .landing-second-desc {
+        font-size: 1.1em;
+    }
+}
+
+
+@media (max-width: 555px) {
+    .landing-fourth-desc {
+        width: 100%;
+    }
+}
+
+@media (max-width: 511px) {
+
+    .landing-2-leftCol {
+        min-width: 229px;
+        flex-basis: 100%;
+        align-items: flex-start;
+    }
+
+    .landing-2-rightCol {
+        flex-basis: 100%;
+        background-image: url(../../assets/images/landing-2-sm.png);
+        height: 300px;
+        margin-top: 0px;
+    }
+
+    .landing-second-desc {
+        width: 100%;
+    }
+
+
+    .landing-2-col-container {
+        flex-wrap: wrap-reverse;
+    }
+}
+
+
+
+@media (max-width: 497px) {
+    .landing-third-img {
+        display: none;
+    }
+
+    .landing-third-sm {
+        display: block;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 423px) {
+    .landing-fourth-title {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 372px) {
+    .landing-whitearrow {
+        display: none;
+    }
+
+    .landing-desc {
+        font-size: 1.1em;
+    }
+}
+
 
 
     
