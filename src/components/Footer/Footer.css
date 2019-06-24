@@ -1,0 +1,31 @@
+/* FOOTER  */
+
+.footer-outer {
+    height: 30vh;
+    background-color: #3C1123;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-inner {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-family: 'Futura', sans-serif;
+}
+
+.footer-c1 {
+    flex-basis: 50%;
+}
+
+.footer-c2 {
+    flex-basis: 25%;
+}
+
+
+.footer-c3 {
+    flex-basis: 25%;
+}

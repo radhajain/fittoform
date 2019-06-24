@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
-import Logo from '../../assets//images/insta1.jpeg';
-import './Navigation.css'
-import '../SignOut/SignOut.css'
+import ShortLogo from '../../assets/images/one-line-logo.png';
 
 const Navigation = () => (
   <div>
@@ -35,28 +33,8 @@ const Navigation = () => (
 //);
 
 const NavigationAuth = () => (
-  <nav className = "navbar long">
-    <div className="nav-inner">
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        <div className="nav-left-panel">
-          <div className="nav-logo">
-              <Link to={ROUTES.LANDING}>
-                  <img alt="The Fitting Room" src={Logo} style={{width: '100%', height: 'auto'}}/>
-              </Link>
-          </div>
-        </div>
-        <div className="nav-center-panel"></div>
-        <div style={{display: 'flex', justifyContent: 'center',  flex: '0 0 30%'}}>
-        <div className="nav-right-panel">
-          <div className="nav-right-icons">
-            <SignOutButton />
-          </div>
-        </div>
-        </div>
-        
-      </div>
-    </div>
-  </nav>
+
+  <SignOutButton />
 );
 
 /*
@@ -64,29 +42,10 @@ const NavigationAuth = () => (
   NOT logged in to the website.
 */
 const NavigationNonAuth = () => (
-  <nav className = "navbar long">
-  <div className="nav-inner">
-    <div style={{display: 'flex', justifyContent: 'center'}}>
-      <div className="nav-left-panel">
-        <div className="nav-logo">
-            <Link to={ROUTES.LANDING}>
-                <img alt="The Fitting Room" src={Logo} style={{width: '100%', height: 'auto'}}/>
-            </Link>
-        </div>
-      </div>
-      <div className="nav-center-panel"></div>
-      <div style={{display: 'flex', justifyContent: 'center',  flex: '0 0 30%'}}>
-      <div className="nav-right-panel">
-        <div className="nav-right-icons">
-          <button className="signin-btn"><Link to={ROUTES.SIGN_IN}>SIGN IN</Link></button>
-        </div>
-      </div>
-      </div>
-      
-    </div>
+  <div style={{overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100}}>
+      <Link to={ROUTES.LANDING}><img src={ShortLogo} style={{height: 30, padding: '20px 20px'}}/> </Link>
+      {/* <Link to={ROUTES.SIGN_IN}>Sign In</Link> */}
   </div>
- 
-  </nav>
 );
 
 export default Navigation;

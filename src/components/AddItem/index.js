@@ -30,7 +30,9 @@ class AddItem extends Component {
             style: '',
             material: '',
             comment: '',
-            groupIDDressesID: '',
+            dressGroupID: '',
+            braSize: '',
+            USSize: '',
             dressID: "",
             items: [],
             uid: "",
@@ -49,8 +51,8 @@ class AddItem extends Component {
     /* Logic for creating a new item:
           1. Create a new dress (link, color, brand, price, img, etc) => dressID
           2. Create a new review (dressID, comment, rating, userID, measurements) 
-          3. If measurements exist, get groupID; else create measurements and groupID => groupIDDresses (think of this like a clothing rack for each size)
-          4. Add dress to groupIDDresses at groupIDDressesID (where groupIDDresses is a list of dressIDs with ratings for each size)
+          3. If measurements exist, get dressGroupID; else create measurements and dressGroup => dressGroupID (think of this like a clothing rack for each size)
+          4. Add dress to dressGroup at dressGroupID (where dressGroup is a list of dressIDs with ratings for each size)
     */
 
 
@@ -116,7 +118,7 @@ class AddItem extends Component {
         const newReviewRef = reviewsRef.push();
         newReviewRef.set({
           // uid: this.state.uid, << comment back in if user is putting in measurements
-          userInfo: {height: this.state.height, waist: this.state.waist, bust: this.state.bust, hips: this.state.hips},
+          userInfo: {height: this.state.height, waist: this.state.waist, bust: this.state.bust, hips: this.state.hips, bra: this.state.braSize, size: this.state.USSize},
           dressID: this.state.dressID,
           comment: this.state.comment,
           size: this.state.size,
@@ -130,30 +132,20 @@ class AddItem extends Component {
         });
       }
 
-      // measurementsExist(mts, DBmts) {
-      //   console.log(DBmts);
-      //   return (mts.height === DBmts.height && mts.waist === DBmts.waist && mts.bust === DBmts.bust && mts.hips === DBmts.hips);
-      // }
-
-
       makeConcatMeasurements() {
         var string = this.state.height + ", " + this.state.waist + ", " + this.state.bust + ", " + this.state.hips;
         return string;
       }   
 
       getGroupIDIfExists() {
-        const userMeasurments = {
-          height: this.state.height,
-          waist: this.state.waist,
-          bust: this.state.bust,
-          hips: this.state.hips
-        };
+        // Gets the dressGroup corresponding to the user's measurements (if exists, otherwise creates measurements and dressGroup)
+        // Structure is: Measurements -> groupID; groupID -> [dressID, dressID ... etc]
         const concatUsrMeasurements = this.makeConcatMeasurements();
         const measurementsRef = firebase.database().ref('measurements');
         measurementsRef.orderByChild("concatMtms").equalTo(concatUsrMeasurements).once('value', snapshot => {
           if (snapshot.exists()) {
-            var groupID = Object.values(snapshot.val())[0].groupIDDresses;
-            this.setState({groupIDDressesID: groupID}, () => {
+            var groupID = Object.values(snapshot.val())[0].dressGroupID;
+            this.setState({dressGroupID: groupID}, () => {
               console.log("MAtched existing measurements")
               //If measurements already exist, then add dress to the corresponding group of dresses
               this.addDressToGroup();
@@ -168,10 +160,10 @@ class AddItem extends Component {
 
       addDressToGroup() {
         console.log("adding dress to group....");
-        console.log(this.state.groupIDDressesID);
-        if (this.state.groupIDDressesID) {
-          const groupIDDressesRef = firebase.database().ref('groupIDDresses').child(this.state.groupIDDressesID);
-          groupIDDressesRef.orderByChild("dress").equalTo(this.state.dressID).once('value', snapshot => {
+        console.log(this.state.dressGroupID);
+        if (this.state.dressGroupID) {
+          const dressGroupRef = firebase.database().ref('dressGroup').child(this.state.dressGroupID);
+          dressGroupRef.orderByChild("dress").equalTo(this.state.dressID).once('value', snapshot => {
             if (snapshot.exists()) {
               //If dress already exists in group id, update rating of dress
               var currRating = Object.values(snapshot.val())[0].rating;
@@ -179,14 +171,13 @@ class AddItem extends Component {
               var newRating = (currRating*currCount + this.state.rating)/(currCount + 1)
               var updatedCount = currCount + 1;
               var key = Object.keys(snapshot.val())[0];
-              groupIDDressesRef.child(key).update({
+              dressGroupRef.child(key).update({
                 count: updatedCount,
                 rating: newRating
               });
             } else {
               //Add a new dress
-
-              const newDressRef = groupIDDressesRef.push();
+              const newDressRef = dressGroupRef.push();
               newDressRef.set({
                 dress: this.state.dressID,
                 rating: this.state.rating,
@@ -199,22 +190,22 @@ class AddItem extends Component {
 
 
       createMeasurementsAndGroupID() {
-        //create groupIDDresses
-        const groupIDDressesRef = firebase.database().ref('groupIDDresses');
-        const newGroupIDDressesRef = groupIDDressesRef.push();
-        var newDressRef = newGroupIDDressesRef.push();
+        //create dressGroup
+        const dressGroupsRef = firebase.database().ref('dressGroup');
+        const newDressGroupRef = dressGroupsRef.push();
+        var newDressRef = newDressGroupRef.push();
         newDressRef.set({
           dress: this.state.dressID,
           rating: this.state.rating,
           count: 1
         });
-        console.log("NEW GROUPIDDRESSES created");
+        console.log("NEW DRESS GROUP created");
         //Push groupIDDressref to measurements
         const measurementsRef = firebase.database().ref('measurements');
         var newMeasurementRef = measurementsRef.push();
-        var newGroupIDDressesKey = newGroupIDDressesRef.key;
+        var newDressGroupKey = newDressGroupRef.key;
         var concatUsrMeasurements = this.makeConcatMeasurements();
-        this.setState({groupIDDressesID: newGroupIDDressesKey}, () => {
+        this.setState({dressGroupID: newDressGroupKey}, () => {
             console.log("NEW MEAUSREMENTS CREATED");
             console.log(this.state);
             newMeasurementRef.set({
@@ -223,7 +214,7 @@ class AddItem extends Component {
               bust: this.state.bust,
               hips: this.state.hips,
               concatMtms: concatUsrMeasurements,
-              groupIDDresses: newGroupIDDressesKey
+              dressGroupID: newDressGroupKey
               //Maybe want a group ID for users?
             });
         });    
@@ -263,19 +254,21 @@ class AddItem extends Component {
                 <input className="add-input" type="number" name="height" placeholder="How tall are you in inches?" onChange={this.handleChange} value={this.state.height}/>  
                 <input className="add-input" type="number" name="waist" placeholder="How wide is your waist in inches?" onChange={this.handleChange} value={this.state.waist}/>
                 <input className="add-input" type="number" name="bust" placeholder="How many inches is your bust?" onChange={this.handleChange} value={this.state.bust}/>
+                <input className="add-input" type="text" name="braSize" placeholder="What is your bra size?" onChange={this.handleChange} value={this.state.braSize}/>
+                <input className="add-input" type="number" name="USSize" placeholder="What US size do you generally wear?" onChange={this.handleChange} value={this.state.USSize}/>
                 <input className="add-input" type="number" name="hips" placeholder="How many inches are your hips?" onChange={this.handleChange} value={this.state.hips}/>
                 <input className="add-input" type="text" name="dressLink" placeholder="What's the link to your dress?" onChange={this.handleChange} value={this.state.dressLink} />
                 <input className="add-input" type="text" name="brand" placeholder="What brand is the dress?" onChange={this.handleChange} value={this.state.brand} />
                 <input className="add-input" type="text" name="name" placeholder="What is the name of the dress?" onChange={this.handleChange} value={this.state.name} />
-                <input className="add-input" type="text" name="length" placeholder="How long is the dress? e.g. " onChange={this.handleChange} value={this.state.length} />
+                <input className="add-input" type="text" name="length" placeholder="How long is the dress? e.g. mini, midi, maxi, knee" onChange={this.handleChange} value={this.state.length} />
                 <input className="add-input" type="number" name="price" placeholder="How much was the dress?" onChange={this.handleChange} value={this.state.price} />
                 <input className="add-input" type="text" name="img" placeholder="What's the link to the image?" onChange={this.handleChange} value={this.state.img} />
                 <input className="add-input" type="text" name="neckline" placeholder="What's the neckline? e.g. high, normal, plunge" onChange={this.handleChange} value={this.state.neckline} />
                 <input className="add-input" type="text" name="straps" placeholder="What's the straps? e.g. strapless, short-sleeve, off-shoulder, asymmetric, tank " onChange={this.handleChange} value={this.state.straps} />
                 <input className="add-input" type="text" name="bra" placeholder="What type of bra do you wear with it? e.g. any, strapless, none" onChange={this.handleChange} value={this.state.bra} />
-                <input className="add-input" type="text" name="style" placeholder="What's the style of the dress? e.g. bodycon, fit-and-flare, shift, t-shirt, wrap" onChange={this.handleChange} value={this.state.style} />
-                <input className="add-input" type="text" name="occassion" placeholder="What occassion? e.g. Night out, Island Vibes, Wedding guest, Daytime cute  " onChange={this.handleChange} value={this.state.occassion} />
-                <input className="add-input" type="text" name="material" placeholder="What's the material of the dress? e.g. jersey, silk, lace, beaded, denim, chiffon, cotton, leather, linen, sequin, velvet" onChange={this.handleChange} value={this.state.material} />
+                <input className="add-input" type="text" name="style" placeholder="What's the style of the dress? e.g. bodycon, fit-and-flare, shift, t-shirt, wrap, shift" onChange={this.handleChange} value={this.state.style} />
+                <input className="add-input" type="text" name="occassion" placeholder="What occassion? e.g. Night-out, Island-Vibes, Wedding-guest, Daytime-cute, Safe-For-Work, Day-to-Night" onChange={this.handleChange} value={this.state.occassion} />
+                <input className="add-input" type="text" name="material" placeholder="What's the material of the dress? e.g. jersey, silk, lace, beaded, denim, chiffon, cotton, leather, linen, sequin, velvet, crepe" onChange={this.handleChange} value={this.state.material} />
                 <input className="add-input" type="text" name="size" placeholder="What size did you buy?" onChange={this.handleChange} value={this.state.size}/>
                 <input className="add-input" type="text" name="color" placeholder="What color did you buy?" onChange={this.handleChange} value={this.state.color}/>
                 <input className="add-input" type="number" name="rating" placeholder="What would you rate this dress from 1-10?" onChange={this.handleChange} value={this.state.rating}/>
