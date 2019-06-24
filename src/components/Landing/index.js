@@ -78,11 +78,14 @@ class Landing extends React.Component {
             </div>
             <div className="landing-child landing-third-page">
                 <img src={WrapImg} className="landing-third-img"/>
-                <img src={wrapSM} className="landing-third-sm"/>
+                
                 <div className="landing-container-inner" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)', height: '80%', zIndex: 100, position: 'relative'}}>
                     <div className="landing-third-content"> 
                         <p className="landing-third-title">Women like you have tried on these dresses.</p>
                         <p className="landing-third-desc">Brands and even items can have inconsistent sizing. Every piece of item on our site has been tried on by real women  who are the same size as you. We show you a curated selection of dresses that we know will make you look fantastic. </p>
+                    </div>
+                    <div>
+                    <img src={wrapSM} className="landing-third-sm"/>
                     </div>
                 </div>
             </div>
