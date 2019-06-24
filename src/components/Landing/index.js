@@ -113,8 +113,6 @@ class Landing extends React.Component {
 
                 </div>
             </div>
-            <Footer />
-       
       </div>
     );
   }

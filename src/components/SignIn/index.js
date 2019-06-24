@@ -6,6 +6,7 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom';
 import './SignIn.css'
 
 const SignInPage = () => (
@@ -81,6 +82,10 @@ class SignInFormBase extends Component {
    );
   }
 }
+
+const SignInLink = () => (
+  <button class="signout-btn"><Link to={ROUTES.SIGN_IN}> SIGN IN</Link></button>
+);
 
 const SignInForm = compose(
   withRouter,

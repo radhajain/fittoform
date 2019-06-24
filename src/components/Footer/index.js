@@ -1,34 +1,47 @@
-
-import React, { Component } from 'react';
-import './Footer.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import IGLogo from '../../assets/images/ig-logo.png'
+import * as ROUTES from '../../constants/routes';
 
+import './Footer.css'
 
 const Footer = () => (
-    <div className="footer-outer">
-        <div className="footer-inner">
-            <div className="footer-c1">
-                <p>OUR MISSION</p>
-                <hr style={{width: '60%', float: 'left'}} />
-            </div>
-            <div className="footer-c2">
-                <p>Our Story</p>
-                <p>FAQ</p>
-                <p>Contact Us</p>
-            </div>
-            <div className="footer-c3">
-                <p style={{fontWeight: 'bold'}}>Follow us:</p>
-                <div>
-                    <a style={{display: "table-cell"}} href="https://www.instagram.com/fit.to.form/" target="_blank">
-                        <img src={IGLogo} style={{width: 35}}/>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-  );
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="row">
+          <div class="footer-about">
+            <h6>About</h6>
+            <p class="text-justify">Based in San Francisco, Fit to Form is the only shopping experience that is focused on fit. We understand the uncertainties of online shopping and the frustrations that come with returns. Our mission is to help every woman find their perfect dress that makes them feel like a million bucks.</p>
+          </div>
 
+          <div class="footer-about">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="">About Us</a></li>
+              <li><a href="">FAQs</a></li>
+            </ul>
+            <div class="footer-social-icons">
+                <a style={{display: "table-cell"}} href="https://www.instagram.com/fit.to.form/" target="_blank">
+                    <img src={IGLogo} style={{width: 35}}/>
+                </a> 
+            </div>
+          </div>
+
+          
+        </div>
+        <hr></hr>
+      </div>
+      <div class="footer-container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2019 All Rights Reserved by Fit to Form
+            </p>
+          </div>
+
+          
+        </div>
+      </div>
+</footer>
+);
 
 export default Footer;
-

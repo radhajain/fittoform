@@ -7,7 +7,6 @@ import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
     <SignUpForm />
   </div>
 );
@@ -110,40 +109,155 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
-        {error && <p>{error.message}</p>}
-      </form>
+
+      <div className="signup-parent">
+      <div className="signup-container-first signup-child">
+        <div className="signup-search-content">
+            <form>
+              <label className="signup-search-label">
+                I am
+                <input
+                  name="heightft"
+                  type="number"
+                  className="signup-input"
+                  onChange={this.handleInputChange} />
+                ft, 
+                <input
+                  name="heightin"
+                  type="number"
+                  className="signup-input"
+                  onChange={this.handleInputChange} />
+                in tall.
+              </label>
+            </form>
+          </div>
+      </div>
+      <div className="signup-container-second signup-child">
+        <div className="signup-search-content">
+            <form>
+              <label className="signup-search-label">
+                I normally wear US size
+                <input
+                  name="size"
+                  type="number"
+                  className="signup-input"
+                  onChange={this.addUSSize} />
+              </label>
+            </form>
+          </div>
+      </div>
+      <div className="signup-container-third signup-child">
+        <div className="signup-search-content">
+          <p className="signup-desc">On me, size 2 is generally fits:</p>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <div className="signup-desc" style={{display:'block'}}>
+                WAIST
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(0.5)}>Too small</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(0.25)}>Tight</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(0)}>Perfect</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(-0.25)}>Loose</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Large</button>
+                </div>
+            </div>
+            <div className="signup-desc" style={{marginLeft: 100, marginRight: 100}}>
+                HIPS
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(0.5)}>Too small</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(0.25)}>Tight</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(0)}>Perfect</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(-0.25)}>Loose</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(-0.5)}>Large</button>
+                </div>
+            </div>
+            <div className="signup-desc">
+                BUST
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(0.5)}>Too small</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(0.25)}>Tight</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(0)}>Perfect</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(-0.25)}>Loose</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(-0.5)}>Large</button>
+                </div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+
+          <div className="signup-container-fourth signup-child">
+          <form onSubmit={this.onSubmit}>
+            <input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Full Name"
+              className="signup-input-email"
+            />
+            <input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+              className="signup-input-email"
+            />
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+              className="signup-input-email"
+            />
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
+              className="signup-input-email"
+            />
+            {/* <button disabled={isInvalid} type="submit">
+              Sign Up
+            </button>
+            {error && <p>{error.message}</p>} */}
+          </form>
+       
+        <div>
+            <Link to= {{
+              pathname: '/results',
+              state: {
+                height: this.state.height,
+                waist: this.state.waist,
+                hips: this.state.hips,
+                bust: this.state.bust,
+                size: this.state.size
+              }}}><button disabled={isInvalid} className="signup-results-btn" type="submit">See dresses picked for my size</button></Link>
+              {error && <p>{error.message}</p>}
+          </div>
+        </div>
+
+
+
+          
+
+  
+          
+       
+
+        
+
+    
+     
+     
+    </div>
+     
+
+
+
+      
     );
   }
 }
