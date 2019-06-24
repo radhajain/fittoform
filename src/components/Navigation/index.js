@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import SignOutButton from '../SignOut';
+import SignInLink from '../SignIn';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
 import ShortLogo from '../../assets/images/one-line-logo.png';

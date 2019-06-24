@@ -110,74 +110,74 @@ class SignUpFormBase extends Component {
 
     return (
 
-      <div className="landing-parent">
-      <div className="landing-container-first landing-child">
-        <div className="landing-search-content">
+      <div className="signup-parent">
+      <div className="signup-container-first signup-child">
+        <div className="signup-search-content">
             <form>
-              <label className="landing-search-label">
+              <label className="signup-search-label">
                 I am
                 <input
                   name="heightft"
                   type="number"
-                  className="landing-input"
+                  className="signup-input"
                   onChange={this.handleInputChange} />
                 ft, 
                 <input
                   name="heightin"
                   type="number"
-                  className="landing-input"
+                  className="signup-input"
                   onChange={this.handleInputChange} />
                 in tall.
               </label>
             </form>
           </div>
       </div>
-      <div className="landing-container-second landing-child">
-        <div className="landing-search-content">
+      <div className="signup-container-second signup-child">
+        <div className="signup-search-content">
             <form>
-              <label className="landing-search-label">
+              <label className="signup-search-label">
                 I normally wear US size
                 <input
                   name="size"
                   type="number"
-                  className="landing-input"
+                  className="signup-input"
                   onChange={this.addUSSize} />
               </label>
             </form>
           </div>
       </div>
-      <div className="landing-container-third landing-child">
-        <div className="landing-search-content">
-          <p className="landing-desc">On me, size 2 is generally fits:</p>
+      <div className="signup-container-third signup-child">
+        <div className="signup-search-content">
+          <p className="signup-desc">On me, size 2 is generally fits:</p>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-            <div className="landing-desc" style={{display:'block'}}>
+            <div className="signup-desc" style={{display:'block'}}>
                 WAIST
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.5)}>Too small</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyWaist(0.25)}>Tight</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyWaist(0)}>Perfect</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.25)}>Loose</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Large</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(0.5)}>Too small</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(0.25)}>Tight</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(0)}>Perfect</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(-0.25)}>Loose</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyWaist(-0.5)}>Large</button>
                 </div>
             </div>
-            <div className="landing-desc" style={{marginLeft: 100, marginRight: 100}}>
+            <div className="signup-desc" style={{marginLeft: 100, marginRight: 100}}>
                 HIPS
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                <button className="landing-size-buttons" onClick={() => this.modifyHips(0.5)}>Too small</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyHips(0.25)}>Tight</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyHips(0)}>Perfect</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.25)}>Loose</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyHips(-0.5)}>Large</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(0.5)}>Too small</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(0.25)}>Tight</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(0)}>Perfect</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(-0.25)}>Loose</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyHips(-0.5)}>Large</button>
                 </div>
             </div>
-            <div className="landing-desc">
+            <div className="signup-desc">
                 BUST
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                <button className="landing-size-buttons" onClick={() => this.modifyBust(0.5)}>Too small</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyBust(0.25)}>Tight</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyBust(0)}>Perfect</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.25)}>Loose</button>
-                <button className="landing-size-buttons" onClick={() => this.modifyBust(-0.5)}>Large</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(0.5)}>Too small</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(0.25)}>Tight</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(0)}>Perfect</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(-0.25)}>Loose</button>
+                <button className="signup-size-buttons" onClick={() => this.modifyBust(-0.5)}>Large</button>
                 </div>
             </div>
           </div>
@@ -185,7 +185,7 @@ class SignUpFormBase extends Component {
 
         </div>
 
-          <div className="landing-container-fourth landing-child">
+          <div className="signup-container-fourth signup-child">
           <form onSubmit={this.onSubmit}>
             <input
               name="username"
@@ -193,7 +193,7 @@ class SignUpFormBase extends Component {
               onChange={this.onChange}
               type="text"
               placeholder="Full Name"
-              className="landing-input-email"
+              className="signup-input-email"
             />
             <input
               name="email"
@@ -201,7 +201,7 @@ class SignUpFormBase extends Component {
               onChange={this.onChange}
               type="text"
               placeholder="Email Address"
-              className="landing-input-email"
+              className="signup-input-email"
             />
             <input
               name="passwordOne"
@@ -209,7 +209,7 @@ class SignUpFormBase extends Component {
               onChange={this.onChange}
               type="password"
               placeholder="Password"
-              className="landing-input-email"
+              className="signup-input-email"
             />
             <input
               name="passwordTwo"
@@ -217,7 +217,7 @@ class SignUpFormBase extends Component {
               onChange={this.onChange}
               type="password"
               placeholder="Confirm Password"
-              className="landing-input-email"
+              className="signup-input-email"
             />
             {/* <button disabled={isInvalid} type="submit">
               Sign Up
@@ -234,7 +234,7 @@ class SignUpFormBase extends Component {
                 hips: this.state.hips,
                 bust: this.state.bust,
                 size: this.state.size
-              }}}><button disabled={isInvalid} className="landing-results-btn" type="submit">See dresses picked for my size</button></Link>
+              }}}><button disabled={isInvalid} className="signup-results-btn" type="submit">See dresses picked for my size</button></Link>
               {error && <p>{error.message}</p>}
           </div>
         </div>
