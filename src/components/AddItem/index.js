@@ -174,7 +174,12 @@ class AddItem extends Component {
               var key = Object.keys(snapshot.val())[0];
               dressGroupRef.child(key).update({
                 count: updatedCount,
-                rating: newRating
+                rating: newRating,
+                reviews: {}
+              });
+              var newReviewRef = dressGroupRef.child(key).child('reviews').push();
+              newReviewRef.set({
+                reviewID: this.state.reviewID
               });
             } else {
               //Add a new dress
@@ -184,6 +189,11 @@ class AddItem extends Component {
                 rating: this.state.rating,
                 count: 1,
               });
+              var newReviewRef = newDressRef.child('reviews').push();
+              newReviewRef.set({
+                reviewID: this.state.reviewID
+              })
+             
             }
           })
         }
@@ -199,6 +209,10 @@ class AddItem extends Component {
           dress: this.state.dressID,
           rating: this.state.rating,
           count: 1
+        });
+        var newReviewRef = newDressRef.child('reviews').push();
+          newReviewRef.set({
+            reviewID: this.state.reviewID
         });
         console.log("NEW DRESS GROUP created");
         //Push groupIDDressref to measurements
