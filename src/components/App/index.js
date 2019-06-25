@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation';
+import Footer from '../Footer';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
@@ -13,6 +14,8 @@ import AdminPage from '../Admin';
 import ItemPage from '../Item';
 import ResultsPage from '../Results';
 import SearchPage from '../Search';
+import AddItem from '../AddItem';
+import HowItWorks from '../HowItWorks';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -22,8 +25,6 @@ const App = () => (
   <Router>
     <div>
       <Navigation />
-
-      <hr />
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -38,7 +39,8 @@ const App = () => (
       <Route path={ROUTES.ITEM} component={ItemPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
-      <Route path={ROUTES.ADDITEM} component={AddItemPage} />
+      <Route path={ROUTES.ADDITEM} component={AddItem} />
+      <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
     </div>
   </Router>
 );

@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'Albertus';
+    font-style: normal;
+    font-weight: 400;
+    src:
+      local('Albertus-Medium'),
+      local('Roboto-Regular'),
+      url(../../assets/fonts/Albertus/Albertus-Medium.ttf) format('ttf'),
+      url(../../assets/fonts/Albertus/Albertus-Regular.ttf) format('ttf');
+  }
+  
+
+.signup-parent {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.signup-child {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.signup-container-intro {
+    background-image: url(../../assets//images/landing-bkg.jpeg);
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.signup-container-first {
+    background: linear-gradient(#FA8199, #FBA8B8)
+}
+
+.signup-container-second {
+    background: linear-gradient(#FBA8B8, #FCC6D0)
+}
+
+.signup-container-third {
+    background: linear-gradient(#FCC6D0, #FEE7EC)
+}
+
+.signup-container-fourth {
+    background: linear-gradient(#FEE7EC, #FFF7F9);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.signup-input {
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    font-family: 'Albertus', sans-serif;
+    text-align: center;
+    width: 70px;
+    font-size: 2.5em;
+}
+
+.signup-input-email {
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: gray;
+    font-family: 'Albertus', sans-serif;
+    text-align: left;
+    width: 270px;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.signup-input:focus {
+    outline:none;
+}
+
+.signup-search-label {
+    font-family: 'Albertus', sans-serif;
+    color: white;
+    font-size: 2.5em;
+}
+
+.signup-title {
+    font-family: 'Albertus', sans-serif;
+    color: white;
+    font-size: 2.5em;
+}
+
+.signup-desc {
+    font-family: 'Albertus', sans-serif;
+    color: white;
+    font-size: 1.5em;
+}
+
+.signup-size-buttons {
+    background: none;
+    border: none;
+    font-family: 'Albertus', sans-serif;
+    color: white;
+    font-size: 1.0em;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.signup-size-buttons:focus {
+    outline: none;
+    color: pink;
+}
+
+.signup-size-buttons:active {
+    color: fuchsia;
+}
+
+.signup-results-btn {
+    background: none;
+    border: 2px solid coral;
+    color: coral;
+    font-size: 2em;
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+    font-family: 'Albertus', sans-serif;
+}
