@@ -1,14 +1,14 @@
-@font-face {
-    font-family: 'Albertus';
+/* @font-face {
+    font-family: 'Playfair Display';
     font-style: normal;
     font-weight: 400;
     src:
-      local('Albertus-Medium'),
+      local('Playfair Display-Medium'),
       local('Roboto-Regular'),
-      url(../../assets/fonts/Albertus/Albertus-Medium.ttf) format('ttf'),
-      url(../../assets/fonts/Albertus/Albertus-Regular.ttf) format('ttf');
+      url(../../assets/fonts/Playfair Display/Playfair Display-Medium.ttf) format('ttf'),
+      url(../../assets/fonts/Playfair Display/Playfair Display-Regular.ttf) format('ttf');
   }
-  
+   */
 
 .landing-parent {
     /* scroll-snap-type: y mandatory; */
@@ -61,14 +61,14 @@
     font-family: 'Futura', sans-serif;
 }
 
-.albertus {
-    font-family: 'Albertus', sans-serif;
+.playfair {
+    font-family: 'Playfair Display', sans-serif;
 }
 
 /* PAGE 1 */
 
 .landing-title {
-    font-family: 'Albertus', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     color: white;
     font-size: 2.5em;
 }
@@ -185,7 +185,7 @@
 .landing-second-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Albertus', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-size: 2.5em;
 }
 
@@ -231,7 +231,7 @@
 
 .landing-third-title {
     color: white;
-    font-family: 'Albertus', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-size: 2.5em;
 }
 
@@ -262,7 +262,7 @@
 .landing-fourth-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Albertus', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-size: 2.5em;
 }
 
@@ -594,100 +594,3 @@
 
 
 
-
-
-
-
-
-.landing-container-first {
-    background: linear-gradient(#FA8199, #FBA8B8)
-}
-
-.landing-container-second {
-    background: linear-gradient(#FBA8B8, #FCC6D0)
-}
-
-.landing-container-third {
-    background: linear-gradient(#FCC6D0, #FEE7EC)
-}
-
-.landing-container-fourth {
-    background: linear-gradient(#FEE7EC, #FFF7F9);
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.landing-input {
-    background: none;
-    border: none;
-    border-bottom: 2px solid white;
-    color: white;
-    font-family: 'Albertus', sans-serif;
-    text-align: center;
-    width: 70px;
-    font-size: 2.5em;
-}
-
-.landing-input-email {
-    background: none;
-    border: none;
-    border-bottom: 2px solid white;
-    color: gray;
-    font-family: 'Albertus', sans-serif;
-    text-align: left;
-    width: 270px;
-    font-size: 1.5em;
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-}
-
-.landing-input:focus {
-    outline:none;
-}
-
-.landing-search {
-
-}
-
-.landing-search-content {
-}
-
-.landing-search-label {
-    font-family: 'Albertus', sans-serif;
-    color: white;
-    font-size: 2.5em;
-}
-
-
-
-.landing-size-buttons {
-    background: none;
-    border: none;
-    font-family: 'Albertus', sans-serif;
-    color: white;
-    font-size: 1.0em;
-    margin-top: 15px;
-    text-align: left;
-}
-
-.landing-size-buttons:focus {
-    outline: none;
-    color: pink;
-}
-
-.landing-size-buttons:active {
-    color: fuchsia;
-}
-
-.landing-results-btn {
-    background: none;
-    border: 2px solid coral;
-    color: coral;
-    font-size: 2em;
-    position: absolute;
-    bottom: 100px;
-    right: 100px;
-    font-family: 'Albertus', sans-serif;
-}

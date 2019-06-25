@@ -1,82 +1,101 @@
+.itemView {
+    height: calc(100vh - 50px);
+    width: 100vw;
+    margin-top: 50px;
+}
+
 .itemView-c1 {
-    height: 685px;
-    background-color: #f1f1f1;
+    height: 100%;
     margin-top: 50px;
 }
 
 .itemView-c1-inner {
-    width: 90%;
     display: flex;
     margin: 0 auto;
     position: relative;
     height: 100%;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    flex-wrap: wrap;
 }
 
 .itemView-c1-left {
-    flex: 0 0 33%;
+    flex: 0 0 60%;
+    display: flex;
+    justify-content: center;
 }
 
-.itemView-c1-center {
-    flex: 0 0 33%;
-}
-
-.itemView-c1-center-text {
+.itemView-c1-text {
     width: 80%;
-    margin: auto;
-    text-align: left;
 }
 
 .itemView-c1-right {
-    flex: 0 0 33%;
-    min-width: 300px;
-
+    flex: 0 0 40%;
+    background-color: #E4E4E4;
+    background-image: url(../../assets/images/item-stripe.png);
+    background-position: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.itemView-titleBtn-div {
+    display: flex;
+    justify-content: space-between; 
+    flex-direction: row;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 30px;
+}
 
 .itemView-item-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    text-transform: uppercase;
+    font-family: 'Futura', serif;
+    font-size: 2.5em;
+    text-transform: capitalize;
+    color: #652D2D;
+    margin: 0;
 }
 
 .itemView-item-brand {
-    font-size: 15px;
-    color: darkgray;
-    font-family: 'Raleway', sans-serif;
+    font-size: 1.25em;
+    color: #652D2D;
+    text-transform: capitalize;
+    font-family: 'Futura', sans-serif;
 }
 
 .itemView-item-price {
-    font-size: 22px;
-    color: black;
-    font-family: 'Raleway', sans-serif;
+    font-size: 1.25em;
+    color: #652D2D;
+    font-family: 'Futura', sans-serif;
 }
 
 .itemView-item-size {
-    font-size: 22px;
-    margin-top: 80px;
-    font-weight: bold;
-    color: darkgray;
-    font-family: 'Raleway', sans-serif;
+    font-size: 1.25em;
+    color: #652D2D;
+    font-family: 'Futura', sans-serif;
 }
+
+.itemView-review-title {
+    color: #AF5757;
+    font-size: 1em;
+    font-family: 'Futura', sans-serif;
+    margin-bottom: 0px;
+    margin-top: 30px;
+}
+
 
 .itemView-item-measurements {
     font-size: 12px;
     color: gray;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Futura', sans-serif;
     margin-bottom: 20px;
 }
 
 .itemView-shop-btn {
-    background-color: black;
-    padding: 10px;
-    width: 100%;
-    margin: auto;
-    display: block;
-    margin-bottom: 15px;
-    font-size: 18px;
+    background-color: #E86B6A;
+    padding: 10px 50px;
+    font-family: 'Futura', sans-serif;
+    font-size: 1.1em;
+    border: none;
 }
 
 .itemView-shop-link {
@@ -109,44 +128,77 @@
 }
 
 .itemView-review {
-    text-align: left;
-    font-family: 'Raleway', sans-serif;
-    border: 1px solid lightgray;
-    width: 80%;
-    margin: auto;
-    margin-bottom: 20px;
+    font-family: 'Futura', sans-serif;
+    display: flex;
+    flex-direction: row;
+    color: #707070;
+    border-bottom: 1px solid #E4E4E4;
 }
 
-.itemView-reviewer-profile {
-    background-color: #d9d9e4;
-    padding: 10px;
+.itemView-numRating {
+    flex-basis: 20%;
+    min-width: 75px;
+    font-size: 1.25em;
+    color: #400F23;
 }
 
-.itemView-reviewer-comment {
-    padding: 10px;
+.itemView-comment {
+    flex-basis: 80%;
+    margin-bottom: 5px;
 }
 
-.itemView-reviewer-title {
-    font-size: 20px;
+.itemView-review-name {
+    float: right;
+    margin-top: 0px;
 }
 
-.itemView-reviewer-name {
-    font-weight: bold;
-    text-transform: uppercase;
+.itemView-img {
+    width: 75%;
+    max-width: 480px;
 }
+
 
 @media (max-width: 980px) {
+    .itemView {
+        height: auto;
+    }
+    
+    .itemView-c1-inner {
+        flex-wrap: wrap-reverse;
+    }
     .itemView-c1-right {
         flex: 0 0 100%;
-        margin-top: 120px;
-    }
-
-    .itemView-c1-center {
-        flex: 0 0 50%;
-        min-width: 260px;
     }
 
     .itemView-c1-left {
-        flex: 0 0 50%;
+        flex: 0 0 100%;
+    }
+
+    .itemView-img {
+        width: 40%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        
+    }
+}
+
+@media (max-width: 500px) {
+    .itemView-titleBtn-div {
+        flex-wrap: wrap;
+    }
+
+    .itemView-item-title {
+        flex-basis: 100%;
+        padding-bottom: 30px;
+    }
+    .itemView-shop-btn {
+        flex-basis: 100%;
+    }
+
+    .itemView-img {
+        width: 60%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        
     }
 }

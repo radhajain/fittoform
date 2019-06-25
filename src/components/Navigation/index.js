@@ -18,21 +18,6 @@ const Navigation = () => (
 );
 
 
-// const NavigationAuth = () => (
-//   <SignOutButton />
-// );
-
-// const NavigationNonAuth = () => (
-//   <ul>
-//     <li>
-//       <Link to={ROUTES.LANDING}>Landing</Link>
-//     </li>
-//     <li>
-//       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-//     </li>
-//   </ul>
-//);
-
 const NavigationAuth = () => (
 
   <SignOutButton />
@@ -43,7 +28,7 @@ const NavigationAuth = () => (
   NOT logged in to the website.
 */
 const NavigationNonAuth = () => (
-  <div style={{overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'fixed', top: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100}}>
+  <div style={{overflow: 'hidden', height: 50, backgroundColor: 'rgba(42, 0, 17, 0.69)', position: 'fixed', top: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100}}>
       <Link to={ROUTES.LANDING}><img src={ShortLogo} style={{height: 30, padding: '20px 20px'}}/> </Link>
       {/* <Link to={ROUTES.SIGN_IN}>Sign In</Link> */}
   </div>

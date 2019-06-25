@@ -30,7 +30,7 @@ class Landing extends React.Component {
                 <div className="landing-intro-hero">
                     <div className="landing-intro-content">
                         <p className="landing-title">We try on dresses so you don't have to.</p>
-                        <p className="landing-desc">It is hard to know what fits well when online shopping. We show you a curated set of dresses, recommended by real women with the same measurements as you. Buy with confidence, every time.</p>
+                        <p className="landing-desc">It's hard to know what fits well while shopping online. We show you a curated set of dresses, recommended by real women with the same measurements as you. Buy with confidence, every time.</p>
                         <Link to='/search'>
                             <button className="landing-callToAction">
                                 Find your perfect dress
@@ -41,7 +41,7 @@ class Landing extends React.Component {
                 </div>
                 <div className="landing-howitworks-outer"> 
                     <div className="landing-howitworks-inner">
-                        <p className="albertus" style={{color: 'white', textAlign: 'center', fontSize: '1.75em'}}>How it works</p>
+                        <p className="playfair" style={{color: 'white', textAlign: 'center', fontSize: '1.75em'}}>How it works</p>
                         <hr />
                         <div className="landing-howitworks-steps">
                             <div className="landing-howitworks-box">

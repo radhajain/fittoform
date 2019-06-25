@@ -16,6 +16,7 @@ class Results extends Component {
             closestMeasurements: '',
             dressGroupID: null,
             dressesIDs: [],
+            dressesLoaded: false,
             dresses: [],
         };
         console.log(this.state);
@@ -26,6 +27,7 @@ class Results extends Component {
     }
 
     componentDidMount() {
+        // this.getBestDressGroupID().then(() => this.getBestDressesID());
         this.getBestDressGroupID();
     }
 
@@ -88,6 +90,7 @@ class Results extends Component {
             }
             console.log(dresses);
             this.setState({dresses: dresses});
+            this.setState({dressesLoaded: true});
         }) ;
         
     }
@@ -124,22 +127,43 @@ class Results extends Component {
         return (
         <div className="results-container-outer">
             <div className="results-container-inner">
-                <p>Dresses that will look good on you</p>
-                <p>Picked for your measurements:{this.state.height} inches tall, {this.state.bust}B, {this.state.waist}W, {this.state.hips}H</p>
-                <p>Recommended by other women that are {this.state.closestMeasurements.height} inches tall, {this.state.closestMeasurements.bust}B, {this.state.closestMeasurements.waist}W, {this.state.closestMeasurements.hips}H</p>
-                <div className="results-grid">
-                    {this.state.dresses.map((dress, key) => {
-                        return (
-                            <div className="results-col" onClick={() => this.goToItemView(dress)} key={key}>
-                                <div>
-                                    <img src={dress.img} className="results-img" />
-                                    <p className="results-price">${dress.price}</p>
-                                </div>
-                            </div>
-                        );
-                    })}
-                
+                <div className="results-leftCol">
+                    <p className="results-title">CHOSEN FOR YOU</p>
+                        <div className="results-grid">
+                            {this.state.dresses.map((dress, key) => {
+                                return (
+                                    <div className="results-col" onClick={() => this.goToItemView(dress)} key={key}>
+                                        <div style={{position: 'relative', flex: 1}}>
+                                            <img src={dress.img} className="results-img"/>
+                                            <p className="results-price">${dress.price}</p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        
+                        </div>
                 </div>
+                <div className="results-rightCol">
+                    <div>
+                        <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
+                        <form style={{textAlign: 'right'}}>
+                                <input
+                                name="name"
+                                type="text"
+                                className="results-input"
+                                onChange={this.handleInput} 
+                                placeholder="YOUR NAME"/>
+                                
+                        </form>
+                    </div>
+                    <div className="results-right-flexCol">
+                        <div className="results-text-div">
+                            <p className="results-text">Picked for your measurements:{this.state.height} inches tall, {this.state.bust}B, {this.state.waist}W, {this.state.hips}H</p>
+                            <p className="results-text">Recommended by other women that are {this.state.closestMeasurements.height} inches tall, {this.state.closestMeasurements.bust}B, {this.state.closestMeasurements.waist}W, {this.state.closestMeasurements.hips}H</p>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
         );

@@ -6,51 +6,60 @@ class Item extends Component {
         super(props);
         this.state = this.props.location.state;
         console.log(this.state);
-        // this.selectedItem = this.props.location.item.selectedItem;
+        this.getHeightStr = this.getHeightStr.bind(this);
+
     }
 
+    getHeightStr() {
+        var heightFt = Math.round(this.state.height / 12);
+        var heightIn = this.state.height % 12;
+        return heightFt + "'" + heightIn;
+    };
+
     render() {
+        //TODO: add reviews for each user and recommended size 
+        //TODO: fix back button to results
         return (
-            <div className="itemView">
+        <div className="itemView">
             <div className="itemView-c1">
                 <div className="itemView-c1-inner">
-                <div className="itemView-c1-left">
-                  <img alt={this.state.item.name} src={this.state.item.img} style={{width: '100%'}}/>
-                </div>
-                <div className="itemView-c1-center">
-                  <div className="itemView-c1-center-text">
-                    <p className="itemView-item-title">{this.state.item.name}</p>
-                    <p className="itemView-item-brand">{this.state.item.brand}</p>
-                    <p className="itemView-item-price">{this.state.item.price}</p>
-                    <p className="itemView-item-size">Recommended size: 27</p>
-                    <p className="itemView-item-measurements"><i>Your measurements: height 5'2, waist 26", hips 32"</i></p>
-                    <button className="itemView-shop-btn"><a href={this.state.item.link} className="itemView-shop-link">SHOP THIS ITEM</a></button>
-                    {/* { isSaved(this.selectedItem.name)
-                      ? <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Removed from Saved</button>
-                      : <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Save for later</button>
-                    } */}
-                  </div>
-                </div>
+                    <div className="itemView-c1-left">
+                        <div className="itemView-c1-text">
+                            <div className="itemView-titleBtn-div">
+                                <p className="itemView-item-title">{this.state.item.name}</p>
+                                <button className="itemView-shop-btn"><a href={this.state.item.link} className="itemView-shop-link">SHOP</a></button>
+                            </div>
+                            <p className="itemView-item-brand" style={{marginTop: 0}}>{this.state.item.brand}</p>
+                            <p className="itemView-item-brand">Available in {this.state.item.color}</p>
+                            <p className="itemView-item-size">Recommended size: 27</p>
+                            <p className="itemView-item-price">${this.state.item.price}</p>
 
-                <div className="itemView-c1-right">
-                  <p className="itemView-item-title">Reviews</p>
 
-                  <div className="itemView-review">
+                            {/* { isSaved(this.selectedItem.name)
+                            ? <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Removed from Saved</button>
+                            : <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Save for later</button>
+                            } */}
+                        
+                            <p className="itemView-review-title"> <i>See what other people with your measurements have to say</i></p>
+                            <p className="itemView-item-measurements"><i>Showing women that are {this.getHeightStr()}, waist: {this.state.waist}", hips: {this.state.hips}", bust: {this.state.bust}" </i></p>
+                            <hr />
 
-                      <div className="itemView-reviewer-profile">
-                        <p className="itemView-reviewer-name">Maria <span style={{fontWeight: 'normal', textTransform: 'lowercase'}}>(100% match)</span> </p>
-                        <p style={{marginBottom: '0px'}}>Height 5'2, Waist 26", Hips 32"</p>
-                      </div>
-                      <div className="itemView-reviewer-comment">
-                        <p className="itemView-reviewer-title">Perfect fit</p>
-                        <p>These jeans are perfect for my height, and fit just above the ankle. The waist in stretchy but also fitted. Would absolutely recommend.</p>
-                      </div>
-                    
-                  </div>
-                </div>
+                            <div className="itemView-review">
+                                <p className="itemView-numRating">10/10</p>
+                                <div>
+                                    <p className="itemView-comment">I tried the XS too and this fits much better! I love this print and fit for summer! It's a cute length too, would definitely recommend!</p>
+                                    <p className="itemView-review-name"> - Alina</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div className="itemView-c1-right">
+                        <img alt={this.state.item.name} src={this.state.item.img} className="itemView-img"/>
+                    </div>
                 </div>
             </div>
-          </div>
+        </div>
         );
     }
  }
