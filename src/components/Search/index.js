@@ -78,6 +78,11 @@ class Search extends Component {
         this.modifyHips = this.modifyHips.bind(this);
         this.modifyBust = this.modifyBust.bind(this);
         this.addUSSize = this.addUSSize.bind(this);
+        this._handleKeyPressHeightFt = this._handleKeyPressHeightFt.bind(this);
+        this._handleKeyPressHeightIn = this._handleKeyPressHeightIn.bind(this);
+        this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
+        this._handleKeyPressBra = this._handleKeyPressBra.bind(this);
+        this.sizingRef = React.createRef();
       }
     
       modifyWaist(val) {
@@ -121,9 +126,53 @@ class Search extends Component {
         console.log(this.state);
         this.setState({height: height});
       }
+
+
+      _handleKeyPressHeightFt(e) {
+          console.log(e);
+          console.log(e.key);
+          console.log(e.keyCode)
+          console.log("handlin this shit");
+          if (e.key === 'Enter') {
+              e.preventDefault();
+              this.refs.heightin.focus();
+          }
+      }
+
+      _handleKeyPressHeightIn(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            this.refs.size.focus();
+        }
+    }
+
+        _handleKeyPressSize(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.refs.bra.focus();
+        }
+    }
+
+    
+    _handleKeyPressBra(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            console.log("trying to scrhollll");
+            console.log(this.sizingRef);
+            this.sizingRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            })
+            // window.scrollTo(0, this.sizingRef.current.offsetTop);
+    }
+
+    
+}
         
 
     render() {
+        //TODO -- OK button and autoscroll, page indicators of question, remove blue outline from buttons, not allowed to scroll until enter info
+        //Detect when user clicks off
         return (
             <div className="search-parent">
             <div className="search-container-first search-child">
@@ -135,12 +184,15 @@ class Search extends Component {
                       name="heightft"
                       type="number"
                       className="search-input"
+                      onKeyPress={this._handleKeyPressHeightFt}
                       onChange={this.handleInputChange} />
                     ft, 
                     <input
                       name="heightin"
                       type="number"
                       className="search-input"
+                      onKeyPress={this._handleKeyPressHeightIn}
+                      ref="heightin"
                       onChange={this.handleInputChange} />
                     inches tall.
                   </label>
@@ -155,7 +207,9 @@ class Search extends Component {
                     <input
                       name="size"
                       type="number"
+                      ref="size"
                       className="search-input"
+                      onKeyPress={this._handleKeyPressSize}
                       onChange={this.addUSSize} />
                       .
                   </label>
@@ -170,6 +224,8 @@ class Search extends Component {
                     <input
                       name="bra"
                       type="text"
+                      ref="bra"
+                      onKeyPress={this._handleKeyPressBra}
                       className="search-input"
                       style={{width: 130}}
                       onChange={this.handleInputChange} />
@@ -179,10 +235,10 @@ class Search extends Component {
               </div>
           </div>
 
-          <div className="search-container-fourth search-child">
+          <div className="search-container-fourth search-child" ref={this.sizingRef}>
             <div className="search-search-content">
               <p className="search-search-label final-search-label">On me, size {this.state.size} is generally:</p>
-              <div className="search-size-box">
+              <div className="search-size-box" >
                 <div className="search-selector" style={{display:'block'}}>
                     <p className="search-desc">WAIST</p>
                     <div className="search-btn-group" >
