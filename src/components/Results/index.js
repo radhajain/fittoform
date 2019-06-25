@@ -16,6 +16,7 @@ class Results extends Component {
             closestMeasurements: '',
             dressGroupID: null,
             dressesIDs: [],
+            dressRatings: [],
             dressesLoaded: false,
             dresses: [],
         };
@@ -30,6 +31,8 @@ class Results extends Component {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
         this.getBestDressGroupID();
     }
+
+    //UPdate rating isn't working as intended 
 
     getBestDressGroupID() {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
@@ -60,15 +63,19 @@ class Results extends Component {
     
 
     getBestDressesID() {
+        //TODO: This is problematic -- sometimes isn't populated ******
         console.log(this.state.dressGroupID);
         //Gets the array of dress IDs from the groupID. Populates this.dressesIDs
         firebase.database().ref('dressGroup').child(this.state.dressGroupID).on('value', snapshot => {
             var dressIDs = []
+            var dressRatings = []
             snapshot.forEach(dress => {
                 console.log(dress.val());
                 dressIDs.push(dress.val().dress);
+                dressRatings.push(dress.val().rating);
             })
             console.log(dressIDs);
+            this.setState({dressRatings: dressRatings});
             this.setState({dressesIDs: dressIDs}, () => {
                 console.log(this.state);
                 this.getDressesInfo();
@@ -122,6 +129,7 @@ class Results extends Component {
         });
     }
 
+
     render() {
         const users = this.state;
         return (
@@ -136,6 +144,7 @@ class Results extends Component {
                                         <div style={{position: 'relative', flex: 1}}>
                                             <img src={dress.img} className="results-img"/>
                                             <p className="results-price">${dress.price}</p>
+                                            <p style={{float: 'right'}}>Rating: {this.state.dressRatings[key]}</p>
                                         </div>
                                     </div>
                                 );

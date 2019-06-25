@@ -169,7 +169,7 @@ class AddItem extends Component {
               //If dress already exists in group id, update rating of dress
               var currRating = Object.values(snapshot.val())[0].rating;
               var currCount = Object.values(snapshot.val())[0].count;
-              var newRating = (currRating*currCount + this.state.rating)/(currCount + 1)
+              var newRating = Math.round((currRating*currCount + this.state.rating)/(currCount + 1));
               var updatedCount = currCount + 1;
               var key = Object.keys(snapshot.val())[0];
               dressGroupRef.child(key).update({

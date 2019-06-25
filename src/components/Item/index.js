@@ -11,7 +11,7 @@ class Item extends Component {
     }
 
     getHeightStr() {
-        var heightFt = Math.round(this.state.height / 12);
+        var heightFt = Math.floor(this.state.height / 12);
         var heightIn = this.state.height % 12;
         return heightFt + "'" + heightIn;
     };
