@@ -21,6 +21,7 @@
     /* scroll-snap-align: start; */
     height: 100vh;
     display: flex;
+    scroll-behavior: smooth;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -264,6 +265,8 @@
     color: black;
     font-family: 'Playfair Display', sans-serif;
     font-size: 2.5em;
+    position: relative;
+    z-index: 100;
 }
 
 .landing-fourth-desc {
@@ -448,7 +451,7 @@
     }
 
     .landing-intro-hero {
-        height: 60vh;
+        height: 90vh;
     }
 
     .landing-howitworks-outer {
@@ -460,6 +463,10 @@
         margin-top: 50px;
     }
 
+    .landing-desc {
+        font-size: 1.1em;
+    }
+
     .landing-child {
         height: 120vh;
     }
@@ -468,20 +475,47 @@
         height: 120vh;
     }
 
-    .landing-intro-hero {
-        height: 70vh;
-    }
-
     .landing-second-title {
         font-size: 2em;
+    }
+
+    .landing-second-desc {
+        font-size: 1.1em;
     }
 
     .landing-third-content {
         margin-top: 70px;
     }
 
+    .landing-third-desc {
+        font-size: 1.1em;
+    }
+
     .landing-third-img {
-        bottom: 250px;
+        display: none;
+    }
+
+    .landing-third-sm {
+        display: block;
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .landing-fourth-img-rows {
+        height: 40%;
+    }
+
+    .landing-fourth-title {
+        font-size: 2em;
+    }
+
+    .landing-fourth-desc {
+        font-size: 1.1em;
+    }
+
+    .dress3 {
+        height: 350px;
     }
 
     .landing-fourth-content {
@@ -494,16 +528,17 @@
     .dress1 {
         display: none;
     }
+}
 
-    .landing-third-img {
-        display: none;
+@media (max-height: 700px) {
+    .landing-third-content {
+        margin-top: 30px;
     }
+}
 
-    .landing-third-sm {
-        display: block;
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
+@media (max-height: 611px) {
+    .landing-third-content {
+        margin-top: 0px;
     }
 }
 
@@ -517,12 +552,19 @@
     .landing-2-rightCol {
         flex-basis: 100%;
         background-image: url(../../assets/images/landing-2-sm.png);
-        height: 300px;
         margin-top: 0px;
     }
 
     .landing-second-desc {
         width: 100%;
+    }
+
+    .landing-second-page {
+        height: calc(120vh + 300px);
+    }
+
+    .landing-2-col-container {
+        margin-top: 300px;
     }
 
 
@@ -546,6 +588,10 @@
 
 @media (max-width: 511px) {
 
+
+    .dress3 {
+        height: 300px;
+    }
  
 }
 
