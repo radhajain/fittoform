@@ -95,22 +95,15 @@
     padding: 10px 50px;
     font-family: 'Futura', sans-serif;
     font-size: 1.1em;
+    color: white;
     border: none;
+    cursor: pointer;
 }
 
-.itemView-shop-link {
-    color: white; 
-}
 
-.itemView-shop-link:hover {
-    color: black;
-    text-decoration: none;
-}
 
 .itemView-shop-btn:hover {
-    border: 1px solid black;
-    background-color: white;
-    color: black;
+    background-color: #CE4241;
 }
 
 .itemView-save-btn {

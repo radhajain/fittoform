@@ -103,7 +103,7 @@ class Results extends Component {
     }
 
 
-    goToItemView(selectedItem) {
+    goToItemView(selectedItem, key) {
         // this.props.history.push({
         //     pathname: '/item',
         //     item: {selectedItem},
@@ -115,7 +115,7 @@ class Results extends Component {
         //     // closestMeasurements: this.state.closestMeasurements,
         //     // dresses: this.state.dresses
         // });
-
+        var dressID = this.state.dressesIDs[key];
         this.props.history.push({
             pathname: '/item',
             state: {
@@ -124,7 +124,9 @@ class Results extends Component {
                 waist: this.state.waist,
                 hips: this.state.hips,
                 bust: this.state.bust,
-                size: this.state.size
+                size: this.state.size,
+                closestMeasurements: this.state.closestMeasurements,
+                dressID: dressID,
             }
         });
     }
@@ -140,8 +142,8 @@ class Results extends Component {
                         <div className="results-grid">
                             {this.state.dresses.map((dress, key) => {
                                 return (
-                                    <div className="results-col" onClick={() => this.goToItemView(dress)} key={key}>
-                                        <div style={{position: 'relative', flex: 1}}>
+                                    <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
+                                        <div style={{position: 'relative', flex: 1, cursor: 'pointer'}}>
                                             <img src={dress.img} className="results-img"/>
                                             <p className="results-price">${dress.price}</p>
                                             <p style={{float: 'right'}}>Rating: {this.state.dressRatings[key]}</p>
