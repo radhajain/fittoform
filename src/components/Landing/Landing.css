@@ -1,12 +1,12 @@
 /* @font-face {
-    font-family: 'Playfair Display';
+    font-family: 'Butler';
     font-style: normal;
     font-weight: 400;
     src:
-      local('Playfair Display-Medium'),
+      local('Butler-Medium'),
       local('Roboto-Regular'),
-      url(../../assets/fonts/Playfair Display/Playfair Display-Medium.ttf) format('ttf'),
-      url(../../assets/fonts/Playfair Display/Playfair Display-Regular.ttf) format('ttf');
+      url(../../assets/fonts/Butler/Butler-Medium.ttf) format('ttf'),
+      url(../../assets/fonts/Butler/Butler-Regular.ttf) format('ttf');
   }
    */
 
@@ -58,26 +58,27 @@
     padding-left: 15px;
 }
 
-.futura {
-    font-family: 'Futura', sans-serif;
+.Gibson {
+    font-family: 'Gibson', sans-serif;
 }
 
-.playfair {
-    font-family: 'Playfair Display', sans-serif;
+.Butler {
+    font-family: 'Butler', sans-serif;
 }
 
 /* PAGE 1 */
 
 .landing-title {
-    font-family: 'Playfair Display', sans-serif;
+    font-family: 'Butler', sans-serif;
     color: white;
     font-size: 2.5em;
 }
 
 .landing-desc {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     color: white;
     font-size: 1.25em;
+    line-height: 1.3em;
     width: 60%;
 }
 
@@ -89,7 +90,7 @@
     font-size: 1.25em;
     padding: 20px 50px;
     border: none;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     margin-top: 48px;
     cursor: pointer;
     margin-bottom: 48px;
@@ -126,13 +127,14 @@
 .landing-howitworks-title {
     color: #E86B6A;
     font-weight: bold;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
 }
 
 .landing-howitworks-desc {
     color: white;
     font-weight: lighter;
-    font-family: 'Futura', sans-serif;
+    line-height: 1.2em;
+    font-family: 'Gibson', sans-serif;
 }
 
 .landing-howitworks-box {
@@ -186,19 +188,24 @@
 .landing-second-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Playfair Display', sans-serif;
+    font-family: 'Butler', serif;
     font-size: 2.5em;
 }
 
 .landing-second-desc {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     font-size: 1.25em;
+    line-height: 1.3em;
     color: #E8DCDC;
     width: 80%;
 }
 
 .landing-2-rightImg {
     height: 80%;
+}
+
+.butler {
+    font-family: 'Butler', serif;
 }
 
 /* -------------------------------- */
@@ -232,13 +239,14 @@
 
 .landing-third-title {
     color: white;
-    font-family: 'Playfair Display', sans-serif;
+    font-family: 'Butler', sans-serif;
     font-size: 2.5em;
 }
 
 .landing-third-desc {
     color: white;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
+    line-height: 1.3em;
     font-size: 1.25em;
 }
 
@@ -263,15 +271,16 @@
 .landing-fourth-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Playfair Display', sans-serif;
+    font-family: 'Butler', sans-serif;
     font-size: 2.5em;
     position: relative;
     z-index: 100;
 }
 
 .landing-fourth-desc {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     font-size: 1.25em;
+    line-height: 1.3em;
     color: #E8DCDC;
     width: 80%;
 }

@@ -3,6 +3,19 @@ import './Search.css';
 import { Link } from 'react-router-dom';
 import whiteArrow from '../../assets/images/white-arrow.png';
 
+function validate(heightft, heightin, size, bra) {
+    var braRe = /[0-9][0-9]\w\w?\w?/;
+    var heightft = parseInt(heightft, 10);
+    var heightin = parseInt(heightin, 10);
+    var size = parseInt(size, 10);
+    return {
+        heightft: ( (heightft.length === 0) || !Number.isInteger(heightft) || (heightft < 4) || (heightft > 6)),
+        heightin: ( (heightin.length === 0) || !Number.isInteger(heightin) || heightin < 0 || heightin > 12),
+        size: ( (size.length === 0) || !Number.isInteger(size) || (size % 2 === 1) ),
+        bra: ( (bra.length === 0) || !bra.match(braRe))
+    };
+}
+
 
 class Search extends Component {
     constructor(props) {
@@ -71,36 +84,35 @@ class Search extends Component {
           modifyWaist: '',
           modifyHips: '',
           modifyBust: '',
+          touched: {
+            heightft: false,
+            heightin: false,
+            size: false,
+            bra: false
+          },
         };
     
         this.handleInputChange = this.handleInputChange.bind(this);
         this.modifyWaist = this.modifyWaist.bind(this);
         this.modifyHips = this.modifyHips.bind(this);
         this.modifyBust = this.modifyBust.bind(this);
-        this.addUSSize = this.addUSSize.bind(this);
         this._handleKeyPressHeightFt = this._handleKeyPressHeightFt.bind(this);
         this._handleKeyPressHeightIn = this._handleKeyPressHeightIn.bind(this);
         this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
         this._handleKeyPressBra = this._handleKeyPressBra.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.sizingRef = React.createRef();
       }
     
       modifyWaist(val) {
-        var newWaist = this.state.waist + val; 
-        this.setState({waist: newWaist});
         this.setState({modifyWaist: val});
-        console.log(this.state);
       }
     
       modifyHips(val) {
-        var newHips = this.state.hips + val; 
-        this.setState({hips: newHips});
         this.setState({modifyHips: val});
       }
     
       modifyBust(val) {
-        var newBust = this.state.bust + val; 
-        this.setState({bust: newBust});
         this.setState({modifyBust: val});
       }
     
@@ -113,26 +125,8 @@ class Search extends Component {
           [name]: value
         });
       }
-    
-      addUSSize(event) {
-        const value = event.target.value;
-        this.setState({size: value});
-        var measurements = this.USsizeArray[value.toString()];
-        this.setState({waist: measurements.waist});
-        this.setState({hips: measurements.hips});
-        this.setState({bust: measurements.bust});
-        var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
-        console.log(height);
-        console.log(this.state);
-        this.setState({height: height});
-      }
-
 
       _handleKeyPressHeightFt(e) {
-          console.log(e);
-          console.log(e.key);
-          console.log(e.keyCode)
-          console.log("handlin this shit");
           if (e.key === 'Enter') {
               e.preventDefault();
               this.refs.heightin.focus();
@@ -157,19 +151,72 @@ class Search extends Component {
     _handleKeyPressBra(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            console.log("trying to scrhollll");
-            console.log(this.sizingRef);
             this.sizingRef.current.scrollIntoView({
                 behavior: 'smooth',
                 block: 'center',
             })
         }   
     }
-        
+
+    handleBlur = (field) => (evt) => {
+        this.setState({
+          touched: { ...this.state.touched, [field]: true },
+        });
+    }
+
+    handleSubmit = evt => {
+        if (!this.canBeSubmitted()) {
+          evt.preventDefault();
+          return;
+        }
+        var measurements = this.USsizeArray[this.state.size.toString()];
+        this.setState({waist: measurements.waist});
+        this.setState({hips: measurements.hips});
+        this.setState({bust: measurements.bust});
+        var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
+        this.setState({height: height});
+        var newBust = this.state.bust + this.state.modifyBust; 
+        this.setState({bust: newBust});
+        var newHips = this.state.hips + this.state.modifyHips; 
+        this.setState({hips: newHips});
+        var newWaist = this.state.waist + this.state.modifyWaist; 
+        this.setState({waist: newWaist});
+
+        const { size, bra } = this.state;
+        alert(`Signed up with height: ${height}, size: ${size}, bra: ${bra}`);
+        this.props.history.push({
+            pathname: '/results',
+            state: {
+                height: this.state.height,
+                waist: this.state.waist,
+                hips: this.state.hips,
+                bra: this.state.bra,
+                bust: this.state.bust,
+                size: this.state.size
+            }
+        });
+      };
+    
+      canBeSubmitted() {
+        const errors = validate(this.state.heightft, this.state.heightin, this.state.size, this.state.bra);
+        const isDisabled = Object.keys(errors).some(x => errors[x]);
+        return !isDisabled;
+      }  
 
     render() {
-        //TODO -- OK button and autoscroll, page indicators of question, remove blue outline from buttons, not allowed to scroll until enter info
+        //TODO -- OK button and autoscroll, page indicators of question, not allowed to scroll until enter info
         //Detect when user clicks off
+        //On mobile scroll to middle of page
+        //don't allow invalid inputs
+        const errors = validate(this.state.heightft, this.state.heightin, this.state.size, this.state.bra);
+        const isDisabled = Object.keys(errors).some(x => errors[x]);
+        const shouldMarkError = (field) => {
+            const hasError = errors[field];
+            console.log(errors);
+            const shouldShow = this.state.touched[field];
+      
+            return hasError ? shouldShow : false;
+        };
         return (
             <div className="search-parent">
             <div className="search-container-first search-child">
@@ -180,18 +227,21 @@ class Search extends Component {
                     <input
                       name="heightft"
                       type="number"
-                      className="search-input"
+                      onBlur={this.handleBlur('heightft')}
+                      className={shouldMarkError('heightft') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressHeightFt}
                       onChange={this.handleInputChange} />
                     ft, 
                     <input
                       name="heightin"
                       type="number"
-                      className="search-input"
+                      onBlur={this.handleBlur('heightin')}
+                      className={shouldMarkError('heightin') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressHeightIn}
                       ref="heightin"
                       onChange={this.handleInputChange} />
                     inches tall.
+                    <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p>
                   </label>
                 </form>
               </div>
@@ -205,10 +255,12 @@ class Search extends Component {
                       name="size"
                       type="number"
                       ref="size"
-                      className="search-input"
+                      onBlur={this.handleBlur('size')}
+                      className={shouldMarkError('size') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressSize}
-                      onChange={this.addUSSize} />
+                      onChange={this.handleInputChange} />
                       .
+                      <p className={shouldMarkError('size') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i></p>
                   </label>
                 </form>
               </div>
@@ -222,11 +274,12 @@ class Search extends Component {
                       name="bra"
                       type="text"
                       ref="bra"
+                      onBlur={this.handleBlur('bra')}
                       onKeyPress={this._handleKeyPressBra}
-                      className="search-input"
-                      style={{width: 130}}
+                      className={shouldMarkError('bra') ? "search-input-error" : "search-input"}
+                      style={{width: 150}}
                       onChange={this.handleInputChange} />
-                      .
+                      <p className={shouldMarkError('bra') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
                   </label>
                 </form>
               </div>
@@ -269,22 +322,11 @@ class Search extends Component {
               </div>
             </div>
             <div style={{marginTop: 100}}>
-                <Link to= {{
-                  pathname: '/results',
-                  state: {
-                    height: this.state.height,
-                    waist: this.state.waist,
-                    hips: this.state.hips,
-                    bra: this.state.bra,
-                    bust: this.state.bust,
-                    size: this.state.size
-                  }}}>
-                    <button className="search-results-btn">
-                        See dresses picked for my size
-                        <img src={whiteArrow} className="search-whitearrow"/>
-                    </button>
-                </Link>
-              </div>
+                <button className={isDisabled ? "search-results-btn-disabled" : "search-results-btn"} onClick={this.handleSubmit} disabled={isDisabled}>
+                    See dresses picked for my size
+                    <img src={whiteArrow} className="search-whitearrow"/>
+                </button>
+            </div>
   
           </div>
           </div>

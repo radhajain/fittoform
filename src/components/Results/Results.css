@@ -31,7 +31,7 @@
 
 
 .results-title {
-    font-family: 'Playfair Display', sans-serif;
+    font-family: 'Butler', sans-serif;
     color: #E86B6A;
     font-size: 3em;
 }
@@ -96,6 +96,10 @@
 
 .results-img {
     height: 353px;
+}
+
+.bold {
+    font-weight: bolder;
 }
 
 @media (max-width: 1067px) {

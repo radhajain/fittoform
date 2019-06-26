@@ -158,8 +158,9 @@ class Results extends Component {
                     </div>
                     <div className="results-right-flexCol">
                         <div className="results-text-div">
-                            <p className="results-text">Picked for your measurements:{this.state.height} inches tall, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</p>
                             <p className="results-text">Recommended by other women that are {this.state.closestMeasurements.height} inches tall, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
+                            <p className="results-text" style={{fontSize: '0.75em' , color: '#652D2D'}}><i>Your measurements:{this.state.height} inches tall, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
+
                         </div>
                     </div>
                 </div>

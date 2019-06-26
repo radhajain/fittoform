@@ -47,7 +47,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: none;
     border-bottom: 2px solid white;
     color: white;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     text-align: center;
     width: 80px;
     font-size: 1.5em;
@@ -57,16 +57,33 @@ input[type=number]::-webkit-outer-spin-button {
     outline:none;
 }
 
+.search-input-error {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #FF8181;
+    font-family: 'Gibson', sans-serif;
+    text-align: center;
+    width: 80px;
+    font-size: 1.5em;
+    color: #FF8181;
+}
+
+.search-input-error:focus {
+    outline:none;
+}
+
 .search-desc {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     color: white;
     text-align: left;
 }
 
 .search-search-label {
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     color: white;
     font-size: 2.5em;
+    line-height: 1.5em;
+    font-weight: bold;
 }
 
 .search-search-content {
@@ -81,7 +98,7 @@ input[type=number]::-webkit-outer-spin-button {
 .search-size-buttons {
     background: none;
     border: none;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     color: #D3B1B1;
     font-size: 1.0em;
     margin-top: 15px;
@@ -93,7 +110,7 @@ input[type=number]::-webkit-outer-spin-button {
 .search-size-buttons-selected {
     background: none;
     border: none;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
     color:white;
     font-size: 1.0em;
     margin-top: 15px;
@@ -119,6 +136,15 @@ button:focus {
     outline: none;
 }
 
+.search-error-msg {
+    font-size: 0.5em;
+    color: #FF8181;
+}
+
+.hide-search-error-msg {
+    display: none;
+}
+
 .search-results-btn {
     background-color: #E86B6A;
     color: white;
@@ -126,7 +152,19 @@ button:focus {
     margin-bottom: 100px;
     border: none;
     padding: 16px 20px;
-    font-family: 'Futura', sans-serif;
+    font-family: 'Gibson', sans-serif;
+    cursor: pointer;
+}
+
+.search-results-btn-disabled {
+    background-color: #E4E4E4;
+    color:#888282;
+    font-size: 1.25em;
+    margin-bottom: 100px;
+    border: none;
+    padding: 16px 20px;
+    font-family: 'Gibson', sans-serif;
+
 }
 
 
@@ -184,15 +222,16 @@ button:focus {
 
 @media (max-width: 588px) {
     .search-search-label {
-        font-family: 'Futura', sans-serif;
+        font-family: 'Gibson', sans-serif;
         color: white;
         font-size: 2em;
+        
     }
 }
 
 @media (max-width: 510px) {
     .search-search-label {
-        font-family: 'Futura', sans-serif;
+        font-family: 'Gibson', sans-serif;
         color: white;
         font-size: 1.75em;
         line-height: 2em;
