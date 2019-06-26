@@ -104,17 +104,6 @@ class Results extends Component {
 
 
     goToItemView(selectedItem, key) {
-        // this.props.history.push({
-        //     pathname: '/item',
-        //     item: {selectedItem},
-        //     // height: this.state.height,
-        //     // waist: this.state.waist,
-        //     // hips: this.state.hips,
-        //     // bust: this.state.bust,
-        //     // size: this.state.size,
-        //     // closestMeasurements: this.state.closestMeasurements,
-        //     // dresses: this.state.dresses
-        // });
         var dressID = this.state.dressesIDs[key];
         this.props.history.push({
             pathname: '/item',
@@ -169,8 +158,8 @@ class Results extends Component {
                     </div>
                     <div className="results-right-flexCol">
                         <div className="results-text-div">
-                            <p className="results-text">Picked for your measurements:{this.state.height} inches tall, {this.state.bust}B, {this.state.waist}W, {this.state.hips}H</p>
-                            <p className="results-text">Recommended by other women that are {this.state.closestMeasurements.height} inches tall, {this.state.closestMeasurements.bust}B, {this.state.closestMeasurements.waist}W, {this.state.closestMeasurements.hips}H</p>
+                            <p className="results-text">Picked for your measurements:{this.state.height} inches tall, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</p>
+                            <p className="results-text">Recommended by other women that are {this.state.closestMeasurements.height} inches tall, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
                         </div>
                     </div>
                 </div>

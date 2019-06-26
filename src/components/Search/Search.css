@@ -115,6 +115,9 @@ input[type=number]::-webkit-outer-spin-button {
     outline: none;
 }
 
+button:focus {
+    outline: none;
+}
 
 .search-results-btn {
     background-color: #E86B6A;
@@ -125,6 +128,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 16px 20px;
     font-family: 'Futura', sans-serif;
 }
+
 
 .search-size-box {
     display: flex;

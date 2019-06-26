@@ -163,11 +163,8 @@ class Search extends Component {
                 behavior: 'smooth',
                 block: 'center',
             })
-            // window.scrollTo(0, this.sizingRef.current.offsetTop);
+        }   
     }
-
-    
-}
         
 
     render() {
@@ -242,31 +239,31 @@ class Search extends Component {
                 <div className="search-selector" style={{display:'block'}}>
                     <p className="search-desc">WAIST</p>
                     <div className="search-btn-group" >
-                    <button className={this.state.modifyWaist == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(1)}>Small</button>
-                    <button className={this.state.modifyWaist == 0.5 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(0.5)}>Tight</button>
+                    <button className={this.state.modifyWaist == 2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(2)}>Small</button>
+                    <button className={this.state.modifyWaist == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(1)}>Tight</button>
                     <button className={this.state.modifyWaist == 0 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(0)}>Perfect</button>
-                    <button className={this.state.modifyWaist == -0.5 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(-0.5)}>Loose</button>
-                    <button className={this.state.modifyWaist == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(-1)}>Large</button>
+                    <button className={this.state.modifyWaist == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(-1)}>Loose</button>
+                    <button className={this.state.modifyWaist == -2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyWaist(-2)}>Large</button>
                     </div>
                 </div>
                 <div className="search-selector">
                     <p className="search-desc">HIPS</p>
                     <div className="search-btn-group">
-                    <button className={this.state.modifyHips == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(1)}>Small</button>
-                    <button className={this.state.modifyHips == 0.5 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(0.5)}>Tight</button>
+                    <button className={this.state.modifyHips == 2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(2)}>Small</button>
+                    <button className={this.state.modifyHips == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(1)}>Tight</button>
                     <button className={this.state.modifyHips == 0 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(0)}>Perfect</button>
-                    <button className={this.state.modifyHips == -0.5 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(-0.5)}>Loose</button>
-                    <button className={this.state.modifyHips == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(-1)}>Large</button>
+                    <button className={this.state.modifyHips == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(-1)}>Loose</button>
+                    <button className={this.state.modifyHips == -2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(-2)}>Large</button>
                     </div>
                 </div>
                 <div className="search-selector">
                     <p className="search-desc">BUST</p>
                     <div  className="search-btn-group">
-                    <button className={this.state.modifyBust == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(1)}>Small</button>
-                    <button className={this.state.modifyBust == 0.5 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(0.5)}>Tight</button>
+                    <button className={this.state.modifyBust == 2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(2)}>Small</button>
+                    <button className={this.state.modifyBust == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(1)}>Tight</button>
                     <button className={this.state.modifyBust == 0 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(0)}>Perfect</button>
-                    <button className={this.state.modifyBust == -0.5 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(-0.5)}>Loose</button>
-                    <button className={this.state.modifyBust == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(-1)}>Large</button>
+                    <button className={this.state.modifyBust == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(-1)}>Loose</button>
+                    <button className={this.state.modifyBust == -2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(-2)}>Large</button>
                     </div>
                 </div>
               </div>

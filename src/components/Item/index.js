@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import backBtn from '../../assets/images/back-btn.png';
 import './Item.css';
 
 class Item extends Component {
@@ -15,6 +16,7 @@ class Item extends Component {
         this.state.review = review;
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
+        this.goToResultsView = this.goToResultsView.bind(this);
 
     }
 
@@ -51,6 +53,20 @@ class Item extends Component {
         this.getReviewData();
     }
 
+    goToResultsView() {
+        this.props.history.push({
+            pathname: '/results',
+            state: {
+                height: this.state.height,
+                waist: this.state.waist,
+                hips: this.state.hips,
+                bust: this.state.bust,
+                size: this.state.size,
+                closestMeasurements: this.state.closestMeasurements,
+            }
+        });
+    }
+
     render() {
         //TODO: add reviews for each user and recommended size 
         //TODO: fix back button to results
@@ -60,9 +76,19 @@ class Item extends Component {
                 <div className="itemView-c1-inner">
                     <div className="itemView-c1-left">
                         <div className="itemView-c1-text">
+                            
                             <div className="itemView-titleBtn-div">
-                                <p className="itemView-item-title">{this.state.item.name}</p>
-                                <button className="itemView-shop-btn"><a href={this.state.item.link} className="itemView-shop-link">SHOP</a></button>
+                                <div className="itemView-title-div">
+                                    
+                                    <button className="itemView-backbtn" onClick={() => this.goToResultsView()} >
+                                        <img src={backBtn} style={{paddingRight: 15, width: 25 }} />
+                                        Back to all results
+                                    </button>
+                                    <p className="itemView-item-title">{this.state.item.name}</p>
+                                </div>
+                                <a href={this.state.item.dressLink} style={{display: "table-cell"}} target="_blank">
+                                <button className="itemView-shop-btn">SHOP</button>
+                                </a>
                             </div>
                             <p className="itemView-item-brand" style={{marginTop: 0}}>{this.state.item.brand}</p>
                             <p className="itemView-item-brand">Available in {this.state.item.color}</p>
