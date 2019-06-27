@@ -3,6 +3,7 @@
     width: 100vw;
     display: flex;
     margin-top: 50px;
+    position:relative;
 }
 
 .results-container-inner {
@@ -28,11 +29,14 @@
 }
 
 .results-rightCol {
-    flex-basis: 30%;
+    width: 30%;
+    height: 100vh;
     background-color: #FDE0CB;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    right: 0;
 }
 
 .results-rightCol-inner {
@@ -136,6 +140,7 @@
 }
 
 .results-img {
+    min-width: 235px;
     width: 90%;
     max-height: 80vh;
 }
