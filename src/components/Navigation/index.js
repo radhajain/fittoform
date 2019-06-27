@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './Navigation.css';
 import SignOutButton from '../SignOut';
 import SignInLink from '../SignIn';
 import * as ROUTES from '../../constants/routes';
@@ -28,9 +28,23 @@ const NavigationAuth = () => (
   NOT logged in to the website.
 */
 const NavigationNonAuth = () => (
-  <div style={{overflow: 'hidden', height: 50, backgroundColor: 'rgba(42, 0, 17, 0.69)', position: 'fixed', top: 0, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100}}>
-      <Link to={ROUTES.LANDING}><img src={ShortLogo} style={{height: 30, padding: '20px 20px'}}/> </Link>
-      {/* <Link to={ROUTES.SIGN_IN}>Sign In</Link> */}
+  <div className="nav-nonauth-outer">
+    <div className="nav-nonauth-inner">
+      <div style={{flexBasis: '20%'}}></div>
+      <div style={{flexBasis: '60%', display: 'flex', justifyContent:'center', alignItems: 'center'}}>
+        <Link to={ROUTES.LANDING}>
+          <img src={ShortLogo} style={{height: 30}}/> 
+        </Link>
+      </div>
+      <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+        <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">Log In</Link>
+        <Link to={ROUTES.SIGN_UP} className="nav-href">
+          <button className="nav-signup-btn">
+            Sign Up
+          </button>
+        </Link>
+      </div>
+    </div>
   </div>
 );
 
