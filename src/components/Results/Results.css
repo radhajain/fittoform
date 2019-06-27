@@ -28,6 +28,10 @@
     align-items: center;
 }
 
+input:focus {
+    outline: none;
+}
+
 .results-rightCol {
     width: 30%;
     height: 100vh;
