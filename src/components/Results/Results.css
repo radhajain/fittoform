@@ -79,7 +79,8 @@ input:focus {
 }
 
 .results-text-div {
-    width: 300px;
+    min-width: 100px;
+    max-width: 300px;
     text-align: right;
     margin-left: auto;
 }

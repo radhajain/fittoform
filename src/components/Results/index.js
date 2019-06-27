@@ -174,7 +174,7 @@ class Results extends Component {
                                     type="text"
                                     className="results-input"
                                     onChange={this.handleInput} 
-                                    placeholder="YOUR NAME"/>
+                                    placeholder="ADD YOUR NAME"/>
                                     
                             </form>
                         </div>
