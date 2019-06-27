@@ -146,7 +146,11 @@ input:focus {
 .results-img {
     min-width: 235px;
     width: 90%;
+}
+
+.results-img-single {
     max-height: 80vh;
+    width: auto;
 }
 
 .bold {

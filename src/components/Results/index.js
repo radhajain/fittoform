@@ -24,13 +24,20 @@ class Results extends Component {
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
         this.getBestDressesID = this.getBestDressesID.bind(this);
         this.getDressesInfo = this.getDressesInfo.bind(this);
+        this.getDressInfo = this.getDressInfo.bind(this);
         this.goToItemView = this.goToItemView.bind(this);
         this.getHeightStr = this.getHeightStr.bind(this);
     }
 
     componentDidMount() {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
-        this.getBestDressGroupID();
+        this.getBestDressGroupID().then(result => {
+            console.log(result);
+            this.setState({closestMeasurements: result[0]});
+            this.setState({dressGroupID: result[1]}, () => {
+                this.getBestDressesID();
+            });
+        });
     }
 
     //UPdate rating isn't working as intended 
@@ -39,35 +46,36 @@ class Results extends Component {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
         // and this.state.dressGroupId
         var lowestDiff = Number.MAX_VALUE;
-        this.props.firebase.measurements().on('value', snapshot => {
-            snapshot.forEach(measurement => {
-                //gets measurements with the minimum difference to current user
-                console.log("getting differences!")
-                var values = measurement.val();
-                console.log(values);
-                var heightDiff = (Math.abs(values.height - this.state.height) < 1) ? 0 : (Math.abs(values.height - this.state.height) - 1);
-                var diffSq = Math.pow((heightDiff),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
-                console.log(diffSq);
-                if (Math.sqrt(diffSq) < lowestDiff) {
-                    lowestDiff =  Math.sqrt(diffSq);
-                    console.log("updating state");
-                    this.setState({closestMeasurements: values});
-                    this.setState({dressGroupID: values.dressGroupID})
-                }
+        var closestMeasurements, dressGroupID;
+        var measurementsRef = firebase.database().ref('measurements');
+        return new Promise((resolve, reject) => {
+            measurementsRef.once('value').then((snapshot) => {
+                snapshot.forEach(measurement => {
+                    console.log("getting differences!")
+                    var values = measurement.val();
+                    console.log(values);
+                    var heightDiff = (Math.abs(values.height - this.state.height) < 1) ? 0 : (Math.abs(values.height - this.state.height) - 1);
+                    var diffSq = Math.pow((heightDiff),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
+                    console.log(diffSq);
+                    if (Math.sqrt(diffSq) < lowestDiff) {
+                        lowestDiff =  Math.sqrt(diffSq);
+                        console.log("updating state");
+                        closestMeasurements = values;
+                        dressGroupID = values.dressGroupID;
+                    }
+                });
+                resolve([closestMeasurements, dressGroupID]);
             });
-            console.log("after loop")
-            this.getBestDressesID();
         });
     }
 
         
-    
+    //TODO: getBestDressesID and getDressesInfo can be condensed into one
 
     getBestDressesID() {
-        //TODO: This is problematic -- sometimes isn't populated ******
-        console.log(this.state.dressGroupID);
         //Gets the array of dress IDs from the groupID. Populates this.dressesIDs
-        firebase.database().ref('dressGroup').child(this.state.dressGroupID).on('value', snapshot => {
+        var dressGroupIDRef = firebase.database().ref('dressGroup').child(this.state.dressGroupID);
+        dressGroupIDRef.once('value', snapshot => {
             var dressIDs = []
             var dressRatings = []
             snapshot.forEach(dress => {
@@ -84,25 +92,32 @@ class Results extends Component {
         });
     }
 
+
+
+    //Using the dressesIDs populated by getBestDresses, gets information about each dress
     getDressesInfo() {
-        var dresses = [];
-        var allDresses;
-        firebase.database().ref('dresses').once('value', snapshot => {
-            allDresses = snapshot.val();
-            console.log(allDresses);
-            for (const dressID of this.state.dressesIDs) {
-                console.log(allDresses[dressID]);
-                var dressInfo = allDresses[dressID];
-                console.log(dressInfo);
-                dresses.push(dressInfo);
+        var dressesRef = firebase.database().ref('dresses')
+        dressesRef.once('value').then(snapshot => {
+            return Promise.all(this.state.dressesIDs.map(dressID => {
+                return dressesRef.child(`${dressID}`);
+            }));
+        }).then((dressesRefs) => {
+            var promises = []
+            for (const dressRef of dressesRefs) {
+                promises.push(this.getDressInfo(dressRef));
             }
-            console.log(dresses);
-            this.setState({dresses: dresses});
-            this.setState({dressesLoaded: true});
-        }) ;
-        
+            Promise.all(promises).then((dresses) => {
+                this.setState({dresses: dresses});
+            })
+        });
     }
 
+    //Given the reference to a dress, gets information about the dress
+    getDressInfo(dressRef) {
+        return dressRef.once('value').then((snapshot) => {
+            return snapshot.val();
+        });
+    }
 
     goToItemView(selectedItem, key) {
         var dressID = this.state.dressesIDs[key];
@@ -129,7 +144,7 @@ class Results extends Component {
 
 
     render() {
-        const users = this.state;
+        const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
         return (
         <div className="results-container-outer">
                 <div className="results-leftCol">
@@ -139,7 +154,7 @@ class Results extends Component {
                                 return (
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
                                         <div className="results-item-div">
-                                            <img src={dress.img} className="results-img"/>
+                                            <img src={dress.img} className={imgClassName}/>
                                             <p className="results-rating">Rated {this.state.dressRatings[key]}/10 by women like you</p>
                                             <p className="results-price">${dress.price}</p>
                                         </div>

@@ -11,9 +11,9 @@ class Item extends Component {
         var review = {
             comment: '',
             size: '',
-            rating: ''
+            rating: '',
         }
-        this.state.review = review;
+        this.state.reviews = [review];
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
         this.goToResultsView = this.goToResultsView.bind(this);
@@ -29,28 +29,30 @@ class Item extends Component {
     getReviewData() {
         const reviewsRef = firebase.database().ref('reviews');
         var mmts = this.state.closestMeasurements;
-        reviewsRef.orderByChild('dressID').equalTo(this.state.dressID).on('value', snapshot => {
-            console.log(snapshot.val());
-            snapshot.forEach(data => {
-                console.log(data.val().userInfo);
-                var reviewerMmts = data.val().userInfo;
-                if (mmts.height == reviewerMmts.height && mmts.bust == reviewerMmts.bust && mmts.waist == reviewerMmts.waist && mmts.hips == reviewerMmts.hips) {
-                    console.log("match found!");
-                    var review = {
-                        comment: data.val().comment,
-                        size: data.val().size,
-                        rating: data.val().rating
+        var reviews = []
+        var reviewQuery = reviewsRef.orderByChild('dressID').equalTo(this.state.dressID);
+        return new Promise((resolve, reject) => {
+            reviewQuery.once("value").then((snapshot) => {
+                snapshot.forEach(data => {
+                    var reviewerMmts = data.val().userInfo;
+                    if (mmts.height == reviewerMmts.height && mmts.bust == reviewerMmts.bust && mmts.waist == reviewerMmts.waist && mmts.hips == reviewerMmts.hips) {
+                        var review = {
+                            comment: data.val().comment,
+                            size: data.val().size,
+                            rating: data.val().rating
+                        };
+                        reviews.push(review);
                     }
-                    this.setState({review: review}, () => {
-                        return true;
-                    })
-                }
+                });
+                resolve(reviews);
             });
         });
     }
 
     componentDidMount() {
-        this.getReviewData();
+        this.getReviewData().then(reviews => {
+            this.setState({reviews: reviews});
+        });
     }
 
     goToResultsView() {
@@ -92,7 +94,9 @@ class Item extends Component {
                             </div>
                             <p className="itemView-item-brand" style={{marginTop: 0}}>{this.state.item.brand}</p>
                             <p className="itemView-item-brand">Available in {this.state.item.color}</p>
-                            <p className="itemView-item-size">Recommended size: {this.state.review.size}</p>
+                            {this.state.reviews && 
+                                <p className="itemView-item-size">Recommended size: {this.state.reviews[0].size}</p>
+                            }
                             <p className="itemView-item-price">${this.state.item.price}</p>
 
 
@@ -104,16 +108,18 @@ class Item extends Component {
                             <p className="itemView-review-title"> <i>See what other people with your measurements have to say</i></p>
                             <p className="itemView-item-measurements"><i>Showing women that are {this.getHeightStr()}, waist: {this.state.waist}", hips: {this.state.hips}", bust: {this.state.bust}" </i></p>
                             <hr />
-
-                            <div className="itemView-review">
-                                {/* <p className="itemView-numRating">10/10</p> */}
-                                <p className="itemView-numRating">{this.state.review.rating}/10</p>
-                                <div>
-                                    <p className="itemView-comment">{this.state.review.comment}</p>
-                                    {/* <p className="itemView-comment">I tried the XS too and this fits much better! I love this print and fit for summer! It's a cute length too, would definitely recommend!</p> */}
-                                    <p className="itemView-review-name"> - Alina</p>
-                                </div>
-                            </div>
+                            {this.state.reviews && this.state.reviews.map((review, key) => {
+                                return (
+                                    <div className="itemView-review" key={key}>
+                                        <p className="itemView-numRating">{review.rating}/10</p>
+                                        <div>
+                                            <p className="itemView-comment">{review.comment}</p>
+                                            <p className="itemView-review-name"> - Alina</p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                         
                         </div>
                         
                     </div>
