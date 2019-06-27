@@ -19,8 +19,21 @@ const Navigation = () => (
 
 
 const NavigationAuth = () => (
+  <div className="nav-outer">
+    <div className="nav-inner">
+      <div style={{flexBasis: '20%'}}></div>
+        <div style={{flexBasis: '60%', display: 'flex', justifyContent:'center', alignItems: 'center'}}>
+          <Link to={ROUTES.LANDING}>
+            <img src={ShortLogo} style={{height: 30}}/> 
+          </Link>
+        </div>
+        <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+          <Link to={ROUTES.ACCOUNT} className="nav-signin-btn nav-href">Your Profile</Link>
+          <SignOutButton />
+        </div>
+    </div>
+  </div>
 
-  <SignOutButton />
 );
 
 /*
@@ -28,8 +41,8 @@ const NavigationAuth = () => (
   NOT logged in to the website.
 */
 const NavigationNonAuth = () => (
-  <div className="nav-nonauth-outer">
-    <div className="nav-nonauth-inner">
+  <div className="nav-outer">
+    <div className="nav-inner">
       <div style={{flexBasis: '20%'}}></div>
       <div style={{flexBasis: '60%', display: 'flex', justifyContent:'center', alignItems: 'center'}}>
         <Link to={ROUTES.LANDING}>

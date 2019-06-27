@@ -17,7 +17,7 @@ const SignUpPage = () => (
 
 function validate(heightft, heightin, size, bra, name, email, passwordOne, passwordTwo) {
     var braRe = /[0-9][0-9]\w\w?\w?/;
-    var emailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var emailRe = /^.+@.+\..+$/;
     var heightft = parseInt(heightft, 10);
     var heightin = parseInt(heightin, 10);
     var size = parseInt(size, 10);
@@ -27,7 +27,7 @@ function validate(heightft, heightin, size, bra, name, email, passwordOne, passw
         size: ( (size.length === 0) || !Number.isInteger(size) || (size % 2 === 1) ),
         bra: ( (bra.length === 0) || !bra.match(braRe)),
         name: (name.length === 0),
-        email: (email.length === 0 || !email.match(String(emailRe).toLowerCase())),
+        email: (email.length === 0 || !email.match(emailRe)),
         passwordOne: (passwordOne.length === 0),
         passwordTwo: (passwordTwo.length === 0 || passwordOne !== passwordTwo),
         
@@ -102,7 +102,6 @@ class SignUpFormBase extends Component {
           modifyWaist: '',
           modifyHips: '',
           name: '',
-          username: '',
           email: '',
           passwordOne: '',
           passwordTwo: '',
@@ -202,7 +201,7 @@ class SignUpFormBase extends Component {
           evt.preventDefault();
           return;
         }
-        const { username, email, passwordOne } = this.state;
+        const { name, email, passwordOne } = this.state;
         var measurements = this.USsizeArray[this.state.size.toString()];
         var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
         var newBust = parseInt(this.state.bra.slice(0, 2), 10) + this.braToBust[this.state.bra.substr(2)];
@@ -216,8 +215,14 @@ class SignUpFormBase extends Component {
             return this.props.firebase
             .user(authUser.user.uid)
             .set({
-                username,
-                email
+                email: email,
+                name: name,
+                height: height,
+                waist: newWaist,
+                bust: newBust,
+                hips: newHips,
+                size: this.state.size,
+                bra: this.state.bra
             });
         })
         .then(authUser => {
@@ -242,6 +247,7 @@ class SignUpFormBase extends Component {
         })
         .catch(error => {
             this.setState({ error });
+            console.log(error);
         });
 
             evt.preventDefault();
@@ -259,7 +265,7 @@ class SignUpFormBase extends Component {
         //On mobile scroll to middle of page
         //don't allow invalid inputs
         const {
-            username,
+            name,
             email,
             passwordOne,
             passwordTwo,
@@ -283,7 +289,7 @@ class SignUpFormBase extends Component {
                         name="name"
                         type="text"
                         ref="name"
-                        style={{width: 350}}
+                        style={{width: 400}}
                         onBlur={this.handleBlur('name')}
                         className={shouldMarkError('name') ? "signup-input-error" : "signup-input"}
                         onKeyPress={this._handleKeyPressSize}
@@ -398,7 +404,7 @@ class SignUpFormBase extends Component {
                     value={email}
                     onBlur={this.handleBlur('email')}
                     ref="email"
-                    style={{width: 400, fontSize: '1.25em'}}
+                    style={{width: 450, fontSize: '1.0em'}}
                     onChange={this.handleInputChange}
                     onKeyPress={this._handleKeyPressSize}
                     type="text"
@@ -414,7 +420,7 @@ class SignUpFormBase extends Component {
                       <input
                       name="passwordOne"
                       value={passwordOne}
-                      style={{width: 400, fontSize: '1.25em'}}
+                      style={{width: 450, fontSize: '1.0em'}}
                       onBlur={this.handleBlur('passwordOne')}
                       onChange={this.handleInputChange}
                       onKeyPress={this._handleKeyPressSize}
@@ -431,7 +437,7 @@ class SignUpFormBase extends Component {
                       <input
                       name="passwordTwo"
                       value={passwordTwo}
-                      style={{width: 400, fontSize: '1.25em'}}
+                      style={{width: 450, fontSize: '1.0em'}}
                       onChange={this.handleInputChange}
                       onBlur={this.handleBlur('passwordTwo')}
                       onKeyPress={this._handleKeyPressSize}

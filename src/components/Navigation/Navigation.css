@@ -1,4 +1,4 @@
-.nav-nonauth-outer {
+.nav-outer {
     overflow: hidden;
     height: 50px;
     background-color: rgba(42, 0, 17, 0.69);
@@ -11,7 +11,7 @@
     z-index: 100;
 }
 
-.nav-nonauth-inner {
+.nav-inner {
     width: 100%;
     padding: 0px 50px;
     height: 100%;

@@ -1,19 +1,12 @@
 .signout-btn {
-    background-color: black;
+    font-family: 'Gibson', sans-serif;
+    background-color: unset;
     color: white;
-    padding: 10px 20px;
-    font-family: 'Raleway', sans-serif;
     border: none;
-    border: 1px solid white;
-    float: right;
+    cursor: pointer;;
+    font-size: 1em;
 }
 
 .signout-btn:hover {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    font-family: 'Raleway', sans-serif;
-    border: none;
-    border: 1px solid white;
-    float: right;
+    font-weight: bold;
 }
