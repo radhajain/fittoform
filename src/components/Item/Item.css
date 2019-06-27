@@ -98,12 +98,18 @@
     color: white;
     border: none;
     cursor: pointer;
+    margin-top: 40px;
 }
 
 
 
 .itemView-shop-btn:hover {
     background-color: #CE4241;
+}
+
+.itemView-backbtn {
+    font-size: 1.1em;
+    cursor: pointer;
 }
 
 .itemView-save-btn {
@@ -118,6 +124,15 @@
 
 .itemView-save-btn:hover{
     text-decoration: underline;
+}
+
+.itemView-backbtn {
+    color: #652D2D;
+    background-color: none;
+    border: none;
+    font-family: 'Futura', sans-serif;
+    margin-bottom: 20px;
+
 }
 
 .itemView-review {
@@ -150,6 +165,17 @@
     max-width: 480px;
 }
 
+@media (max-width: 1111px) {
+    .itemView-titleBtn-div {
+        flex-wrap: wrap;
+    }
+
+    .itemView-shop-btn {
+        margin-top: 16px;
+    }
+}
+
+
 
 @media (max-width: 980px) {
     .itemView {
@@ -171,7 +197,10 @@
         width: 40%;
         margin-top: 50px;
         margin-bottom: 50px;
-        
+    }
+
+    .itemView-shop-btn {
+        margin-top: 40px;
     }
 }
 
@@ -179,8 +208,7 @@
     .itemView-titleBtn-div {
         flex-wrap: wrap;
     }
-
-    .itemView-item-title {
+    .itemView-title-div {
         flex-basis: 100%;
         padding-bottom: 30px;
     }
