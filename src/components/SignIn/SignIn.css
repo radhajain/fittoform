@@ -14,7 +14,7 @@
     width: 100%;
     height: 100vh;
     margin: auto;
-    background-image: url(../../assets//images/landing-bkg.jpeg);
+    background-image: url(../../assets//images/landing-bkg.png);
     background-position: center;
     background-attachment: fixed;
     display: flex;

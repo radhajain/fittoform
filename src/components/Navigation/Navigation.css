@@ -1,108 +1,56 @@
-
-.navbar {
-    background-color: black;
+.nav-nonauth-outer {
+    overflow: hidden;
+    height: 50px;
+    background-color: rgba(42, 0, 17, 0.69);
+    position: fixed;
+    top: 0px;
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.nav-nonauth-inner {
+    width: 100%;
+    padding: 0px 50px;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    /* border-bottom: 1px solid gray; */
-    padding-bottom: 30px;
-    opacity: 0.99;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-.navbar.long {
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
-
-.nav-list {
-    margin: auto;
-    list-style: none;  
-    overflow: hidden;
-    margin-top: 15px;
-    padding-left: 0;
-}
-
-.nav-list.long {
-    display: inline-block;
-}
-
-.nav-list li {
-    padding: 10px;
-    float: right;
-}
-
-.nav-list>li>a:hover {
+.nav-signup-btn {
+    color: white;
+    font-family: 'Gibson', sans-serif;
+    border: 1px solid white;
+    background-color: unset;
+    font-size: 1em;
+    padding: 7px 25px;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-href {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-signin-btn {
+    color: white;
+    font-family: 'Gibson', sans-serif;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+.nav-signin-btn:hover {
     font-weight: bold;
 }
 
-.nav-left-panel {
-    flex: 0 0 10%;
-    float: left;
+.nav-signup-btn:hover {
+    font-weight: bold;
 }
 
-.nav-center-panel {
-    flex: 0 0 60%;
-}
-
-.nav-right-panel {
-    flex: 0 0 30%;
-    flex-direction: column;
-    align-content: center;
-    vertical-align: middle;
-    float: right;
-    width: 100%;
-}
-
-.nav-inner {
-    width: 90%;
-    margin: auto;
-}
-
-.nav-menu-icon-panel {
-    display: none;
-}
-
-.nav-logo {
-    margin: 0 auto;
-    width: 140px;
-}
-
-.nav-right-icons {
-    margin-top: 50%;
-    flex-direction: column;
-    align-content: center;
-}
-
-.signin-btn {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    font-family: 'Raleway', sans-serif;
-    border: none;
-    border: 1px solid white;
-    float: right;
-}
-
-.signin-btn:hover {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    font-family: 'Raleway', sans-serif;
-    border: none;
-    border: 1px solid white;
-    float: right;
-}
-
-.layer {
-    background-color: rgba(248, 247, 216, 0.2);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+a:focus {
+    outline: none;
 }

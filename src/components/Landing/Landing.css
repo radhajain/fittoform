@@ -28,7 +28,7 @@
 }
 
 .landing-container-intro {
-    background-image: url(../../assets//images/landing-bkg.jpeg);
+    background-image: url(../../assets//images/landing-bkg.png);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -63,13 +63,13 @@
 }
 
 .Butler {
-    font-family: 'Butler', sans-serif;
+    font-family: 'Butler', serif;
 }
 
 /* PAGE 1 */
 
 .landing-title {
-    font-family: 'Butler', sans-serif;
+    font-family: 'Butler', serif;
     color: white;
     font-size: 2.5em;
 }
@@ -239,7 +239,7 @@
 
 .landing-third-title {
     color: white;
-    font-family: 'Butler', sans-serif;
+    font-family: 'Butler', serif;
     font-size: 2.5em;
 }
 
@@ -271,7 +271,7 @@
 .landing-fourth-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Butler', sans-serif;
+    font-family: 'Butler', serif;
     font-size: 2.5em;
     position: relative;
     z-index: 100;
