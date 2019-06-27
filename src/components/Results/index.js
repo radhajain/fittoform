@@ -25,6 +25,7 @@ class Results extends Component {
         this.getBestDressesID = this.getBestDressesID.bind(this);
         this.getDressesInfo = this.getDressesInfo.bind(this);
         this.goToItemView = this.goToItemView.bind(this);
+        this.getHeightStr = this.getHeightStr.bind(this);
     }
 
     componentDidMount() {
@@ -120,52 +121,61 @@ class Results extends Component {
         });
     }
 
+    getHeightStr() {
+        var heightFt = Math.floor(this.state.height / 12);
+        var heightIn = this.state.height % 12;
+        return heightFt + "'" + heightIn;
+    };
+
 
     render() {
         const users = this.state;
         return (
         <div className="results-container-outer">
-            <div className="results-container-inner">
                 <div className="results-leftCol">
-                    <p className="results-title">CHOSEN FOR YOU</p>
+                    <div className="results-leftCol-inner">
                         <div className="results-grid">
                             {this.state.dresses.map((dress, key) => {
                                 return (
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
-                                        <div style={{position: 'relative', flex: 1, cursor: 'pointer'}}>
+                                        <div className="results-item-div">
                                             <img src={dress.img} className="results-img"/>
+                                            <p className="results-rating">Rated {this.state.dressRatings[key]}/10 by women like you</p>
                                             <p className="results-price">${dress.price}</p>
-                                            <p style={{float: 'right'}}>Rating: {this.state.dressRatings[key]}</p>
                                         </div>
                                     </div>
                                 );
                             })}
-                        
                         </div>
+                    </div>
                 </div>
                 <div className="results-rightCol">
-                    <div>
-                        <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
-                        <form style={{textAlign: 'right'}}>
-                                <input
-                                name="name"
-                                type="text"
-                                className="results-input"
-                                onChange={this.handleInput} 
-                                placeholder="YOUR NAME"/>
-                                
-                        </form>
-                    </div>
-                    <div className="results-right-flexCol">
-                        <div className="results-text-div">
-                            <p className="results-text">Recommended by other women that are {this.state.closestMeasurements.height} inches tall, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
-                            <p className="results-text" style={{fontSize: '0.75em' , color: '#652D2D'}}><i>Your measurements:{this.state.height} inches tall, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
+                    <div className="results-rightCol-inner">
+                        <div>
+                            <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
+                            <form style={{textAlign: 'right'}}>
+                                    <input
+                                    name="name"
+                                    type="text"
+                                    className="results-input"
+                                    onChange={this.handleInput} 
+                                    placeholder="YOUR NAME"/>
+                                    
+                            </form>
+                        </div>
+                        <div className="results-title-div">
+                            <p className="results-title">Chosen for you</p>
+                        </div>
+                        <div className="results-right-flexCol">
+                            <div className="results-text-div">
+                                <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
+                                <p className="results-text" style={{fontSize: '0.75em' , color: '#652D2D'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
 
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-            </div>
         </div>
         );
     }

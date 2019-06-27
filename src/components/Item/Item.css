@@ -109,6 +109,7 @@
 
 .itemView-backbtn {
     font-size: 1.1em;
+    cursor: pointer;
 }
 
 .itemView-save-btn {

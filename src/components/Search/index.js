@@ -91,6 +91,18 @@ class Search extends Component {
             bra: false
           },
         };
+        this.braToBust = {
+            "A" : 1,
+            "B" : 2,
+            "C" : 3,
+            "D" : 4,
+            "DD" : 5,
+            "DDD" : 6,
+            "E" : 6,
+            "F" : 7,
+            "G" : 8
+
+        }
     
         this.handleInputChange = this.handleInputChange.bind(this);
         this.modifyWaist = this.modifyWaist.bind(this);
@@ -142,8 +154,10 @@ class Search extends Component {
 
         _handleKeyPressSize(e) {
             if (e.key === 'Enter') {
-                e.preventDefault();
                 this.refs.bra.focus();
+                e.preventDefault();
+                console.log("going to focus on tittys");
+                
         }
     }
 
@@ -170,31 +184,33 @@ class Search extends Component {
           return;
         }
         var measurements = this.USsizeArray[this.state.size.toString()];
-        this.setState({waist: measurements.waist});
-        this.setState({hips: measurements.hips});
-        this.setState({bust: measurements.bust});
         var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
-        this.setState({height: height});
-        var newBust = this.state.bust + this.state.modifyBust; 
-        this.setState({bust: newBust});
-        var newHips = this.state.hips + this.state.modifyHips; 
-        this.setState({hips: newHips});
-        var newWaist = this.state.waist + this.state.modifyWaist; 
-        this.setState({waist: newWaist});
-
-        const { size, bra } = this.state;
-        alert(`Signed up with height: ${height}, size: ${size}, bra: ${bra}`);
-        this.props.history.push({
-            pathname: '/results',
-            state: {
-                height: this.state.height,
-                waist: this.state.waist,
-                hips: this.state.hips,
-                bra: this.state.bra,
-                bust: this.state.bust,
-                size: this.state.size
-            }
-        });
+        var newBust = measurements.bust + this.state.modifyBust; 
+        var newBust = parseInt(this.state.bra.slice(0, 2), 10) + this.braToBust[this.state.bra.substr(2)];
+        console.log(parseInt(this.state.bra.slice(0, 2), 10));
+        console.log(this.state.bra.substr(2));
+        console.log(this.braToBust[this.state.bra.substr(2)]);
+        console.log(newBust);
+        var newHips = measurements.hips + this.state.modifyHips; 
+        var newWaist = measurements.waist + this.state.modifyWaist; 
+        this.setState({
+            height: height,
+            bust: newBust,
+            hips: newHips,
+            waist: newWaist
+        }, () => {
+            this.props.history.push({
+                pathname: '/results',
+                state: {
+                    height: this.state.height,
+                    waist: this.state.waist,
+                    hips: this.state.hips,
+                    bra: this.state.bra,
+                    bust: this.state.bust,
+                    size: this.state.size
+                }
+            });
+        })
       };
     
       canBeSubmitted() {
@@ -212,9 +228,7 @@ class Search extends Component {
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         const shouldMarkError = (field) => {
             const hasError = errors[field];
-            console.log(errors);
-            const shouldShow = this.state.touched[field];
-      
+            const shouldShow = this.state.touched[field];    
             return hasError ? shouldShow : false;
         };
         return (
