@@ -83,7 +83,6 @@ class Search extends Component {
           bra: '',
           modifyWaist: '',
           modifyHips: '',
-          modifyBust: '',
           touched: {
             heightft: false,
             heightin: false,
@@ -107,7 +106,6 @@ class Search extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.modifyWaist = this.modifyWaist.bind(this);
         this.modifyHips = this.modifyHips.bind(this);
-        this.modifyBust = this.modifyBust.bind(this);
         this._handleKeyPressHeightFt = this._handleKeyPressHeightFt.bind(this);
         this._handleKeyPressHeightIn = this._handleKeyPressHeightIn.bind(this);
         this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
@@ -124,9 +122,6 @@ class Search extends Component {
         this.setState({modifyHips: val});
       }
     
-      modifyBust(val) {
-        this.setState({modifyBust: val});
-      }
     
       handleInputChange(event) {
         const target = event.target;
@@ -185,7 +180,6 @@ class Search extends Component {
         }
         var measurements = this.USsizeArray[this.state.size.toString()];
         var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
-        var newBust = measurements.bust + this.state.modifyBust; 
         var newBust = parseInt(this.state.bra.slice(0, 2), 10) + this.braToBust[this.state.bra.substr(2)];
         console.log(parseInt(this.state.bra.slice(0, 2), 10));
         console.log(this.state.bra.substr(2));
@@ -321,16 +315,6 @@ class Search extends Component {
                     <button className={this.state.modifyHips == 0 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(0)}>Perfect</button>
                     <button className={this.state.modifyHips == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(-1)}>Loose</button>
                     <button className={this.state.modifyHips == -2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyHips(-2)}>Large</button>
-                    </div>
-                </div>
-                <div className="search-selector">
-                    <p className="search-desc">BUST</p>
-                    <div  className="search-btn-group">
-                    <button className={this.state.modifyBust == 2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(2)}>Small</button>
-                    <button className={this.state.modifyBust == 1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(1)}>Tight</button>
-                    <button className={this.state.modifyBust == 0 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(0)}>Perfect</button>
-                    <button className={this.state.modifyBust == -1 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(-1)}>Loose</button>
-                    <button className={this.state.modifyBust == -2 ? 'search-size-buttons-selected' : 'search-size-buttons'} onClick={() => this.modifyBust(-2)}>Large</button>
                     </div>
                 </div>
               </div>

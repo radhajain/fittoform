@@ -171,9 +171,9 @@ button:focus {
 .search-size-box {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-basis: 50%;
-    min-width: 400px;
+    min-width: 250px;
 }
 
 .final-search-label {
