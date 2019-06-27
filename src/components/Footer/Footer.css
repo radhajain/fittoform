@@ -97,3 +97,48 @@
 }
 
 
+
+.footer-sm-outer {
+    background-color:#3C1123;
+    padding: 0px 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+    
+}
+
+.footer-sm-inner {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.footer-sm-divs {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-sm-links {
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Gibson', sans-serif;
+    padding: 0px 10px;
+}
+
+.footer-sm-links:hover {
+    font-weight: bold;
+}
+
+.footer-sm-label {
+    color: white;
+    font-family: 'Gibson', sans-serif;
+    display: inline-block;
+
+}

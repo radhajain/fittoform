@@ -3,6 +3,7 @@ import { withFirebase } from '../Firebase';
 import firebase from 'firebase';
 import './Results.css';
 import { tsConstructorType } from '@babel/types';
+import { FooterLarge, FooterSmall } from '../Footer';
 
 class Results extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class Results extends Component {
             dressesIDs: [],
             dressRatings: [],
             dressesLoaded: false,
+            exactMatch: false,
             dresses: [],
         };
         console.log(this.state);
@@ -34,6 +36,9 @@ class Results extends Component {
         this.getBestDressGroupID().then(result => {
             console.log(result);
             this.setState({closestMeasurements: result[0]});
+            if (result[2] === 0) {
+                this.setState({exactMatch: true});
+            }
             this.setState({dressGroupID: result[1]}, () => {
                 this.getBestDressesID();
             });
@@ -64,7 +69,7 @@ class Results extends Component {
                         dressGroupID = values.dressGroupID;
                     }
                 });
-                resolve([closestMeasurements, dressGroupID]);
+                resolve([closestMeasurements, dressGroupID, lowestDiff]);
             });
         });
     }
@@ -146,6 +151,7 @@ class Results extends Component {
     render() {
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
         return (
+        <div>
         <div className="results-container-outer">
                 <div className="results-leftCol">
                     <div className="results-leftCol-inner">
@@ -185,13 +191,16 @@ class Results extends Component {
                             <div className="results-text-div">
                                 <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
                                 <p className="results-text" style={{fontSize: '0.75em' , color: '#652D2D'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
-
+                                <p className="results-match">EXACT MATCH</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
         </div>
+        <FooterSmall />
+        </div>
+        
         );
     }
  }
