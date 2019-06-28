@@ -18,7 +18,7 @@ const FooterLarge = () => (
           <div className="footer-about">
             <p style={{fontSize: '1.5em'}} className="butler">Quick Links</p>
             <ul className="footer-links">
-              <li><a href="">About Us</a></li>
+              <li><a href="/contact">Contact Us</a></li>
               <li><a href="">FAQs</a></li>
             </ul>
             <div className="footer-social-icons">
