@@ -31,7 +31,10 @@ class Contact extends React.Component {
 
             <div className="howitworks-parent">
               
-                <div className="contact-form">
+                <div className="contact-form" id="contact-form" method="post" action="contact.php">
+
+                    <div class="messages"></div>
+
                     <h1>Leave a comment</h1>
                     <div className="group">      
                         <input type="text" required/>
@@ -42,6 +45,11 @@ class Contact extends React.Component {
                         <input type="text" required/>
                         <span className="highlight"></span>
                         <label>Your email</label>
+                    </div>
+                    <div className="group">      
+                        <input type="text" required/>
+                        <span className="highlight"></span>
+                        <label>Your message</label>
                     </div>
                     <a className="send-btn">Send</a>
                 </div>
