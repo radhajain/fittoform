@@ -5,14 +5,14 @@ import WhiteArrow from '../../assets/images/white-arrow.png';
 import pg2 from '../../assets/images/landing-p2.png';
 import pg2SM from '../../assets/images/landing-2-sm.png';
 import WrapImg from '../../assets/images/wrap-lady.png';
-import wrapSM from '../../assets/images/wrap-sm.png';
-import dress1 from '../../assets/images/landing-4-1.png';
-import dress2 from '../../assets/images/landing-4-2.png';
-import dress3 from '../../assets/images/landing-4-3.png';
-import dress4 from '../../assets/images/landing-4-4.png';
-import dress5 from '../../assets/images/landing-4-5.png';
-import dress6 from '../../assets/images/landing-4-6.png';
-import dress7 from '../../assets/images/landing-4-7.png';
+import wrapSM from '../../assets/images/wrap-sm.jpg';
+import dress1 from '../../assets/images/landing-4-1.jpg';
+import dress2 from '../../assets/images/landing-4-2.jpg';
+import dress3 from '../../assets/images/landing-4-3.jpg';
+import dress4 from '../../assets/images/landing-4-4.jpg';
+import dress5 from '../../assets/images/landing-4-5.jpg';
+import dress6 from '../../assets/images/landing-4-6.jpg';
+import dress7 from '../../assets/images/landing-4-7.jpg';
 import { FooterLarge } from '../Footer';
 
 

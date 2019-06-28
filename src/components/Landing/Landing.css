@@ -28,7 +28,7 @@
 }
 
 .landing-container-intro {
-    background-image: url(../../assets//images/landing-bkg.png);
+    background-image: url(../../assets//images/landing-bkg@2x.jpg);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -449,6 +449,11 @@
 }
 
 @media (max-width: 633px) {
+    .landing-container-intro {
+        background-image: url(../../assets//images/landing-bkg.jpg);
+    }
+
+
     .landing-howitworks-box {
         min-width: 180px;
         flex-basis: 100%;
