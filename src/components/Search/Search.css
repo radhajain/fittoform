@@ -324,6 +324,18 @@ button:focus {
     .search-form {
         text-align: center;
     }
+
+
+    .search-results-btn {
+        margin-bottom: 0px;
+    }
+
+    .search-input {
+        width: 60px;
+    }
+    .search-bra {
+        width: 110px;
+    }
 }
 
 
@@ -339,13 +351,8 @@ button:focus {
         font-size: 1.55em;
     }
 
-    .search-bra {
-        width: 110px;
-    }
 
-    .search-results-btn {
-        margin-bottom: 0px;
-    }
+
 }
 
 @media (max-width: 351px) {
