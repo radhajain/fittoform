@@ -543,6 +543,10 @@
     .dress1 {
         display: none;
     }
+
+    .landing-child {
+        scroll-behavior: auto;
+    }
 }
 
 @media (max-height: 700px) {
