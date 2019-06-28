@@ -48,13 +48,13 @@
     font-size: 1em;
     padding: 7px 25px;
     text-decoration: none;
-    cursor: pointer;
 }
 
 .nav-href {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .nav-signin-btn {
