@@ -112,25 +112,13 @@ class Search extends Component {
         this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
         this._handleKeyPressBra = this._handleKeyPressBra.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.scrollBarRender = this.scrollBarRender.bind(this);
         this.goToSize = this.goToSize.bind(this);
         this.goToBra = this.goToBra.bind(this);
         this.goToSizing = this.goToSizing.bind(this);
         this.sizingRef = React.createRef();
         this.sizeRef = React.createRef();
         this.braRef = React.createRef();
-
-        window.onscroll = function() {this.scrollBarRender()};
-
-
-    }
-
-    scrollBarRender() {
-        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var scrolled = (winScroll / height) * 100;
-        document.getElementById("search-progress-bar-id").style.width = scrolled + "%";
-    }
+      }
     
     modifyWaist(val) {
     this.setState({modifyWaist: val});
@@ -291,9 +279,6 @@ class Search extends Component {
         }
         return (
             <div className="search-parent">
-            <div className="search-progress-container">
-                <div className="search-progress-bar" id="search-progress-bar-id"></div>
-            </div>  
             <div className="search-container-first search-child">
             <div className="search-search-content">
                 <form className="search-form">

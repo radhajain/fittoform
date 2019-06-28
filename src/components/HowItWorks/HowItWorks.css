@@ -6,10 +6,10 @@
     background-position: center;
     
     overflow-y: scroll;
-    height: 100vh;
+    height: calc(100vh - 100px);
     overflow-x: hidden;
     padding-top: 50px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
 }
 
 .howitworks-child
