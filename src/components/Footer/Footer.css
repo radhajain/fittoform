@@ -144,3 +144,30 @@
     display: inline-block;
 
 }
+
+@media (max-width: 550px) {
+    .footer-sm-inner {
+        width: 95%;
+    }
+}
+
+@media (max-width: 523px) {
+    .footer-connect {
+        display: none;
+    }
+}
+
+@media (max-width: 490px) {
+    .footer-sm-c2 {
+        display: none;
+    }
+
+    .footer-sm-c1 {
+        width: 50%;
+    }
+
+    .footer-sm-c3 {
+        width: 50%;
+    }
+
+}

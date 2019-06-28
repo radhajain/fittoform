@@ -128,7 +128,7 @@
 
 .itemView-backbtn {
     color: #652D2D;
-    background-color: none;
+    background-color: white;
     border: none;
     font-family: 'Futura', sans-serif;
     margin-bottom: 20px;
@@ -223,5 +223,9 @@
         margin-top: 30px;
         margin-bottom: 30px;
         
+    }
+
+    .itemView-shop-btn {
+        margin-top: 0px;
     }
 }

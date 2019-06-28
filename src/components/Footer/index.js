@@ -47,20 +47,20 @@ const FooterLarge = () => (
 const FooterSmall = () => (
     <div className="footer-sm-outer">
         <div className="footer-sm-inner">
-            <div className="footer-sm-divs">
+            <div className="footer-sm-divs footer-sm-c1">
                 <p className="copyright-text"> &copy; 2019 Fit to Form
                 </p>           
             </div>
-            <div className="footer-sm-divs">
-                <p className="footer-sm-label">Let's connect</p>
+            <div className="footer-sm-divs footer-sm-c2">
+                <p className="footer-sm-label footer-connect">Let's connect</p>
                 <a style={{display: "table-cell"}} href="https://www.instagram.com/fit.to.form/" target="_blank">     
                     <img src={IGLogo} style={{width: 25, display: "inline-block", marginLeft: 15}}/>
                 </a>
              </div>
-            <div className="footer-sm-divs">
+            <div className="footer-sm-divs footer-sm-c3">
                 <div>
                     <Link to={ROUTES.HOWITWORKS} className="footer-sm-links">About</Link>
-                    <Link to={ROUTES.SIGN_UP} className="footer-sm-links">Contact Us</Link>
+                    <Link to={ROUTES.CONTACT} className="footer-sm-links">Contact Us</Link>
                 </div>
             </div>
 
