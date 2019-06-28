@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import backBtn from '../../assets/images/back-btn.png';
 import './Item.css';
+import { FooterSmall } from '../Footer';
 
 class Item extends Component {
     constructor(props) {
@@ -70,8 +71,6 @@ class Item extends Component {
     }
 
     render() {
-        //TODO: add reviews for each user and recommended size 
-        //TODO: fix back button to results
         return (
         <div className="itemView">
             <div className="itemView-c1">
@@ -127,7 +126,9 @@ class Item extends Component {
                         <img alt={this.state.item.name} src={this.state.item.img} className="itemView-img"/>
                     </div>
                 </div>
+
             </div>
+            <FooterSmall />
         </div>
         );
     }

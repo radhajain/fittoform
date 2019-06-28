@@ -3,7 +3,7 @@ import { withFirebase } from '../Firebase';
 import firebase from 'firebase';
 import './Results.css';
 import { tsConstructorType } from '@babel/types';
-import { FooterLarge, FooterSmall } from '../Footer';
+import { FooterSmall } from '../Footer';
 
 class Results extends Component {
     constructor(props) {
@@ -44,8 +44,7 @@ class Results extends Component {
             });
         });
     }
-
-    //UPdate rating isn't working as intended 
+ 
 
     getBestDressGroupID() {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
@@ -149,6 +148,7 @@ class Results extends Component {
 
 
     render() {
+        //TODO: make results page responsive
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
         return (
         <div>
@@ -196,7 +196,6 @@ class Results extends Component {
                         </div>
                     </div>
                 </div>
-                
         </div>
         <FooterSmall />
         </div>
