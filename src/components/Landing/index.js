@@ -13,7 +13,7 @@ import dress4 from '../../assets/images/landing-4-4.png';
 import dress5 from '../../assets/images/landing-4-5.png';
 import dress6 from '../../assets/images/landing-4-6.png';
 import dress7 from '../../assets/images/landing-4-7.png';
-import Footer from '../Footer';
+import { FooterLarge } from '../Footer';
 
 
 class Landing extends React.Component {
@@ -119,7 +119,7 @@ class Landing extends React.Component {
 
                 </div>
             </div>
-            <Footer />
+            <FooterLarge />
       </div>
     );
   }

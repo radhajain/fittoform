@@ -5,8 +5,8 @@
 }
 
 .itemView-c1 {
-    height: 100%;
-    margin-top: 50px;
+    height: calc(100% - 50px);
+    margin-bottom: 50px;
 }
 
 .itemView-c1-inner {
@@ -128,7 +128,7 @@
 
 .itemView-backbtn {
     color: #652D2D;
-    background-color: none;
+    background-color: white;
     border: none;
     font-family: 'Futura', sans-serif;
     margin-bottom: 20px;
@@ -158,6 +158,7 @@
 .itemView-review-name {
     float: right;
     margin-top: 0px;
+    text-transform: capitalize;
 }
 
 .itemView-img {
@@ -184,6 +185,7 @@
     
     .itemView-c1-inner {
         flex-wrap: wrap-reverse;
+        height: calc(100% - 50px);
     }
     .itemView-c1-right {
         flex: 0 0 100%;
@@ -191,6 +193,7 @@
 
     .itemView-c1-left {
         flex: 0 0 100%;
+        
     }
 
     .itemView-img {
@@ -221,5 +224,9 @@
         margin-top: 30px;
         margin-bottom: 30px;
         
+    }
+
+    .itemView-shop-btn {
+        margin-top: 0px;
     }
 }
