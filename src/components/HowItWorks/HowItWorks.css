@@ -1,0 +1,84 @@
+.howitworks-parent
+{
+    flex: 0 0 40%;
+    background-color: #E4E4E4;
+    background-image: url(../../assets/images/item-stripe.png);
+    background-position: center;
+    
+    overflow-y: scroll;
+    height: 100vh;
+    overflow-x: hidden;
+    margin-top: 50px;
+}
+
+.howitworks-child
+{
+    height: 20vh;
+    display: flex;
+    scroll-behavior: smooth;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.howitworks-desc
+{
+    font-family: 'Gibson', sans-serif;
+    color: #2A0011;
+    font-size: 0.95em;
+    line-height: 1.3em;
+    width: 60%;
+    color: #4B2431;
+}
+
+.howitworks-subtitle
+{
+    color: #5b1c2d;
+    font-family: 'Butler', serif;
+    font-weight: bold;
+    font-size: 1.4em;
+    position: relative;
+    z-index: 100;
+    width: 40%;
+}
+
+.howitworks-title
+{
+    color: white;
+    background-color: #5b1c2d;
+    font-family: 'Butler', serif;
+    font-size: 2.0em;
+    position: relative;
+    z-index: 100;
+    width: 40%;
+}
+
+.howitworks-final-desc
+{
+    font-family: 'Gibson', sans-serif;
+    color: #2A0011;
+    font-size: 0.95em;
+    line-height: 1.3em;
+    width: 60%;
+    color: #4B2431;
+}
+
+.howitworks-callToAction {
+    background-color: #E86B6A;
+    border-radius: 3px;
+    color: white;
+    font-size: 1.25em;
+    padding: 20px 50px;
+    border: none;
+    font-family: 'Gibson', sans-serif;
+    margin-top: 48px;
+    cursor: pointer;
+    margin-bottom: 48px;
+}
+
+.howitworks-parent hr
+{
+  border-top-color: #e4e4e4;
+  opacity:0.5;
+  width: 80%;
+}
