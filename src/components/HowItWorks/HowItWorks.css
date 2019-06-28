@@ -6,9 +6,10 @@
     background-position: center;
     
     overflow-y: scroll;
-    height: 100vh;
+    height: calc(100vh - 100px);
     overflow-x: hidden;
-    margin-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .howitworks-child
@@ -19,6 +20,9 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
 }
 
 .howitworks-desc
@@ -29,6 +33,7 @@
     line-height: 1.3em;
     width: 60%;
     color: #4B2431;
+    margin: 5px;
 }
 
 .howitworks-subtitle
@@ -40,6 +45,7 @@
     position: relative;
     z-index: 100;
     width: 40%;
+    margin-bottom: 5px;
 }
 
 .howitworks-title
@@ -51,16 +57,6 @@
     position: relative;
     z-index: 100;
     width: 40%;
-}
-
-.howitworks-final-desc
-{
-    font-family: 'Gibson', sans-serif;
-    color: #2A0011;
-    font-size: 0.95em;
-    line-height: 1.3em;
-    width: 60%;
-    color: #4B2431;
 }
 
 .howitworks-callToAction {

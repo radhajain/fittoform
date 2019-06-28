@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Search.css';
 import { Link } from 'react-router-dom';
 import whiteArrow from '../../assets/images/white-arrow.png';
+import whiteTick from '../../assets/images/white-tick.png';
 
 function validate(heightft, heightin, size, bra) {
     var braRe = /[0-9][0-9]\w\w?\w?/;
@@ -111,53 +112,95 @@ class Search extends Component {
         this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
         this._handleKeyPressBra = this._handleKeyPressBra.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.goToSize = this.goToSize.bind(this);
+        this.goToBra = this.goToBra.bind(this);
+        this.goToSizing = this.goToSizing.bind(this);
         this.sizingRef = React.createRef();
+        this.sizeRef = React.createRef();
+        this.braRef = React.createRef();
       }
     
-      modifyWaist(val) {
-        this.setState({modifyWaist: val});
-      }
+    modifyWaist(val) {
+    this.setState({modifyWaist: val});
+    }
+
+    modifyHips(val) {
+    this.setState({modifyHips: val});
+    }
     
-      modifyHips(val) {
-        this.setState({modifyHips: val});
-      }
+
+    goToSize(e) {
+        e.preventDefault();
+        this.sizeRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+    }
+
+    goToBra(e) {
+        e.preventDefault();
+        this.braRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+    }
+
+    goToSizing(e) {
+        e.preventDefault();
+        this.sizingRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+    }
     
-    
-      handleInputChange(event) {
+    handleInputChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-    
+
         this.setState({
-          [name]: value
+            [name]: value
         });
-      }
+    }
 
-      _handleKeyPressHeightFt(e) {
-          if (e.key === 'Enter') {
-              e.preventDefault();
-              this.refs.heightin.focus();
-          }
-      }
-
-      _handleKeyPressHeightIn(e) {
+    _handleKeyPressHeightFt(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            this.refs.size.focus();
+            this.refs.heightin.focus();
+        }
+      }
+
+    _handleKeyPressHeightIn(e) {
+        this.setState({
+            touched: { ...this.state.touched, heightin: true },
+        });
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            this.sizeRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
         }
     }
 
-        _handleKeyPressSize(e) {
-            if (e.key === 'Enter') {
-                this.refs.bra.focus();
-                e.preventDefault();
-                console.log("going to focus on tittys");
-                
+    _handleKeyPressSize(e) {
+        this.setState({
+            touched: { ...this.state.touched, size: true },
+        });
+        if (e.key === 'Enter') {
+            this.braRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+            
         }
     }
 
     
     _handleKeyPressBra(e) {
+        this.setState({
+            touched: { ...this.state.touched, bra: true },
+        });
         if (e.key === 'Enter') {
             e.preventDefault();
             this.sizingRef.current.scrollIntoView({
@@ -225,11 +268,20 @@ class Search extends Component {
             const shouldShow = this.state.touched[field];    
             return hasError ? shouldShow : false;
         };
+        const shouldShowNext = (field) => {
+            var isTouched = this.state.touched[field];
+            var hasError = errors[field];
+            if (field === 'height') {
+                isTouched = this.state.touched["heightft"] && this.state.touched["heightin"];
+                hasError = errors["heightft"] || errors["heightin"]
+            }
+            return hasError ? false : isTouched;
+        }
         return (
             <div className="search-parent">
             <div className="search-container-first search-child">
             <div className="search-search-content">
-                <form>
+                <form className="search-form">
                   <label className="search-search-label">
                     I am
                     <input
@@ -251,18 +303,26 @@ class Search extends Component {
                     inches tall.
                     <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p>
                   </label>
+                  <div className={shouldShowNext('height') ? "search-nextDiv" : "search-nextDiv-hide"} >
+                    <button className="search-ok-btn" onClick={this.goToSize}>
+                        <div className="search-ok-flexWrapper">
+                            <span className="search-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="search-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
                 </form>
               </div>
           </div>
-          <div className="search-container-second search-child">
-            <div className="search-search-content">
-                <form>
+          <div className="search-container-second search-child" ref={this.sizeRef}>
+            <div className="search-search-content" >
+                <form className="search-form">
                   <label className="search-search-label">
                     I normally wear US size
                     <input
                       name="size"
                       type="number"
-                      ref="size"
                       onBlur={this.handleBlur('size')}
                       className={shouldMarkError('size') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressSize}
@@ -270,25 +330,43 @@ class Search extends Component {
                       .
                       <p className={shouldMarkError('size') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i></p>
                   </label>
+                  <div className={shouldShowNext('size') ? "search-nextDiv" : "search-nextDiv-hide"} >
+                    <button className="search-ok-btn" onClick={this.goToBra}>
+                        <div className="search-ok-flexWrapper">
+                            <span className="search-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="search-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
                 </form>
               </div>
           </div>
-          <div className="search-container-third search-child">
+          <div className="search-container-third search-child" ref={this.braRef}>
             <div className="search-search-content">
-                <form>
+                <form className="search-form">
                   <label className="search-search-label">
                     My bra size is
                     <input
                       name="bra"
                       type="text"
-                      ref="bra"
                       onBlur={this.handleBlur('bra')}
                       onKeyPress={this._handleKeyPressBra}
-                      className={shouldMarkError('bra') ? "search-input-error" : "search-input"}
-                      style={{width: 150}}
+                      className={shouldMarkError('bra') ? "search-input-error search-bra" : "search-input search-bra"}
                       onChange={this.handleInputChange} />
+                      .
                       <p className={shouldMarkError('bra') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
+                    
                   </label>
+                  <div className={shouldShowNext('bra') ? "search-nextDiv" : "search-nextDiv-hide"} >
+                    <button className="search-ok-btn" onClick={this.goToSizing}>
+                        <div className="search-ok-flexWrapper">
+                            <span className="search-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="search-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
                 </form>
               </div>
           </div>

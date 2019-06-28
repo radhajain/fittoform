@@ -65,11 +65,11 @@
 }
 
 .nav-signin-btn:hover {
-    font-weight: bold;
+    text-decoration: underline;
 }
 
 .nav-signup-btn:hover {
-    font-weight: bold;
+    text-decoration: underline;
 }
 
 a:focus {
