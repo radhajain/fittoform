@@ -1,12 +1,12 @@
 /* @font-face {
-    font-family: 'Butler';
+    font-family: 'DM Serif Display';
     font-style: normal;
     font-weight: 400;
     src:
-      local('Butler-Medium'),
+      local('DM Serif Display-Medium'),
       local('Roboto-Regular'),
-      url(../../assets/fonts/Butler/Butler-Medium.ttf) format('ttf'),
-      url(../../assets/fonts/Butler/Butler-Regular.ttf) format('ttf');
+      url(../../assets/fonts/DM Serif Display/DM Serif Display-Medium.ttf) format('ttf'),
+      url(../../assets/fonts/DM Serif Display/DM Serif Display-Regular.ttf) format('ttf');
   }
    */
 
@@ -59,24 +59,24 @@
     width: 25px;
 }
 
-.Gibson {
-    font-family: 'Gibson', sans-serif;
+.Raleway {
+    font-family: 'Raleway', sans-serif;
 }
 
-.Butler {
-    font-family: 'Butler', serif;
+.serif {
+    font-family: 'DM Serif Display', serif;
 }
 
 /* PAGE 1 */
 
 .landing-title {
-    font-family: 'Butler', serif;
+    font-family: 'DM Serif Display', serif;
     color: white;
     font-size: 2.5em;
 }
 
 .landing-desc {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
     font-size: 1.25em;
     line-height: 1.3em;
@@ -91,7 +91,7 @@
     font-size: 1.25em;
     padding: 20px 50px;
     border: none;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin-top: 48px;
     cursor: pointer;
     margin-bottom: 48px;
@@ -128,14 +128,14 @@
 .landing-howitworks-title {
     color: #E86B6A;
     font-weight: bold;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .landing-howitworks-desc {
     color: white;
     font-weight: lighter;
     line-height: 1.2em;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .landing-howitworks-box {
@@ -189,12 +189,12 @@
 .landing-second-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Butler', serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 2.5em;
 }
 
 .landing-second-desc {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 1.25em;
     line-height: 1.3em;
     color: #E8DCDC;
@@ -205,8 +205,8 @@
     height: 80%;
 }
 
-.butler {
-    font-family: 'Butler', serif;
+.DM Serif Display {
+    font-family: 'DM Serif Display', serif;
 }
 
 /* -------------------------------- */
@@ -240,13 +240,13 @@
 
 .landing-third-title {
     color: white;
-    font-family: 'Butler', serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 2.5em;
 }
 
 .landing-third-desc {
     color: white;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     line-height: 1.3em;
     font-size: 1.25em;
 }
@@ -272,14 +272,14 @@
 .landing-fourth-title {
     background-color: #E8DCDC;
     color: black;
-    font-family: 'Butler', serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 2.5em;
     position: relative;
     z-index: 100;
 }
 
 .landing-fourth-desc {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 1.25em;
     line-height: 1.3em;
     color: #E8DCDC;
@@ -545,7 +545,7 @@
     }
 
     .landing-child {
-        scroll-behavior: auto;
+        scroll-behavior: unset;
     }
 }
 

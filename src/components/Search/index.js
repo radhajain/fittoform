@@ -282,7 +282,7 @@ class Search extends Component {
             var hasError = errors[field];
             if (field === 'height') {
                 isTouched = this.state.touched["heightft"] && this.state.touched["heightin"];
-                hasError = errors["heightft"] || errors["heightin"]
+                hasError = errors["heightft"] || errors["heightin"];
             }
             return hasError ? false : isTouched;
         }
@@ -310,7 +310,7 @@ class Search extends Component {
                       ref="heightin"
                       onChange={this.handleInputChange} />
                     inches tall.
-                    <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p>
+                    {/* <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p> */}
                   </label>
                   <div className={shouldShowNext('height') ? "search-nextDiv" : "search-nextDiv-hide"} >
                     <button className="search-ok-btn" onClick={this.goToSize}>
