@@ -545,7 +545,7 @@
     }
 
     .landing-child {
-        scroll-behavior: auto;
+        scroll-behavior: unset;
     }
 }
 
