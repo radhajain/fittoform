@@ -1,6 +1,41 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
+
+.contactus-parent {
+  flex: 0 0 40%;
+  background-color: #E4E4E4;
+  background-image: url(../../assets/images/item-stripe.png);
+  background-position: center;
+  
+  overflow-y: scroll;
+  height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+
+.contactus-message {
+    padding-top: 70px;
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+    color: #2A0011;
+}
+
+.contactus-messagebackground {
+  margin-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eaeaea;
+  width: 100%;
+  box-shadow: 4px 4px 3px #d9d9d9;
+}
+
+.contactus-title {
+  font-size: 2.5em;
+}
+
+
+/*
 .container {
     height: 100vh;
     width: 100vh;
@@ -85,8 +120,8 @@ body.menu-active .container {
   position: relative; 
   margin-bottom: 25px; 
 }
-/* 
-input {
+
+.form-input {
   font-size: 13px;
   height: 25px;
   padding: 10px 10px 10px 5px;
@@ -101,7 +136,7 @@ input {
   transition: 0.2s ease;
 }
 
-input:focus {
+.form-input:focus {
   outline: none;
   opacity: 1;
 }
@@ -120,8 +155,8 @@ label {
   -webkit-transition: 0.2s ease all;
 }
 
-/* active state */
-/* input:focus ~ label, input:valid ~ label 		{
+
+.form-input:focus ~ label, .form-input:valid ~ label 		{
   top: -10px;
   font-size: 12px;
   color: #B1B1B1;
@@ -138,14 +173,14 @@ label {
   opacity: 0.5;
 }
 
-/* active state */
-input:focus ~ .highlight {
+
+.form-input:focus ~ .highlight {
   -webkit-animation:inputHighlighter 0.3s ease;
   -moz-animation:inputHighlighter 0.3s ease;
   animation:inputHighlighter 0.3s ease;
 }
 
-/* ANIMATIONS ================ */
+
 @-webkit-keyframes inputHighlighter {
   from { background:#B1B1B1; }
   to 	{ width:0; background:transparent; }
@@ -166,8 +201,9 @@ a.send-btn {
 }
 
 a.send-btn:hover {
-  color: #FAFAFA;
+  color: #DD9E75;
   cursor: pointer;
 }
+
 
 
