@@ -172,7 +172,7 @@ class Results extends Component {
                 </div>
                 <div className="results-rightCol">
                     <div className="results-rightCol-inner">
-                        <div>
+                        <div className="results-name-div">
                             <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
                             <form style={{textAlign: 'right'}}>
                                     <input
@@ -190,7 +190,7 @@ class Results extends Component {
                         <div className="results-right-flexCol">
                             <div className="results-text-div">
                                 <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
-                                <p className="results-text" style={{fontSize: '0.75em' , color: '#652D2D'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
+                                <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                                 <p className="results-match">EXACT MATCH</p>
                             </div>
                         </div>

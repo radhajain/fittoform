@@ -5,8 +5,8 @@
 }
 
 .itemView-c1 {
-    height: 100%;
-    margin-top: 50px;
+    height: calc(100% - 50px);
+    margin-bottom: 50px;
 }
 
 .itemView-c1-inner {
@@ -184,6 +184,7 @@
     
     .itemView-c1-inner {
         flex-wrap: wrap-reverse;
+        height: calc(100% - 50px);
     }
     .itemView-c1-right {
         flex: 0 0 100%;
@@ -191,6 +192,7 @@
 
     .itemView-c1-left {
         flex: 0 0 100%;
+        
     }
 
     .itemView-img {
