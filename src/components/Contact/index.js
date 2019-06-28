@@ -4,6 +4,7 @@ import { AuthUserContext, withAuthorization } from '../Session';
 import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
 import './Contact.css'
+import { FooterLarge } from '../Footer';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -59,6 +60,9 @@ class Contact extends React.Component {
                     </div>
                     <a className="send-btn">Send</a>
                 </div> */}
+                <div style={{position: 'absolute', bottom: 0}}>
+                    <FooterLarge />
+                </div>
                   
             </div>
         

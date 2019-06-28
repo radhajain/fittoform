@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import WhiteArrow from '../../assets/images/white-arrow.png';
-import { FooterLarge, FooterSmall } from '../Footer';
+import { FooterLarge } from '../Footer';
 import './HowItWorks.css'
 
 class HowItWorks extends React.Component {
@@ -43,7 +43,7 @@ class HowItWorks extends React.Component {
               </Link>
               </div>
             </div>
-            <FooterSmall />
+            <FooterLarge />
         </div>
     );
   }

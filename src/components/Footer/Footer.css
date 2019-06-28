@@ -5,7 +5,7 @@
   font-size:15px;
   line-height:24px;
   color:#E8DCDC;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .row
@@ -27,6 +27,10 @@
 {
     max-width: 50%;
     margin-bottom: 5px;
+}
+
+.serif {
+    font-family: 'DM Serif Display', serif;
 }
 
 .site-footer hr
@@ -139,7 +143,7 @@
     color: white;
     display: inline-block;
     text-decoration: none;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding: 0px 10px;
     font-size: 0.9em;
 }
@@ -150,7 +154,7 @@
 
 .footer-sm-label {
     color: white;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     display: inline-block;
     font-size: 0.9em;
 

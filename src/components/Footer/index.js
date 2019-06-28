@@ -11,12 +11,12 @@ const FooterLarge = () => (
       <div className="footer-container">
         <div className="row">
           <div className="footer-about">
-            <p style={{fontSize: '1.3em'}} className="butler">About</p>
+            <p style={{fontSize: '1.3em'}} className="serif">About</p>
             <p className="footer-abouttext">Based in San Francisco, Fit to Form is the only shopping experience that is focused on fit. We understand the uncertainties of online shopping and the frustrations that come with returns. Our mission is to help every woman find their perfect dress that makes them feel like a million bucks.</p>
           </div>
 
           <div className="footer-about">
-            <p style={{fontSize: '1.3em'}} className="butler">Quick Links</p>
+            <p style={{fontSize: '1.3em'}} className="serif">Quick Links</p>
             <ul className="footer-links">
               <li><Link to={ROUTES.HOWITWORKS}>How It Works</Link></li>
               <li><Link to={ROUTES.CONTACT}>Contact Us</Link></li>
