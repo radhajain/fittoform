@@ -1,8 +1,8 @@
 .howitworks-parent
 {
     flex: 0 0 40%;
-    background-color: #E4E4E4;
-    background-image: url(../../assets/images/item-stripe.png);
+    background-color: #4B2431;
+    /*background-image: url(../../assets/images/item-stripe.png);*/
     background-position: center;
     
     overflow-y: scroll;
