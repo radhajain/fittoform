@@ -65,6 +65,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: none;
     border-bottom: 2px solid #FF8181;
     font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
     text-align: center;
     width: 80px;
     font-size: 1.5em;
