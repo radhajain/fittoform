@@ -41,7 +41,7 @@ class Landing extends React.Component {
                 </div>
                 <div className="landing-howitworks-outer"> 
                     <div className="landing-howitworks-inner">
-                        <p className="butler" style={{color: 'white', textAlign: 'center', fontSize: '1.75em'}}>How it works</p>
+                        <p className="serif" style={{color: 'white', textAlign: 'center', fontSize: '1.75em'}}>How it works</p>
                         <hr />
                         <div className="landing-howitworks-steps">
                             <div className="landing-howitworks-box">

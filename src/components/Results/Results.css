@@ -64,14 +64,14 @@ input:focus {
 
 
 .results-title {
-    font-family: 'Butler', sans-serif;
+    font-family: 'DM Serif Display', sans-serif;
     color: #802C3F;
     text-align: right;
     font-size: 2.7em;
 }
 
 .results-text {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #7C3D4B;
     font-size: 1em;
     font-weight: bold;
@@ -80,7 +80,7 @@ input:focus {
 }
 
 .results-text-small {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #652D2D;
     font-size: 0.75em;
     line-height: 1.25em;
@@ -102,7 +102,7 @@ input:focus {
     border-bottom: 2px solid #DE8585;
     width: 200px;
     text-align: right;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #DE8585;
     font-size: 1em;
     background-color: unset;
@@ -111,7 +111,7 @@ input:focus {
 
 .results-match {
     color: #E86B6A;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 1.15em;
 }
 
@@ -151,13 +151,13 @@ input:focus {
     /* position: absolute; */
     bottom: 0;
     left: 0;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     color: #802C3F;
 }
 
 .results-rating {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #802C3F;
 
 }
@@ -245,13 +245,13 @@ input:focus {
     }
     .results-leftCol {
         flex-basis: 100%;
-        height: calc(100% - 200px);
+        height: calc(100% - 120px);
         overflow-y: scroll;
     }
 
     .results-rightCol {
         width: 100%;
-        height: 150px;
+        height: 120px;
         bottom: 50px;
     }
 
@@ -261,6 +261,10 @@ input:focus {
 
     .results-name-div {
         display: none;
+    }
+
+    .results-img-single {
+        max-height: calc(75vh - 120px);
     }
 }
 

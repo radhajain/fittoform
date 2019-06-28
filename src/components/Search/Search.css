@@ -7,6 +7,9 @@
     scroll-behavior: smooth;
 }
 
+
+
+
 .search-child {
     scroll-snap-align: start;
     height: 100vh;
@@ -47,7 +50,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: none;
     border-bottom: 2px solid white;
     color: white;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
     width: 80px;
     font-size: 1.5em;
@@ -61,7 +64,8 @@ input[type=number]::-webkit-outer-spin-button {
     background: none;
     border: none;
     border-bottom: 2px solid #FF8181;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
     text-align: center;
     width: 80px;
     font-size: 1.5em;
@@ -72,18 +76,23 @@ input[type=number]::-webkit-outer-spin-button {
     outline:none;
 }
 
+.search-bra {
+    width: 150px;
+}
+
 .search-desc {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
     text-align: left;
 }
 
 .search-search-label {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
     font-size: 2.5em;
     line-height: 1.5em;
     font-weight: bold;
+    letter-spacing: 1.5px;
 }
 
 .search-search-content {
@@ -98,7 +107,7 @@ input[type=number]::-webkit-outer-spin-button {
 .search-size-buttons {
     background: none;
     border: none;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #D3B1B1;
     font-size: 1.0em;
     margin-top: 15px;
@@ -110,7 +119,7 @@ input[type=number]::-webkit-outer-spin-button {
 .search-size-buttons-selected {
     background: none;
     border: none;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color:white;
     font-size: 1.0em;
     margin-top: 15px;
@@ -145,6 +154,53 @@ button:focus {
     display: none;
 }
 
+.search-nextDiv-hide {
+    display: none;
+}
+
+.search-nextDiv {
+    margin-top: 30px;
+}
+
+.search-ok-btn {
+    background-color: #E86B6A;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Raleway', sans-serif;
+    
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+    min-height: 40px;
+    transition: #E86B6A 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
+    outline: none;
+}
+
+.search-ok-flexWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-ok-text {
+    color: white;
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.search-pressEnter {
+    color: #D3B1B1;
+    font-size: 0.9em;
+    font-family: 'Raleway', sans-serif;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+
 .search-results-btn {
     background-color: #E86B6A;
     color: white;
@@ -152,7 +208,7 @@ button:focus {
     margin-bottom: 100px;
     border: none;
     padding: 16px 20px;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     cursor: pointer;
 }
 
@@ -163,7 +219,7 @@ button:focus {
     margin-bottom: 100px;
     border: none;
     padding: 16px 20px;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
 
 }
 
@@ -191,6 +247,7 @@ button:focus {
 }
 
 .search-whitearrow {
+    width: 25px;
     padding-left: 15px;
 }
 
@@ -222,7 +279,7 @@ button:focus {
 
 @media (max-width: 588px) {
     .search-search-label {
-        font-family: 'Gibson', sans-serif;
+        font-family: 'Raleway', sans-serif;
         color: white;
         font-size: 2em;
         
@@ -231,13 +288,24 @@ button:focus {
 
 @media (max-width: 510px) {
     .search-search-label {
-        font-family: 'Gibson', sans-serif;
+        font-family: 'Raleway', sans-serif;
         color: white;
         font-size: 1.75em;
         line-height: 2em;
         margin-bottom: 0px;
     }
+
+    .search-parent {
+        scroll-behavior: unset;
+        scroll-snap-type: none;
+    }
+    .search-child {
+        scroll-snap-align: none;
+    }
 }
+
+
+
 
 @media (max-width: 452px) {
     .search-size-box {
@@ -254,8 +322,37 @@ button:focus {
         text-align: center;
         flex-direction: row;
         justify-content: space-between;
-    }   
+    }  
+    
+    .search-search-label {
+        letter-spacing: 1px;
+    }
+
+    .search-results-btn-disabled {
+        font-size: 1em;
+    }
+    .search-results-btn {
+        font-size: 1em;
+    }
 }
+
+@media (max-width: 440px) {
+    .search-form {
+        text-align: center;
+    }
+
+    .search-results-btn {
+        margin-bottom: 0px;
+    }
+
+    .search-input {
+        width: 60px;
+    }
+    .search-bra {
+        width: 110px;
+    }
+}
+
 
 @media (max-width: 402px) {
     .search-whitearrow {
@@ -268,10 +365,7 @@ button:focus {
     .search-search-label {
         font-size: 1.55em;
     }
-}
 
-@media (max-width: 351px) {
-    .search-results-btn {
-        font-size: 1.25em;
-    }
+
+
 }

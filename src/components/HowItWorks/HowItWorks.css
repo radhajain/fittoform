@@ -1,20 +1,20 @@
 .howitworks-parent
 {
     flex: 0 0 40%;
-    background-color: #4B2431;
-    /*background-image: url(../../assets/images/item-stripe.png);*/
+    background-color: #5B1C2D;
+    /*background-image: url(../../assets/images/item-stripe-light.png);*/
     background-position: center;
     
     overflow-y: scroll;
-    height: 100vh;
+    height: calc(100vh - 50px);
     overflow-x: hidden;
-    margin-top: 70px;
-    padding-bottom: 40px;
+    padding-top: 50px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .howitworks-child
 {
-    height: 20vh;
+    height: 25vh;
     display: flex;
     scroll-behavior: smooth;
     justify-content: center;
@@ -23,40 +23,59 @@
     width: 100%;
     text-align: center;
     flex-direction: column;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+.howitworks-child-title
+{
+    display: flex;
+    scroll-behavior: smooth;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    margin-bottom: 25px;
+    padding-top: 30px;
 }
 
 .howitworks-desc
 {
     font-family: 'Gibson', sans-serif;
-    color: #2A0011;
+    color: #E8DCDC;
     font-size: 0.95em;
     line-height: 1.3em;
-    width: 60%;
-    color: #4B2431;
+    width: 35%;
     margin: 5px;
 }
 
 .howitworks-subtitle
 {
-    color: #5b1c2d;
-    font-family: 'Butler', serif;
+    color: #E8DCDC;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
-    font-size: 1.4em;
+    font-size: 1.2em;
     position: relative;
     z-index: 100;
     width: 40%;
     margin-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .howitworks-title
 {
-    color: white;
-    background-color: #5b1c2d;
-    font-family: 'Butler', serif;
-    font-size: 2.0em;
+    color: #2A0011;
+    background-color: #E8DCDC;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5em;
+    width: 30%;
     position: relative;
     z-index: 100;
-    width: 40%;
+    margin-bottom: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .howitworks-callToAction {
@@ -67,14 +86,13 @@
     padding: 20px 50px;
     border: none;
     font-family: 'Gibson', sans-serif;
-    margin-top: 48px;
-    cursor: pointer;
-    margin-bottom: 48px;
+    margin-top: 68px;
+    margin-bottom: 88px;
 }
 
 .howitworks-parent hr
 {
-  border-top-color: #e4e4e4;
-  opacity:0.5;
+  border-top-color: #521828;
+  opacity:0.1;
   width: 80%;
 }

@@ -11,15 +11,15 @@ const FooterLarge = () => (
       <div className="footer-container">
         <div className="row">
           <div className="footer-about">
-            <p style={{fontSize: '1.5em'}} className="butler">About</p>
-            <p className="text-justify">Based in San Francisco, Fit to Form is the only shopping experience that is focused on fit. We understand the uncertainties of online shopping and the frustrations that come with returns. Our mission is to help every woman find their perfect dress that makes them feel like a million bucks.</p>
+            <p style={{fontSize: '1.3em'}} className="serif">About</p>
+            <p className="footer-abouttext">Based in San Francisco, Fit to Form is the only shopping experience that is focused on fit. We understand the uncertainties of online shopping and the frustrations that come with returns. Our mission is to help every woman find their perfect dress that makes them feel like a million bucks.</p>
           </div>
 
           <div className="footer-about">
-            <p style={{fontSize: '1.5em'}} className="butler">Quick Links</p>
+            <p style={{fontSize: '1.3em'}} className="serif">Quick Links</p>
             <ul className="footer-links">
-              <li><Link to={ROUTES.HOWITWORKS}>About</Link></li>
-              <li><a href="">FAQs</a></li>
+              <li><Link to={ROUTES.HOWITWORKS}>How It Works</Link></li>
+              <li><Link to={ROUTES.CONTACT}>Contact Us</Link></li>
             </ul>
             <div className="footer-social-icons">
                 <a style={{display: "table-cell"}} href="https://www.instagram.com/fit.to.form/" target="_blank">
@@ -54,12 +54,12 @@ const FooterSmall = () => (
             <div className="footer-sm-divs footer-sm-c2">
                 <p className="footer-sm-label footer-connect">Let's connect</p>
                 <a style={{display: "table-cell"}} href="https://www.instagram.com/fit.to.form/" target="_blank">     
-                    <img src={IGLogo} style={{width: 25, display: "inline-block", marginLeft: 15}}/>
+                    <img src={IGLogo} style={{width: 20, display: "inline-block", marginLeft: 15}}/>
                 </a>
              </div>
             <div className="footer-sm-divs footer-sm-c3">
                 <div>
-                    <Link to={ROUTES.HOWITWORKS} className="footer-sm-links">About</Link>
+                    <Link to={ROUTES.HOWITWORKS} className="footer-sm-links">How It Works</Link>
                     <Link to={ROUTES.CONTACT} className="footer-sm-links">Contact Us</Link>
                 </div>
             </div>
