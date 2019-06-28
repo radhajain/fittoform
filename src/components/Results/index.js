@@ -3,7 +3,7 @@ import { withFirebase } from '../Firebase';
 import firebase from 'firebase';
 import './Results.css';
 import { tsConstructorType } from '@babel/types';
-import { FooterLarge, FooterSmall } from '../Footer';
+import { FooterSmall } from '../Footer';
 
 class Results extends Component {
     constructor(props) {
@@ -44,8 +44,7 @@ class Results extends Component {
             });
         });
     }
-
-    //UPdate rating isn't working as intended 
+ 
 
     getBestDressGroupID() {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
@@ -56,15 +55,13 @@ class Results extends Component {
         return new Promise((resolve, reject) => {
             measurementsRef.once('value').then((snapshot) => {
                 snapshot.forEach(measurement => {
-                    console.log("getting differences!")
                     var values = measurement.val();
-                    console.log(values);
                     var heightDiff = (Math.abs(values.height - this.state.height) < 1) ? 0 : (Math.abs(values.height - this.state.height) - 1);
                     var diffSq = Math.pow((heightDiff),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
-                    console.log(diffSq);
                     if (Math.sqrt(diffSq) < lowestDiff) {
                         lowestDiff =  Math.sqrt(diffSq);
                         console.log("updating state");
+                        console.log(lowestDiff);
                         closestMeasurements = values;
                         dressGroupID = values.dressGroupID;
                     }
@@ -149,6 +146,7 @@ class Results extends Component {
 
 
     render() {
+        //TODO: make results page responsive
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
         return (
         <div>
@@ -172,7 +170,7 @@ class Results extends Component {
                 </div>
                 <div className="results-rightCol">
                     <div className="results-rightCol-inner">
-                        <div>
+                        <div className="results-name-div">
                             <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
                             <form style={{textAlign: 'right'}}>
                                     <input
@@ -190,13 +188,12 @@ class Results extends Component {
                         <div className="results-right-flexCol">
                             <div className="results-text-div">
                                 <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
-                                <p className="results-text" style={{fontSize: '0.75em' , color: '#652D2D'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
-                                <p className="results-match">EXACT MATCH</p>
+                                <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
+                                {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
                             </div>
                         </div>
                     </div>
                 </div>
-                
         </div>
         <FooterSmall />
         </div>

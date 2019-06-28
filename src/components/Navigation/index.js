@@ -21,13 +21,17 @@ const Navigation = () => (
 const NavigationAuth = () => (
   <div className="nav-outer">
     <div className="nav-inner">
-      <div style={{flexBasis: '20%'}}></div>
-        <div style={{flexBasis: '60%', display: 'flex', justifyContent:'center', alignItems: 'center'}}>
-          <Link to={ROUTES.LANDING}>
+      <div className="nav-c1">
+        <Link to={ROUTES.LANDING} className="nav-logo-right">
+          <img src={ShortLogo} style={{height: 30}}/> 
+        </Link>
+      </div>
+        <div className="nav-c2">
+          <Link to={ROUTES.LANDING} className="nav-logo-center">
             <img src={ShortLogo} style={{height: 30}}/> 
           </Link>
         </div>
-        <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+        <div className="nav-c3">
           <Link to={ROUTES.ACCOUNT} className="nav-signin-btn nav-href">Your Profile</Link>
           <SignOutButton />
         </div>
@@ -43,13 +47,17 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <div className="nav-outer">
     <div className="nav-inner">
-      <div style={{flexBasis: '20%'}}></div>
-      <div style={{flexBasis: '60%', display: 'flex', justifyContent:'center', alignItems: 'center'}}>
-        <Link to={ROUTES.LANDING}>
+      <div className="nav-c1">
+        <Link to={ROUTES.LANDING} className="nav-logo-right">
           <img src={ShortLogo} style={{height: 30}}/> 
         </Link>
       </div>
-      <div style={{flexBasis: '20%', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+      <div className="nav-c2">
+        <Link to={ROUTES.LANDING} className="nav-logo-center">
+          <img src={ShortLogo} style={{height: 30}}/> 
+        </Link>
+      </div>
+      <div className="nav-c3">
         <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">Log In</Link>
         <Link to={ROUTES.SIGN_UP} className="nav-href">
           <button className="nav-signup-btn">
