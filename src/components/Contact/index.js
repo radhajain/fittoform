@@ -37,17 +37,17 @@ class Contact extends React.Component {
 
                     <h1>Leave a comment</h1>
                     <div className="group">      
-                        <input type="text" required/>
+                        <input className="form-input" type="text" required/>
                         <span className="highlight"></span>
                         <label>Your name</label>
                     </div>
                     <div className="group">      
-                        <input type="text" required/>
+                        <input className="form-input" type="text" required/>
                         <span className="highlight"></span>
                         <label>Your email</label>
                     </div>
                     <div className="group">      
-                        <input type="text" required/>
+                        <input className="form-input" type="text" required/>
                         <span className="highlight"></span>
                         <label>Your message</label>
                     </div>
