@@ -17,7 +17,7 @@ class HowItWorks extends React.Component {
             </div>
             <hr></hr>
             <div className="howitworks-child">
-              <p className="howitworks-subtitle">It all starts with the fit</p>
+              <p className="howitworks-subtitle">It all starts with style</p>
               <p className="howitworks-desc">Our stylists find the hottest new dresses and most popular classics</p>
             </div>
             <hr></hr>
