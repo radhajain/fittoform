@@ -158,6 +158,7 @@
 .itemView-review-name {
     float: right;
     margin-top: 0px;
+    text-transform: capitalize;
 }
 
 .itemView-img {

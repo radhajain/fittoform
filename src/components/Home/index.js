@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as SHOPINFO from '../../constants/shoppingConstants';
+// import * as SHOPINFO from '../../constants/shoppingConstants';
 import { withAuthorization } from '../Session';
 import { Link } from 'react-router-dom';
 import InstagramEmbed from 'react-instagram-embed';
@@ -26,7 +26,7 @@ class HomePage extends Component {
         onAfterRender={() => {}}
         onFailure={() => {}}
       />
-      {SHOPINFO.itemCategories.map((category, i) => (
+      {/* {SHOPINFO.itemCategories.map((category, i) => (
           <Link to={{
             pathname: '/search',
             state: {
@@ -34,7 +34,7 @@ class HomePage extends Component {
           }}}> 
             <div key={i}>{category.name}</div>
           </Link>
-      ))}
+      ))} */}
     </div>
     );
   }

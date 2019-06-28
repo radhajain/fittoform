@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import * as CONST from '../../constants/shoppingConstants';
 import backBtn from '../../assets/images/back-btn.png';
 import './Item.css';
 import { FooterSmall } from '../Footer';
+import names from '../../constants/shoppingConstants.js';
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 class Item extends Component {
     constructor(props) {
         super(props);
         this.state = this.props.location.state;
-        console.log(this.state);
         var review = {
             comment: '',
             size: '',
             rating: '',
         }
         this.state.reviews = [review];
+        this.state.reviewName = CONST.names[getRandomInt(0, 414)];
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
         this.goToResultsView = this.goToResultsView.bind(this);
+        console.log(this.state);
 
     }
 
@@ -113,7 +123,7 @@ class Item extends Component {
                                         <p className="itemView-numRating">{review.rating}/10</p>
                                         <div>
                                             <p className="itemView-comment">{review.comment}</p>
-                                            <p className="itemView-review-name"> - Alina</p>
+                                            <p className="itemView-review-name"> - {this.state.reviewName}</p>
                                         </div>
                                     </div>
                                 );
@@ -126,7 +136,6 @@ class Item extends Component {
                         <img alt={this.state.item.name} src={this.state.item.img} className="itemView-img"/>
                     </div>
                 </div>
-
             </div>
             <FooterSmall />
         </div>

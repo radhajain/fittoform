@@ -55,15 +55,13 @@ class Results extends Component {
         return new Promise((resolve, reject) => {
             measurementsRef.once('value').then((snapshot) => {
                 snapshot.forEach(measurement => {
-                    console.log("getting differences!")
                     var values = measurement.val();
-                    console.log(values);
                     var heightDiff = (Math.abs(values.height - this.state.height) < 1) ? 0 : (Math.abs(values.height - this.state.height) - 1);
                     var diffSq = Math.pow((heightDiff),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
-                    console.log(diffSq);
                     if (Math.sqrt(diffSq) < lowestDiff) {
                         lowestDiff =  Math.sqrt(diffSq);
                         console.log("updating state");
+                        console.log(lowestDiff);
                         closestMeasurements = values;
                         dressGroupID = values.dressGroupID;
                     }
@@ -191,7 +189,7 @@ class Results extends Component {
                             <div className="results-text-div">
                                 <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
                                 <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
-                                <p className="results-match">EXACT MATCH</p>
+                                {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
                             </div>
                         </div>
                     </div>
