@@ -1,75 +1,76 @@
 <?php
 /*
- *  CONFIGURE EVERYTHING HERE
- */
-
-// an email address that will be in the From field of the email.
-$from = 'Demo contact form <founders@thefittoform.com>';
-
-// an email address that will receive the email with the output of the form
-$sendTo = 'Demo contact form <founders@thefittoform.com>';
-
-// subject of the email
-$subject = 'New message from contact form';
-
-// form field names and their translations.
-// array variable name => Text to appear in the email
-$fields = array('name' => 'Name', 'email' => 'Email', 'message' => 'Message'); 
-
-// message that will be displayed when everything is OK :)
-$okMessage = 'Contact form successfully submitted. Thank you, We will get back to you soon!';
-
-// If something goes wrong, we will display this message.
-$errorMessage = 'There was an error while submitting the form. Please try again later';
+This first bit sets the email address that you want the form to be submitted to.
+You will need to change this value to a valid email address that you can access.
+*/
+$webmaster_email = "founders@thefittoform.com";
 
 /*
- *  LET'S DO THE SENDING
- */
+This bit sets the URLs of the supporting pages.
+If you change the names of any of the pages, you will need to change the values here.
+*/
+$feedback_page = "./index.js";
+$error_page = "error_message.html";
+$thankyou_page = "thank_you.html";
 
-// if you are not debugging and don't need error reporting, turn this off by error_reporting(0);
-error_reporting(E_ALL & ~E_NOTICE);
+/*
+This next bit loads the form field data into variables.
+If you add a form field, you will need to add it here.
+*/
+$email_address = $_REQUEST['email_address'] ;
+$comments = $_REQUEST['comments'] ;
+$first_name = $_REQUEST['first_name'] ;
+$msg = 
+"First Name: " . $first_name . "\r\n" . 
+"Email: " . $email_address . "\r\n" . 
+"Comments: " . $comments ;
 
-try
-{
-
-    if(count($_POST) == 0) throw new \Exception('Form is empty');
-            
-    $emailText = "You have a new message from your contact form\n=============================\n";
-
-    foreach ($_POST as $key => $value) {
-        // If the field exists in the $fields array, include it in the email 
-        if (isset($fields[$key])) {
-            $emailText .= "$fields[$key]: $value\n";
-        }
-    }
-
-    // All the neccessary headers for the email.
-    $headers = array('Content-Type: text/plain; charset="UTF-8";',
-        'From: ' . $from,
-        'Reply-To: ' . $from,
-        'Return-Path: ' . $from,
-    );
-    
-    // Send email
-    mail($sendTo, $subject, $emailText, implode("\n", $headers));
-
-    $responseArray = array('type' => 'success', 'message' => $okMessage);
+/*
+The following function checks for email injection.
+Specifically, it checks for carriage returns - typically used by spammers to inject a CC list.
+*/
+function isInjected($str) {
+	$injections = array('(\n+)',
+	'(\r+)',
+	'(\t+)',
+	'(%0A+)',
+	'(%0D+)',
+	'(%08+)',
+	'(%09+)'
+	);
+	$inject = join('|', $injections);
+	$inject = "/$inject/i";
+	if(preg_match($inject,$str)) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
-catch (\Exception $e)
-{
-    $responseArray = array('type' => 'danger', 'message' => $errorMessage);
+
+// If the user tries to access this script directly, redirect them to the feedback form,
+if (!isset($_REQUEST['email_address'])) {
+header( "Location: $feedback_page" );
 }
 
-
-// if requested by AJAX request return JSON response
-if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-    $encoded = json_encode($responseArray);
-
-    header('Content-Type: application/json');
-
-    echo $encoded;
+// If the form fields are empty, redirect to the error page.
+elseif (empty($first_name) || empty($email_address)) {
+header( "Location: $error_page" );
 }
-// else just display the message
+
+/* 
+If email injection is detected, redirect to the error page.
+If you add a form field, you should add it here.
+*/
+elseif ( isInjected($email_address) || isInjected($first_name)  || isInjected($comments) ) {
+header( "Location: $error_page" );
+}
+
+// If we passed all previous tests, send the email then redirect to the thank you page.
 else {
-    echo $responseArray['message'];
+
+	mail( "$webmaster_email", "Feedback Form Results", $msg );
+
+	header( "Location: $thankyou_page" );
 }
+?>
