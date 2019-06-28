@@ -7,6 +7,9 @@
     scroll-behavior: smooth;
 }
 
+
+
+
 .search-child {
     scroll-snap-align: start;
     height: 100vh;
@@ -72,6 +75,10 @@ input[type=number]::-webkit-outer-spin-button {
     outline:none;
 }
 
+.search-bra {
+    width: 150px;
+}
+
 .search-desc {
     font-family: 'Gibson', sans-serif;
     color: white;
@@ -84,6 +91,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 2.5em;
     line-height: 1.5em;
     font-weight: bold;
+    letter-spacing: 1.5px;
 }
 
 .search-search-content {
@@ -145,6 +153,53 @@ button:focus {
     display: none;
 }
 
+.search-nextDiv-hide {
+    display: none;
+}
+
+.search-nextDiv {
+    margin-top: 30px;
+}
+
+.search-ok-btn {
+    background-color: #E86B6A;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Gibson', sans-serif;
+    
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+    min-height: 40px;
+    transition: #E86B6A 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
+    outline: none;
+}
+
+.search-ok-flexWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-ok-text {
+    color: white;
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.search-pressEnter {
+    color: #D3B1B1;
+    font-size: 0.9em;
+    font-family: 'Gibson', sans-serif;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+
 .search-results-btn {
     background-color: #E86B6A;
     color: white;
@@ -191,6 +246,7 @@ button:focus {
 }
 
 .search-whitearrow {
+    width: 25px;
     padding-left: 15px;
 }
 
@@ -237,7 +293,14 @@ button:focus {
         line-height: 2em;
         margin-bottom: 0px;
     }
+
+    .search-parent {
+        scroll-behavior: unset;
+    }
 }
+
+
+
 
 @media (max-width: 452px) {
     .search-size-box {
@@ -257,6 +320,13 @@ button:focus {
     }   
 }
 
+@media (max-width: 440px) {
+    .search-form {
+        text-align: center;
+    }
+}
+
+
 @media (max-width: 402px) {
     .search-whitearrow {
         display: none;
@@ -267,6 +337,14 @@ button:focus {
 @media (max-width: 387px) {
     .search-search-label {
         font-size: 1.55em;
+    }
+
+    .search-bra {
+        width: 110px;
+    }
+
+    .search-results-btn {
+        margin-bottom: 0px;
     }
 }
 

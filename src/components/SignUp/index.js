@@ -132,7 +132,11 @@ class SignUpFormBase extends Component {
         this._handleKeyPressHeightFt = this._handleKeyPressHeightFt.bind(this);
         this._handleKeyPressHeightIn = this._handleKeyPressHeightIn.bind(this);
         this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
+        this._handleKeyPressName = this._handleKeyPressName.bind(this);
         this._handleKeyPressBra = this._handleKeyPressBra.bind(this);
+        this._handleKeyPressEmail = this._handleKeyPressEmail.bind(this);
+        this._handleKeyPressPw1 = this._handleKeyPressPw1.bind(this);
+        this._handleKeyPressPw2 = this._handleKeyPressPw2.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.sizingRef = React.createRef();
       }
@@ -177,6 +181,43 @@ class SignUpFormBase extends Component {
                 console.log("going to focus on tittys");
                 
         }
+    }
+
+        _handleKeyPressName(e) {
+          if (e.key === 'Enter') {
+              this.refs.heightft.focus();
+              e.preventDefault();
+              
+              
+      }
+    }
+
+           _handleKeyPressEmail(e) {
+          if (e.key === 'Enter') {
+              this.refs.passwordOne.focus();
+              e.preventDefault();
+              
+              
+      }
+    }
+
+        _handleKeyPressPw1(e) {
+          if (e.key === 'Enter') {
+              this.refs.passwordTwo.focus();
+              e.preventDefault();
+              
+              
+      }
+    }
+
+        _handleKeyPressPw2(e) {
+          if (e.key === 'Enter') {
+              
+              e.preventDefault();
+              this.handleSubmit(e);
+              
+              
+      }
     }
 
     
@@ -292,7 +333,7 @@ class SignUpFormBase extends Component {
                         style={{width: 400}}
                         onBlur={this.handleBlur('name')}
                         className={shouldMarkError('name') ? "signup-input-error" : "signup-input"}
-                        onKeyPress={this._handleKeyPressSize}
+                        onKeyPress={this._handleKeyPressName}
                         onChange={this.handleInputChange} />
                         .
                         <p className={shouldMarkError('name') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter your full name.</i></p>
@@ -308,6 +349,7 @@ class SignUpFormBase extends Component {
                     <input
                       name="heightft"
                       type="number"
+                      ref="heightft"
                       onBlur={this.handleBlur('heightft')}
                       className={shouldMarkError('heightft') ? "signup-input-error" : "signup-input"}
                       onKeyPress={this._handleKeyPressHeightFt}
@@ -406,7 +448,7 @@ class SignUpFormBase extends Component {
                     ref="email"
                     style={{width: 450, fontSize: '1.0em'}}
                     onChange={this.handleInputChange}
-                    onKeyPress={this._handleKeyPressSize}
+                    onKeyPress={this._handleKeyPressEmail}
                     type="text"
                     className={shouldMarkError('email') ? "signup-input-error" : "signup-input"}
                     />
@@ -423,7 +465,7 @@ class SignUpFormBase extends Component {
                       style={{width: 450, fontSize: '1.0em'}}
                       onBlur={this.handleBlur('passwordOne')}
                       onChange={this.handleInputChange}
-                      onKeyPress={this._handleKeyPressSize}
+                      onKeyPress={this._handleKeyPressPw2}
                       type="password"
                       ref="passwordOne"
                       className={shouldMarkError('passwordOne') ? "signup-input-error" : "signup-input"}
@@ -440,9 +482,9 @@ class SignUpFormBase extends Component {
                       style={{width: 450, fontSize: '1.0em'}}
                       onChange={this.handleInputChange}
                       onBlur={this.handleBlur('passwordTwo')}
-                      onKeyPress={this._handleKeyPressSize}
+                      onKeyPress={this._handleKeyPressPw2}
                       type="password"
-                      ref="passwordtwo"
+                      ref="passwordTwo"
                       className={shouldMarkError('passwordTwo') ? "signup-input-error" : "signup-input"}
                       />
                       <p className={shouldMarkError('passwordTwo') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Oops, your passwords don't match. Try again.</i></p>
