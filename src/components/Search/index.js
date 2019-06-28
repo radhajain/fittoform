@@ -90,6 +90,12 @@ class Search extends Component {
             size: false,
             bra: false
           },
+          focused: {
+            heightft: false,
+            heightin: false,
+            size: false,
+            bra: false
+          },
         };
         this.braToBust = {
             "A" : 1,
@@ -164,6 +170,9 @@ class Search extends Component {
     }
 
     _handleKeyPressHeightFt(e) {
+        this.setState({
+            touched: { ...this.state.touched, heightft: true },
+        });
         if (e.key === 'Enter') {
             e.preventDefault();
             this.refs.heightin.focus();
@@ -212,7 +221,7 @@ class Search extends Component {
 
     handleBlur = (field) => (evt) => {
         this.setState({
-          touched: { ...this.state.touched, [field]: true },
+          focused: { ...this.state.focused, [field]: true },
         });
     }
 
@@ -265,7 +274,7 @@ class Search extends Component {
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         const shouldMarkError = (field) => {
             const hasError = errors[field];
-            const shouldShow = this.state.touched[field];    
+            const shouldShow = this.state.focused[field];    
             return hasError ? shouldShow : false;
         };
         const shouldShowNext = (field) => {
