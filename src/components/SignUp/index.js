@@ -18,9 +18,9 @@ const SignUpPage = () => (
 function validate(heightft, heightin, size, bra, name, email, passwordOne, passwordTwo) {
     var braRe = /[0-9][0-9]\w\w?\w?/;
     var emailRe = /^.+@.+\..+$/;
-    var heightft = parseInt(heightft, 10);
-    var heightin = parseInt(heightin, 10);
-    var size = parseInt(size, 10);
+    heightft = parseInt(heightft, 10);
+    heightin = parseInt(heightin, 10);
+    size = parseInt(size, 10);
     return {
         heightft: ( (heightft.length === 0) || !Number.isInteger(heightft) || (heightft < 4) || (heightft > 6)),
         heightin: ( (heightin.length === 0) || !Number.isInteger(heightin) || heightin < 0 || heightin > 12),
@@ -212,7 +212,6 @@ class SignUpFormBase extends Component {
 
         _handleKeyPressPw2(e) {
           if (e.key === 'Enter') {
-              
               e.preventDefault();
               this.handleSubmit(e);
               

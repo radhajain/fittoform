@@ -50,9 +50,9 @@ class PasswordForgetFormBase extends Component {
 
     return (
 
-      <div class="login-page">
-      <div class="signin-form">
-        <form class="login-form" onSubmit={this.onSubmit} >
+      <div className="login-page">
+      <div className="signin-form">
+        <form className="login-form" onSubmit={this.onSubmit} >
           <input
             name="email"
             value={this.state.email}
@@ -72,7 +72,7 @@ class PasswordForgetFormBase extends Component {
 }
 
 const PasswordForgetLink = () => (
-  <p class="forgot"><Link to={ROUTES.PASSWORD_FORGET}> forgot password?</Link></p>
+  <p className="forgot"><Link to={ROUTES.PASSWORD_FORGET}> forgot password?</Link></p>
 );
 
 export default PasswordForgetPage;
