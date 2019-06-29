@@ -90,6 +90,10 @@
     margin-bottom: 88px;
 }
 
+.howitworks-callToAction:hover {
+    background-color: #C34342;
+}
+
 .howitworks-parent hr
 {
   border-top-color: #521828;
