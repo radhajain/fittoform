@@ -8,13 +8,14 @@ import { FooterSmall } from '../Footer';
 class Results extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props.location.state);
         this.state = {
             bust: this.props.location.state.bust,
             height: this.props.location.state.height,
             hips: this.props.location.state.hips,
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
-            name: '',
+            name: (this.props.location.state.name ? this.props.location.state.name : ''),
             closestMeasurements: '',
             dressGroupID: null,
             dressesIDs: [],
@@ -147,6 +148,7 @@ class Results extends Component {
                 hips: this.state.hips,
                 bust: this.state.bust,
                 size: this.state.size,
+                name: this.state.name,
                 closestMeasurements: this.state.closestMeasurements,
                 dressID: dressID,
             }
