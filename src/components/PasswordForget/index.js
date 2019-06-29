@@ -51,9 +51,9 @@ class PasswordForgetFormBase extends Component {
 
     return (
 
-      <div class="login-page">
-      <div class="signin-form">
-        <form class="login-form" onSubmit={this.onSubmit} >
+      <div className="pforgot-background">
+      <div className="signin-form">
+        <form className="login-form" onSubmit={this.onSubmit} >
           <input
             name="email"
             value={this.state.email}

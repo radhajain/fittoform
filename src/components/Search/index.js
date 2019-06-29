@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './Search.css';
-import { Link } from 'react-router-dom';
 import whiteArrow from '../../assets/images/white-arrow.png';
 import whiteTick from '../../assets/images/white-tick.png';
 
 function validate(heightft, heightin, size, bra) {
     var braRe = /[0-9][0-9]\w\w?\w?/;
-    var heightft = parseInt(heightft, 10);
-    var heightin = parseInt(heightin, 10);
-    var size = parseInt(size, 10);
+    heightft = parseInt(heightft, 10);
+    heightin = parseInt(heightin, 10);
+    size = parseInt(size, 10);
     return {
         heightft: ( (heightft.length === 0) || !Number.isInteger(heightft) || (heightft < 4) || (heightft > 6)),
         heightin: ( (heightin.length === 0) || !Number.isInteger(heightin) || heightin < 0 || heightin > 12),
