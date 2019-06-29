@@ -124,3 +124,10 @@ select
     outline: none;
 }
 
+.account-saved-text {
+    color: #E86B6A;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+
+}
+
