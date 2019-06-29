@@ -58,7 +58,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: none;
     border-bottom: 2px solid white;
     color: white;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
     width: 80px;
     font-size: 1.5em;
@@ -68,15 +68,24 @@ input[type=number]::-webkit-outer-spin-button {
     outline:none;
 }
 
+.signup-name {
+    width: 400px;
+}
+
 .signup-input-error {
     background: none;
     border: none;
     border-bottom: 2px solid #FF8181;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
     width: 80px;
     font-size: 1.5em;
     color: #FF8181;
+}
+
+.signup-long-input {
+    width: 450px;
+    font-size: 1em;
 }
 
 .signup-input-error:focus {
@@ -84,13 +93,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .signup-desc {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
     text-align: left;
 }
 
 .signup-signup-label {
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: white;
     font-size: 2.5em;
     line-height: 1.5em;
@@ -112,7 +121,7 @@ input[type=number]::-webkit-outer-spin-button {
 .signup-size-buttons {
     background: none;
     border: none;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #D3B1B1;
     font-size: 1.0em;
     margin-top: 15px;
@@ -124,7 +133,7 @@ input[type=number]::-webkit-outer-spin-button {
 .signup-size-buttons-selected {
     background: none;
     border: none;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color:white;
     font-size: 1.0em;
     margin-top: 15px;
@@ -166,7 +175,7 @@ button:focus {
     margin-bottom: 100px;
     border: none;
     padding: 16px 20px;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     cursor: pointer;
 }
 
@@ -177,7 +186,7 @@ button:focus {
     margin-bottom: 100px;
     border: none;
     padding: 16px 20px;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
 
 }
 
@@ -236,20 +245,28 @@ button:focus {
 
 @media (max-width: 588px) {
     .signup-signup-label {
-        font-family: 'Gibson', sans-serif;
+        font-family: 'Raleway', sans-serif;
         color: white;
         font-size: 2em;
         
     }
 }
 
-@media (max-width: 510px) {
+@media (max-width: 513px) {
     .signup-signup-label {
-        font-family: 'Gibson', sans-serif;
+        font-family: 'Raleway', sans-serif;
         color: white;
         font-size: 1.75em;
         line-height: 2em;
         margin-bottom: 0px;
+    }
+
+    .signup-long-input {
+        width: 400px;
+    }
+
+    .signup-name {
+        width: 350px;
     }
 }
 
@@ -268,7 +285,15 @@ button:focus {
         text-align: center;
         flex-direction: row;
         justify-content: space-between;
-    }   
+    }
+    
+    .signup-long-input {
+        width: 300px;
+    }
+
+    .signup-name {
+        width: 300px;
+    }
 }
 
 @media (max-width: 402px) {
@@ -282,6 +307,16 @@ button:focus {
     .signup-signup-label {
         font-size: 1.55em;
     }
+
+    .signup-name {
+        width: 250px;
+    }
+
+    .signup-long-input {
+        width: 280px;
+    }
+
+
 }
 
 @media (max-width: 351px) {
