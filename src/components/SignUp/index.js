@@ -400,6 +400,7 @@ class SignUpFormBase extends Component {
                       className={shouldMarkError('bra') ? "signup-input-error" : "signup-input"}
                       style={{width: 150}}
                       onChange={this.handleInputChange} />
+                      .
                       <p className={shouldMarkError('bra') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
                   </label>
                 </form>
