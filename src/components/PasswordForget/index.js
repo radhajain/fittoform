@@ -51,7 +51,7 @@ class PasswordForgetFormBase extends Component {
 
     return (
 
-      <div className="login-page">
+      <div className="pforgot-background">
       <div className="signin-form">
         <form className="login-form" onSubmit={this.onSubmit} >
           <input
