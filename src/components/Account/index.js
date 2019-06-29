@@ -150,7 +150,7 @@ class AccountPage extends React.Component {
             </form>
             
           </div>
-          <div style={{marginTop: 50}}>
+          <div style={{marginTop: 50, marginBottom: 50}}>
             <p className="account-section-title">Your Account</p>
             <hr className="account-hr"/>
             <p><span className="account-item-label">Email: </span>{this.state.user.email}</p>

@@ -1,5 +1,5 @@
 .account-outer {
-    height: calc(100vh - 100px);
+    height: calc(100% - 100px);
     padding-top: 50px;
     padding-bottom:50px;
     display: flex;
@@ -99,6 +99,7 @@ select
     display: block;
     margin-top: 20px;
     text-decoration: none;
+    text-decoration: underline;
     color: #34121F;
 }
 
