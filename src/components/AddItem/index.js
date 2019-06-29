@@ -36,6 +36,7 @@ class AddItem extends Component {
             dressID: "",
             items: [],
             uid: "",
+            name: "",
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -119,11 +120,11 @@ class AddItem extends Component {
         const newReviewRef = reviewsRef.push();
         newReviewRef.set({
           // uid: this.state.uid, << comment back in if user is putting in measurements
-          userInfo: {height: this.state.height, waist: this.state.waist, bust: this.state.bust, hips: this.state.hips, bra: this.state.braSize, size: this.state.USSize},
+          userInfo: {height: this.state.height, waist: this.state.waist, bust: this.state.bust, hips: this.state.hips, bra: this.state.braSize, size: this.state.USSize, name: this.state.name},
           dressID: this.state.dressID,
           comment: this.state.comment,
           size: this.state.size,
-          rating: this.state.rating
+          rating: this.state.rating,
         });
         var newReviewKey = newReviewRef.key;
         this.setState({reviewID: newReviewKey}, () => {
@@ -266,6 +267,7 @@ class AddItem extends Component {
           <section className='add-item'>
             <h1>Add Dress</h1>
               <form onSubmit={this.handleSubmit}>
+              <input className="add-input" type="number" name="height" placeholder="What is your name?" onChange={this.handleChange} value={this.state.name}/>  
                 <input className="add-input" type="number" name="height" placeholder="How tall are you in inches?" onChange={this.handleChange} value={this.state.height}/>  
                 <input className="add-input" type="number" name="waist" placeholder="How wide is your waist in inches?" onChange={this.handleChange} value={this.state.waist}/>
                 <input className="add-input" type="number" name="bust" placeholder="How many inches is your bust?" onChange={this.handleChange} value={this.state.bust}/>
@@ -285,7 +287,7 @@ class AddItem extends Component {
                 <input className="add-input" type="text" name="occassion" placeholder="What occassion? e.g. Night-out, Island-Vibes, Wedding-guest, Daytime-cute, Safe-For-Work, Day-to-Night, 90s-vibes" onChange={this.handleChange} value={this.state.occassion} />
                 <input className="add-input" type="text" name="material" placeholder="What's the material of the dress? e.g. jersey, silk, lace, beaded, denim, chiffon, cotton, leather, linen, sequin, velvet, crepe" onChange={this.handleChange} value={this.state.material} />
                 <input className="add-input" type="text" name="size" placeholder="What size did you buy?" onChange={this.handleChange} value={this.state.size}/>
-                <input className="add-input" type="text" name="color" placeholder="What color did you buy?" onChange={this.handleChange} value={this.state.color}/>
+                <input className="add-input" type="text" name="color" placeholder="What colors is the dress available in?" onChange={this.handleChange} value={this.state.color}/>
                 <input className="add-input" type="number" name="rating" placeholder="What would you rate this dress from 1-10?" onChange={this.handleChange} value={this.state.rating}/>
                 <input className="add-input" type="text" name="comment" placeholder="How would you review this dress?" onChange={this.handleChange} value={this.state.comment}/>
                 <button>Add Item</button>
