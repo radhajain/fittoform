@@ -12,3 +12,4 @@ export const RESULTS = '/results';
 export const ITEM = '/item';
 export const HOWITWORKS = '/howitworks';
 export const CONTACT = '/contact';
+export const ANALYTICS = '/analytics';

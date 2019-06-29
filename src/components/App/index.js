@@ -17,6 +17,7 @@ import SearchPage from '../Search';
 import AddItem from '../AddItem';
 import HowItWorks from '../HowItWorks';
 import Contact from '../Contact';
+import Analytics from '../Analytics';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -41,6 +42,8 @@ const App = () => (
       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
       <Route path={ROUTES.CONTACT} component={Contact} />
       <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
+      <Route path={ROUTES.ANALYTICS} component={Analytics} />
+      
     </div>
   </Router>
 );

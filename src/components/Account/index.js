@@ -8,59 +8,88 @@ import {FooterSmall} from '../Footer';
 class AccountPage extends React.Component {
   constructor(props) {
     super(props);
-    var user = {
-      waist: '',
-      name: '',
-      hips: '',
-      bust: '',
-      size: '',
-      bra: '',
-      email: ''
-    }
+    this.braToBust = {
+      "A" : 1,
+      "B" : 2,
+      "C" : 3,
+      "D" : 4,
+      "DD" : 5,
+      "DDD" : 6,
+      "E" : 6,
+      "F" : 7,
+      "G" : 8
+
+  }
     this.state = {
       authUser: '',
       uid: '',
       name: '',
-      user: user,
-      editMode: false,
+      height: '',
+      waist: '',
+      hips: '',
+      bust: '',
+      size: '',
+      bra: '',
+      email: '',
+      saved: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
-    handleChange(event) {
-      this.setState({
-        user: { ...this.state.user, [event.target.name]: event.target.value },
-      });
-      console.log(this.state);
+  
+
+  handleChange = (field) => (event) => {
+      event.preventDefault();
+      let newVal = event.target.value;
+      if (field === "bra") {
+        var newBra = newVal;
+        var newBust = parseInt(newBra.slice(0, 2), 10) + this.braToBust[newBra.substr(2)];
+        this.setState({
+          [field]: newVal,
+          bust: newBust,
+        }, () => {
+          console.log(this.state);
+        });
+      } else {
+        this.setState({
+          [field]: newVal,
+        });
+      }
     }
 
     handleSubmit(event) {
       event.preventDefault();
       //Write firebase object
+      this.setState({
+        saved: true,
+      });
       this.props.firebase.user(this.state.uid).update({
-        waist: this.state.user.waist,
-        hips: this.state.user.hips,
-        bust: this.state.user.bust,
-        size: this.state.user.size,
-        bra: this.state.user.bra,
+        waist: this.state.waist,
+        hips: this.state.hips,
+        bust: this.state.bust,
+        size: this.state.size,
+        bra: this.state.bra,
+        height: this.state.height,
       });
     }
 
     // Sets the user values
     getUserData(uid) {
-      console.log(uid);
       let UserRef = this.props.firebase.user(uid)
       UserRef.once('value').then((snapshot) => {
        let user = snapshot.val();
-       console.log(user);
         this.setState({
-          name: user.name
+          name: user.name,
+          waist: user.waist,
+          hips: user.hips,
+          height: user.height,
+          bust: user.bust,
+          size: user.size,
+          bra: user.bra,
         })
-        this.setState({
-         user: user
-       });
+        
       });
     }  
   
@@ -90,7 +119,7 @@ class AccountPage extends React.Component {
                 <label className="account-item-label">
                   Height: 
                 </label>
-                <select name="height" type="select" value={this.state.user.height} onChange={this.handleChange} className="account-select">
+                <select name="height" type="select" value={this.state.height} onChange={this.handleChange('height')} className="account-select">
                     <option value="59">4' 11"</option>
                     <option value="60">5' 0"</option>
                     <option value="61">5' 1"</option>
@@ -115,7 +144,7 @@ class AccountPage extends React.Component {
               </div>
               <div className="account-wrapper-item">
                 <label className="account-item-label">Bra size </label>
-                <select value={this.state.user.bra} onChange={this.handleChange} name="bra" className="account-select">
+                <select value={this.state.bra} onChange={this.handleChange('bra')} name="bra" className="account-select">
                   <option value="30AA">30AA</option>
                   <option value="30A">30A</option>
                   <option value="30B">30B</option>
@@ -129,31 +158,32 @@ class AccountPage extends React.Component {
               </div>
               <div className="account-wrapper-item">
                 <label className="account-item-label">Dress size </label>
-                <select value={this.state.user.size} onChange={this.handleChange} name="size" className="account-select">
+                <select value={this.state.size} onChange={this.handleChange('size')} name="size" className="account-select">
                     <option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="10">10</option><option value="12">12</option><option value="14">14</option><option value="16">16</option>
                 </select>
               </div>
               <div className="account-wrapper-item">
                 <label className="account-item-label">Waist (in.) </label>
-                <select value={this.state.user.waist} onChange={this.handleChange}  name="waist" className="account-select">
+                <select value={this.state.waist} onChange={this.handleChange('waist')}  name="waist" className="account-select">
                   <option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option>
                 </select>
               </div>
               <div className="account-wrapper-item">
                 <label className="account-item-label">Hips (in.) </label>
-                <select value={this.state.user.hips} onChange={this.handleChange}  name="hips" className="account-select">
+                <select value={this.state.hips} onChange={this.handleChange('hips')}  name="hips" className="account-select">
                   <option value="37">35</option><option value="37">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="40">41</option><option value="40">42</option><option value="40">43</option><option value="40">44</option><option value="40">45</option><option value="40">46</option>
                 </select>
               </div>
             </div>
             <button className="account-save-btn" onClick={this.handleSubmit}>Save</button>
+            {this.state.saved && <p className="account-saved-text"><i>Changes saved!</i></p>}
             </form>
             
           </div>
-          <div style={{marginTop: 50}}>
+          <div style={{marginTop: 50, marginBottom: 50}}>
             <p className="account-section-title">Your Account</p>
             <hr className="account-hr"/>
-            <p><span className="account-item-label">Email: </span>{this.state.user.email}</p>
+            <p><span className="account-item-label">Email: </span>{this.state.email}</p>
             <Link to={ROUTES.PASSWORD_FORGET} className="account-links">Forgot your password?</Link>
             <Link to={ROUTES.PASSWORD_CHANGE} className="account-links">Change password</Link>
           </div>
