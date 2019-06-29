@@ -14,6 +14,7 @@ class Results extends Component {
             hips: this.props.location.state.hips,
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
+            name: '',
             closestMeasurements: '',
             dressGroupID: null,
             dressesIDs: [],
@@ -29,6 +30,8 @@ class Results extends Component {
         this.getDressInfo = this.getDressInfo.bind(this);
         this.goToItemView = this.goToItemView.bind(this);
         this.getHeightStr = this.getHeightStr.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +46,18 @@ class Results extends Component {
                 this.getBestDressesID();
             });
         });
+    }
+
+    handleInput(e) {
+        e.preventDefault();
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.refs.resultsName.blur();
     }
  
 
@@ -172,10 +187,12 @@ class Results extends Component {
                     <div className="results-rightCol-inner">
                         <div className="results-name-div">
                             <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
-                            <form style={{textAlign: 'right'}}>
+                            <form style={{textAlign: 'right'}} onSubmit={this.handleSubmit} >
                                     <input
                                     name="name"
                                     type="text"
+                                    ref="resultsName"
+                                    value={this.state.name}
                                     className="results-input"
                                     onChange={this.handleInput} 
                                     placeholder="ADD YOUR NAME"/>

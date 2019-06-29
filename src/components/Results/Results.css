@@ -106,6 +106,7 @@ input:focus {
     color: #DE8585;
     font-size: 1em;
     background-color: unset;
+    text-transform: uppercase;
 
 }
 
