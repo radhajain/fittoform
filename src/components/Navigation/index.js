@@ -58,7 +58,7 @@ const NavigationNonAuth = () => (
         </Link>
       </div>
       <div className="nav-c3">
-        <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">Log In</Link>
+        <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">Sign In</Link>
         <Link to={ROUTES.SIGN_UP} className="nav-href">
           <button className="nav-signup-btn">
             Sign Up
