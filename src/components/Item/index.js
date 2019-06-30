@@ -6,11 +6,6 @@ import './Item.css';
 import { FooterSmall } from '../Footer';
 import names from '../../constants/shoppingConstants.js';
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 
 class Item extends Component {
@@ -21,9 +16,9 @@ class Item extends Component {
             comment: '',
             size: '',
             rating: '',
+            name: '',
         }
         this.state.reviews = [review];
-        this.state.reviewName = CONST.names[getRandomInt(0, 414)];
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
         this.goToResultsView = this.goToResultsView.bind(this);
@@ -50,7 +45,8 @@ class Item extends Component {
                         var review = {
                             comment: data.val().comment,
                             size: data.val().size,
-                            rating: data.val().rating
+                            rating: data.val().rating,
+                            name: data.val().name
                         };
                         reviews.push(review);
                     }
@@ -75,6 +71,7 @@ class Item extends Component {
                 hips: this.state.hips,
                 bust: this.state.bust,
                 size: this.state.size,
+                name: this.state.name,
                 closestMeasurements: this.state.closestMeasurements,
             }
         });
@@ -123,7 +120,7 @@ class Item extends Component {
                                         <p className="itemView-numRating">{review.rating}/10</p>
                                         <div>
                                             <p className="itemView-comment">{review.comment}</p>
-                                            <p className="itemView-review-name"> - {this.state.reviewName}</p>
+                                            <p className="itemView-review-name"> - {review.name}</p>
                                         </div>
                                     </div>
                                 );

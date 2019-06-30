@@ -110,6 +110,7 @@ class Search extends Component {
         }
     
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputChangeBra = this.handleInputChangeBra.bind(this);
         this.modifyWaist = this.modifyWaist.bind(this);
         this.modifyHips = this.modifyHips.bind(this);
         this._handleKeyPressHeightFt = this._handleKeyPressHeightFt.bind(this);
@@ -162,7 +163,15 @@ class Search extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
+        this.setState({
+            [name]: value
+        });
+    }
 
+    handleInputChangeBra(event) {
+        const target = event.target;
+        const value = target.value.toUpperCase();
+        const name = target.name;
         this.setState({
             [name]: value
         });
@@ -232,10 +241,6 @@ class Search extends Component {
         var measurements = this.USsizeArray[this.state.size.toString()];
         var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
         var newBust = parseInt(this.state.bra.slice(0, 2), 10) + this.braToBust[this.state.bra.substr(2)];
-        console.log(parseInt(this.state.bra.slice(0, 2), 10));
-        console.log(this.state.bra.substr(2));
-        console.log(this.braToBust[this.state.bra.substr(2)]);
-        console.log(newBust);
         var newHips = measurements.hips + this.state.modifyHips; 
         var newWaist = measurements.waist + this.state.modifyWaist; 
         this.setState({
@@ -361,7 +366,7 @@ class Search extends Component {
                       onBlur={this.handleBlur('bra')}
                       onKeyPress={this._handleKeyPressBra}
                       className={shouldMarkError('bra') ? "search-input-error search-bra" : "search-input search-bra"}
-                      onChange={this.handleInputChange} />
+                      onChange={this.handleInputChangeBra} />
                       .
                       <p className={shouldMarkError('bra') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
                     

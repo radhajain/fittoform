@@ -329,9 +329,8 @@ class SignUpFormBase extends Component {
                         name="name"
                         type="text"
                         ref="name"
-                        style={{width: 400}}
                         onBlur={this.handleBlur('name')}
-                        className={shouldMarkError('name') ? "signup-input-error" : "signup-input"}
+                        className={shouldMarkError('name') ? "signup-input-error signup-name" : "signup-input signup-name"}
                         onKeyPress={this._handleKeyPressName}
                         onChange={this.handleInputChange} />
                         .
@@ -401,6 +400,7 @@ class SignUpFormBase extends Component {
                       className={shouldMarkError('bra') ? "signup-input-error" : "signup-input"}
                       style={{width: 150}}
                       onChange={this.handleInputChange} />
+                      .
                       <p className={shouldMarkError('bra') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
                   </label>
                 </form>
@@ -445,11 +445,10 @@ class SignUpFormBase extends Component {
                     value={email}
                     onBlur={this.handleBlur('email')}
                     ref="email"
-                    style={{width: 450, fontSize: '1.0em'}}
                     onChange={this.handleInputChange}
                     onKeyPress={this._handleKeyPressEmail}
                     type="text"
-                    className={shouldMarkError('email') ? "signup-input-error" : "signup-input"}
+                    className={shouldMarkError('email') ? "signup-input-error signup-long-input" : "signup-input signup-long-input"}
                     />
                     
                     <p className={shouldMarkError('email') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a valid email address.</i></p>
@@ -461,13 +460,12 @@ class SignUpFormBase extends Component {
                       <input
                       name="passwordOne"
                       value={passwordOne}
-                      style={{width: 450, fontSize: '1.0em'}}
                       onBlur={this.handleBlur('passwordOne')}
                       onChange={this.handleInputChange}
                       onKeyPress={this._handleKeyPressPw2}
                       type="password"
                       ref="passwordOne"
-                      className={shouldMarkError('passwordOne') ? "signup-input-error" : "signup-input"}
+                      className={shouldMarkError('passwordOne') ? "signup-input-error signup-long-input" : "signup-input signup-long-input"}
                       />
                       <p className={shouldMarkError('passwordOne') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a password.</i></p>
                   </label>
@@ -478,13 +476,12 @@ class SignUpFormBase extends Component {
                       <input
                       name="passwordTwo"
                       value={passwordTwo}
-                      style={{width: 450, fontSize: '1.0em'}}
                       onChange={this.handleInputChange}
                       onBlur={this.handleBlur('passwordTwo')}
                       onKeyPress={this._handleKeyPressPw2}
                       type="password"
                       ref="passwordTwo"
-                      className={shouldMarkError('passwordTwo') ? "signup-input-error" : "signup-input"}
+                      className={shouldMarkError('passwordTwo') ? "signup-input-error signup-long-input" : "signup-input signup-long-input"}
                       />
                       <p className={shouldMarkError('passwordTwo') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Oops, your passwords don't match. Try again.</i></p>
                   </label>
@@ -495,7 +492,7 @@ class SignUpFormBase extends Component {
             <div style={{marginTop: 100}}>
                 <button className={isDisabled ? "signup-results-btn-disabled" : "signup-results-btn"} onClick={this.handleSubmit} disabled={isDisabled}>
                     Join the fam
-                    <img src={whiteArrow} className="signup-whitearrow"/>
+                    <img src={whiteArrow} className="signup-whitearrow" style={{width: 25, paddingLeft: 15}}/>
                 </button>
             </div>
             </div>

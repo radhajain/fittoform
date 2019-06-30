@@ -8,12 +8,14 @@ import { FooterSmall } from '../Footer';
 class Results extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props.location.state);
         this.state = {
             bust: this.props.location.state.bust,
             height: this.props.location.state.height,
             hips: this.props.location.state.hips,
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
+            name: (this.props.location.state.name ? this.props.location.state.name : ''),
             closestMeasurements: '',
             dressGroupID: null,
             dressesIDs: [],
@@ -29,6 +31,8 @@ class Results extends Component {
         this.getDressInfo = this.getDressInfo.bind(this);
         this.goToItemView = this.goToItemView.bind(this);
         this.getHeightStr = this.getHeightStr.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +47,18 @@ class Results extends Component {
                 this.getBestDressesID();
             });
         });
+    }
+
+    handleInput(e) {
+        e.preventDefault();
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.refs.resultsName.blur();
     }
  
 
@@ -132,6 +148,7 @@ class Results extends Component {
                 hips: this.state.hips,
                 bust: this.state.bust,
                 size: this.state.size,
+                name: this.state.name,
                 closestMeasurements: this.state.closestMeasurements,
                 dressID: dressID,
             }
@@ -151,7 +168,7 @@ class Results extends Component {
         return (
         <div>
         <div className="results-container-outer">
-                <div className="results-leftCol">
+                <div className={this.state.exactMatch ? "results-leftCol results-leftCol-adjust" : "results-leftCol"}>
                     <div className="results-leftCol-inner">
                         <div className="results-grid">
                             {this.state.dresses.map((dress, key) => {
@@ -168,14 +185,16 @@ class Results extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="results-rightCol">
+                <div className={this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol"}>
                     <div className="results-rightCol-inner">
                         <div className="results-name-div">
                             <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
-                            <form style={{textAlign: 'right'}}>
+                            <form style={{textAlign: 'right'}} onSubmit={this.handleSubmit} >
                                     <input
                                     name="name"
                                     type="text"
+                                    ref="resultsName"
+                                    value={this.state.name}
                                     className="results-input"
                                     onChange={this.handleInput} 
                                     placeholder="ADD YOUR NAME"/>
@@ -187,7 +206,7 @@ class Results extends Component {
                         </div>
                         <div className="results-right-flexCol">
                             <div className="results-text-div">
-                                <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>
+                                {this.state.closestMeasurements && <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>}
                                 <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                                 {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
                             </div>
