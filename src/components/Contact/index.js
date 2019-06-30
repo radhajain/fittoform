@@ -60,7 +60,7 @@ class Contact extends React.Component {
                     </div>
                     <a className="send-btn">Send</a>
                 </div> */}
-                <div style={{position: 'absolute', bottom: 0}}>
+                <div style={{position: 'absolute', bottom: 0, width: '100%'}}>
                     <FooterLarge />
                 </div>
                   

@@ -32,7 +32,7 @@ const NavigationAuth = () => (
           </Link>
         </div>
         <div className="nav-c3">
-          <Link to={ROUTES.ACCOUNT} className="nav-signin-btn nav-href">Your Profile</Link>
+          <Link to={ROUTES.ACCOUNT} className="nav-account-btn nav-href">Your Profile</Link>
           <SignOutButton />
         </div>
     </div>
