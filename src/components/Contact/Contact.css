@@ -11,7 +11,7 @@
   overflow-y: scroll;
   height: 100vh;
   overflow-x: hidden;
-  padding-bottom: 40px;
+  padding-bottom: 0px;
 }
 
 .contactus-message {
