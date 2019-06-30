@@ -39,7 +39,7 @@ class Results extends Component {
 
     componentDidMount() {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
-        window.scrollTo(0, 0);
+
         this.getBestDressGroupID().then(result => {
             console.log(result);
             this.setState({
@@ -51,6 +51,7 @@ class Results extends Component {
                 this.getBestDressesID(result[1]);
             });
         });
+        window.scrollTo(0, 0);
     }
 
     handleInput(e) {
