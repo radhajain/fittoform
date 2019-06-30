@@ -1,7 +1,7 @@
 .nav-outer {
     overflow: hidden;
     height: 50px;
-    background-color: rgba(42, 0, 17, 0.69);
+    background-color: rgba(42, 0, 17, 0.7);
     position: fixed;
     top: 0px;
     width: 100%;
@@ -42,10 +42,10 @@
 
 .nav-signup-btn {
     color: white;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     border: 1px solid white;
     background-color: unset;
-    font-size: 0.8em;
+    font-size: 1em;
     padding: 7px 25px;
     text-decoration: none;
 }
@@ -59,10 +59,9 @@
 
 .nav-signin-btn {
     color: white;
-    font-family: 'Gibson', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin-right: 50px;
     text-decoration: none;
-    font-size: 0.8em;
 }
 
 .nav-signin-btn:hover {
