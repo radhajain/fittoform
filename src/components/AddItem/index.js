@@ -93,6 +93,7 @@ class AddItem extends Component {
           color: this.state.color,
           brand: this.state.brand,
           name: this.state.name,
+          age: this.state.age,
           price: this.state.price,
           img: this.state.img,
           length: this.state.length,
@@ -120,7 +121,7 @@ class AddItem extends Component {
         const newReviewRef = reviewsRef.push();
         newReviewRef.set({
           // uid: this.state.uid, << comment back in if user is putting in measurements
-          userInfo: {height: this.state.height, waist: this.state.waist, bust: this.state.bust, hips: this.state.hips, bra: this.state.braSize, size: this.state.USSize, name: this.state.name},
+          userInfo: {height: this.state.height, waist: this.state.waist, bust: this.state.bust, hips: this.state.hips, bra: this.state.braSize, size: this.state.USSize, name: this.state.name, age: this.state.age},
           dressID: this.state.dressID,
           comment: this.state.comment,
           size: this.state.size,
@@ -267,7 +268,8 @@ class AddItem extends Component {
           <section className='add-item'>
             <h1>Add Dress</h1>
               <form onSubmit={this.handleSubmit}>
-              <input className="add-input" type="number" name="height" placeholder="What is your name?" onChange={this.handleChange} value={this.state.name}/>  
+                <input className="add-input" type="number" name="name" placeholder="What is your name?" onChange={this.handleChange} value={this.state.name}/>  
+                <input className="add-input" type="number" name="age" placeholder="What is your age? e.g. 23F" onChange={this.handleChange} value={this.state.age}/>  
                 <input className="add-input" type="number" name="height" placeholder="How tall are you in inches?" onChange={this.handleChange} value={this.state.height}/>  
                 <input className="add-input" type="number" name="waist" placeholder="How wide is your waist in inches?" onChange={this.handleChange} value={this.state.waist}/>
                 <input className="add-input" type="number" name="bust" placeholder="How many inches is your bust?" onChange={this.handleChange} value={this.state.bust}/>

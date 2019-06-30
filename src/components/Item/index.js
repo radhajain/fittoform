@@ -21,7 +21,8 @@ class Item extends Component {
                 height: '',
                 waist: '',
                 hips: '',
-                bust: ''
+                bust: '',
+                age: '',
             }
         }
         this.state.reviews = [review];
@@ -130,7 +131,7 @@ class Item extends Component {
                                         <div>
                                             <p className="itemView-comment">{review.comment}</p>
                                             <p className="itemView-review-name"> - {review.name}</p>
-                                            <p className="itemView-item-measurements"><i>{this.getHeightStr(review.userInfo.height)}, bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips: {review.userInfo.hips}" </i></p>
+                                            <p className="itemView-item-measurements"><i>{review.userInfo.age}, {this.getHeightStr(review.userInfo.height)}, bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips: {review.userInfo.hips}" </i></p>
                                         </div>
                                     </div>
                                 );
