@@ -35,6 +35,7 @@ class Results extends Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getBestDressesIDHelper = this.getBestDressesIDHelper.bind(this);
+        this.getRating = this.getRating.bind(this);
     }
 
     componentDidMount() {
@@ -173,6 +174,13 @@ class Results extends Component {
         return heightFt + "'" + heightIn;
     };
 
+    getRating(rating) {
+        if (rating > 10) {
+            return 10;
+        }
+        return rating;
+    }
+
 
     render() {
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
@@ -187,7 +195,7 @@ class Results extends Component {
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
                                         <div className="results-item-div">
                                             <img src={dress.img} className={imgClassName}/>
-                                            <p className="results-rating">Rated {this.state.dressRatings[key]}/10 by women like you</p>
+                                            <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
                                             <p className="results-price">${dress.price}</p>
                                         </div>
                                     </div>
