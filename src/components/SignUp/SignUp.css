@@ -330,6 +330,15 @@ button:focus {
 }
 
 @media (max-width: 351px) {
+
+    .signup-name {
+        width: 230px;
+    }
+
+    .signup-long-input {
+        width: 280px;
+    }
+
     .signup-results-btn {
         font-size: 1.25em;
     }

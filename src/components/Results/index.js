@@ -39,7 +39,6 @@ class Results extends Component {
 
     componentDidMount() {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
-        window.scrollTo(0, 0);
         this.getBestDressGroupID().then(result => {
             console.log(result);
             this.setState({
@@ -51,6 +50,7 @@ class Results extends Component {
                 this.getBestDressesID(result[1]);
             });
         });
+        window.scrollTo(0, 0);
     }
 
     handleInput(e) {
@@ -111,7 +111,7 @@ class Results extends Component {
     //Returns the dressIDs in the best dress group
     getBestDressesIDHelper(dressGroupID) {
         var dressGroupIDRef = firebase.database().ref('dressGroup').child(dressGroupID);
-        return dressGroupIDRef.once('value').then(snapshot => {
+        return dressGroupIDRef.orderByChild('rating').once('value').then(snapshot => {
             var dressIDs = []
             var dressRatings = []
             snapshot.forEach(dress => {
@@ -175,7 +175,6 @@ class Results extends Component {
 
 
     render() {
-        //TODO: make results page responsive
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
         return (
         <div>

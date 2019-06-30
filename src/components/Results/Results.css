@@ -1,5 +1,4 @@
 .results-container-outer {
-    height: calc(100vh - 100px);
     width: 100vw;
     display: flex;
     padding-top: 50px;
@@ -9,6 +8,7 @@
 }
 
 .results-container-inner {
+
     padding: 20px 20px;
     width: 80%;
     height: 90%;
@@ -17,6 +17,8 @@
 }
 
 .results-leftCol {
+    padding-top:50px;
+    padding-bottom: 50px;
     flex-basis: 70%;
     height: calc(100% - 50px);
     display: flex;
