@@ -1,5 +1,5 @@
 .account-outer {
-    height: calc(100vh - 100px);
+    height: calc(100% - 100px);
     padding-top: 50px;
     padding-bottom:50px;
     display: flex;
@@ -99,6 +99,7 @@ select
     display: block;
     margin-top: 20px;
     text-decoration: none;
+    text-decoration: underline;
     color: #34121F;
 }
 
@@ -121,5 +122,12 @@ select
     min-height: 40px;
     transition: #E86B6A 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
     outline: none;
+}
+
+.account-saved-text {
+    color: #E86B6A;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+
 }
 

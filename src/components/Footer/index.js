@@ -60,7 +60,7 @@ const FooterSmall = () => (
             <div className="footer-sm-divs footer-sm-c3">
                 <div>
                     <Link to={ROUTES.HOWITWORKS} className="footer-sm-links">How It Works</Link>
-                    <Link to={ROUTES.CONTACT} className="footer-sm-links">Contact Us</Link>
+                    <Link to={ROUTES.CONTACT} className="footer-sm-links footer-sm-contact">Contact Us</Link>
                 </div>
             </div>
 

@@ -251,6 +251,10 @@ button:focus {
     padding-left: 15px;
 }
 
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
 
 @media (max-width: 882px) {
     .search-search-content {
@@ -305,10 +309,10 @@ button:focus {
 }
 
 
-
-
 @media (max-width: 452px) {
     .search-size-box {
+        padding-left:25px;
+        padding-right: 25px;
         flex-wrap: wrap;
         min-width: unset;
     }
@@ -365,7 +369,14 @@ button:focus {
     .search-search-label {
         font-size: 1.55em;
     }
+}
 
+@media (max-width: 325px) {
+    .search-size-buttons {
+        font-size:14px;
+    }
 
-
+    .search-size-buttons-selected {
+        font-size: 14px;
+    }
 }
