@@ -39,6 +39,7 @@ class Results extends Component {
 
     componentDidMount() {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
+        window.scrollTo(0, 0);
         this.getBestDressGroupID().then(result => {
             console.log(result);
             this.setState({
@@ -94,10 +95,7 @@ class Results extends Component {
         });
     }
 
-        
-    //TODO: getBestDressesID and getDressesInfo can be condensed into one
-
-
+    //Gets the dressIDs from the best dressGroup and then calls getDressInfo
     getBestDressesID(dressGroupID) {
         this.getBestDressesIDHelper(dressGroupID).then((results) => {
             this.setState({
@@ -110,6 +108,7 @@ class Results extends Component {
         })
     }
 
+    //Returns the dressIDs in the best dress group
     getBestDressesIDHelper(dressGroupID) {
         var dressGroupIDRef = firebase.database().ref('dressGroup').child(dressGroupID);
         return dressGroupIDRef.once('value').then(snapshot => {
@@ -126,7 +125,7 @@ class Results extends Component {
 
 
 
-    //Using the dressesIDs populated by getBestDresses, gets information about each dress
+    //Using the dressesIDs, gets information about each dress
     getDressesInfo(dressesIDs) {
         var dressesRef = firebase.database().ref('dresses');
         return Promise.all(dressesIDs.map(dressID => {
@@ -142,7 +141,8 @@ class Results extends Component {
         })
     }
 
-    //Given the reference to a dress, gets information about the dress
+    // Helper function for getDressesInfo: 
+    // Given the reference to a dress, gets information about the dress
     getDressInfo(dressRef) {
         return dressRef.once('value').then((snapshot) => {
             return snapshot.val();
