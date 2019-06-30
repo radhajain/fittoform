@@ -168,7 +168,7 @@ class Results extends Component {
         return (
         <div>
         <div className="results-container-outer">
-                <div className="results-leftCol">
+                <div className={this.state.exactMatch ? "results-leftCol results-leftCol-adjust" : "results-leftCol"}>
                     <div className="results-leftCol-inner">
                         <div className="results-grid">
                             {this.state.dresses.map((dress, key) => {
@@ -185,7 +185,7 @@ class Results extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="results-rightCol">
+                <div className={this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol"}>
                     <div className="results-rightCol-inner">
                         <div className="results-name-div">
                             <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
