@@ -43,11 +43,12 @@
 .nav-signup-btn {
     color: white;
     font-family: 'Raleway', sans-serif;
-    border: 1px solid white;
+    border: none;
     background-color: unset;
     font-size: 1em;
     padding: 7px 25px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .nav-href {

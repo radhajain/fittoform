@@ -17,6 +17,12 @@ class Item extends Component {
             size: '',
             rating: '',
             name: '',
+            userInfo: {
+                height: '',
+                waist: '',
+                hips: '',
+                bust: ''
+            }
         }
         this.state.reviews = [review];
         this.getHeightStr = this.getHeightStr.bind(this);
@@ -26,9 +32,9 @@ class Item extends Component {
 
     }
 
-    getHeightStr() {
-        var heightFt = Math.floor(this.state.height / 12);
-        var heightIn = this.state.height % 12;
+    getHeightStr(height) {
+        var heightFt = Math.floor(height / 12);
+        var heightIn = height % 12;
         return heightFt + "'" + heightIn;
     };
 
@@ -46,7 +52,9 @@ class Item extends Component {
                             comment: data.val().comment,
                             size: data.val().size,
                             rating: data.val().rating,
-                            name: data.val().name
+                            name: data.val().userInfo.name,
+                            id: data.key,
+                            userInfo: data.val().userInfo
                         };
                         reviews.push(review);
                     }
@@ -59,6 +67,7 @@ class Item extends Component {
     componentDidMount() {
         this.getReviewData().then(reviews => {
             this.setState({reviews: reviews});
+            console.log(this.state);
         });
     }
 
@@ -112,7 +121,7 @@ class Item extends Component {
                             } */}
                         
                             <p className="itemView-review-title"> <i>See what other people with your measurements have to say</i></p>
-                            <p className="itemView-item-measurements"><i>Showing women that are {this.getHeightStr()}, waist: {this.state.waist}", hips: {this.state.hips}", bust: {this.state.bust}" </i></p>
+                            <p className="itemView-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                             <hr />
                             {this.state.reviews && this.state.reviews.map((review, key) => {
                                 return (
@@ -121,6 +130,7 @@ class Item extends Component {
                                         <div>
                                             <p className="itemView-comment">{review.comment}</p>
                                             <p className="itemView-review-name"> - {review.name}</p>
+                                            <p className="itemView-item-measurements"><i>{this.getHeightStr(review.userInfo.height)}, bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips: {review.userInfo.hips}" </i></p>
                                         </div>
                                     </div>
                                 );
