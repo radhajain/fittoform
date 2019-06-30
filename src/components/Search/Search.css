@@ -251,6 +251,10 @@ button:focus {
     padding-left: 15px;
 }
 
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
 
 @media (max-width: 882px) {
     .search-search-content {
