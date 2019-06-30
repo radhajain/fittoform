@@ -318,7 +318,9 @@ input:focus {
     }
 
     .results-img-single {
-        max-height: calc(75vh - 120px);
+        max-height: 480px;
+        height: calc(75vh - 120px);
+        width: auto;
     }
 }
 
