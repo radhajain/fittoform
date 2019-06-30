@@ -23,6 +23,7 @@ class Results extends Component {
             dressesLoaded: false,
             exactMatch: false,
             dresses: [],
+            nextBestDressGroupIDs: [],
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -33,18 +34,20 @@ class Results extends Component {
         this.getHeightStr = this.getHeightStr.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getBestDressesIDHelper = this.getBestDressesIDHelper.bind(this);
     }
 
     componentDidMount() {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
         this.getBestDressGroupID().then(result => {
             console.log(result);
-            this.setState({closestMeasurements: result[0]});
-            if (result[2] === 0) {
-                this.setState({exactMatch: true});
-            }
-            this.setState({dressGroupID: result[1]}, () => {
-                this.getBestDressesID();
+            this.setState({
+                exactMatch: (result[2] === 0 ? true : false),
+                dressGroupID: result[1],
+                closestMeasurements: result[0],
+                nextBestDressGroupIDs: result[3]
+            }, () => {
+                this.getBestDressesID(result[1]);
             });
         });
     }
@@ -67,6 +70,7 @@ class Results extends Component {
         // and this.state.dressGroupId
         var lowestDiff = Number.MAX_VALUE;
         var closestMeasurements, dressGroupID;
+        var nextBestDressGroupIDs = [];
         var measurementsRef = firebase.database().ref('measurements');
         return new Promise((resolve, reject) => {
             measurementsRef.once('value').then((snapshot) => {
@@ -74,6 +78,9 @@ class Results extends Component {
                     var values = measurement.val();
                     var heightDiff = (Math.abs(values.height - this.state.height) < 1) ? 0 : (Math.abs(values.height - this.state.height) - 1);
                     var diffSq = Math.pow((heightDiff),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
+                    if (Math.sqrt(diffSq) < 2) {
+                        nextBestDressGroupIDs.push(values);
+                    }
                     if (Math.sqrt(diffSq) < lowestDiff) {
                         lowestDiff =  Math.sqrt(diffSq);
                         console.log("updating state");
@@ -82,7 +89,7 @@ class Results extends Component {
                         dressGroupID = values.dressGroupID;
                     }
                 });
-                resolve([closestMeasurements, dressGroupID, lowestDiff]);
+                resolve([closestMeasurements, dressGroupID, lowestDiff, nextBestDressGroupIDs]);
             });
         });
     }
@@ -90,44 +97,49 @@ class Results extends Component {
         
     //TODO: getBestDressesID and getDressesInfo can be condensed into one
 
-    getBestDressesID() {
-        //Gets the array of dress IDs from the groupID. Populates this.dressesIDs
-        var dressGroupIDRef = firebase.database().ref('dressGroup').child(this.state.dressGroupID);
-        dressGroupIDRef.once('value', snapshot => {
+
+    getBestDressesID(dressGroupID) {
+        this.getBestDressesIDHelper(dressGroupID).then((results) => {
+            this.setState({
+                dressRatings: results[1],
+                dressesIDs: results[0]
+            }, () => {
+                console.log(this.state);
+                this.getDressesInfo(results[0]);
+            });
+        })
+    }
+
+    getBestDressesIDHelper(dressGroupID) {
+        var dressGroupIDRef = firebase.database().ref('dressGroup').child(dressGroupID);
+        return dressGroupIDRef.once('value').then(snapshot => {
             var dressIDs = []
             var dressRatings = []
             snapshot.forEach(dress => {
-                console.log(dress.val());
                 dressIDs.push(dress.val().dress);
                 dressRatings.push(dress.val().rating);
             })
-            console.log(dressIDs);
-            this.setState({dressRatings: dressRatings});
-            this.setState({dressesIDs: dressIDs}, () => {
-                console.log(this.state);
-                this.getDressesInfo();
-            });
+            return [dressIDs, dressRatings]
+            
         });
     }
 
 
 
     //Using the dressesIDs populated by getBestDresses, gets information about each dress
-    getDressesInfo() {
-        var dressesRef = firebase.database().ref('dresses')
-        dressesRef.once('value').then(snapshot => {
-            return Promise.all(this.state.dressesIDs.map(dressID => {
-                return dressesRef.child(`${dressID}`);
-            }));
-        }).then((dressesRefs) => {
+    getDressesInfo(dressesIDs) {
+        var dressesRef = firebase.database().ref('dresses');
+        return Promise.all(dressesIDs.map(dressID => {
+            return dressesRef.child(`${dressID}`);
+        })).then((dressRefs) => {
             var promises = []
-            for (const dressRef of dressesRefs) {
+            for (const dressRef of dressRefs) {
                 promises.push(this.getDressInfo(dressRef));
             }
             Promise.all(promises).then((dresses) => {
                 this.setState({dresses: dresses});
             })
-        });
+        })
     }
 
     //Given the reference to a dress, gets information about the dress
