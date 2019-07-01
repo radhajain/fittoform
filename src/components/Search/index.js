@@ -141,6 +141,7 @@ class Search extends Component {
             behavior: 'smooth',
             block: 'center',
         });
+        this.refs.sizeinput.focus();
     }
 
     goToBra(e) {
@@ -149,6 +150,7 @@ class Search extends Component {
             behavior: 'smooth',
             block: 'center',
         });
+        this.refs.brainput.focus();
     }
 
     goToSizing(e) {
@@ -197,6 +199,7 @@ class Search extends Component {
                 behavior: 'smooth',
                 block: 'center',
             });
+            this.refs.sizeinput.focus();
         }
     }
 
@@ -209,7 +212,7 @@ class Search extends Component {
                 behavior: 'smooth',
                 block: 'center',
             });
-            
+            this.refs.brainput.focus();
         }
     }
 
@@ -336,6 +339,7 @@ class Search extends Component {
                     <input
                       name="size"
                       type="number"
+                      ref="sizeinput"
                       onBlur={this.handleBlur('size')}
                       className={shouldMarkError('size') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressSize}
@@ -363,6 +367,7 @@ class Search extends Component {
                     <input
                       name="bra"
                       type="text"
+                      ref="brainput"
                       onBlur={this.handleBlur('bra')}
                       onKeyPress={this._handleKeyPressBra}
                       className={shouldMarkError('bra') ? "search-input-error search-bra" : "search-input search-bra"}
