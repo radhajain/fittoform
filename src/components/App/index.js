@@ -18,12 +18,14 @@ import AddItem from '../AddItem';
 import HowItWorks from '../HowItWorks';
 import Contact from '../Contact';
 import Analytics from '../Analytics';
+import HttpsRedirect from 'react-https-redirect';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
 
 const App = () => (
+  <HttpsRedirect>
   <Router>
     <div>
       <Navigation />
@@ -46,6 +48,7 @@ const App = () => (
       
     </div>
   </Router>
+  </HttpsRedirect>
 );
 
 export default withAuthentication(App);
