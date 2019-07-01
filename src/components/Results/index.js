@@ -200,6 +200,13 @@ class Results extends Component {
         });
     }
 
+    getFirstName(name) {
+        if (name.includes(' ')) {
+          return name.split(' ')[0];
+        }
+        return name;
+    }
+
 
     render() {
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
@@ -236,7 +243,7 @@ class Results extends Component {
                                     name="name"
                                     type="text"
                                     ref="resultsName"
-                                    value={this.state.name}
+                                    value={this.getFirstName(this.state.name)}
                                     className="results-input"
                                     onChange={this.handleInput} 
                                     placeholder="ADD YOUR NAME"/>

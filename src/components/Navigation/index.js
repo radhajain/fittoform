@@ -7,6 +7,7 @@ import * as ROUTES from '../../constants/routes';
 import { AuthUserContext, withAuthorization } from '../Session';
 import ShortLogo from '../../assets/images/one-line-logo.png';
 import firebase from 'firebase';
+import WhiteArrow from '../../assets/images/white-down-arrow.png';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -89,10 +90,18 @@ class NavigationAuth extends React.Component {
                 <img src={ShortLogo} style={{height: 30}}/> 
               </Link>
             </div>
-            <div className="nav-c3">
-              <Link to={ROUTES.ACCOUNT} className="nav-account-btn nav-href">Your Profile</Link>
-              <SignOutButton />
-            </div>
+      <div className="nav-c3">
+            <div class="dropdown">
+          <button class="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
+          <img src={WhiteArrow} className="nav-whitearrow"/>
+          <div class="dropdown-content">
+            <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">Your Profile</Link>
+            <hr></hr>
+            <SignOutButton />
+          </div>
+        </div>
+        </div>
+
         </div>
       </div>
     );

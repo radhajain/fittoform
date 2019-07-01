@@ -1,5 +1,5 @@
 .nav-outer {
-    overflow: hidden;
+    /*overflow: hidden;*/
     height: 50px;
     background-color: rgba(42, 0, 17, 0.7);
     position: fixed;
@@ -40,24 +40,12 @@
     align-content: center;
 }
 
-.nav-account-btn {
-    color: white;
-    font-family: 'Raleway', sans-serif;
-    margin-right: 50px;
-    text-decoration: none;
-    font-size: 0.8em;
-}
-
-.nav-account-btn:hover {
-    text-decoration: underline;
-}
-
 .nav-signup-btn {
     color: white;
     font-family: 'Raleway', sans-serif;
     border: none;
     background-color: unset;
-    font-size: 0.8em;
+    font-size: 0.9em;
     padding: 7px 25px;
     text-decoration: none;
     cursor: pointer;
@@ -75,8 +63,18 @@
     font-family: 'Raleway', sans-serif;
     margin-right: 50px;
     text-decoration: none;
-    font-size: 0.8em;
-    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.nav-profile-btn {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.nav-profile-btn:hover {
+    text-decoration: underline;
 }
 
 .nav-signin-btn:hover {
@@ -185,4 +183,53 @@ a:focus {
     .nav-c3 {
         flex-basis: 50%;
     }
+}
+
+/* Dropdown Button */
+.dropbtn {
+    padding-top: 17.6px;
+    padding-bottom: 17.6px;
+    font-size: 0.8em;
+    border: none;
+    background-color: unset;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(42, 0, 17, 0.7);
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 0.9em;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .nav-whitearrow {
+    padding-left: 1px;
+    width: 10px;
+}
+
+.dropdown hr {
+  border-top-color: #EFEFEF;
+  opacity:0.2;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
