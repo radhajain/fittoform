@@ -20,6 +20,7 @@ class Results extends Component {
             dressGroupID: null,
             dressesIDs: [],
             dressRatings: [],
+            dressReviews: [],
             dressesLoaded: false,
             exactMatch: false,
             dresses: [],
@@ -101,7 +102,8 @@ class Results extends Component {
         this.getBestDressesIDHelper(dressGroupID).then((results) => {
             this.setState({
                 dressRatings: results[1],
-                dressesIDs: results[0]
+                dressesIDs: results[0],
+                dressReviews: (results[2].length === 0 ? [] : results[2])
             }, () => {
                 console.log(this.state);
                 this.getDressesInfo(results[0]);
@@ -113,13 +115,19 @@ class Results extends Component {
     getBestDressesIDHelper(dressGroupID) {
         var dressGroupIDRef = firebase.database().ref('dressGroup').child(dressGroupID);
         return dressGroupIDRef.orderByChild('rating').once('value').then(snapshot => {
-            var dressIDs = []
-            var dressRatings = []
+            var dressIDs = [];
+            var dressRatings = [];
+            var dressReviews = [];
             snapshot.forEach(dress => {
                 dressIDs.push(dress.val().dress);
                 dressRatings.push(dress.val().rating);
+                // console.log(dress.val().reviews);
+                if (dress.val().reviews) {
+                    console.log("found review");
+                    dressReviews.push(dress.val().reviews);
+                }
             })
-            return [dressIDs, dressRatings]
+            return [dressIDs, dressRatings, dressReviews]
             
         });
     }
@@ -162,6 +170,8 @@ class Results extends Component {
                 bust: this.state.bust,
                 size: this.state.size,
                 name: this.state.name,
+                dressGroupID: this.state.dressGroupID,
+                cachedReviews: this.state.dressReviews[key],
                 closestMeasurements: this.state.closestMeasurements,
                 dressID: dressID,
             }

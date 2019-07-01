@@ -169,7 +169,7 @@ class AddItem extends Component {
           dressGroupRef.orderByChild("dress").equalTo(this.state.dressID).once('value', snapshot => {
             if (snapshot.exists()) {
               //If dress already exists in group id, update rating of dress
-              var currRating = Object.values(snapshot.val())[0].rating;
+              var currRating = parseInt(Object.values(snapshot.val())[0].rating, 10);
               var currCount = Object.values(snapshot.val())[0].count;
               var newRating = Math.round((currRating*currCount + this.state.rating)/(currCount + 1));
               var updatedCount = currCount + 1;

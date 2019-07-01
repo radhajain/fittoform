@@ -26,9 +26,12 @@ class Item extends Component {
             }
         }
         this.state.reviews = [review];
+        this.state.cachedReviewIDs = [];
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
         this.goToResultsView = this.goToResultsView.bind(this);
+        this.getReviewsFromCache = this.getReviewsFromCache.bind(this);
+        this.getReviewFromReviewID = this.getReviewFromReviewID.bind(this);
         console.log(this.state);
 
     }
@@ -65,11 +68,45 @@ class Item extends Component {
         });
     }
 
-    componentDidMount() {
-        this.getReviewData().then(reviews => {
+    getReviewsFromCache(reviewIDObjs) {
+        var reviewIDs = [];
+        for (var reviewObj in reviewIDObjs) {
+            var reviewID = reviewIDObjs[reviewObj].reviewID;
+            reviewIDs.push(reviewID);
+        }
+       this.setState({
+            cachedReviewIDs: reviewIDs
+       });
+       var promises = []
+        for (const reviewID of reviewIDs) {
+            promises.push(this.getReviewFromReviewID(reviewID));
+        }
+        Promise.all(promises).then((reviews) => {
             this.setState({reviews: reviews});
-            console.log(this.state);
-        });
+        })
+    }
+
+    getReviewFromReviewID(reviewID) {
+        var reviewRef = firebase.database().ref('reviews');
+        return reviewRef.child(`${reviewID}`).once('value').then((snapshot) => {
+            console.log(snapshot.val());
+            return snapshot.val();
+        })
+    }
+
+
+    componentDidMount() {
+        console.log("in component did mount");
+        console.log(this.props.location.state);
+        if (this.props.location.state.cachedReviews) {
+            this.getReviewsFromCache(this.props.location.state.cachedReviews);
+        } else {
+            this.getReviewData().then(reviews => {
+                this.setState({reviews: reviews});
+                console.log(this.state);
+            });
+        }
+       
     }
 
     goToResultsView() {
@@ -130,7 +167,7 @@ class Item extends Component {
                                         <p className="itemView-numRating">{review.rating}/10</p>
                                         <div>
                                             <p className="itemView-comment">{review.comment}</p>
-                                            <p className="itemView-review-name"> - {review.name}</p>
+                                            <p className="itemView-review-name"> - {review.userInfo.name}</p>
                                             <p className="itemView-item-measurements"><i>{review.userInfo.age}, {this.getHeightStr(review.userInfo.height)}, bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips: {review.userInfo.hips}" </i></p>
                                         </div>
                                     </div>
