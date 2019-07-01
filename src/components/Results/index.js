@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import './Results.css';
 import { tsConstructorType } from '@babel/types';
 import { FooterSmall } from '../Footer';
+import downArrow from '../../assets/images/menu-hide-arrow.png';
 
 class Results extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class Results extends Component {
             exactMatch: false,
             dresses: [],
             nextBestDressGroupIDs: [],
+            showRecInfo: true,
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -37,6 +39,7 @@ class Results extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getBestDressesIDHelper = this.getBestDressesIDHelper.bind(this);
         this.getRating = this.getRating.bind(this);
+        this.dismissRecommendationPanel = this.dismissRecommendationPanel.bind(this);
     }
 
     componentDidMount() {
@@ -191,9 +194,26 @@ class Results extends Component {
         return rating;
     }
 
+    dismissRecommendationPanel() {
+        this.setState({
+            showRecInfo: false,
+        });
+    }
+
+    getFirstName(name) {
+        if (name.includes(' ')) {
+          return name.split(' ')[0];
+        }
+        return name;
+    }
+
 
     render() {
         const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
+        const itemDivClass = (this.state.dresses.length === 1 ? "results-item-div" : "results-item-div results-item-div-multiple");
+        var rightColClass = (
+            this.state.showRecInfo ? (this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol") : "hide"
+        );
         return (
         <div>
         <div className="results-container-outer">
@@ -203,7 +223,7 @@ class Results extends Component {
                             {this.state.dresses.map((dress, key) => {
                                 return (
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
-                                        <div className="results-item-div">
+                                        <div className={itemDivClass}>
                                             <img src={dress.img} className={imgClassName}/>
                                             <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
                                             <p className="results-price">${dress.price}</p>
@@ -214,7 +234,7 @@ class Results extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol"}>
+                <div className={rightColClass}>
                     <div className="results-rightCol-inner">
                         <div className="results-name-div">
                             <p className="results-text" style={{textAlign: 'right'}}>Curated for:</p>
@@ -223,7 +243,7 @@ class Results extends Component {
                                     name="name"
                                     type="text"
                                     ref="resultsName"
-                                    value={this.state.name}
+                                    value={this.getFirstName(this.state.name)}
                                     className="results-input"
                                     onChange={this.handleInput} 
                                     placeholder="ADD YOUR NAME"/>
@@ -235,6 +255,9 @@ class Results extends Component {
                         </div>
                         <div className="results-right-flexCol">
                             <div className="results-text-div">
+                                <div className="results-menu-hide-div">
+                                    <img src={downArrow} className="results-menu-hide-arrow" onClick={this.dismissRecommendationPanel}/>
+                                </div>
                                 {this.state.closestMeasurements && <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>}
                                 <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                                 {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}

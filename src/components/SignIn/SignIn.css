@@ -83,6 +83,7 @@
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
+  cursor: pointer;
 }
 .signin-form button:hover,.form button:active,.form button:focus {
   background: #3c1d27;
