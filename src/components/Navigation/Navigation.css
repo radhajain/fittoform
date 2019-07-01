@@ -40,6 +40,18 @@
     align-content: center;
 }
 
+.nav-account-btn {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    margin-right: 50px;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+.nav-account-btn:hover {
+    text-decoration: underline;
+}
+
 .nav-signup-btn {
     color: white;
     font-family: 'Raleway', sans-serif;
@@ -56,6 +68,7 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    font-size: 0.8em;
 }
 
 .nav-signin-btn {
