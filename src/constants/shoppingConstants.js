@@ -1,11 +1,20 @@
 
+export const ages = [
+    "18F",
+    "19F",
+    "20F",
+    "21F",
+    "22F",
+    "23F",
+    "24F",
+    "25F",
+    "26F",
+    "27F",
+    "28F"
+]
+
 export const names = [ 
-"radha",
 "esther",
-"genvieve",
-"grace",
-"rachel",
-"mimi",
 "amy",
 "ellie",
 "louise",

@@ -280,7 +280,8 @@ class SignUpFormBase extends Component {
                         hips: this.state.hips,
                         bra: this.state.bra,
                         bust: this.state.bust,
-                        size: this.state.size
+                        size: this.state.size,
+                        name: this.state.name
                     }
                 });
             });
