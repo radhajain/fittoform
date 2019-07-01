@@ -3,8 +3,9 @@
     background-color: unset;
     color: white;
     border: none;
+    font-family: 'Raleway', sans-serif;
     cursor: pointer;;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .signout-btn:hover {

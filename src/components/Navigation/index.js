@@ -6,6 +6,8 @@ import SignInLink from '../SignIn';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
 import ShortLogo from '../../assets/images/one-line-logo.png';
+import WhiteArrow from '../../assets/images/white-arrow.png';
+
 
 const Navigation = () => (
   <div>
@@ -16,6 +18,8 @@ const Navigation = () => (
     </AuthUserContext.Consumer>
   </div>
 );
+
+
 
 
 const NavigationAuth = () => (
@@ -31,10 +35,18 @@ const NavigationAuth = () => (
             <img src={ShortLogo} style={{height: 30}}/> 
           </Link>
         </div>
-        <div className="nav-c3">
-          <Link to={ROUTES.ACCOUNT} className="nav-signin-btn nav-href">Your Profile</Link>
-          <SignOutButton />
+     
+
+        <div class="dropdown">
+          <button class="dropbtn">Hey, user</button>
+          <img src={WhiteArrow} className="nav-whitearrow"/>
+          <div class="dropdown-content">
+            <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">Your Profile</Link>
+            <hr></hr>
+            <SignOutButton />
+          </div>
         </div>
+
     </div>
   </div>
 
