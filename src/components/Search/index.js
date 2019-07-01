@@ -126,16 +126,15 @@ class Search extends Component {
         this.sizingRef = React.createRef();
         this.sizeRef = React.createRef();
         this.braRef = React.createRef();
-
       }
 
     
     modifyWaist(val) {
-    this.setState({modifyWaist: val});
+        this.setState({modifyWaist: val});
     }
 
     modifyHips(val) {
-    this.setState({modifyHips: val});
+        this.setState({modifyHips: val});
     }
     
 
@@ -166,18 +165,16 @@ class Search extends Component {
     }
     
     handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+        const value = event.target.value;
+        const name = event.target.name;
         this.setState({
             [name]: value
         });
     }
 
     handleInputChangeBra(event) {
-        const target = event.target;
-        const value = target.value.toUpperCase();
-        const name = target.name;
+        const value = event.target.value.toUpperCase();
+        const name = event.target.name;
         this.setState({
             [name]: value
         });
@@ -346,6 +343,7 @@ class Search extends Component {
                     <input
                       name="heightft"
                       type="number"
+                      value={this.state.heightft}
                       ref="heightftinput"
                       onBlur={this.handleBlur('heightft')}
                       className={shouldMarkError('heightft') ? "search-input-error" : "search-input"}
@@ -355,6 +353,7 @@ class Search extends Component {
                     <input
                       name="heightin"
                       type="number"
+                      value={this.state.heightin}
                       onBlur={this.handleBlur('heightin')}
                       className={shouldMarkError('heightin') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressHeightIn('heightin') }
@@ -384,6 +383,7 @@ class Search extends Component {
                       name="size"
                       type="number"
                       ref="sizeinput"
+                      value={this.state.size}
                       onBlur={this.handleBlur('size')}
                       className={shouldMarkError('size') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressSize('size')}
@@ -412,6 +412,7 @@ class Search extends Component {
                       name="bra"
                       type="text"
                       ref="brainput"
+                      value={this.state.bra}
                       onBlur={this.handleBlur('bra')}
                       onKeyPress={this._handleKeyPressBra}
                       className={shouldMarkError('bra') ? "search-input-error search-bra" : "search-input search-bra"}
