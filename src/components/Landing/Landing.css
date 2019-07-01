@@ -446,9 +446,9 @@
 }
 
 @media (max-width: 633px) {
-    .landing-container-intro {
+    /* .landing-container-intro {
         background-image: url(../../assets//images/landing-bkg.jpg);
-    }
+    } */
 
     .landing-howitworks-box {
         min-width: 180px;
