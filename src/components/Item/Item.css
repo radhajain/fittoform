@@ -84,6 +84,8 @@
 
 
 .itemView-item-measurements {
+    width: 100%;
+    margin-top:0px;
     font-size: 12px;
     color: gray;
     font-family: 'Futura', sans-serif;
@@ -101,7 +103,13 @@
     margin-top: 40px;
 }
 
-
+.itemView-text-small {
+    font-family: 'Futura', sans-serif;
+    color: #652D2D;
+    font-size: 0.75em;
+    line-height: 1.25em;
+    text-transform: uppercase;
+}
 
 .itemView-shop-btn:hover {
     background-color: #CE4241;
@@ -156,8 +164,10 @@
 }
 
 .itemView-review-name {
-    float: right;
+    width: 100%;
+    font-weight: bold;
     margin-top: 0px;
+    margin-bottom: 12px;
     text-transform: capitalize;
 }
 

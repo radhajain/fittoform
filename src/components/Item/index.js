@@ -17,18 +17,28 @@ class Item extends Component {
             size: '',
             rating: '',
             name: '',
+            userInfo: {
+                height: '',
+                waist: '',
+                hips: '',
+                bust: '',
+                age: '',
+            }
         }
         this.state.reviews = [review];
+        this.state.cachedReviewIDs = [];
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
         this.goToResultsView = this.goToResultsView.bind(this);
+        this.getReviewsFromCache = this.getReviewsFromCache.bind(this);
+        this.getReviewFromReviewID = this.getReviewFromReviewID.bind(this);
         console.log(this.state);
 
     }
 
-    getHeightStr() {
-        var heightFt = Math.floor(this.state.height / 12);
-        var heightIn = this.state.height % 12;
+    getHeightStr(height) {
+        var heightFt = Math.floor(height / 12);
+        var heightIn = height % 12;
         return heightFt + "'" + heightIn;
     };
 
@@ -46,7 +56,9 @@ class Item extends Component {
                             comment: data.val().comment,
                             size: data.val().size,
                             rating: data.val().rating,
-                            name: data.val().name
+                            name: data.val().userInfo.name,
+                            id: data.key,
+                            userInfo: data.val().userInfo
                         };
                         reviews.push(review);
                     }
@@ -56,10 +68,45 @@ class Item extends Component {
         });
     }
 
-    componentDidMount() {
-        this.getReviewData().then(reviews => {
+    getReviewsFromCache(reviewIDObjs) {
+        var reviewIDs = [];
+        for (var reviewObj in reviewIDObjs) {
+            var reviewID = reviewIDObjs[reviewObj].reviewID;
+            reviewIDs.push(reviewID);
+        }
+       this.setState({
+            cachedReviewIDs: reviewIDs
+       });
+       var promises = []
+        for (const reviewID of reviewIDs) {
+            promises.push(this.getReviewFromReviewID(reviewID));
+        }
+        Promise.all(promises).then((reviews) => {
             this.setState({reviews: reviews});
-        });
+        })
+    }
+
+    getReviewFromReviewID(reviewID) {
+        var reviewRef = firebase.database().ref('reviews');
+        return reviewRef.child(`${reviewID}`).once('value').then((snapshot) => {
+            console.log(snapshot.val());
+            return snapshot.val();
+        })
+    }
+
+
+    componentDidMount() {
+        console.log("in component did mount");
+        console.log(this.props.location.state);
+        if (this.props.location.state.cachedReviews) {
+            this.getReviewsFromCache(this.props.location.state.cachedReviews);
+        } else {
+            this.getReviewData().then(reviews => {
+                this.setState({reviews: reviews});
+                console.log(this.state);
+            });
+        }
+       
     }
 
     goToResultsView() {
@@ -112,7 +159,7 @@ class Item extends Component {
                             } */}
                         
                             <p className="itemView-review-title"> <i>See what other people with your measurements have to say</i></p>
-                            <p className="itemView-item-measurements"><i>Showing women that are {this.getHeightStr()}, waist: {this.state.waist}", hips: {this.state.hips}", bust: {this.state.bust}" </i></p>
+                            <p className="itemView-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                             <hr />
                             {this.state.reviews && this.state.reviews.map((review, key) => {
                                 return (
@@ -120,7 +167,8 @@ class Item extends Component {
                                         <p className="itemView-numRating">{review.rating}/10</p>
                                         <div>
                                             <p className="itemView-comment">{review.comment}</p>
-                                            <p className="itemView-review-name"> - {review.name}</p>
+                                            <p className="itemView-review-name"> - {review.userInfo.name}</p>
+                                            <p className="itemView-item-measurements"><i>{review.userInfo.age}, {this.getHeightStr(review.userInfo.height)}, bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips: {review.userInfo.hips}" </i></p>
                                         </div>
                                     </div>
                                 );
