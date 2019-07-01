@@ -37,7 +37,13 @@ class NavigationAuth extends React.Component {
     this.state = {
       authUser: false,
       uid: '',
-      name: ''
+      name: '',
+      height: '',
+      waist: '',
+      hips: '',
+      bust: '',
+      size: '',
+      bra: '',
     }
   }
 
@@ -48,6 +54,12 @@ class NavigationAuth extends React.Component {
       let user = snapshot.val();
       this.setState({
         name: user.name,
+        height: user.height,
+        waist: user.waist,
+        hips: user.hips,
+        bust: user.bust,
+        size: user.size,
+        bra: user.bra,
       });
     });
   }  
@@ -86,8 +98,8 @@ class NavigationAuth extends React.Component {
             </Link>
           </div>
             <div className="nav-c2">
-              <Link to={ROUTES.LANDING} className="nav-logo-center">
-                <img src={ShortLogo} style={{height: 30}}/> 
+              <Link to={ROUTES.LANDING} className="nav-logo-center"> 
+                <img src={ShortLogo} style={{height: 30}} /> 
               </Link>
             </div>
       <div className="nav-c3">
