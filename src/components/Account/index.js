@@ -61,19 +61,18 @@ class AccountPage extends React.Component {
 
     handleSubmit(event) {
       event.preventDefault();
-      
-      this.props.history.push({
-        pathname: '/results',
-        state: {
-            height: this.state.height,
-            waist: this.state.waist,
-            hips: this.state.hips,
-            bra: this.state.bra,
-            bust: this.state.bust,
-            size: this.state.size,
-            name: this.state.name
-        }
-    });
+      //Write firebase object
+      this.setState({
+        saved: true,
+      });
+      this.props.firebase.user(this.state.uid).update({
+        waist: this.state.waist,
+        hips: this.state.hips,
+        bust: this.state.bust,
+        size: this.state.size,
+        bra: this.state.bra,
+        height: this.state.height,
+      });
     }
 
     // Sets the user values

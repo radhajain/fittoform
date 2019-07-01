@@ -4,9 +4,9 @@
     color: white;
     border: none;
     cursor: pointer;;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .signout-btn:hover {
-    font-weight: bold;
+    text-decoration: underline;
 }
