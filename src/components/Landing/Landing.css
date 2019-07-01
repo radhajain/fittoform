@@ -80,7 +80,8 @@
     color: white;
     font-size: 1.25em;
     line-height: 1.3em;
-    width: 60%;
+    width: 80%;
+    max-width: 690px;
 }
 
 
@@ -453,7 +454,6 @@
     .landing-container-intro {
         background-image: url(../../assets//images/landing-bkg.jpg);
     }
-
 
     .landing-howitworks-box {
         min-width: 180px;
