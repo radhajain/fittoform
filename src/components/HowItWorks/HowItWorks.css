@@ -1,81 +1,164 @@
 .howitworks-parent
 {
     flex: 0 0 40%;
-    background-color: #5B1C2D;
-    /*background-image: url(../../assets/images/item-stripe-light.png);*/
+    background-color: #570721;
     background-position: center;
-    
-    overflow-y: scroll;
-    height: calc(100vh - 50px);
-    overflow-x: hidden;
     padding-top: 50px;
-    font-family: 'Raleway', sans-serif;
 }
 
 .howitworks-child
 {
-    height: 25vh;
+    height: 700px;
     display: flex;
-    scroll-behavior: smooth;
     justify-content: center;
     align-items: center;
     position: relative;
     width: 100%;
     text-align: center;
-    flex-direction: column;
-    padding-bottom: 10px;
-    padding-top: 5px;
 }
 
-.howitworks-child-title
+.howitworks-first {
+    background-image: url('../../assets/images/howitworks-clothingline.svg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+}
+
+.howitworks-dark {
+    background-color: #4C0E22;
+}
+
+.howitworks-title-div {
+    width: 500px;
+    text-align: right;
+    padding-left: 30%;
+}
+
+.howitworks-title
 {
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5em;
+    position: relative;
+    z-index: 100;
+}
+
+.howitworks-title-desc {
+    color:#FCE4E4;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.25em;
+    line-height: 1.7em;
+}
+
+.howitworks-child-inner {
+    width: 90%;
+    max-width: 1172px;
+    height: 90%;
     display: flex;
-    scroll-behavior: smooth;
+    flex-direction: row;
+}
+
+.howitworks-child-c1 {
+    flex-basis: 40%;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.howitworks-child-c2 {
+    flex-basis: 60%;
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.howitworks-brands {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.85em;
+    line-height: 2em;
+    letter-spacing: 4px;
+}
+
+.howitworks-child-c1-flex {
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    text-align: center;
-    flex-direction: column;
-    margin-bottom: 25px;
-    padding-top: 30px;
+    height: 100%;
+}
+
+.howitworks-child-c1-c1 {
+    flex-basis: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.howitworks-child-c1-c2 {
+    flex-basis: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.howitworks-bigNum {
+    font-family: 'Futura', sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    z-index: 1;
+    color: #6B243B;
+}
+
+.howitworks-child-c2-content {
+    text-align: right;
+    width: 75%;
+    position: relative;
+    z-index: 5;
+    padding-left: 70px;
 }
 
 .howitworks-desc
 {
-    font-family: 'Gibson', sans-serif;
-    color: #E8DCDC;
-    font-size: 0.95em;
-    line-height: 1.3em;
-    width: 35%;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-size: 1.25em;
+    line-height: 1.7em;
     margin: 5px;
 }
 
 .howitworks-subtitle
 {
-    color: #E8DCDC;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    font-size: 1.2em;
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2em;
     position: relative;
     z-index: 100;
-    width: 40%;
     margin-bottom: 5px;
-    padding-bottom: 10px;
+    text-transform: uppercase;
 }
 
-.howitworks-title
-{
-    color: #2A0011;
-    background-color: #E8DCDC;
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5em;
-    width: 30%;
-    position: relative;
-    z-index: 100;
-    margin-bottom: 0px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.hiw-full-lady {
+    height: 80%;
+}
+
+.howitworks-child-dressgrid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.howitworks-dress-icon {
+    flex-basis: 25%;
+    padding: 15px;
+    width: 5vw;
+    max-width: 130px;
 }
 
 .howitworks-callToAction {
@@ -83,20 +166,153 @@
     border-radius: 3px;
     color: white;
     font-size: 1.25em;
-    padding: 20px 50px;
+    padding: 12px 50px;
     border: none;
     font-family: 'Raleway', sans-serif;
-    margin-top: 68px;
-    margin-bottom: 88px;
+    margin-top: 48px;
+    cursor: pointer;
+    margin-bottom: 48px;
 }
 
-.howitworks-callToAction:hover {
-    background-color: #C34342;
+.howitworks-small-margin {
+    margin: 20px 0px;
 }
 
 .howitworks-parent hr
 {
-  border-top-color: #521828;
-  opacity:0.1;
+  border-top-color: #e4e4e4;
+  opacity:0.5;
   width: 80%;
+}
+
+
+@media (min-width: 1395px) {
+    .howitworks-first {
+        background-image: url('../../assets/images/howitworks-clothingline-xl.svg');
+        background-position: left bottom;
+    }
+}
+
+@media (max-width: 1100px) {
+    .howitworks-first {
+        background-image: url('../../assets/images/howitworks-clothingline-med.svg');
+    }
+
+    .howitworks-child-c2-content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 850px) {
+    .hiw-full-lady {
+        height: 60%;
+    }
+}
+
+@media (max-width: 805px) {
+    .howitworks-title {
+        font-size: 2em;
+    }
+
+}
+
+@media (max-width: 800px) {
+    .howitworks-first {
+        background-image: url('../../assets/images/howitworks-clothingline-small.svg');
+    }
+}
+
+
+
+@media (max-width: 700px) {
+    .howitworks-title-div {
+        width: 400px;
+    }
+    
+    
+    .howitworks-desc {
+        font-size: 1.1em;
+        line-height: 1.5em;
+    }
+
+    .howitworks-title-desc {
+        font-size: 1.1em;
+        line-height: 1.5em;
+    }
+
+    .howitworks-brands {
+        font-size: 0.65em;
+    }
+}
+
+@media (max-width: 643px) {
+    .howitworks-title-div {
+        padding-left: 20%;
+    }
+   
+}
+
+
+@media (max-width: 620px) {
+    .howitworks-child-c2-content {
+        padding-left: 50px;
+    }
+   
+}
+
+
+@media (max-width: 600px) {
+    .howitworks-title-div {
+        padding-left: 100px;
+    }
+}
+
+@media (max-width: 575px) {
+    .howitworks-title-div {
+        padding-left: 0px;
+        padding-top: 20px;
+    }
+}
+
+/* This is where the sections wrap */
+@media (max-width: 580px) {
+    .howitworks-child-inner {
+        flex-wrap: wrap-reverse;
+    }
+
+    .howitworks-child-c2 {
+        flex-basis: 100%;
+    }
+
+    .howitworks-child-c1 {
+        flex-basis: 100%;
+    }
+
+    .howitworks-child-c1-c1 {
+        justify-content: center;
+    }
+
+    .howitworks-child-c1-c2 {
+        justify-content: center;
+    }
+
+    .hiw-dress3 {
+        display: none;
+    }
+
+    .hiw-dress6 {
+        display: none;
+    }
+
+    .hiw-full-lady {
+        height: 300px;
+    }
+}
+
+
+
+@media (max-width: 515px) {
+    .howitworks-title-div {
+        padding-left: 0px;
+    }
 }
