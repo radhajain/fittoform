@@ -4,14 +4,14 @@ import whiteArrow from '../../assets/images/white-arrow.png';
 import whiteTick from '../../assets/images/white-tick.png';
 
 function validate(heightft, heightin, size, bra) {
-    var braRe = /[0-9][0-9]\w\w?\w?/;
+    var braRe = /[0-9][0-9][a-zA-Z][a-zA-Z]?[a-zA-Z]?/;
     heightft = parseInt(heightft, 10);
     heightin = parseInt(heightin, 10);
     size = parseInt(size, 10);
     return {
         heightft: ( (heightft.length === 0) || !Number.isInteger(heightft) || (heightft < 4) || (heightft > 6)),
         heightin: ( (heightin.length === 0) || !Number.isInteger(heightin) || heightin < 0 || heightin > 12),
-        size: ( (size.length === 0) || !Number.isInteger(size) || (size % 2 === 1) ),
+        size: ( (size.length === 0) || !Number.isInteger(size) || (size % 2 === 1) || size > 16),
         bra: ( (bra.length === 0) || !bra.match(braRe))
     };
 }
@@ -97,6 +97,7 @@ class Search extends Component {
           },
         };
         this.braToBust = {
+            "AA": 1,
             "A" : 1,
             "B" : 2,
             "C" : 3,
@@ -121,10 +122,13 @@ class Search extends Component {
         this.goToSize = this.goToSize.bind(this);
         this.goToBra = this.goToBra.bind(this);
         this.goToSizing = this.goToSizing.bind(this);
+        this.getErrorObj = this.getErrorObj.bind(this);
         this.sizingRef = React.createRef();
         this.sizeRef = React.createRef();
         this.braRef = React.createRef();
+
       }
+
     
     modifyWaist(val) {
     this.setState({modifyWaist: val});
@@ -185,34 +189,60 @@ class Search extends Component {
         });
         if (e.key === 'Enter') {
             e.preventDefault();
-            this.refs.heightin.focus();
+            var errors = this.getErrorObj();
+            if (!errors['heightft']) {
+                this.refs.heightininput.focus();
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, heightft: true },
+                });
+            }
+            
         }
       }
 
-    _handleKeyPressHeightIn(e) {
+    _handleKeyPressHeightIn = (field) => (e) => {
+        console.log("key pressed")
         this.setState({
             touched: { ...this.state.touched, heightin: true },
         });
         if (e.key === 'Enter') {
             e.preventDefault();
-            this.sizeRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-            });
-            this.refs.sizeinput.focus();
+            var errors = this.getErrorObj();
+            console.log(errors)
+            if (!errors[field]) {
+                this.sizeRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                });
+                this.refs.sizeinput.focus();
+            } else {
+                console.log("errors were found");
+                this.setState({
+                    focused: { ...this.state.focused, [field]: true },
+                });
+            }
         }
     }
 
-    _handleKeyPressSize(e) {
+    _handleKeyPressSize = (field) => (e) =>{
         this.setState({
             touched: { ...this.state.touched, size: true },
         });
         if (e.key === 'Enter') {
-            this.braRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-            });
-            this.refs.brainput.focus();
+            e.preventDefault();
+            var errors = this.getErrorObj();
+            if (!errors[field]) {
+                this.braRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                });
+                this.refs.brainput.focus();
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, [field]: true },
+                });
+            }
         }
     }
 
@@ -223,10 +253,18 @@ class Search extends Component {
         });
         if (e.key === 'Enter') {
             e.preventDefault();
-            this.sizingRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-            })
+            var errors = this.getErrorObj();
+            if (!errors['bra']) {
+                this.sizingRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                })
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, bra: true },
+                });
+            }
+            
         }   
     }
 
@@ -270,14 +308,19 @@ class Search extends Component {
         const errors = validate(this.state.heightft, this.state.heightin, this.state.size, this.state.bra);
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         return !isDisabled;
-      }  
+      } 
+      
+      getErrorObj() {
+        const errors = validate(this.state.heightft, this.state.heightin, this.state.size, this.state.bra);
+        return errors;
+      }
 
     render() {
         //TODO -- OK button and autoscroll, page indicators of question, not allowed to scroll until enter info
         //Detect when user clicks off
         //On mobile scroll to middle of page
         //don't allow invalid inputs
-        const errors = validate(this.state.heightft, this.state.heightin, this.state.size, this.state.bra);
+        const errors = this.getErrorObj();
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         const shouldMarkError = (field) => {
             const hasError = errors[field];
@@ -303,6 +346,7 @@ class Search extends Component {
                     <input
                       name="heightft"
                       type="number"
+                      ref="heightftinput"
                       onBlur={this.handleBlur('heightft')}
                       className={shouldMarkError('heightft') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressHeightFt}
@@ -313,11 +357,11 @@ class Search extends Component {
                       type="number"
                       onBlur={this.handleBlur('heightin')}
                       className={shouldMarkError('heightin') ? "search-input-error" : "search-input"}
-                      onKeyPress={this._handleKeyPressHeightIn}
-                      ref="heightin"
+                      onKeyPress={this._handleKeyPressHeightIn('heightin') }
+                      ref="heightininput"
                       onChange={this.handleInputChange} />
                     inches tall.
-                    {/* <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p> */}
+                    <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p>
                   </label>
                   <div className={shouldShowNext('height') ? "search-nextDiv" : "search-nextDiv-hide"} >
                     <button className="search-ok-btn" onClick={this.goToSize}>
@@ -342,7 +386,7 @@ class Search extends Component {
                       ref="sizeinput"
                       onBlur={this.handleBlur('size')}
                       className={shouldMarkError('size') ? "search-input-error" : "search-input"}
-                      onKeyPress={this._handleKeyPressSize}
+                      onKeyPress={this._handleKeyPressSize('size')}
                       onChange={this.handleInputChange} />
                       .
                       <p className={shouldMarkError('size') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i></p>
