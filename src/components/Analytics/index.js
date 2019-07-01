@@ -19,14 +19,17 @@ class Analytics extends React.Component {
             hips: null,
             bust: null,
         }
+        console.log(CONST.ages);
         this.addNamesToReviews = this.addNamesToReviews.bind(this);
         this.getMeasurements = this.getMeasurements.bind(this);
         this.getNumChildren = this.getNumChildren.bind(this);
+        this.addAgesToReview = this.addAgesToReview.bind(this);
     }
 
     componentDidMount() {
         // Run this function when we need to add names to reviews
-        // this.addNamesToReviews();
+        this.addNamesToReviews();
+        // this.addAgesToReview();
         this.getMeasurements().then((mmts) => {
             this.setState({
                 measurements: mmts[0],
@@ -52,6 +55,21 @@ class Analytics extends React.Component {
         });
 
     }
+
+    addAgesToReview() {
+        var reviewsRef = firebase.database().ref('reviews');
+        reviewsRef.once('value').then((snapshot) => {
+            snapshot.forEach((child) => {
+                child.ref.child('userInfo').update({
+                    age: CONST.ages[getRandomInt(0, 10)]
+                })
+            });
+        });
+    }
+
+
+
+
 
     getNumChildren(dressGroupID) {
         var dressGroupRef = firebase.database().ref('dressGroup');
