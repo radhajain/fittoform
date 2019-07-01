@@ -24,15 +24,16 @@ class SignInFormBase extends Component {
       email: '',
       password: '',
       error: null,
-      authUser: false,
-      uid: '',
-      name: '',
-      height: '',
-      waist: '',
-      hips: '',
-      bust: '',
-      size: '',
-      bra: '',
+      user: {
+        name: '',
+        height: '',
+        waist: '',
+        hips: '',
+        bust: '',
+        size: '',
+        bra: '',
+      }
+      
     };
   }
 
@@ -40,10 +41,9 @@ class SignInFormBase extends Component {
   // Sets the user values
   getUserData(uid) {
     let UserRef = firebase.database().ref('users').child(`${uid}`);
-    UserRef.once('value').then((snapshot) => {
+    return UserRef.once('value').then((snapshot) => {
       let user = snapshot.val();
-      console.log(user);
-      this.setState({
+      var userInfo = {
         bra: user.bra,
         bust: user.bust,
         name: user.name,
@@ -51,48 +51,51 @@ class SignInFormBase extends Component {
         hips: user.hips,
         size: user.size,
         waist: user.waist,
-      });
+        id: uid,
+      }
+      return userInfo;
+      
     });
   }  
 
   componentDidMount() {
     this.listener = firebase.auth().onAuthStateChanged(
       authUser => {
-        authUser ? this.setState({authUser: true}): this.setState({authUser:null});
-        authUser ? this.setState({uid: authUser.uid}) : this.setState({uid: null});
-        authUser ? this.getUserData(this.state.uid) : this.setState({name : null})
+        if (authUser) {
+            this.getUserData(authUser.uid).then((userInfo) => {
+              this.setState({
+                user: userInfo
+              }, () => {
+                console.log(this.state);
+                this.props.history.push({
+                  pathname: '/results',
+                  state: {
+                      height: this.state.user.height,
+                      waist: this.state.user.waist,
+                      hips: this.state.user.hips,
+                      bra: this.state.user.bra,
+                      bust: this.state.user.bust,
+                      size: this.state.user.size,
+                      name: this.state.user.name
+                  }
+                });
+              });
+            });
+        }
       },
     );
   }
 
+
   onSubmit = event => {
-    const { email, password } = this.state;
-
-    this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        //this.setState({ ...INITIAL_STATE });
-
-        
-        this.props.history.push({
-          pathname: '/results',
-          state: {
-              height: this.state.height,
-              waist: this.state.waist,
-              hips: this.state.hips,
-              bra: this.state.bra,
-              bust: this.state.bust,
-              size: this.state.size,
-              name: this.state.name
-          }
-      });
-       
-      })
-      .catch(error => {
-        this.setState({ error });
-      });
-
     event.preventDefault();
+    const { email, password } = this.state;
+    this.props.firebase.doSignInWithEmailAndPassword(email, password).then(() => {
+      console.log("logging in...");
+    }).catch(error => {
+      this.setState({ error });
+    });
+    
   };
 
   onChange = event => {

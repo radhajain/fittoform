@@ -8,22 +8,31 @@ import { AuthUserContext, withAuthorization } from '../Session';
 import ShortLogo from '../../assets/images/one-line-logo.png';
 import firebase from 'firebase';
 
+class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-const Navigation = () => (
-  <div>
-    <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? <NavigationAuth /> : <NavigationNonAuth />
-      }
-    </AuthUserContext.Consumer>
-  </div>
-);
+  render() {
+    return(
+      <div>
+        <AuthUserContext.Consumer>
+          {authUser =>
+            authUser ? <NavigationAuth /> : <NavigationNonAuth />
+          }
+        </AuthUserContext.Consumer>
+      </div>
+    );
+  }
+}
+
 
 
 
 class NavigationAuth extends React.Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.state = {
       authUser: false,
       uid: '',
@@ -36,7 +45,6 @@ class NavigationAuth extends React.Component {
     let UserRef = firebase.database().ref('users').child(`${uid}`);
     UserRef.once('value').then((snapshot) => {
       let user = snapshot.val();
-      console.log(user);
       this.setState({
         name: user.name,
       });
@@ -44,6 +52,8 @@ class NavigationAuth extends React.Component {
   }  
 
   componentDidMount() {
+    this._isMounted = true;
+    if (this._isMounted) {
     this.listener = firebase.auth().onAuthStateChanged(
       authUser => {
         authUser ? this.setState({authUser: true}): this.setState({authUser:null});
@@ -51,6 +61,11 @@ class NavigationAuth extends React.Component {
         authUser ? this.getUserData(this.state.uid) : this.setState({name : null})
       },
     );
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   getFirstName(name) {
