@@ -502,7 +502,7 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p class="message">Not registered? <Link to={ROUTES.SIGN_UP}>Create an account</Link></p>
+  <p className="message">Not registered? <Link to={ROUTES.SIGN_UP}>Create an account</Link></p>
 );
 
 const SignUpForm = compose(
