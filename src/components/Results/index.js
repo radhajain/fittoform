@@ -5,7 +5,6 @@ import './Results.css';
 import { FooterSmall } from '../Footer';
 import downArrow from '../../assets/images/menu-hide-arrow.png';
 import ProgressiveImage from 'react-progressive-image';
-import imgPlaceholder from '../../assets/images/img-placeholder.jpg';
 
 
 
@@ -231,7 +230,7 @@ class Results extends Component {
                                 return (
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
                                         <div className={itemDivClass}>
-                                            <ProgressiveImage src={dress.img} placeholder={imgPlaceholder}>
+                                            <ProgressiveImage src={dress.img}>
                                             {(src, loading) => {
                                                 return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
                                             }}
