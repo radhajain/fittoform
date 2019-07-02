@@ -4,7 +4,7 @@ import whiteArrow from '../../assets/images/white-arrow.png';
 import whiteTick from '../../assets/images/white-tick.png';
 
 function validate(heightft, heightin, size, bra) {
-    var braRe = /[0-9][0-9][a-zA-Z][a-zA-Z]?[a-zA-Z]?/;
+    var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
     heightft = parseInt(heightft, 10);
     heightin = parseInt(heightin, 10);
     size = parseInt(size, 10);
@@ -460,7 +460,7 @@ class Search extends Component {
                 </div>
               </div>
             </div>
-            <div style={{marginTop: 100}}>
+            <div className="search-results-btn-div">
                 <button className={isDisabled ? "search-results-btn-disabled" : "search-results-btn"} onClick={this.handleSubmit} disabled={isDisabled}>
                     See dresses picked for my size
                     <img src={whiteArrow} className="search-whitearrow"/>

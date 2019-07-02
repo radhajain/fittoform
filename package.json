@@ -6,14 +6,15 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
-    "firebase": "^6.1.0",
+    "firebase": "^6.2.4",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.8.6",
     "react-https-redirect": "^1.1.0",
     "react-instagram-embed": "^1.5.0",
-    "react-router-dom": "^5.0.0",
+    "react-progressive-image": "^0.6.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "recompose": "^0.30.0"
   },
@@ -23,12 +24,11 @@
     ]
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000/",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -52,5 +52,6 @@
     "uglify-js": "^3.6.0",
     "uglify-js-brunch": "^2.10.0",
     "uglifyify": "^5.0.1"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

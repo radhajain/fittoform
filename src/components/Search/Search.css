@@ -203,6 +203,10 @@ button:focus {
 }
 
 
+.search-results-btn-div {
+    margin-top: 100px;
+}
+
 .search-results-btn {
     background-color: #E86B6A;
     color: white;
@@ -356,6 +360,20 @@ input[type=number] {
     }
     .search-bra {
         width: 110px;
+    }
+}
+
+@media (max-width: 414px) {
+    .search-results-btn-div{
+        margin-top: 50px;
+    }
+
+    .search-results-btn {
+        margin-bottom: 50px;
+    }
+
+    .search-results-btn-disabled {
+        margin-bottom: 50px;
     }
 }
 
