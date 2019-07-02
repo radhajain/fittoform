@@ -187,6 +187,7 @@
     color: black;
     font-family: 'DM Serif Display', serif;
     font-size: 2.5em;
+    padding-left: 10px;
 }
 
 .landing-second-desc {
@@ -272,6 +273,7 @@
     font-size: 2.5em;
     position: relative;
     z-index: 100;
+    padding-left: 10px;
 }
 
 .landing-fourth-desc {
