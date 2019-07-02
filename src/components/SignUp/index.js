@@ -6,6 +6,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { Link, withRouter } from 'react-router-dom';
 import whiteArrow from '../../assets/images/white-arrow.png';
+import whiteTick from '../../assets/images/white-tick.png';
 
 
 const SignUpPage = () => (
@@ -16,7 +17,7 @@ const SignUpPage = () => (
 
 
 function validate(heightft, heightin, size, bra, name, email, passwordOne, passwordTwo) {
-    var braRe = /[0-9][0-9]\w\w?\w?/;
+    var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
     var emailRe = /^.+@.+\..+$/;
     heightft = parseInt(heightft, 10);
     heightin = parseInt(heightin, 10);
@@ -24,7 +25,7 @@ function validate(heightft, heightin, size, bra, name, email, passwordOne, passw
     return {
         heightft: ( (heightft.length === 0) || !Number.isInteger(heightft) || (heightft < 4) || (heightft > 6)),
         heightin: ( (heightin.length === 0) || !Number.isInteger(heightin) || heightin < 0 || heightin > 12),
-        size: ( (size.length === 0) || !Number.isInteger(size) || (size % 2 === 1) ),
+        size: ( (size.length === 0) || !Number.isInteger(size) || (size % 2 === 1) || size > 16),
         bra: ( (bra.length === 0) || !bra.match(braRe)),
         name: (name.length === 0),
         email: (email.length === 0 || !email.match(emailRe)),
@@ -107,13 +108,28 @@ class SignUpFormBase extends Component {
           passwordTwo: '',
           error: '',
           touched: {
+            name: false,
             heightft: false,
             heightin: false,
             size: false,
-            bra: false
+            bra: false,
+            email: false,
+            passwordOne: false,
+            passwordTwo: false
+          },
+          focused: {
+            name: false,
+            heightft: false,
+            heightin: false,
+            size: false,
+            bra: false,
+            email: false,
+            passwordOne: false,
+            passwordTwo: false,
           },
         };
         this.braToBust = {
+            "AA" : 1,
             "A" : 1,
             "B" : 2,
             "C" : 3,
@@ -123,7 +139,6 @@ class SignUpFormBase extends Component {
             "E" : 6,
             "F" : 7,
             "G" : 8
-
         }
     
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -137,8 +152,18 @@ class SignUpFormBase extends Component {
         this._handleKeyPressEmail = this._handleKeyPressEmail.bind(this);
         this._handleKeyPressPw1 = this._handleKeyPressPw1.bind(this);
         this._handleKeyPressPw2 = this._handleKeyPressPw2.bind(this);
+        this.goToSize = this.goToSize.bind(this);
+        this.goToHeight = this.goToHeight.bind(this);
+        this.goToBra = this.goToBra.bind(this);
+        this.goToSize = this.goToSizing.bind(this);
+        this.goToAccount = this.goToAccount.bind(this);
+        this.getErrorObj = this.getErrorObj.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.sizingRef = React.createRef();
+        this.sizeRef = React.createRef();
+        this.braRef = React.createRef();
+        this.accountRef = React.createRef();
+        this.heightRef = React.createRef();
       }
     
       modifyWaist(val) {
@@ -148,91 +173,223 @@ class SignUpFormBase extends Component {
       modifyHips(val) {
         this.setState({modifyHips: val});
       }
+
+      goToHeight(e) {
+        e.preventDefault();
+        this.heightRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+        this.refs.heightftinput.focus();
+      }
+
+      goToSize(e) {
+        e.preventDefault();
+        this.sizeRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+        this.refs.sizeinput.focus();
+      }
+
+    goToBra(e) {
+        e.preventDefault();
+        this.braRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+        this.refs.brainput.focus();
+    }
+
+    goToSizing(e) {
+        e.preventDefault();
+        this.sizingRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+    }
+
+    goToAccount(e) {
+      e.preventDefault();
+      this.accountRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+      });
+  }
     
     
       handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-    
+        const value = event.target.value;
+        const name = event.target.name;    
         this.setState({
           [name]: value
         });
       }
 
       _handleKeyPressHeightFt(e) {
-          if (e.key === 'Enter') {
-              e.preventDefault();
-              this.refs.heightin.focus();
-          }
-      }
-
-      _handleKeyPressHeightIn(e) {
+        this.setState({
+            touched: { ...this.state.touched, heightft: true },
+        });
         if (e.key === 'Enter') {
             e.preventDefault();
-            this.refs.size.focus();
+            var errors = this.getErrorObj();
+            if (!errors['heightft']) {
+                this.refs.heightininput.focus();
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, heightft: true },
+                });
+            }
+            
+        }
+      }
+
+    _handleKeyPressHeightIn(e) {
+        console.log("key pressed")
+        this.setState({
+            touched: { ...this.state.touched, heightin: true },
+        });
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            var errors = this.getErrorObj();
+            if (!errors['heightin']) {
+                this.sizeRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                });
+                this.refs.sizeinput.focus();
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, heightin: true },
+                });
+            }
         }
     }
 
-        _handleKeyPressSize(e) {
-            if (e.key === 'Enter') {
-                this.refs.bra.focus();
-                e.preventDefault();
-                console.log("going to focus on tittys");
-                
+    _handleKeyPressSize(e){
+        this.setState({
+            touched: { ...this.state.touched, size: true },
+        });
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            var errors = this.getErrorObj();
+            if (!errors['size']) {
+                this.braRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                });
+                this.refs.brainput.focus();
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, size: true },
+                });
+            }
         }
-    }
-
-        _handleKeyPressName(e) {
-          if (e.key === 'Enter') {
-              this.refs.heightft.focus();
-              e.preventDefault();
-              
-              
-      }
-    }
-
-           _handleKeyPressEmail(e) {
-          if (e.key === 'Enter') {
-              this.refs.passwordOne.focus();
-              e.preventDefault();
-              
-              
-      }
-    }
-
-        _handleKeyPressPw1(e) {
-          if (e.key === 'Enter') {
-              this.refs.passwordTwo.focus();
-              e.preventDefault();
-              
-              
-      }
-    }
-
-        _handleKeyPressPw2(e) {
-          if (e.key === 'Enter') {
-              e.preventDefault();
-              this.handleSubmit(e);
-              
-              
-      }
     }
 
     
     _handleKeyPressBra(e) {
+        this.setState({
+            touched: { ...this.state.touched, bra: true },
+        });
         if (e.key === 'Enter') {
             e.preventDefault();
-            this.sizingRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-            })
+            var errors = this.getErrorObj();
+            if (!errors['bra']) {
+                this.sizingRef.current.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                })
+            } else {
+                this.setState({
+                    focused: { ...this.state.focused, bra: true },
+                });
+            }
+            
         }   
+    }      
+    
+    _handleKeyPressName(e) {
+      this.setState({
+        touched: { ...this.state.touched, name: true },
+      });
+      if (e.key === 'Enter') {
+          e.preventDefault();
+          var errors = this.getErrorObj();
+          if (!errors['name']) {
+              this.heightRef.current.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+              });
+              this.refs.heightftinput.focus();
+          } else {
+              this.setState({
+                  focused: { ...this.state.focused, name: true },
+              });
+          }
+          
+      }   
     }
+
+
+    _handleKeyPressEmail(e) {
+      this.setState({
+        touched: { ...this.state.touched, email: true },
+      });
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        var errors = this.getErrorObj();
+        if (!errors['email']) {
+          this.refs.passwordOne.focus();
+        } else {
+          this.setState({
+            focused: { ...this.state.focused, email: true },
+          });
+        }   
+          
+      }
+    }
+
+        _handleKeyPressPw1(e) {
+          this.setState({
+            touched: { ...this.state.touched, passwordOne: true },
+          });
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            var errors = this.getErrorObj();
+            if (!errors['passwordOne']) {
+              this.refs.passwordTwo.focus();
+            } else {
+              this.setState({
+                focused: { ...this.state.focused, passwordOne: true },
+              });
+            }   
+              
+          }
+        }
+
+        _handleKeyPressPw2(e) {
+          this.setState({
+            touched: { ...this.state.touched, passwordTwo: true },
+          });
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            var errors = this.getErrorObj();
+            if (!errors['passwordOne']) {
+              this.handleSubmit(e);
+            } else {
+              this.setState({
+                focused: { ...this.state.focused, passwordTwo: true },
+              });
+            }   
+              
+          }
+        }
+
 
     handleBlur = (field) => (evt) => {
         this.setState({
-          touched: { ...this.state.touched, [field]: true },
+          focused: { ...this.state.focused, [field]: true },
         });
     }
 
@@ -247,7 +404,6 @@ class SignUpFormBase extends Component {
         var newBust = parseInt(this.state.bra.slice(0, 2), 10) + this.braToBust[this.state.bra.substr(2)];
         var newHips = measurements.hips + this.state.modifyHips; 
         var newWaist = measurements.waist + this.state.modifyWaist; 
-        
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
@@ -291,7 +447,7 @@ class SignUpFormBase extends Component {
             console.log(error);
         });
 
-            evt.preventDefault();
+        evt.preventDefault();
       };
     
       canBeSubmitted() {
@@ -299,6 +455,11 @@ class SignUpFormBase extends Component {
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         return !isDisabled;
       }  
+
+      getErrorObj() {
+        const errors = validate(this.state.heightft, this.state.heightin, this.state.size, this.state.bra, this.state.name, this.state.email, this.state.passwordOne, this.state.passwordTwo);
+        return errors;
+      }
 
     render() {
         //TODO -- OK button and autoscroll, page indicators of question, not allowed to scroll until enter info
@@ -316,9 +477,18 @@ class SignUpFormBase extends Component {
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         const shouldMarkError = (field) => {
             const hasError = errors[field];
-            const shouldShow = this.state.touched[field];    
+            const shouldShow = this.state.focused[field];    
             return hasError ? shouldShow : false;
         };
+        const shouldShowNext = (field) => {
+          var isTouched = this.state.touched[field];
+          var hasError = errors[field];
+          if (field === 'height') {
+              isTouched = this.state.touched["heightft"] && this.state.touched["heightin"];
+              hasError = errors["heightft"] || errors["heightin"];
+          }
+          return hasError ? false : isTouched;
+      }
         return (
             <div className="signup-parent">
               <div className="signup-container-first signup-child">
@@ -337,10 +507,19 @@ class SignUpFormBase extends Component {
                         .
                         <p className={shouldMarkError('name') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter your full name.</i></p>
                     </label>
+                    <div className={shouldShowNext('name') ? "signup-nextDiv" : "signup-nextDiv-hide"} >
+                    <button className="signup-ok-btn" onClick={this.goToHeight}>
+                        <div className="signup-ok-flexWrapper">
+                            <span className="signup-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="signup-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
                   </form>
                 </div>
               </div>
-            <div className="signup-container-second signup-child">
+            <div className="signup-container-second signup-child" ref={this.heightRef}>
               <div className="signup-signup-content">
                 <form>
                   <label className="signup-signup-label">
@@ -348,7 +527,7 @@ class SignUpFormBase extends Component {
                     <input
                       name="heightft"
                       type="number"
-                      ref="heightft"
+                      ref="heightftinput"
                       onBlur={this.handleBlur('heightft')}
                       className={shouldMarkError('heightft') ? "signup-input-error" : "signup-input"}
                       onKeyPress={this._handleKeyPressHeightFt}
@@ -360,15 +539,24 @@ class SignUpFormBase extends Component {
                       onBlur={this.handleBlur('heightin')}
                       className={shouldMarkError('heightin') ? "signup-input-error" : "signup-input"}
                       onKeyPress={this._handleKeyPressHeightIn}
-                      ref="heightin"
+                      ref="heightininput"
                       onChange={this.handleInputChange} />
                     inches tall.
                     <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p>
                   </label>
+                  <div className={shouldShowNext('height') ? "signup-nextDiv" : "signup-nextDiv-hide"} >
+                    <button className="signup-ok-btn" onClick={this.goToSize}>
+                        <div className="signup-ok-flexWrapper">
+                            <span className="signup-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="signup-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
                 </form>
               </div>
           </div>
-          <div className="signup-container-third signup-child">
+          <div className="signup-container-third signup-child" ref={this.sizeRef}>
             <div className="signup-signup-content">
               <form>
                 <label className="signup-signup-label">
@@ -376,7 +564,7 @@ class SignUpFormBase extends Component {
                   <input
                     name="size"
                     type="number"
-                    ref="size"
+                    ref="sizeinput"
                     onBlur={this.handleBlur('size')}
                     className={shouldMarkError('size') ? "signup-input-error" : "signup-input"}
                     onKeyPress={this._handleKeyPressSize}
@@ -384,10 +572,19 @@ class SignUpFormBase extends Component {
                     .
                     <p className={shouldMarkError('size') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i></p>
                 </label>
+                <div className={shouldShowNext('size') ? "signup-nextDiv" : "signup-nextDiv-hide"} >
+                    <button className="signup-ok-btn" onClick={this.goToBra}>
+                        <div className="signup-ok-flexWrapper">
+                            <span className="signup-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="signup-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
               </form>
             </div>
           </div>
-          <div className="signup-container-fourth signup-child">
+          <div className="signup-container-fourth signup-child" ref={this.braRef}>
             <div className="signup-signup-content">
                 <form>
                   <label className="signup-signup-label">
@@ -395,7 +592,7 @@ class SignUpFormBase extends Component {
                     <input
                       name="bra"
                       type="text"
-                      ref="bra"
+                      ref="brainput"
                       onBlur={this.handleBlur('bra')}
                       onKeyPress={this._handleKeyPressBra}
                       className={shouldMarkError('bra') ? "signup-input-error" : "signup-input"}
@@ -404,6 +601,15 @@ class SignUpFormBase extends Component {
                       .
                       <p className={shouldMarkError('bra') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
                   </label>
+                  <div className={shouldShowNext('bra') ? "signup-nextDiv" : "signup-nextDiv-hide"} >
+                    <button className="signup-ok-btn" onClick={this.goToSizing}>
+                        <div className="signup-ok-flexWrapper">
+                            <span className="signup-ok-text">OK</span>
+                            <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                        </div>
+                    </button>
+                    <p className="signup-pressEnter"><i>press <b>ENTER</b></i></p>
+                  </div>
                 </form>
               </div>
           </div>
@@ -415,37 +621,45 @@ class SignUpFormBase extends Component {
                 <div className="signup-selector" style={{display:'block'}}>
                     <p className="signup-desc">WAIST</p>
                     <div className="signup-btn-group" >
-                    <button className={this.state.modifyWaist == 2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(2)}>Small</button>
-                    <button className={this.state.modifyWaist == 1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(1)}>Tight</button>
-                    <button className={this.state.modifyWaist == 0 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(0)}>Perfect</button>
-                    <button className={this.state.modifyWaist == -1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(-1)}>Loose</button>
-                    <button className={this.state.modifyWaist == -2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(-2)}>Large</button>
+                      <button className={this.state.modifyWaist == 2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(2)}>Small</button>
+                      <button className={this.state.modifyWaist == 1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(1)}>Tight</button>
+                      <button className={this.state.modifyWaist == 0 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(0)}>Perfect</button>
+                      <button className={this.state.modifyWaist == -1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(-1)}>Loose</button>
+                      <button className={this.state.modifyWaist == -2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyWaist(-2)}>Large</button>
                     </div>
                 </div>
                 <div className="signup-selector">
                     <p className="signup-desc">HIPS</p>
                     <div className="signup-btn-group">
-                    <button className={this.state.modifyHips == 2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(2)}>Small</button>
-                    <button className={this.state.modifyHips == 1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(1)}>Tight</button>
-                    <button className={this.state.modifyHips == 0 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(0)}>Perfect</button>
-                    <button className={this.state.modifyHips == -1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(-1)}>Loose</button>
-                    <button className={this.state.modifyHips == -2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(-2)}>Large</button>
+                      <button className={this.state.modifyHips == 2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(2)}>Small</button>
+                      <button className={this.state.modifyHips == 1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(1)}>Tight</button>
+                      <button className={this.state.modifyHips == 0 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(0)}>Perfect</button>
+                      <button className={this.state.modifyHips == -1 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(-1)}>Loose</button>
+                      <button className={this.state.modifyHips == -2 ? 'signup-size-buttons-selected' : 'signup-size-buttons'} onClick={() => this.modifyHips(-2)}>Large</button>
                     </div>
                 </div>
               </div>
             </div>
+            <div className="signup-nextDiv" style={{marginTop: 50}} >
+              <button className="signup-ok-btn" onClick={this.goToAccount}>
+                  <div className="signup-ok-flexWrapper">
+                      <span className="signup-ok-text">OK</span>
+                      <img src={whiteTick} style={{width: 16, marginLeft: 8}}/>
+                  </div>
+              </button>
             </div>
-            <div className="signup-container-sixth signup-child" style={{flexDirection: 'column'}}>
+            </div>
+            <div className="signup-container-sixth signup-child" style={{flexDirection: 'column'}} ref={this.accountRef}>
               <div className="signup-signup-content">
                 <form>
                   <div className="signup-form-div">
-                  <label className="signup-signup-label">
+                  <label className="signup-signup-label signup-label-long">
                     My email is 
                     <input
                     name="email"
                     value={email}
                     onBlur={this.handleBlur('email')}
-                    ref="email"
+                    ref="emailinput"
                     onChange={this.handleInputChange}
                     onKeyPress={this._handleKeyPressEmail}
                     type="text"
@@ -456,7 +670,7 @@ class SignUpFormBase extends Component {
                   </label>
                   </div>
                   <div className="signup-form-div">
-                  <label className="signup-signup-label">
+                  <label className="signup-signup-label signup-label-long">
                     Password:
                       <input
                       name="passwordOne"
@@ -465,14 +679,14 @@ class SignUpFormBase extends Component {
                       onChange={this.handleInputChange}
                       onKeyPress={this._handleKeyPressPw2}
                       type="password"
-                      ref="passwordOne"
+                      ref="passwordOneInput"
                       className={shouldMarkError('passwordOne') ? "signup-input-error signup-long-input" : "signup-input signup-long-input"}
                       />
                       <p className={shouldMarkError('passwordOne') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Please enter a password.</i></p>
                   </label>
                   </div>
                   <div className="signup-form-div">
-                  <label className="signup-signup-label">
+                  <label className="signup-signup-label signup-label-long">
                     Re-enter password:
                       <input
                       name="passwordTwo"
@@ -481,7 +695,7 @@ class SignUpFormBase extends Component {
                       onBlur={this.handleBlur('passwordTwo')}
                       onKeyPress={this._handleKeyPressPw2}
                       type="password"
-                      ref="passwordTwo"
+                      ref="passwordTwoInput"
                       className={shouldMarkError('passwordTwo') ? "signup-input-error signup-long-input" : "signup-input signup-long-input"}
                       />
                       <p className={shouldMarkError('passwordTwo') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Oops, your passwords don't match. Try again.</i></p>
