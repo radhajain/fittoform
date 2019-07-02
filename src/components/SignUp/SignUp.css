@@ -83,9 +83,59 @@ input[type=number]::-webkit-outer-spin-button {
     color: #FF8181;
 }
 
+
+.signup-ok-btn {
+    background-color: #E86B6A;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Raleway', sans-serif;
+    
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+    min-height: 40px;
+    transition: #E86B6A 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
+    outline: none;
+}
+
+.signup-ok-flexWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-ok-text {
+    color: white;
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.signup-pressEnter {
+    color: #D3B1B1;
+    font-size: 0.9em;
+    font-family: 'Raleway', sans-serif;
+    display: inline-block;
+    margin-left: 12px;
+}
+
+.signup-nextDiv-hide {
+    display: none;
+}
+
+.signup-nextDiv {
+    margin-top: 30px;
+}
+
+
+
+
 .signup-long-input {
     width: 450px;
-    font-size: 1em;
+    font-size: 0.85em;
 }
 
 .signup-input-error:focus {
@@ -217,6 +267,10 @@ button:focus {
     padding-left: 15px;
 }
 
+.signup-label-long {
+    font-size: 2em;
+}
+
 
 @media (max-width: 882px) {
     .signup-signup-content {
@@ -249,6 +303,10 @@ button:focus {
         color: white;
         font-size: 2em;
         
+    }
+
+    .signup-label-long {
+        font-size: 1.75em;
     }
 }
 
@@ -316,6 +374,10 @@ button:focus {
 @media (max-width: 387px) {
     .signup-signup-label {
         font-size: 1.55em;
+    }
+
+    .signup-label-long {
+        font-size: 1.25em;
     }
 
     .signup-name {
