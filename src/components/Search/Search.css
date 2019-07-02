@@ -375,10 +375,10 @@ input[type=number] {
 
 @media (max-width: 325px) {
     .search-size-buttons {
-        font-size:14px;
+        font-size:12px;
     }
 
     .search-size-buttons-selected {
-        font-size: 14px;
+        font-size: 12px;
     }
 }

@@ -4,7 +4,10 @@
   "private": true,
   "homepage": "http://thefittoform.com",
   "dependencies": {
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "firebase": "^6.1.0",
+    "path": "^0.12.7",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.8.6",
@@ -20,7 +23,7 @@
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
