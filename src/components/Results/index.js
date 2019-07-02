@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import firebase from 'firebase';
 import './Results.css';
-import { tsConstructorType } from '@babel/types';
 import { FooterSmall } from '../Footer';
 import downArrow from '../../assets/images/menu-hide-arrow.png';
+import ProgressiveImage from 'react-progressive-image';
+import imgPlaceholder from '../../assets/images/img-placeholder.jpg';
+
+
 
 class Results extends Component {
     constructor(props) {
@@ -214,6 +217,10 @@ class Results extends Component {
         var rightColClass = (
             this.state.showRecInfo ? (this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol") : "hide"
         );
+        const dominantImageColor = '#EFE5E5';
+        const placeholder = (
+            <img src="https://fittoform-landing.s3.amazonaws.com/dress-loading.gif" className={imgClassName} />
+        );
         return (
         <div>
         <div className="results-container-outer">
@@ -224,7 +231,11 @@ class Results extends Component {
                                 return (
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
                                         <div className={itemDivClass}>
-                                            <img src={dress.img} className={imgClassName}/>
+                                            <ProgressiveImage src={dress.img} placeholder={imgPlaceholder}>
+                                            {(src, loading) => {
+                                                return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                            }}
+                                            </ProgressiveImage>
                                             <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
                                             <p className="results-price">${dress.price}</p>
                                         </div>
