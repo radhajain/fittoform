@@ -460,7 +460,7 @@ class Search extends Component {
                 </div>
               </div>
             </div>
-            <div style={{marginTop: 100}}>
+            <div className="search-results-btn-div">
                 <button className={isDisabled ? "search-results-btn-disabled" : "search-results-btn"} onClick={this.handleSubmit} disabled={isDisabled}>
                     See dresses picked for my size
                     <img src={whiteArrow} className="search-whitearrow"/>
