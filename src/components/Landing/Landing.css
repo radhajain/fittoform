@@ -561,7 +561,7 @@
 
     .landing-2-rightCol {
         flex-basis: 100%;
-        background-image: url(../../assets/images/landing-2-sm.png);
+        background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-2-sm.png);
         margin-top: 0px;
     }
 

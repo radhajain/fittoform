@@ -5,14 +5,7 @@ import WhiteArrow from '../../assets/images/white-arrow.png';
 import pg2 from '../../assets/images/landing-p2.png';
 import pg2SM from '../../assets/images/landing-2-sm.png';
 import WrapImg from '../../assets/images/wrap-lady.png';
-import wrapSM from '../../assets/images/wrap-sm.jpg';
-import dress1 from '../../assets/images/landing-4-1.jpg';
-import dress2 from '../../assets/images/landing-4-2.jpg';
-import dress3 from '../../assets/images/landing-4-3.jpg';
-import dress4 from '../../assets/images/landing-4-4.jpg';
-import dress5 from '../../assets/images/landing-4-5.jpg';
-import dress6 from '../../assets/images/landing-4-6.jpg';
-import dress7 from '../../assets/images/landing-4-7.jpg';
+
 import { FooterLarge } from '../Footer';
 
 
@@ -29,7 +22,7 @@ class Landing extends React.Component {
             <div className="landing-container-intro">
                 <div className="landing-intro-hero">
                     <div className="landing-intro-content">
-                        <p className="landing-title">We try on dresses so you don't have to.</p>
+                        <p className="landing-title">We try on dresses so you don't have to</p>
                         <p className="landing-desc">It's hard to know what fits well while shopping online. We show you a curated set of dresses, recommended by real women with the same measurements as you. Buy with confidence, every time.</p>
                         <Link to='/search'>
                             <button className="landing-callToAction">
@@ -86,7 +79,7 @@ class Landing extends React.Component {
                         <p className="landing-third-desc">Brands and even items can have inconsistent sizing. Every piece on our site has been tried on by real women  who are the same size as you. We show you a curated selection of dresses that we know will make you look fantastic. </p>
                     </div>
                     <div>
-                        <img src={wrapSM} className="landing-third-sm"/>
+                        <img src="https://fittoform-landing.s3.amazonaws.com/wrap-sm%402x.jpg" className="landing-third-sm"/>
                     </div>
                 </div>
             </div>
@@ -94,15 +87,15 @@ class Landing extends React.Component {
                 <div className="landing-container-inner" style={{position: 'relative'}}>
                     <div className="landing-fourth-img-rows">
                         <div className="landing-fourth-flex-grid">
-                            <img src={dress1} className="landing-fourth-img dress1"/>
-                            <img src={dress2} className="landing-fourth-img dress2"/>
-                            <img src={dress3} className="landing-fourth-img dress3"/>
-                            <img src={dress4} className="landing-fourth-img dress4"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-1%402x.jpg" className="landing-fourth-img dress1"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-2%402x.jpg" className="landing-fourth-img dress2"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-3%402x.jpg" className="landing-fourth-img dress3"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-4%402x.jpg" className="landing-fourth-img dress4"/>
                         </div>
                         <div  className="landing-fourth-flex-grid landing-fourth-row2" style={{float: 'right', marginTop: 50}}>
-                            <img src={dress5} className="landing-fourth-img2 dress5"/>
-                            <img src={dress6} className="landing-fourth-img2 dress6"/>
-                            <img src={dress7} className="landing-fourth-img2 dress7"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-5%402x.jpg" className="landing-fourth-img2 dress5"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-6%402x.jpg" className="landing-fourth-img2 dress6"/>
+                            <img src="https://fittoform-landing.s3.amazonaws.com/landing-4-7%402x.jpg" className="landing-fourth-img2 dress7"/>
                         </div>
                         
                     </div>
