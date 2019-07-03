@@ -52,23 +52,23 @@ class Results extends Component {
     constructor(props) {
         super(props);
         console.log(this.props.location.state);
-        var dressObj = {
-            "64, 26, 35, 36": {
-                bra: "any",
-                brand: "Free People",
-                color: "Ivory",
-                dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
-                img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
-                length: "mini",
-                material: "Linen",
-                name: "FP One Verona Dress",
-                neckline: "normal",
-                occassion: "Island-Vibes, Wedding-guest, Night-out",
-                price: "128",
-                straps: "tank",
-                style: "fit-and-flare",
-            }
-        }
+        // var dressObj = {
+        //     "64, 26, 35, 36": {
+        //         bra: "any",
+        //         brand: "Free People",
+        //         color: "Ivory",
+        //         dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
+        //         img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
+        //         length: "mini",
+        //         material: "Linen",
+        //         name: "FP One Verona Dress",
+        //         neckline: "normal",
+        //         occassion: "Island-Vibes, Wedding-guest, Night-out",
+        //         price: "128",
+        //         straps: "tank",
+        //         style: "fit-and-flare",
+        //     }
+        // }
         this.state = {
             bust: this.props.location.state.bust,
             height: this.props.location.state.height,
@@ -86,7 +86,7 @@ class Results extends Component {
             dresses: [],
             nextBestDressGroupIDs: [],
             nextBestDressesIDs: [],
-            nextBestDresses: [dressObj],
+            nextBestDresses: [],
             showMoreDresses: false,
             showRecInfo: true,
         };
@@ -273,9 +273,10 @@ class Results extends Component {
         var dressesRef = firebase.database().ref('dresses');
         var allDressPromises = []
         for (var dressIDObjKey in this.state.nextBestDressesIDs) {
-            console.log(this.state.nextBestDressesIDs[dressIDObjKey]);
             allDressPromises.push(new Promise((resolve, reject) => {
                 var dressIDs = this.state.nextBestDressesIDs[dressIDObjKey].dressIDs;
+                var measurement = dressIDObjKey;
+                console.log(measurement);
                 return Promise.all(dressIDs.map(dressID => {
                     return dressesRef.child(`${dressID}`);
                 })).then((dressRefs) => {
@@ -285,7 +286,7 @@ class Results extends Component {
                     }
                     Promise.all(promises).then((dresses) => {
                         var newDressObj = {};
-                        newDressObj["measurement"] = dressIDObjKey
+                        newDressObj["measurement"] = measurement
                         newDressObj["dresses"] = dresses;
                         resolve(newDressObj);
                     })
@@ -298,6 +299,7 @@ class Results extends Component {
                 showMoreDresses: true,
             }, () => {
                 console.log(this.state);
+                console.log(this.state.nextBestDresses);
             });
         }) 
     }
@@ -365,6 +367,7 @@ class Results extends Component {
         const placeholder = (
             <img src="https://fittoform-landing.s3.amazonaws.com/dress-loading.gif" className={imgClassName} />
         );
+        
         return (
         <div>
         <div className="results-container-outer">
@@ -386,23 +389,39 @@ class Results extends Component {
                                     </div>
                                 );
                             })}
-                            {/* {this.state.nextBestDressGroupIDs.length !== 0 && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>} */}
-                            {/* EDIT THIS FUNCTION SO THAT IT IS PULLING DRESSES FOR EACH MEASUREMENT */}
-                            {/* {this.state.showMoreDresses && Object.entries(this.state.nextBestDresses).map(([key, dressObj]) => 
-                                    {dressObj.dresses.map(dress => 
-                                        <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
-                                            <div className={itemDivClass}>
-                                                <ProgressiveImage src={dress.img}>
-                                                {(src, loading) => {
-                                                    return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
-                                                }}
-                                                </ProgressiveImage>
-                                                <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
-                                                <p className="results-price">${dress.price}</p>
-                                            </div>
-                                        </div>                                    
-                                    )}
-                            )} */}
+                             {this.state.showMoreDresses && Object.entries(this.state.nextBestDresses).map(([key, dressObj]) => 
+                                <div className="results-col" onClick={() => this.goToItemView(dressObj.dresses[0], key)} key={key}>     
+                                    <div className={itemDivClass}>
+                                        <ProgressiveImage src={dressObj.dresses[0].img}>
+                                        {(src, loading) => {
+                                            return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                        }}
+                                        </ProgressiveImage>
+                                        <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
+                                        <p className="results-rating">Recommended by women with size {dressObj.measurement} </p>
+                                        <p className="results-price">${dressObj.dresses[0].price}</p>
+                                    </div>
+                                </div> 
+                                // {dressObj.dresses.map( (dress,key) => {
+                                //     console.log(dress);
+                                //     return (
+                                //         <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
+                                        
+                                //             <div className={itemDivClass}>
+                                //                 <ProgressiveImage src={dressObj.dresses[0].img}>
+                                //                 {(src, loading) => {
+                                //                     return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                //                 }}
+                                //                 </ProgressiveImage>
+                                //                 <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
+                                //                 <p className="results-price">${dress.price}</p>
+                                //             </div>
+                                //         </div> 
+                                //     );   
+                                // })}                                
+                            )}
+                            {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
+                           
                         </div>
                     </div>
                 </div>
