@@ -152,7 +152,6 @@
 }
 
 .itemView-numRating {
-    flex-basis: 20%;
     min-width: 75px;
     font-size: 1.25em;
     color: #400F23;

@@ -12,6 +12,7 @@ class Item extends Component {
     constructor(props) {
         super(props);
         this.state = this.props.location.state;
+        console.log(this.state.showMoreDresses);
         var review = {
             comment: '',
             size: '',
@@ -32,8 +33,6 @@ class Item extends Component {
         this.goToResultsView = this.goToResultsView.bind(this);
         this.getReviewsFromCache = this.getReviewsFromCache.bind(this);
         this.getReviewFromReviewID = this.getReviewFromReviewID.bind(this);
-        console.log(this.state);
-
     }
 
     getHeightStr(height) {
@@ -42,6 +41,7 @@ class Item extends Component {
         return heightFt + "'" + heightIn;
     };
 
+    //TODO: data cleanup: add all reviewIDs to the dressGroup where the dressGroupObj dressID matches dressID
     getReviewData() {
         const reviewsRef = firebase.database().ref('reviews');
         var mmts = this.state.closestMeasurements;
@@ -86,6 +86,7 @@ class Item extends Component {
         })
     }
 
+    //Helper function for getReviewsFromCache
     getReviewFromReviewID(reviewID) {
         var reviewRef = firebase.database().ref('reviews');
         return reviewRef.child(`${reviewID}`).once('value').then((snapshot) => {
@@ -96,11 +97,12 @@ class Item extends Component {
 
 
     componentDidMount() {
-        console.log("in component did mount");
-        console.log(this.props.location.state);
         if (this.props.location.state.cachedReviews) {
+            //This is if the groupDressID had a reviews object linked to it (this is the case for recent reviews)
             this.getReviewsFromCache(this.props.location.state.cachedReviews);
         } else {
+            //For the first few reviews, there is no reviews object linked to dressIDs, in which case go through all reviews and
+            // find ones that match dressID and closestMeasurements
             this.getReviewData().then(reviews => {
                 this.setState({reviews: reviews});
                 console.log(this.state);
@@ -120,6 +122,7 @@ class Item extends Component {
                 size: this.state.size,
                 name: this.state.name,
                 closestMeasurements: this.state.closestMeasurements,
+                showMoreDresses: this.state.showMoreDresses,
             }
         });
     }

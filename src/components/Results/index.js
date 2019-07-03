@@ -52,23 +52,25 @@ class Results extends Component {
     constructor(props) {
         super(props);
         console.log(this.props.location.state);
-        // var dressObj = {
-        //     "64, 26, 35, 36": {
-        //         bra: "any",
-        //         brand: "Free People",
-        //         color: "Ivory",
-        //         dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
-        //         img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
-        //         length: "mini",
-        //         material: "Linen",
-        //         name: "FP One Verona Dress",
-        //         neckline: "normal",
-        //         occassion: "Island-Vibes, Wedding-guest, Night-out",
-        //         price: "128",
-        //         straps: "tank",
-        //         style: "fit-and-flare",
-        //     }
-        // }
+        var dressObj = {
+                measurement: "64, 26, 35, 36",
+                ratings: ["10"],
+                dresses: [{
+                bra: "any",
+                brand: "Free People",
+                color: "Ivory",
+                dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
+                img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
+                length: "mini",
+                material: "Linen",
+                name: "FP One Verona Dress",
+                neckline: "normal",
+                occassion: "Island-Vibes, Wedding-guest, Night-out",
+                price: "128",
+                straps: "tank",
+                style: "fit-and-flare",
+            }]
+        }
         this.state = {
             bust: this.props.location.state.bust,
             height: this.props.location.state.height,
@@ -86,8 +88,8 @@ class Results extends Component {
             dresses: [],
             nextBestDressGroupIDs: [],
             nextBestDressesIDs: [],
-            nextBestDresses: [],
-            showMoreDresses: false,
+            nextBestDresses: [dressObj],
+            showMoreDresses: (this.props.location.state.showMoreDresses ? this.props.location.state.showMoreDresses : false),
             showRecInfo: true,
         };
         console.log(this.state);
@@ -118,6 +120,9 @@ class Results extends Component {
                 nextBestDressGroupIDs: result[3]
             }, () => {
                 this.getBestDressesID(result[1]);
+                if (this.state.showMoreDresses) {
+                    this.getNextBestDressesID();
+                }
             });
         });
         window.scrollTo(0, 0);
@@ -275,8 +280,8 @@ class Results extends Component {
         for (var dressIDObjKey in this.state.nextBestDressesIDs) {
             allDressPromises.push(new Promise((resolve, reject) => {
                 var dressIDs = this.state.nextBestDressesIDs[dressIDObjKey].dressIDs;
+                var ratings = this.state.nextBestDressesIDs[dressIDObjKey].ratings;
                 var measurement = dressIDObjKey;
-                console.log(measurement);
                 return Promise.all(dressIDs.map(dressID => {
                     return dressesRef.child(`${dressID}`);
                 })).then((dressRefs) => {
@@ -288,6 +293,7 @@ class Results extends Component {
                         var newDressObj = {};
                         newDressObj["measurement"] = measurement
                         newDressObj["dresses"] = dresses;
+                        newDressObj["ratings"] = ratings;
                         resolve(newDressObj);
                     })
                 })
@@ -326,6 +332,7 @@ class Results extends Component {
                 cachedReviews: this.state.dressReviews[key],
                 closestMeasurements: this.state.closestMeasurements,
                 dressID: dressID,
+                showMoreDresses: this.state.showMoreDresses,
             }
         });
     }
@@ -373,6 +380,7 @@ class Results extends Component {
         <div className="results-container-outer">
                 <div className={this.state.exactMatch ? "results-leftCol results-leftCol-adjust" : "results-leftCol"}>
                     <div className="results-leftCol-inner">
+  
                         <div className="results-grid">
                             {this.state.dresses.map((dress, key) => {
                                 return (
@@ -389,40 +397,32 @@ class Results extends Component {
                                     </div>
                                 );
                             })}
-                             {this.state.showMoreDresses && Object.entries(this.state.nextBestDresses).map(([key, dressObj]) => 
-                                <div className="results-col" onClick={() => this.goToItemView(dressObj.dresses[0], key)} key={key}>     
-                                    <div className={itemDivClass}>
-                                        <ProgressiveImage src={dressObj.dresses[0].img}>
-                                        {(src, loading) => {
-                                            return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
-                                        }}
-                                        </ProgressiveImage>
-                                        <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
-                                        <p className="results-rating">Recommended by women with size {dressObj.measurement} </p>
-                                        <p className="results-price">${dressObj.dresses[0].price}</p>
-                                    </div>
-                                </div> 
-                                // {dressObj.dresses.map( (dress,key) => {
-                                //     console.log(dress);
-                                //     return (
-                                //         <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
-                                        
-                                //             <div className={itemDivClass}>
-                                //                 <ProgressiveImage src={dressObj.dresses[0].img}>
-                                //                 {(src, loading) => {
-                                //                     return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
-                                //                 }}
-                                //                 </ProgressiveImage>
-                                //                 <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
-                                //                 <p className="results-price">${dress.price}</p>
-                                //             </div>
-                                //         </div> 
-                                //     );   
-                                // })}                                
-                            )}
+                            
                             {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
                            
                         </div>
+                        {this.state.showMoreDresses && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
+                            <div className="results-grid">
+                                {dressObj.dresses.map( (dress,key) => {
+                                    return (
+                                        <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
+                                        
+                                            <div className={itemDivClass}>
+                                                <ProgressiveImage src={dress.img}>
+                                                {(src, loading) => {
+                                                    return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                                }}
+                                                </ProgressiveImage>
+                                                <p className="results-rating">Rated {this.getRating(dressObj.ratings[key])}/10 by women like you</p>
+                                                <p className="results-rating">Recommended by women with size {dressObj.measurement} </p>
+                                                <p className="results-price">${dress.price}</p>
+                                            </div>
+                                        </div> 
+                                    );   
+                                })}
+                                </div>
+                                                          
+                            )}
                     </div>
                 </div>
                 <div className={rightColClass}>

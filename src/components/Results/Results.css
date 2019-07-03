@@ -28,8 +28,7 @@
 
 .results-leftCol-inner {
     height: 90%;
-    width: 90%;
-    display:flex;
+    width: 100%;
     align-items: center;
 }
 
@@ -143,8 +142,10 @@ input:focus {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
     justify-content: space-evenly;
+    margin-bottom: 300px;
 }
 
 .results-col {
