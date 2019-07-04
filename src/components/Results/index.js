@@ -113,12 +113,18 @@ class Results extends Component {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
         this.getBestDressGroupID().then(result => {
             console.log(result);
+            let nextBestDresses = result[3].map(a => a.closestMeasurements);
+            var exactMatchIdx = nextBestDresses.indexOf(result[0]);
+            if (exactMatchIdx > -1) {
+                nextBestDresses.splice(exactMatchIdx, 1);
+            }
             this.setState({
                 exactMatch: (result[2] === 0 ? true : false),
                 dressGroupID: result[1],
                 closestMeasurements: result[0],
-                nextBestDressGroupIDs: result[3]
+                nextBestDressGroupIDs: nextBestDresses
             }, () => {
+                console.log(this.state);
                 this.getBestDressesID(result[1]);
                 if (this.state.showMoreDresses) {
                     this.getNextBestDressesID();
@@ -139,7 +145,11 @@ class Results extends Component {
         e.preventDefault();
         this.refs.resultsName.blur();
     }
- 
+
+
+    //TODO: order by what measurements are most important to you on your profile (create an account)
+    // TODO: when want to edit measurements -> profile page (create an account)
+    //TODO: reviews for next best dresses 
 
     getBestDressGroupID() {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
@@ -147,20 +157,46 @@ class Results extends Component {
         var lowestDiff = Number.MAX_VALUE;
         var closestMeasurements, dressGroupID;
         var nextBestDressGroupIDs = [];
+        var nextBestDressesOpenSpaces = 9;
+        var minimumNextBestDiff = 2;
         var measurementsRef = firebase.database().ref('measurements');
         return new Promise((resolve, reject) => {
             measurementsRef.once('value').then((snapshot) => {
                 snapshot.forEach(measurement => {
                     var values = measurement.val();
-                    var heightDiff = (Math.abs(values.height - this.state.height) < 1) ? 0 : (Math.abs(values.height - this.state.height) - 1);
-                    var diffSq = Math.pow((heightDiff),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
-                    if (Math.sqrt(diffSq) < 2) {
-                        nextBestDressGroupIDs.push(values);
+                    var diffSq = Math.pow((values.height - this.state.height),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
+                    if (nextBestDressesOpenSpaces > 0 && (Math.sqrt(diffSq) < 2 )) {
+                        var dressIDObj = {};
+                        dressIDObj.diff = Math.sqrt(diffSq);
+                        dressIDObj.closestMeasurements = values;
+                        nextBestDressGroupIDs.push(dressIDObj);
+                        nextBestDressesOpenSpaces = nextBestDressesOpenSpaces - 1;
+                    } else {
+                        if (Math.sqrt(diffSq) < minimumNextBestDiff) {
+                            var dressIDObj = {};
+                            dressIDObj.diff = Math.sqrt(diffSq);
+                            dressIDObj.closestMeasurements = values;
+                            nextBestDressGroupIDs.push(dressIDObj);
+                            var newMin = Number.MAX_VALUE;
+                            var lowestIndex = 8;
+                            nextBestDressGroupIDs.forEach((dressIDObj, idx) => {
+                                if (dressIDObj.diff < newMin) {
+                                    newMin = dressIDObj.diff;
+                                    lowestIndex = idx;
+                                }
+                            });
+                            nextBestDressGroupIDs.splice(lowestIndex, 1);
+                            nextBestDressGroupIDs.forEach((dressIDObj, idx) => {
+                                if (dressIDObj.diff < newMin) {
+                                    newMin = dressIDObj.diff;
+                                }
+                            });
+                            minimumNextBestDiff = newMin;
+                            console.log(minimumNextBestDiff);
+                        }
                     }
                     if (Math.sqrt(diffSq) < lowestDiff) {
                         lowestDiff =  Math.sqrt(diffSq);
-                        console.log("updating state");
-                        console.log(lowestDiff);
                         closestMeasurements = values;
                         dressGroupID = values.dressGroupID;
                     }
@@ -263,7 +299,6 @@ class Results extends Component {
                 dressRatings.push(dress.val().rating);
                 // console.log(dress.val().reviews);
                 if (dress.val().reviews) {
-                    console.log("found review");
                     dressReviews.push(dress.val().reviews);
                 }
             })
