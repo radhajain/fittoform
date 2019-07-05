@@ -84,7 +84,7 @@ class Results extends Component {
             dressesIDObjs: [],
             //DressIDObjs: {dresses: [dress, dress ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
             dressesObjs: [dressObj],
-            dressesLoaded: false,
+            nextBestDressesLoaded: false,
             exactMatch: false,
             //NextBestDressGroupIDs: [{ concatMtms: "64, 27, 24, 38", dressGroupID: "dressGroupID", height: , waist: , hips: , bust: },  ...]
             nextBestDressGroupIDs: [],
@@ -153,7 +153,8 @@ class Results extends Component {
 
     //TODO: order by what measurements are most important to you on your profile (create an account)
     // TODO: when want to edit measurements -> profile page (create an account)
-    //TODO: reviews for next best dresses 
+    //TODO: maintain scroll position when come from item view
+    //TODO: similarity limit on whether to show more items? 
 
     getBestDressGroupID() {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
@@ -351,6 +352,7 @@ class Results extends Component {
         Promise.all(allDressPromises).then((nextBestDresses) => {
             this.setState({
                 nextBestDresses: nextBestDresses,
+                nextBestDressesLoaded: true,
                 showMoreDresses: true,
             }, () => {
                 console.log(this.state);
@@ -364,7 +366,7 @@ class Results extends Component {
 
 
 
-    goToItemView(selectedItem, key, dressID, dressMeasurements, reviewIDs) {
+    goToItemView(selectedItem, key, dressID, dressMeasurements, reviewIDs, dressGroupID) {
         this.props.history.push({
             pathname: '/item',
             state: {
@@ -375,7 +377,7 @@ class Results extends Component {
                 bust: this.state.bust,
                 size: this.state.size,
                 name: this.state.name,
-                // dressGroupID: this.state.dressGroupID,
+                dressGroupID: dressGroupID,
                 cachedReviews: reviewIDs,
                 dressMeasurements: dressMeasurements,
                 closestMeasurements: this.state.closestMeasurements,
@@ -448,7 +450,7 @@ class Results extends Component {
                         <div className="results-grid">
                             {this.state.dressesObjs.dresses && this.state.dressesObjs.dresses.map((dress, key) => {
                                 return (
-                                    <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.dressesIDObjs.dressIDs[key], this.state.closestMeasurements, this.state.dressesObjs.reviewIDs[key])} key={key}>
+                                    <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.dressesIDObjs.dressIDs[key], this.state.closestMeasurements, this.state.dressesObjs.reviewIDs[key], this.state.dressGroupID)} key={key}>
                                         <div className={itemDivClass}>
                                             <ProgressiveImage src={dress.img}>
                                             {(src, loading) => {
@@ -465,22 +467,22 @@ class Results extends Component {
 
                         {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
 
-                        {this.state.showMoreDresses && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
-                            <div className="results-grid">
+                        {this.state.showMoreDresses && this.state.nextBestDressesLoaded && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
+                            <div className="results-grid" key={keyDressObj}>
                                 {dressObj.dresses.map( (dress,key) => {
                                     return (
-                                        <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key])} key={key}>
+                                        <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
                                         
-                                            <div className={itemDivClass}>
+                                            {dress && <div className={itemDivClass} key={key}>
                                                 <ProgressiveImage src={dress.img}>
-                                                {(src, loading) => {
-                                                    return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
-                                                }}
+                                                    {(src, loading) => {
+                                                        return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                                    }}
                                                 </ProgressiveImage>
                                                 <p className="results-rating">Rated {this.getRating(dressObj.ratings[key])}/10 by women like you</p>
                                                 <p className="results-rating">Recommended by women with size {dressObj.measurement} </p>
                                                 <p className="results-price">${dress.price}</p>
-                                            </div>
+                                            </div>}
                                         </div> 
                                     );   
                                 })}

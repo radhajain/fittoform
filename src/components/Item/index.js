@@ -57,7 +57,7 @@ class Item extends Component {
                             comment: data.val().comment,
                             size: data.val().size,
                             rating: data.val().rating,
-                            name: data.val().userInfo.name,
+                            dressID: this.state.dressID,
                             id: data.key,
                             userInfo: data.val().userInfo
                         };
@@ -118,7 +118,18 @@ class Item extends Component {
                         reviewsFound: true
                     });
                 }
+                var dressGroupRef = firebase.database().ref('dressGroup');
+                dressGroupRef.child(this.state.dressGroupID).update({
+                    reviews: {}
+                });
 
+                for (var review of reviews) {
+                    // console.log(review.id);
+                    var newReviewRef = dressGroupRef.child(this.state.dressGroupID).child('reviews').push();
+                    newReviewRef.set({
+                        reviewID: review.id
+                    });
+                }
                 console.log(this.state);
             });
         }
