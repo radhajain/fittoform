@@ -118,19 +118,18 @@ class Item extends Component {
                         reviewsFound: true
                     });
                 }
-                var dressGroupRef = firebase.database().ref('dressGroup');
-                dressGroupRef.child(this.state.dressGroupID).update({
-                    reviews: {}
-                });
+                //Updates the firebase database with the found review, so that in the future it will be cached
+                // var dressGroupRef = firebase.database().ref('dressGroup').child(this.state.dressGroupID).orderByChild('dressID').equalTo(this.state.dressID);
+                // dressGroupRef.update({
+                //     reviews: {}
+                // });
 
-                for (var review of reviews) {
-                    // console.log(review.id);
-                    var newReviewRef = dressGroupRef.child(this.state.dressGroupID).child('reviews').push();
-                    newReviewRef.set({
-                        reviewID: review.id
-                    });
-                }
-                console.log(this.state);
+                // for (var review of reviews) {
+                //     var newReviewRef = dressGroupRef.push();
+                //     newReviewRef.set({
+                //         reviewID: review.id
+                //     });
+                // }
             });
         }
        
