@@ -56,20 +56,20 @@ class Results extends Component {
                 measurement: "64, 26, 35, 36",
                 ratings: ["10"],
                 dresses: [{
-                bra: "any",
-                brand: "Free People",
-                color: "Ivory",
-                dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
-                img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
-                length: "mini",
-                material: "Linen",
-                name: "FP One Verona Dress",
-                neckline: "normal",
-                occassion: "Island-Vibes, Wedding-guest, Night-out",
-                price: "128",
-                straps: "tank",
-                style: "fit-and-flare",
-            }]
+                    bra: "any",
+                    brand: "Free People",
+                    color: "Ivory",
+                    dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
+                    img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
+                    length: "mini",
+                    material: "Linen",
+                    name: "FP One Verona Dress",
+                    neckline: "normal",
+                    occassion: "Island-Vibes, Wedding-guest, Night-out",
+                    price: "128",
+                    straps: "tank",
+                    style: "fit-and-flare",
+                }]
         }
         this.state = {
             bust: this.props.location.state.bust,
@@ -80,14 +80,17 @@ class Results extends Component {
             name: (this.props.location.state.name ? this.props.location.state.name : ''),
             closestMeasurements: '',
             dressGroupID: null,
-            dressesIDs: [],
-            dressRatings: [],
-            dressReviews: [],
+            //DressIDObjs: {dressIDs: [dressID, dressID ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
+            dressesIDObjs: [],
+            //DressIDObjs: {dresses: [dress, dress ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
+            dressesObjs: [dressObj],
             dressesLoaded: false,
             exactMatch: false,
-            dresses: [],
+            //NextBestDressGroupIDs: [{ concatMtms: "64, 27, 24, 38", dressGroupID: "dressGroupID", height: , waist: , hips: , bust: },  ...]
             nextBestDressGroupIDs: [],
+            //NextBestDressesIDs: [ {measurement: "64, 27, 24, 38", dressIDs: [dressID, dressID...], ratings: [10, 9...], reviewIDs: [firebaseKey: {reviewID: "reviewID"}]}, ... ]
             nextBestDressesIDs: [],
+            //NextBestDresses: [{ measurement: "64, 27, 24, 38 ,dresses: [dressID, dressID...], ratings: [10, 9...], reviewIDs: [firebaseKey: {reviewID: "reviewID"}]}]
             nextBestDresses: [dressObj],
             showMoreDresses: (this.props.location.state.showMoreDresses ? this.props.location.state.showMoreDresses : false),
             showRecInfo: true,
@@ -113,6 +116,7 @@ class Results extends Component {
         // this.getBestDressGroupID().then(() => this.getBestDressesID());
         this.getBestDressGroupID().then(result => {
             console.log(result);
+            result[3].sort((a, b) => (a.diff > b.diff) ? 1 : -1)
             let nextBestDresses = result[3].map(a => a.closestMeasurements);
             var exactMatchIdx = nextBestDresses.indexOf(result[0]);
             if (exactMatchIdx > -1) {
@@ -158,14 +162,14 @@ class Results extends Component {
         var closestMeasurements, dressGroupID;
         var nextBestDressGroupIDs = [];
         var nextBestDressesOpenSpaces = 9;
-        var minimumNextBestDiff = 2;
+        var minimumNextBestDiff = Number.MAX_VALUE;
         var measurementsRef = firebase.database().ref('measurements');
         return new Promise((resolve, reject) => {
             measurementsRef.once('value').then((snapshot) => {
                 snapshot.forEach(measurement => {
                     var values = measurement.val();
                     var diffSq = Math.pow((values.height - this.state.height),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
-                    if (nextBestDressesOpenSpaces > 0 && (Math.sqrt(diffSq) < 2 )) {
+                    if (nextBestDressesOpenSpaces > 0) {
                         var dressIDObj = {diff: Math.sqrt(diffSq), closestMeasurements : values};
                         nextBestDressGroupIDs.push(dressIDObj);
                         nextBestDressesOpenSpaces = nextBestDressesOpenSpaces - 1;
@@ -206,12 +210,13 @@ class Results extends Component {
     getBestDressesID(dressGroupID) {
         this.getBestDressesIDHelper(dressGroupID).then((results) => {
             this.setState({
-                dressRatings: results[1],
-                dressesIDs: results[0],
-                dressReviews: (results[2].length === 0 ? [] : results[2])
-            }, () => {
+                // dressRatings: results[1],
+                // dressesIDs: results[0],
+                // dressReviews: (results[2].length === 0 ? [] : results[2])
+                dressesIDObjs: results
+            }, () => { 
                 console.log(this.state);
-                this.getDressesInfo(results[0]);
+                this.getDressesInfo(results);
             });
         })
     }
@@ -231,15 +236,18 @@ class Results extends Component {
                     dressReviews.push(dress.val().reviews);
                 }
             })
-            return [dressIDs, dressRatings, dressReviews]
+            return ({dressIDs: dressIDs, ratings: dressRatings, reviewIDs: dressReviews})
             
         });
     }
 
     //Using the dressesIDs, gets information about each dress
-    getDressesInfo(dressesIDs) {
+    getDressesInfo(dressesIDObjs) {
         var dressesRef = firebase.database().ref('dresses');
-        return Promise.all(dressesIDs.map(dressID => {
+        var dressIDs = dressesIDObjs.dressIDs;
+        var ratings = dressesIDObjs.ratings;
+        var reviewIDs = dressesIDObjs.reviewIDs;
+        return Promise.all(dressIDs.map(dressID => {
             return dressesRef.child(`${dressID}`);
         })).then((dressRefs) => {
             var promises = []
@@ -247,7 +255,13 @@ class Results extends Component {
                 promises.push(this.getDressInfo(dressRef));
             }
             Promise.all(promises).then((dresses) => {
-                this.setState({dresses: dresses});
+                var newDressObj = {};
+                newDressObj["dresses"] = dresses;
+                newDressObj["ratings"] = ratings;
+                newDressObj["reviewIDs"] = reviewIDs;
+                this.setState({dressesObjs: newDressObj}, () => {
+                    console.log(this.state);
+                });
             })
         })
     }
@@ -267,19 +281,21 @@ class Results extends Component {
 
     getNextBestDressesID() {
         var promises = []
+        var nextBestDressesIDs = []
         for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
             promises.push(
                 this.getNextBestDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then((dresses) => {
-                    this.setState({
-                        nextBestDressesIDs: { 
-                            ...this.state.nextBestDressesIDs, [dresses[1]]: dresses[0][0]  
-                        },
-                      });
+                    nextBestDressesIDs.push(dresses);
                 })
             );
         }
         Promise.all(promises).then((dresses) => {
-            this.getNextBestDressesInfo();
+            this.setState({
+                nextBestDressesIDs: nextBestDressesIDs
+            }, () => {
+                console.log(this.state.nextBestDressesIDs);
+            });
+            this.getNextBestDressesInfo(nextBestDressesIDs);
         })
     }
 
@@ -298,21 +314,22 @@ class Results extends Component {
                     dressReviews.push(dress.val().reviews);
                 }
             })
-            return [[{dressIDs: dressIDs, ratings: dressRatings, reviewIDs: dressReviews}], [concat]]
+            return ({dressIDs: dressIDs, ratings: dressRatings, reviewIDs: dressReviews, measurement: concat})
             
         });
     }
 
 
     //Using the dressesIDs, gets information about each dress
-    getNextBestDressesInfo() {
+    getNextBestDressesInfo(nextBestDressesIDs) {
         var dressesRef = firebase.database().ref('dresses');
         var allDressPromises = []
-        for (var dressIDObjKey in this.state.nextBestDressesIDs) {
+        for (var dressIDObjKey in nextBestDressesIDs) {
             allDressPromises.push(new Promise((resolve, reject) => {
-                var dressIDs = this.state.nextBestDressesIDs[dressIDObjKey].dressIDs;
-                var ratings = this.state.nextBestDressesIDs[dressIDObjKey].ratings;
-                var measurement = dressIDObjKey;
+                var dressIDs = nextBestDressesIDs[dressIDObjKey].dressIDs;
+                var ratings = nextBestDressesIDs[dressIDObjKey].ratings;
+                var reviewIDs = nextBestDressesIDs[dressIDObjKey].reviewIDs;
+                var measurement = nextBestDressesIDs[dressIDObjKey].measurement;
                 return Promise.all(dressIDs.map(dressID => {
                     return dressesRef.child(`${dressID}`);
                 })).then((dressRefs) => {
@@ -325,6 +342,7 @@ class Results extends Component {
                         newDressObj["measurement"] = measurement
                         newDressObj["dresses"] = dresses;
                         newDressObj["ratings"] = ratings;
+                        newDressObj["reviewIDs"] = reviewIDs;
                         resolve(newDressObj);
                     })
                 })
@@ -336,7 +354,6 @@ class Results extends Component {
                 showMoreDresses: true,
             }, () => {
                 console.log(this.state);
-                console.log(this.state.nextBestDresses);
             });
         }) 
     }
@@ -347,8 +364,7 @@ class Results extends Component {
 
 
 
-    goToItemView(selectedItem, key) {
-        var dressID = this.state.dressesIDs[key];
+    goToItemView(selectedItem, key, dressID, dressMeasurements, reviewIDs) {
         this.props.history.push({
             pathname: '/item',
             state: {
@@ -359,13 +375,31 @@ class Results extends Component {
                 bust: this.state.bust,
                 size: this.state.size,
                 name: this.state.name,
-                dressGroupID: this.state.dressGroupID,
-                cachedReviews: this.state.dressReviews[key],
+                // dressGroupID: this.state.dressGroupID,
+                cachedReviews: reviewIDs,
+                dressMeasurements: dressMeasurements,
                 closestMeasurements: this.state.closestMeasurements,
                 dressID: dressID,
                 showMoreDresses: this.state.showMoreDresses,
             }
         });
+    }
+
+    getMeasurementsFromConcat(concat) {
+        var mmtArr = concat.split(',');
+        var height = mmtArr[0].trim();
+        var waist = mmtArr[1].trim();
+        var bust = mmtArr[2].trim();
+        var hips = mmtArr[3].trim();
+        var measurementsObj = {
+            concatMtms: concat,
+            height: height,
+            waist: waist,
+            hips: hips,
+            bust: bust
+        }
+        console.log(measurementsObj);
+        return measurementsObj;
     }
 
     getHeightStr() {
@@ -396,8 +430,8 @@ class Results extends Component {
 
 
     render() {
-        const imgClassName = (this.state.dresses.length === 1 ? "results-img-single" : "results-img");
-        const itemDivClass = (this.state.dresses.length === 1 ? "results-item-div" : "results-item-div results-item-div-multiple");
+        const imgClassName = (this.state.dressesObjs.length === 1 ? "results-img-single" : "results-img");
+        const itemDivClass = (this.state.dressesObjs.length === 1 ? "results-item-div" : "results-item-div results-item-div-multiple");
         var rightColClass = (
             this.state.showRecInfo ? (this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol") : "hide"
         );
@@ -412,30 +446,30 @@ class Results extends Component {
                     <div className="results-leftCol-inner">
   
                         <div className="results-grid">
-                            {this.state.dresses.map((dress, key) => {
+                            {this.state.dressesObjs.dresses && this.state.dressesObjs.dresses.map((dress, key) => {
                                 return (
-                                    <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
+                                    <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.dressesIDObjs.dressIDs[key], this.state.closestMeasurements, this.state.dressesObjs.reviewIDs[key])} key={key}>
                                         <div className={itemDivClass}>
                                             <ProgressiveImage src={dress.img}>
                                             {(src, loading) => {
                                                 return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
                                             }}
                                             </ProgressiveImage>
-                                            <p className="results-rating">Rated {this.getRating(this.state.dressRatings[key])}/10 by women like you</p>
+                                            <p className="results-rating">Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by women like you</p>
                                             <p className="results-price">${dress.price}</p>
                                         </div>
                                     </div>
                                 );
                             })}
-                            
-                            {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
-                           
                         </div>
+
+                        {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
+
                         {this.state.showMoreDresses && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
                             <div className="results-grid">
                                 {dressObj.dresses.map( (dress,key) => {
                                     return (
-                                        <div className="results-col" onClick={() => this.goToItemView(dress, key)} key={key}>
+                                        <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key])} key={key}>
                                         
                                             <div className={itemDivClass}>
                                                 <ProgressiveImage src={dress.img}>
