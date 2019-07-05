@@ -166,16 +166,12 @@ class Results extends Component {
                     var values = measurement.val();
                     var diffSq = Math.pow((values.height - this.state.height),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
                     if (nextBestDressesOpenSpaces > 0 && (Math.sqrt(diffSq) < 2 )) {
-                        var dressIDObj = {};
-                        dressIDObj.diff = Math.sqrt(diffSq);
-                        dressIDObj.closestMeasurements = values;
+                        var dressIDObj = {diff: Math.sqrt(diffSq), closestMeasurements : values};
                         nextBestDressGroupIDs.push(dressIDObj);
                         nextBestDressesOpenSpaces = nextBestDressesOpenSpaces - 1;
                     } else {
                         if (Math.sqrt(diffSq) < minimumNextBestDiff) {
-                            var dressIDObj = {};
-                            dressIDObj.diff = Math.sqrt(diffSq);
-                            dressIDObj.closestMeasurements = values;
+                            var dressIDObj = {diff: Math.sqrt(diffSq), closestMeasurements : values};
                             nextBestDressGroupIDs.push(dressIDObj);
                             var newMin = Number.MAX_VALUE;
                             var lowestIndex = 8;
@@ -405,7 +401,6 @@ class Results extends Component {
         var rightColClass = (
             this.state.showRecInfo ? (this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol") : "hide"
         );
-        const dominantImageColor = '#EFE5E5';
         const placeholder = (
             <img src="https://fittoform-landing.s3.amazonaws.com/dress-loading.gif" className={imgClassName} />
         );
