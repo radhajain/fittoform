@@ -83,7 +83,7 @@ class Results extends Component {
             //DressIDObjs: {dressIDs: [dressID, dressID ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
             dressesIDObjs: [],
             //DressIDObjs: {dresses: [dress, dress ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
-            dressesObjs: [dressObj],
+            dressesObjs: dressObj,
             nextBestDressesLoaded: false,
             exactMatch: false,
             //NextBestDressGroupIDs: [{ concatMtms: "64, 27, 24, 38", dressGroupID: "dressGroupID", height: , waist: , hips: , bust: },  ...]
@@ -211,9 +211,6 @@ class Results extends Component {
     getBestDressesID(dressGroupID) {
         this.getBestDressesIDHelper(dressGroupID).then((results) => {
             this.setState({
-                // dressRatings: results[1],
-                // dressesIDs: results[0],
-                // dressReviews: (results[2].length === 0 ? [] : results[2])
                 dressesIDObjs: results
             }, () => { 
                 console.log(this.state);
@@ -432,8 +429,10 @@ class Results extends Component {
 
 
     render() {
-        const imgClassName = (this.state.dressesObjs.length === 1 ? "results-img-single" : "results-img");
-        const itemDivClass = (this.state.dressesObjs.length === 1 ? "results-item-div" : "results-item-div results-item-div-multiple");
+        var imgClassName = (dresses) => {
+            return (dresses.length === 1 ? "results-img-single" : "results-img");
+        };
+        const itemDivClass = (this.state.dressesObjs.dresses.length === 1 ? "results-item-div" : "results-item-div results-item-div-multiple");
         var rightColClass = (
             this.state.showRecInfo ? (this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol") : "hide"
         );
@@ -454,7 +453,7 @@ class Results extends Component {
                                         <div className={itemDivClass}>
                                             <ProgressiveImage src={dress.img}>
                                             {(src, loading) => {
-                                                return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                                return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName(this.state.dressesObjs.dresses)}/>;
                                             }}
                                             </ProgressiveImage>
                                             <p className="results-rating">Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by women like you</p>
@@ -476,7 +475,7 @@ class Results extends Component {
                                             {dress && <div className={itemDivClass} key={key}>
                                                 <ProgressiveImage src={dress.img}>
                                                     {(src, loading) => {
-                                                        return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName}/>;
+                                                        return loading ? placeholder : <img src={src} alt="dress image" className={imgClassName(dressObj.dresses)}/>;
                                                     }}
                                                 </ProgressiveImage>
                                                 <p className="results-rating">Rated {this.getRating(dressObj.ratings[key])}/10 by women like you</p>
