@@ -94,6 +94,7 @@ class Results extends Component {
             nextBestDresses: [dressObj],
             showMoreDresses: (this.props.location.state.showMoreDresses ? this.props.location.state.showMoreDresses : false),
             showRecInfo: true,
+            currMeasurements: '',
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -110,10 +111,23 @@ class Results extends Component {
         this.getNextBestDressesIDHelper = this.getNextBestDressesIDHelper.bind(this);
         this.getNextBestDressesInfo = this.getNextBestDressesInfo.bind(this);
         this.dismissRecommendationPanel = this.dismissRecommendationPanel.bind(this);
+        this.isElementInViewport = this.isElementInViewport.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
+        this.getRecommendedStr = this.getRecommendedStr.bind(this);
+    }
+
+    isElementInViewport(el) {
+        if (!el) return false;
+        var rect =  el.getBoundingClientRect();
+        return (
+            // rect.top >= 300 && rect.bottom <= window.innerHeight
+            rect.top < 300 && rect.bottom > 300
+        )
     }
 
     componentDidMount() {
-        // this.getBestDressGroupID().then(() => this.getBestDressesID());
+
+        window.addEventListener('scroll', this.handleScroll);
         this.getBestDressGroupID().then(result => {
             console.log(result);
             result[3].sort((a, b) => (a.diff > b.diff) ? 1 : -1)
@@ -126,6 +140,7 @@ class Results extends Component {
                 exactMatch: (result[2] === 0 ? true : false),
                 dressGroupID: result[1],
                 closestMeasurements: result[0],
+                currMeasurements: result[0],
                 nextBestDressGroupIDs: nextBestDresses
             }, () => {
                 console.log(this.state);
@@ -137,6 +152,37 @@ class Results extends Component {
         });
         window.scrollTo(0, 0);
     }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+
+    //Make cleaner
+    handleScroll() {
+        for (var i = 0; i < 10; i++) {
+            var currPage = document.getElementById(i);
+            if (this.isElementInViewport(currPage)) {
+                console.log("element in viewport" + i);
+                if (i === 0) {
+                    this.setState({
+                        currMeasurements: this.state.closestMeasurements
+                    });
+                } else {
+                    if (this.state.currMeasurements !== this.state.nextBestDressGroupIDs[i-1]) {
+                        this.setState({
+                            currMeasurements: this.state.nextBestDressGroupIDs[i-1]
+                        });
+                        console.log('the number of the current div is:' + i);
+                        console.log('curr measurements is: ' + this.state.nextBestDressGroupIDs[i-1].concatMtms);      
+                    }
+                }
+            }
+        }
+
+    }
+
+
 
     handleInput(e) {
         e.preventDefault();
@@ -163,14 +209,14 @@ class Results extends Component {
         var closestMeasurements, dressGroupID;
         var nextBestDressGroupIDs = [];
         var nextBestDressesOpenSpaces = 9;
-        var minimumNextBestDiff = Number.MAX_VALUE;
+        var minimumNextBestDiff = 3;
         var measurementsRef = firebase.database().ref('measurements');
         return new Promise((resolve, reject) => {
             measurementsRef.once('value').then((snapshot) => {
                 snapshot.forEach(measurement => {
                     var values = measurement.val();
                     var diffSq = Math.pow((values.height - this.state.height),2) + Math.pow((values.waist - this.state.waist),2) + Math.pow((values.bust - this.state.bust),2) + Math.pow((values.hips - this.state.hips),2);
-                    if (nextBestDressesOpenSpaces > 0) {
+                    if (nextBestDressesOpenSpaces > 0 && Math.sqrt(diffSq) < 3) {
                         var dressIDObj = {diff: Math.sqrt(diffSq), closestMeasurements : values};
                         nextBestDressGroupIDs.push(dressIDObj);
                         nextBestDressesOpenSpaces = nextBestDressesOpenSpaces - 1;
@@ -401,9 +447,9 @@ class Results extends Component {
         return measurementsObj;
     }
 
-    getHeightStr() {
-        var heightFt = Math.floor(this.state.height / 12);
-        var heightIn = this.state.height % 12;
+    getHeightStr(height) {
+        var heightFt = Math.floor(height / 12);
+        var heightIn = height % 12;
         return heightFt + "'" + heightIn;
     };
 
@@ -427,6 +473,10 @@ class Results extends Component {
         return name;
     }
 
+    getRecommendedStr() {
+        return ("Recommended by other women that are " + this.getHeightStr(this.state.currMeasurements.height) + ", bust " + this.state.currMeasurements.bust + ", waist: " + this.state.currMeasurements.waist + ", hips: " + this.state.currMeasurements.hips);
+    }
+
 
     render() {
         var imgClassName = (dresses) => {
@@ -446,7 +496,7 @@ class Results extends Component {
                 <div className={this.state.exactMatch ? "results-leftCol results-leftCol-adjust" : "results-leftCol"}>
                     <div className="results-leftCol-inner">
   
-                        <div className="results-grid">
+                        <div className="results-grid" id="0">
                             {this.state.dressesObjs.dresses && this.state.dressesObjs.dresses.map((dress, key) => {
                                 return (
                                     <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.dressesIDObjs.dressIDs[key], this.state.closestMeasurements, this.state.dressesObjs.reviewIDs[key], this.state.dressGroupID)} key={key}>
@@ -467,7 +517,7 @@ class Results extends Component {
                         {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
 
                         {this.state.showMoreDresses && this.state.nextBestDressesLoaded && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
-                            <div className="results-grid" key={keyDressObj}>
+                            <div className="results-grid results-margin-top" key={keyDressObj} id={parseInt(keyDressObj,10) + 1}>
                                 {dressObj.dresses.map( (dress,key) => {
                                     return (
                                         <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
@@ -514,7 +564,7 @@ class Results extends Component {
                                 <div className="results-menu-hide-div">
                                     <img src={downArrow} className="results-menu-hide-arrow" onClick={this.dismissRecommendationPanel}/>
                                 </div>
-                                {this.state.closestMeasurements && <p className="results-text">Recommended by other women that are {this.getHeightStr(this.state.closestMeasurements.height)}, bust {this.state.closestMeasurements.bust}, waist: {this.state.closestMeasurements.waist}, hips: {this.state.closestMeasurements.hips}</p>}
+                                {this.state.closestMeasurements && <p className="results-text">{this.getRecommendedStr()} </p>}
                                 <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                                 {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
                             </div>

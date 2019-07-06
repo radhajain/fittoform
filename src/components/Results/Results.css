@@ -141,11 +141,15 @@ input:focus {
 .results-grid {
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
+    min-height: calc(100vh - 150px);
     padding-left: 15px;
     padding-right: 15px;
     justify-content: space-evenly;
-    margin-bottom: 300px;
+    /* margin-bottom: 300px; */
+}
+
+.results-margin-top {
+    margin-top: 300px;
 }
 
 .results-col {
