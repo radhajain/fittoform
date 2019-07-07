@@ -26,7 +26,7 @@ class Landing extends React.Component {
                         <p className="landing-desc">It's hard to know what fits well while shopping online. We show you a curated set of dresses, recommended by real women with the same measurements as you. Buy with confidence, every time.</p>
                         <Link to='/search'>
                             <button className="landing-callToAction">
-                                Find your perfect dress
+                                Try it out
                                 <img src={WhiteArrow} className="landing-whitearrow"/>
                             </button>
                         </Link>
@@ -61,7 +61,7 @@ class Landing extends React.Component {
                         <div className="landing-2-leftCol"> 
                             <div className="landing-2-content">
                                 <p className="landing-second-title">Clothes look best when they fit.</p>
-                                <p className="landing-second-desc">You look like a million bucks when the dress fits just right. There’s a perfect dress for everyone, and we’re here to help you find it.</p>
+                                <p className="landing-second-desc">There’s a perfect dress for everyone, and we’re here to help you find it.</p>
                             </div>
                         </div>
                         <div className="landing-2-rightCol">
@@ -76,7 +76,7 @@ class Landing extends React.Component {
                 <div className="landing-container-inner" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)', height: '80%', zIndex: 100, position: 'relative'}}>
                     <div className="landing-third-content"> 
                         <p className="landing-third-title">Women like you have tried on these dresses.</p>
-                        <p className="landing-third-desc">Brands and even items can have inconsistent sizing. Every piece on our site has been tried on by real women  who are the same size as you. We show you a curated selection of dresses that we know will make you look fantastic. </p>
+                        <p className="landing-third-desc">Brands can have inconsistent sizing. Every piece on our site has been tried on by real women who are the same size as you. We show you a curated selection of dresses that we know will make you look fantastic. </p>
                     </div>
                     <div>
                         <img src="https://fittoform-landing.s3.amazonaws.com/wrap-sm%402x.jpg" className="landing-third-sm"/>
@@ -101,7 +101,7 @@ class Landing extends React.Component {
                     </div>
                     <div className="landing-fourth-content"> 
                         <p className="landing-fourth-title">You're the stylist.</p>
-                        <p className="landing-fourth-desc">No commitments, no subscriptions, no fees.  We give you the tools to find the pieces and styles you want - and the knowledge that they will flatter you. </p>
+                        <p className="landing-fourth-desc">No subscriptions, no fees.  We give you the tools to find the pieces and styles you want - and the knowledge that they will flatter you. </p>
                         <Link to='/search'>
                             <button className="landing-callToAction">
                                 Try it out
