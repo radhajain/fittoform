@@ -396,6 +396,7 @@ input[type=number] {
         flex-wrap: wrap;
         min-width: unset;
         justify-content: space-evenly;
+        width: 80%;
     }
     .search-btn-group {
         text-align: center;
@@ -406,6 +407,12 @@ input[type=number] {
         flex-basis: 70%;
         text-align: center;
         padding-top: 50px;
+    }
+    .search-size-buttons {
+        font-size:0.95em;
+    }
+    .search-size-buttons-selected {
+        font-size: 0.95em;
     }
 }
 
