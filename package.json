@@ -7,6 +7,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "firebase": "^6.2.4",
+    "firebase-bolt": "^0.8.4",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
@@ -24,7 +25,7 @@
     ]
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
