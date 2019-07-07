@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter , Link} from 'react-router-dom';
 import './Navigation.css';
 import SignOutButton from '../SignOut';
 import SignInLink from '../SignIn';
@@ -98,15 +98,25 @@ class NavigationAuth extends React.Component {
             </Link>
           </div>
             <div className="nav-c2">
-              <Link to={ROUTES.LANDING} className="nav-logo-center"> 
-                <img src={ShortLogo} style={{height: 30}} /> 
+              <Link to={{
+                pathname: '/results',
+                state: {
+                  height: this.state.height,
+                  waist: this.state.waist,
+                  hips: this.state.hips,
+                  bra: this.state.bra,
+                  bust: this.state.bust,
+                  size: this.state.size,
+                  name: this.state.name
+                }}}>
+                <img src={ShortLogo} style={{height: 30}}  /> 
               </Link>
             </div>
       <div className="nav-c3">
-            <div class="dropdown">
-          <button class="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
+            <div className="dropdown">
+          <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
           <img src={WhiteArrow} className="nav-whitearrow"/>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">Your Profile</Link>
             <hr></hr>
             <SignOutButton />
