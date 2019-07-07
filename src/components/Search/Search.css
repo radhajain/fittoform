@@ -388,13 +388,24 @@ input[type=number] {
 @media (max-width: 375px) {
     .search-search-label {
         font-size: 1.55em;
-        padding-top: 30px;
+        padding-top: 100px;
     }
     .search-size-box {
         padding-left:35px;
         padding-right: 35px;
         flex-wrap: wrap;
         min-width: unset;
+        justify-content: space-evenly;
+    }
+    .search-btn-group {
+        text-align: center;
+        flex-direction: row;
+        justify-content: space-evenly;
+    } 
+    .search-selector {
+        flex-basis: 70%;
+        text-align: center;
+        padding-top: 50px;
     }
 }
 
