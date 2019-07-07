@@ -53,22 +53,22 @@ class Results extends Component {
         super(props);
         console.log(this.props.location.state);
         var dressObj = {
-                measurement: "64, 26, 35, 36",
-                ratings: ["10"],
+                measurement: "",
+                ratings: [],
                 dresses: [{
-                    bra: "any",
-                    brand: "Free People",
-                    color: "Ivory",
-                    dressLink: "https://www.freepeople.com/shop/fp-one-verona-dress/",
-                    img: "https://s7d5.scene7.com/is/image/FreePeople/50878875_011_a?$a15-pdp-detail-shot$&hei=900&qlt=80&fit=constrain",
-                    length: "mini",
-                    material: "Linen",
-                    name: "FP One Verona Dress",
-                    neckline: "normal",
-                    occassion: "Island-Vibes, Wedding-guest, Night-out",
-                    price: "128",
-                    straps: "tank",
-                    style: "fit-and-flare",
+                    bra: "",
+                    brand: "",
+                    color: "",
+                    dressLink: "",
+                    img: "",
+                    length: "",
+                    material: "",
+                    name: "",
+                    neckline: "",
+                    occassion: "",
+                    price: "",
+                    straps: "",
+                    style: "",
                 }]
         }
         this.state = {
@@ -200,7 +200,7 @@ class Results extends Component {
     //TODO: order by what measurements are most important to you on your profile (create an account)
     // TODO: when want to edit measurements -> profile page (create an account)
     //TODO: maintain scroll position when come from item view
-    //TODO: similarity limit on whether to show more items? 
+    //TODO: show difference between current and future
 
     getBestDressGroupID() {
         //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements 
@@ -399,6 +399,8 @@ class Results extends Component {
                 showMoreDresses: true,
             }, () => {
                 console.log(this.state);
+                var firstPage = document.getElementById(1);
+                 firstPage.scrollIntoView({behavior: 'smooth'});
             });
         }) 
     }
@@ -513,14 +515,15 @@ class Results extends Component {
                                 );
                             })}
                         </div>
-
-                        {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && <button onClick={this.getNextBestDressesID}>Load More Dresses</button>}
-
+                        {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && 
+                        <div className="results-loadMore-btn-div">
+                             <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>Load near perfect matches </button>
+                        </div>}
                         {this.state.showMoreDresses && this.state.nextBestDressesLoaded && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
                             <div className="results-grid results-margin-top" key={keyDressObj} id={parseInt(keyDressObj,10) + 1}>
-                                {dressObj.dresses.map( (dress,key) => {
+                                {dressObj.dresses.map((dress,key) => {
                                     return (
-                                        <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
+                                        dress && <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
                                         
                                             {dress && <div className={itemDivClass} key={key}>
                                                 <ProgressiveImage src={dress.img}>
@@ -529,10 +532,9 @@ class Results extends Component {
                                                     }}
                                                 </ProgressiveImage>
                                                 <p className="results-rating">Rated {this.getRating(dressObj.ratings[key])}/10 by women like you</p>
-                                                <p className="results-rating">Recommended by women with size {dressObj.measurement} </p>
                                                 <p className="results-price">${dress.price}</p>
                                             </div>}
-                                        </div> 
+                                        </div>
                                     );   
                                 })}
                                 </div>

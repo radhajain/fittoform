@@ -136,7 +136,24 @@ input:focus {
     opacity: 1;
 }
 
+.results-loadMore-btn {
+    background-color: #E86B6A;
+    border-radius: 3px;
+    color: white;
+    font-size: 1em;
+    padding: 12px 25px;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
 
+.results-loadMore-btn-div {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
 
 .results-grid {
     display: flex;
@@ -328,7 +345,14 @@ input:focus {
 @media (max-width: 540px) {
     .results-container-outer {
         flex-wrap: wrap;
+        padding-bottom: 190px;
     }
+
+    .results-loadMore-btn-div {
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+
     .results-leftCol {
         flex-basis: 100%;
         height: calc(100% - 120px);
