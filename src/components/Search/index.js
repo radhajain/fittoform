@@ -192,6 +192,7 @@ class Search extends Component {
             } else {
                 this.setState({
                     focused: { ...this.state.focused, heightft: true },
+                    touched: { ...this.state.touched, heightin: true },
                 });
             }
             
