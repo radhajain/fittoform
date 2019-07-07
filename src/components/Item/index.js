@@ -147,6 +147,7 @@ class Item extends Component {
                 name: this.state.name,
                 closestMeasurements: this.state.closestMeasurements,
                 showMoreDresses: this.state.showMoreDresses,
+                fromItem: true,
             }
         });
     }
@@ -168,16 +169,18 @@ class Item extends Component {
                                     </button>
                                     <p className="itemView-item-title">{this.state.item.name}</p>
                                 </div>
-                                <a href={this.state.item.dressLink} style={{display: "table-cell"}} target="_blank">
-                                <button className="itemView-shop-btn">SHOP</button>
-                                </a>
+                                <a href={this.state.item.dressLink} style={{display: "table-cell", width: '100%'}} target="_blank">
+                                    <button className="itemView-shop-btn">SHOP</button>
+                            </a>
+
                             </div>
-                            <p className="itemView-item-brand" style={{marginTop: 0}}>{this.state.item.brand}</p>
-                            <p className="itemView-item-brand">Available in {this.state.item.color}</p>
+                            <p className="itemView-item-price">${this.state.item.price}</p>
                             {this.state.reviewsFound && 
                                 <p className="itemView-item-size">Recommended size: {this.state.reviews[0].size}</p>
                             }
-                            <p className="itemView-item-price">${this.state.item.price}</p>
+                            <p className="itemView-item-brand">Available <span style={{textTransform: 'lowercase'}}>in {this.state.item.color}</span></p>
+                            <p className="itemView-item-brand" style={{marginTop: 0}}>{this.state.item.brand}</p>
+
 
 
                             {/* { isSaved(this.selectedItem.name)

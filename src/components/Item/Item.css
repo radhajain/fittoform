@@ -40,10 +40,9 @@
 .itemView-titleBtn-div {
     display: flex;
     justify-content: space-between; 
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
     margin-top: 30px;
 }
 
@@ -152,6 +151,7 @@
 }
 
 .itemView-numRating {
+
     min-width: 75px;
     font-size: 1.25em;
     color: #400F23;

@@ -78,6 +78,7 @@ class Results extends Component {
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
             name: (this.props.location.state.name ? this.props.location.state.name : ''),
+            fromItem: (this.props.location.state.fromItem ? this.props.location.state.fromItem : false),
             closestMeasurements: '',
             dressGroupID: null,
             //DressIDObjs: {dressIDs: [dressID, dressID ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
@@ -163,7 +164,6 @@ class Results extends Component {
         for (var i = 0; i < 10; i++) {
             var currPage = document.getElementById(i);
             if (this.isElementInViewport(currPage)) {
-                console.log("element in viewport" + i);
                 if (i === 0) {
                     this.setState({
                         currMeasurements: this.state.closestMeasurements
@@ -173,8 +173,6 @@ class Results extends Component {
                         this.setState({
                             currMeasurements: this.state.nextBestDressGroupIDs[i-1]
                         });
-                        console.log('the number of the current div is:' + i);
-                        console.log('curr measurements is: ' + this.state.nextBestDressGroupIDs[i-1].concatMtms);      
                     }
                 }
             }
@@ -275,7 +273,6 @@ class Results extends Component {
             snapshot.forEach(dress => {
                 dressIDs.push(dress.val().dress);
                 dressRatings.push(dress.val().rating);
-                // console.log(dress.val().reviews);
                 if (dress.val().reviews) {
                     dressReviews.push(dress.val().reviews);
                 }
@@ -336,8 +333,6 @@ class Results extends Component {
         Promise.all(promises).then((dresses) => {
             this.setState({
                 nextBestDressesIDs: nextBestDressesIDs
-            }, () => {
-                console.log(this.state.nextBestDressesIDs);
             });
             this.getNextBestDressesInfo(nextBestDressesIDs);
         })
@@ -353,7 +348,6 @@ class Results extends Component {
             snapshot.forEach(dress => {
                 dressIDs.push(dress.val().dress);
                 dressRatings.push(dress.val().rating);
-                // console.log(dress.val().reviews);
                 if (dress.val().reviews) {
                     dressReviews.push(dress.val().reviews);
                 }
@@ -399,8 +393,10 @@ class Results extends Component {
                 showMoreDresses: true,
             }, () => {
                 console.log(this.state);
-                var firstPage = document.getElementById(1);
-                 firstPage.scrollIntoView({behavior: 'smooth'});
+                if (!this.state.fromItem) {
+                    var firstPage = document.getElementById(1);
+                    firstPage.scrollIntoView({behavior: 'smooth'});
+                }
             });
         }) 
     }
