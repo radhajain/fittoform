@@ -388,6 +388,13 @@ input[type=number] {
 @media (max-width: 387px) {
     .search-search-label {
         font-size: 1.55em;
+        padding-top: 30px;
+    }
+    .search-size-box {
+        padding-left:35px;
+        padding-right: 35px;
+        flex-wrap: wrap;
+        min-width: unset;
     }
 }
 
