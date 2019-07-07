@@ -385,7 +385,7 @@ input[type=number] {
 }
 
 
-@media (max-width: 387px) {
+@media (max-width: 375px) {
     .search-search-label {
         font-size: 1.55em;
         padding-top: 30px;
