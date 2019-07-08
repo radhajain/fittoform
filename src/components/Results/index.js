@@ -5,52 +5,14 @@ import './Results.css';
 import { FooterSmall } from '../Footer';
 import downArrow from '../../assets/images/menu-hide-arrow.png';
 import ProgressiveImage from 'react-progressive-image';
-
-
-// class EditMeasurements extends Component {
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <p>Create an account to edit your measurements</p>
-//                 <form className="login-form" onSubmit={this.onSubmit} >
-//                     <input 
-//                     name="name"
-//                     value={name}
-//                     onChange={this.onChange}
-//                     type="text" 
-//                     placeholder="username"/>
-//                     <input 
-//                     name="email"
-//                     value={email}
-//                     onChange={this.onChange}
-//                     type="text" 
-//                     placeholder="username"/>
-//                     <input 
-//                     name="password"
-//                     value={password}
-//                     onChange={this.onChange}
-//                     type="password" 
-//                     placeholder="password"/>
-//                     <PasswordForgetLink />
-//                     <button disabled={isInvalid} type="submit" >login</button>
-//                     {error && <p>{error.message}</p>}
-//                     <SignUpLink />
-//                 </form>
-//             </div>
-
-//         );
-//     }
-// }
+import Modal from '../Modal';
 
 
 
 class Results extends Component {
     constructor(props) {
         super(props);
+        this._isMounted = false;
         var dressObj = {
                 measurement: "",
                 ratings: [],
@@ -76,7 +38,10 @@ class Results extends Component {
             hips: this.props.location.state.hips,
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
-            name: (this.props.location.state.name ? this.props.location.state.name : ''),
+            bra: this.props.location.state.bra,
+            authUser: false,
+            uid: null,
+            name: (this.props.location.state.name ? this.props.location.state.name : ''), //TODO: Also for auth user
             fromItem: (this.props.location.state.fromItem ? this.props.location.state.fromItem : false),
             closestMeasurements: '',
             dressGroupID: null,
@@ -96,6 +61,7 @@ class Results extends Component {
             showRecInfo: true,
             currMeasurements: '',
             seenDresses: [],
+            isModalShowing: false,
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -115,20 +81,84 @@ class Results extends Component {
         this.isElementInViewport = this.isElementInViewport.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
         this.getRecommendedStr = this.getRecommendedStr.bind(this);
+        this.openModalHandler = this.openModalHandler.bind(this);
+        this.closeModalHandler = this.closeModalHandler.bind(this);
+        this.createAccount = this.createAccount.bind(this);
     }
+
+    openModalHandler = () => {
+        //if auth user then go to account
+        if (this.state.authUser) {
+            this.props.history.push({
+                pathname: '/account'
+            });
+        } else {
+            this.setState({
+                isModalShowing: true
+            });
+        }
+        
+    }
+
+    closeModalHandler = () => {
+        this.setState({
+            isModalShowing: false
+        });
+    }
+
+    createAccount = (name, email, password) => {
+        console.log("account being created!");
+        console.log(name + ", " + email + ", " + password);
+        this.closeModalHandler();
+        const { bust, height, size, waist, hips, bra } = this.state;
+        this.props.firebase
+        .doCreateUserWithEmailAndPassword(email, password)
+        .then(authUser => {
+            // Create a user in your Firebase realtime database
+            return this.props.firebase
+            .user(authUser.user.uid)
+            .set({
+                email: email,
+                name: name,
+                height: height,
+                waist: waist,
+                bust: bust,
+                hips: hips,
+                size: size,
+                bra: bra
+            });
+        })
+        .then(authUser => {
+            this.props.history.push({
+                pathname: '/account'
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
 
     isElementInViewport(el) {
         if (!el) return false;
         var rect =  el.getBoundingClientRect();
         return (
-            // rect.top >= 300 && rect.bottom <= window.innerHeight
             rect.top < 150 && rect.bottom > 150
         )
     }
 
     componentDidMount() {
-
-        window.addEventListener('scroll', this.handleScroll);
+        this._isMounted = true;
+        if (this._isMounted) {
+            this.listener = firebase.auth().onAuthStateChanged(
+                authUser => {
+                    authUser ? this.setState({authUser: true}): this.setState({authUser:null});
+                    authUser ? this.setState({uid: authUser.uid}) : this.setState({uid: null});
+                },
+            );
+            window.addEventListener('scroll', this.handleScroll);
+        }
+       
         this.getBestDressGroupID().then(result => {
             result[3].sort((a, b) => (a.diff > b.diff) ? 1 : -1)
             let nextBestDresses = result[3].map(a => a.closestMeasurements);
@@ -154,6 +184,7 @@ class Results extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
+        this._isMounted = false;
     }
 
 
@@ -496,7 +527,12 @@ class Results extends Component {
         <div className="results-container-outer">
                 <div className={this.state.exactMatch ? "results-leftCol results-leftCol-adjust" : "results-leftCol"}>
                     <div className="results-leftCol-inner">
-  
+                        <Modal
+                            className="modal"
+                            show={this.state.isModalShowing}
+                            close={this.closeModalHandler}
+                            createAccount={this.createAccount}>
+                        </Modal>
                         <div className="results-grid" id="0">
                             {this.state.dressesObjs.dresses && this.state.dressesObjs.dresses.map((dress, key) => {
                                 return (
@@ -516,7 +552,7 @@ class Results extends Component {
                         </div>
                         {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && 
                         <div className="results-loadMore-btn-div">
-                             <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>Load near perfect matches </button>
+                             <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>Show near perfect matches </button>
                         </div>}
                         {this.state.showMoreDresses && this.state.nextBestDressesLoaded && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
                             dressObj.dresses.length > 0 && <div className="results-grid results-margin-top" key={keyDressObj} id={parseInt(keyDressObj,10) + 1}>
@@ -566,7 +602,7 @@ class Results extends Component {
                                     <img src={downArrow} className="results-menu-hide-arrow" onClick={this.dismissRecommendationPanel}/>
                                 </div>
                                 {this.state.closestMeasurements && <p className="results-text">{this.getRecommendedStr()} </p>}
-                                <p className="results-text-small"><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
+                                <p className="results-text-small" onClick={this.openModalHandler} style={{cursor: 'pointer'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                                 {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
                             </div>
                         </div>
