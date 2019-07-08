@@ -5,14 +5,77 @@ import WhiteArrow from '../../assets/images/white-arrow.png';
 import pg2 from '../../assets/images/landing-p2.png';
 import pg2SM from '../../assets/images/landing-2-sm.png';
 import WrapImg from '../../assets/images/wrap-lady.png';
-
+import firebase from 'firebase';
+import { AuthUserContext, withAuthorization } from '../Session';
 import { FooterLarge } from '../Footer';
 
 
 class Landing extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { 
+        email: '',
+        password: '',
+        error: null,
+        user: {
+          name: '',
+          height: '',
+          waist: '',
+          hips: '',
+          bust: '',
+          size: '',
+          bra: '',
+        }
+    };
    }
+
+   // Sets the user values
+  getUserData(uid) {
+    let UserRef = firebase.database().ref('users').child(`${uid}`);
+    return UserRef.once('value').then((snapshot) => {
+      let user = snapshot.val();
+      var userInfo = {
+        bra: user.bra,
+        bust: user.bust,
+        name: user.name,
+        height: user.height,
+        hips: user.hips,
+        size: user.size,
+        waist: user.waist,
+        id: uid,
+      }
+      return userInfo;
+      
+    });
+  }  
+
+  componentDidMount() {
+    this.listener = firebase.auth().onAuthStateChanged(
+      authUser => {
+        if (authUser) {
+            this.getUserData(authUser.uid).then((userInfo) => {
+              this.setState({
+                user: userInfo
+              }, () => {
+                console.log(this.state);
+                this.props.history.push({
+                  pathname: '/results',
+                  state: {
+                      height: this.state.user.height,
+                      waist: this.state.user.waist,
+                      hips: this.state.user.hips,
+                      bra: this.state.user.bra,
+                      bust: this.state.user.bust,
+                      size: this.state.user.size,
+                      name: this.state.user.name
+                  }
+                });
+              });
+            });
+        }
+      },
+    );
+  }
 
 
   render() {
