@@ -19,6 +19,7 @@
     flex: 0 0 60%;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .itemView-c1-text {
