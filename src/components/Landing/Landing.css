@@ -450,6 +450,10 @@
 @media (max-width: 633px) {
     .landing-container-intro {
         background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-bkg.jpg);
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .landing-howitworks-box {

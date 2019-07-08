@@ -51,7 +51,6 @@ import ProgressiveImage from 'react-progressive-image';
 class Results extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.location.state);
         var dressObj = {
                 measurement: "",
                 ratings: [],
@@ -96,6 +95,7 @@ class Results extends Component {
             showMoreDresses: (this.props.location.state.showMoreDresses ? this.props.location.state.showMoreDresses : false),
             showRecInfo: true,
             currMeasurements: '',
+            seenDresses: [],
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -122,7 +122,7 @@ class Results extends Component {
         var rect =  el.getBoundingClientRect();
         return (
             // rect.top >= 300 && rect.bottom <= window.innerHeight
-            rect.top < 300 && rect.bottom > 300
+            rect.top < 150 && rect.bottom > 150
         )
     }
 
@@ -130,7 +130,6 @@ class Results extends Component {
 
         window.addEventListener('scroll', this.handleScroll);
         this.getBestDressGroupID().then(result => {
-            console.log(result);
             result[3].sort((a, b) => (a.diff > b.diff) ? 1 : -1)
             let nextBestDresses = result[3].map(a => a.closestMeasurements);
             var exactMatchIdx = nextBestDresses.indexOf(result[0]);
@@ -144,7 +143,6 @@ class Results extends Component {
                 currMeasurements: result[0],
                 nextBestDressGroupIDs: nextBestDresses
             }, () => {
-                console.log(this.state);
                 this.getBestDressesID(result[1]);
                 if (this.state.showMoreDresses) {
                     this.getNextBestDressesID();
@@ -237,7 +235,6 @@ class Results extends Component {
                                 }
                             });
                             minimumNextBestDiff = newMin;
-                            console.log(minimumNextBestDiff);
                         }
                     }
                     if (Math.sqrt(diffSq) < lowestDiff) {
@@ -255,9 +252,9 @@ class Results extends Component {
     getBestDressesID(dressGroupID) {
         this.getBestDressesIDHelper(dressGroupID).then((results) => {
             this.setState({
-                dressesIDObjs: results
+                dressesIDObjs: results,
+                seenDresses: results.dressIDs
             }, () => { 
-                console.log(this.state);
                 this.getDressesInfo(results);
             });
         })
@@ -271,11 +268,13 @@ class Results extends Component {
             var dressRatings = [];
             var dressReviews = [];
             snapshot.forEach(dress => {
-                dressIDs.push(dress.val().dress);
-                dressRatings.push(dress.val().rating);
-                if (dress.val().reviews) {
-                    dressReviews.push(dress.val().reviews);
-                }
+                
+                    dressIDs.push(dress.val().dress);
+                    dressRatings.push(dress.val().rating);
+                    if (dress.val().reviews) {
+                        dressReviews.push(dress.val().reviews);
+                    }
+                
             })
             return ({dressIDs: dressIDs, ratings: dressRatings, reviewIDs: dressReviews})
             
@@ -339,17 +338,22 @@ class Results extends Component {
     }
 
     //Returns the dressIDs in the best dress group
-    getNextBestDressesIDHelper(dressGroupID, concat) {
+    getNextBestDressesIDHelper(dressGroupID, concat, seenDresses) {
         var dressGroupIDRef = firebase.database().ref('dressGroup').child(dressGroupID);
         return dressGroupIDRef.orderByChild('rating').once('value').then(snapshot => {
             var dressIDs = [];
             var dressRatings = [];
             var dressReviews = [];
             snapshot.forEach(dress => {
-                dressIDs.push(dress.val().dress);
-                dressRatings.push(dress.val().rating);
-                if (dress.val().reviews) {
-                    dressReviews.push(dress.val().reviews);
+                if (!this.state.seenDresses.includes(dress.val().dress)) {
+                    dressIDs.push(dress.val().dress);
+                    dressRatings.push(dress.val().rating);
+                    if (dress.val().reviews) {
+                        dressReviews.push(dress.val().reviews);
+                    }
+                    this.setState({
+                        seenDresses: [...this.state.seenDresses, dress.val().dress]
+                    })
                 }
             })
             return ({dressIDs: dressIDs, ratings: dressRatings, reviewIDs: dressReviews, measurement: concat})
@@ -441,7 +445,6 @@ class Results extends Component {
             hips: hips,
             bust: bust
         }
-        console.log(measurementsObj);
         return measurementsObj;
     }
 
@@ -485,7 +488,7 @@ class Results extends Component {
             this.state.showRecInfo ? (this.state.exactMatch ? "results-rightCol results-rightCol-adjust" : "results-rightCol") : "hide"
         );
         const placeholder = (
-            <img src="https://fittoform-landing.s3.amazonaws.com/dress-loading.gif" className={imgClassName} />
+            <img src="https://fittoform-landing.s3.amazonaws.com/dress-loading.gif" />
         );
         
         return (
@@ -516,7 +519,7 @@ class Results extends Component {
                              <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>Load near perfect matches </button>
                         </div>}
                         {this.state.showMoreDresses && this.state.nextBestDressesLoaded && Object.entries(this.state.nextBestDresses).map(([keyDressObj, dressObj]) => 
-                            <div className="results-grid results-margin-top" key={keyDressObj} id={parseInt(keyDressObj,10) + 1}>
+                            dressObj.dresses.length > 0 && <div className="results-grid results-margin-top" key={keyDressObj} id={parseInt(keyDressObj,10) + 1}>
                                 {dressObj.dresses.map((dress,key) => {
                                     return (
                                         dress && <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
