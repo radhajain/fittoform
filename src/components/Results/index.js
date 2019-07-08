@@ -147,44 +147,50 @@ class Results extends Component {
         )
     }
 
+    authlistener() {
+        this.listener = firebase.auth().onAuthStateChanged(
+            authUser => {
+                authUser ? this.setState({authUser: true}): this.setState({authUser:null});
+                authUser ? this.setState({uid: authUser.uid}) : this.setState({uid: null});
+            },
+        );
+    }
+
     componentDidMount() {
         this._isMounted = true;
+        this.authlistener = this.authlistener.bind(this);
         if (this._isMounted) {
-            this.listener = firebase.auth().onAuthStateChanged(
-                authUser => {
-                    authUser ? this.setState({authUser: true}): this.setState({authUser:null});
-                    authUser ? this.setState({uid: authUser.uid}) : this.setState({uid: null});
-                },
-            );
+            this.authlistener();
             window.addEventListener('scroll', this.handleScroll);
-        }
-       
-        this.getBestDressGroupID().then(result => {
-            result[3].sort((a, b) => (a.diff > b.diff) ? 1 : -1)
-            let nextBestDresses = result[3].map(a => a.closestMeasurements);
-            var exactMatchIdx = nextBestDresses.indexOf(result[0]);
-            if (exactMatchIdx > -1) {
-                nextBestDresses.splice(exactMatchIdx, 1);
-            }
-            this.setState({
-                exactMatch: (result[2] === 0 ? true : false),
-                dressGroupID: result[1],
-                closestMeasurements: result[0],
-                currMeasurements: result[0],
-                nextBestDressGroupIDs: nextBestDresses
-            }, () => {
-                this.getBestDressesID(result[1]);
-                if (this.state.showMoreDresses) {
-                    this.getNextBestDressesID();
+            this.getBestDressGroupID().then(result => {
+                result[3].sort((a, b) => (a.diff > b.diff) ? 1 : -1)
+                let nextBestDresses = result[3].map(a => a.closestMeasurements);
+                var exactMatchIdx = nextBestDresses.indexOf(result[0]);
+                if (exactMatchIdx > -1) {
+                    nextBestDresses.splice(exactMatchIdx, 1);
                 }
+                this.setState({
+                    exactMatch: (result[2] === 0 ? true : false),
+                    dressGroupID: result[1],
+                    closestMeasurements: result[0],
+                    currMeasurements: result[0],
+                    nextBestDressGroupIDs: nextBestDresses
+                }, () => {
+                    this.getBestDressesID(result[1]);
+                    if (this.state.showMoreDresses) {
+                        this.getNextBestDressesID();
+                    }
+                });
             });
-        });
-        window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
+        }
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
         this._isMounted = false;
+        this.listener && this.listener();
+        this.authlistener = undefined;
     }
 
 

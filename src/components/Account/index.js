@@ -185,7 +185,7 @@ class AccountPage extends React.Component {
             <hr className="account-hr"/>
             <p><span className="account-item-label">Email: </span>{this.state.email}</p>
             <Link to={ROUTES.PASSWORD_FORGET} className="account-links">Forgot your password?</Link>
-            <Link to={ROUTES.PASSWORD_CHANGE} className="account-links">Change password</Link>
+            {/* <Link to={ROUTES.PASSWORD_CHANGE} className="account-links">Change password</Link> */}
           </div>
         </div>
         <FooterSmall />

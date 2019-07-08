@@ -13,6 +13,7 @@ import { FooterLarge } from '../Footer';
 class Landing extends React.Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.state = { 
         email: '',
         password: '',
@@ -47,34 +48,48 @@ class Landing extends React.Component {
       return userInfo;
       
     });
-  }  
-
-  componentDidMount() {
+  }
+  
+  authlistener() {
     this.listener = firebase.auth().onAuthStateChanged(
-      authUser => {
-        if (authUser) {
-            this.getUserData(authUser.uid).then((userInfo) => {
-              this.setState({
-                user: userInfo
-              }, () => {
-                console.log(this.state);
-                this.props.history.push({
-                  pathname: '/results',
-                  state: {
-                      height: this.state.user.height,
-                      waist: this.state.user.waist,
-                      hips: this.state.user.hips,
-                      bra: this.state.user.bra,
-                      bust: this.state.user.bust,
-                      size: this.state.user.size,
-                      name: this.state.user.name
-                  }
+        authUser => {
+          if (authUser) {
+              this.getUserData(authUser.uid).then((userInfo) => {
+                this.setState({
+                  user: userInfo
+                }, () => {
+                  console.log(this.state);
+                  this.props.history.push({
+                    pathname: '/results',
+                    state: {
+                        height: this.state.user.height,
+                        waist: this.state.user.waist,
+                        hips: this.state.user.hips,
+                        bra: this.state.user.bra,
+                        bust: this.state.user.bust,
+                        size: this.state.user.size,
+                        name: this.state.user.name
+                    }
+                  });
                 });
               });
-            });
-        }
-      },
+          }
+        },
     );
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    this.authlistener = this.authlistener.bind(this);
+    if (this._isMounted) {
+       this.authlistener();
+    }
+  }
+
+  componentWillUnmount() {
+      this._isMounted = false;
+      this.listener && this.listener();
+     this.authlistener = undefined;
   }
 
 

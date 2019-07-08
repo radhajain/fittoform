@@ -1,12 +1,34 @@
 import React from 'react';
-
+import { Link, withRouter } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 import './SignOut.css'
 
-const SignOutButton = ({ firebase }) => (
-  <button type="button" onClick={firebase.doSignOut} className="nav-href signout-btn">
-    Sign Out
-  </button>
-);
+class SignOutButton extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
 
-export default withFirebase(SignOutButton);
+  handleSignOut(e) {
+    e.preventDefault();
+    this.props.firebase.doSignOut().then(authUser => {
+      this.props.history.push({
+        pathname: '/'
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  render() {
+    return (
+      <button type="button" onClick={this.handleSignOut} className="nav-href signout-btn">
+        Sign Out
+      </button>
+    );
+  }
+} 
+
+export default withRouter(withFirebase(SignOutButton));
