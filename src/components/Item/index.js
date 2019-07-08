@@ -148,6 +148,7 @@ class Item extends Component {
                 closestMeasurements: this.state.closestMeasurements,
                 showMoreDresses: this.state.showMoreDresses,
                 fromItem: true,
+                divID: this.state.divID,
             }
         });
     }
@@ -171,8 +172,7 @@ class Item extends Component {
                                 </div>
                                 <a href={this.state.item.dressLink} style={{display: "table-cell", width: '100%'}} target="_blank">
                                     <button className="itemView-shop-btn">SHOP</button>
-                            </a>
-
+                                </a>
                             </div>
                             <p className="itemView-item-price">${this.state.item.price}</p>
                             {this.state.reviewsFound && 

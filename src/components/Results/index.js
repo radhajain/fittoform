@@ -32,6 +32,7 @@ class Results extends Component {
                     style: "",
                 }]
         }
+        console.log(this.props.location.state);
         this.state = {
             bust: this.props.location.state.bust,
             height: this.props.location.state.height,
@@ -39,6 +40,7 @@ class Results extends Component {
             waist: this.props.location.state.waist,
             size: this.props.location.state.size,
             bra: this.props.location.state.bra,
+            divID: (this.props.location.state.divID ? this.props.location.state.divID : "00"),
             authUser: false,
             uid: null,
             name: (this.props.location.state.name ? this.props.location.state.name : ''), //TODO: Also for auth user
@@ -437,6 +439,16 @@ class Results extends Component {
                 if (!this.state.fromItem) {
                     var firstPage = document.getElementById(1);
                     firstPage.scrollIntoView({behavior: 'smooth'});
+                } else if (this.state.divID) {
+                    var currPage = document.getElementById(this.state.divID);
+                    const yCoordinate = currPage.getBoundingClientRect().top -200;
+                    window.scrollTo({
+                        top: yCoordinate,
+                    });
+                } else {
+                    window.scrollTo({
+                        top: 0
+                    })
                 }
             });
         }) 
@@ -459,6 +471,7 @@ class Results extends Component {
                 bust: this.state.bust,
                 size: this.state.size,
                 name: this.state.name,
+                divID: key,
                 dressGroupID: dressGroupID,
                 cachedReviews: reviewIDs,
                 dressMeasurements: dressMeasurements,
@@ -542,7 +555,7 @@ class Results extends Component {
                         <div className="results-grid" id="0">
                             {this.state.dressesObjs.dresses && this.state.dressesObjs.dresses.map((dress, key) => {
                                 return (
-                                    <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.dressesIDObjs.dressIDs[key], this.state.closestMeasurements, this.state.dressesObjs.reviewIDs[key], this.state.dressGroupID)} key={key}>
+                                    <div className="results-col" id={"0" + key} onClick={() => this.goToItemView(dress, "0" + key, this.state.dressesIDObjs.dressIDs[key], this.state.closestMeasurements, this.state.dressesObjs.reviewIDs[key], this.state.dressGroupID)} key={key}>
                                         <div className={itemDivClass}>
                                             <ProgressiveImage src={dress.img}>
                                             {(src, loading) => {
@@ -564,7 +577,7 @@ class Results extends Component {
                             dressObj.dresses.length > 0 && <div className="results-grid results-margin-top" key={keyDressObj} id={parseInt(keyDressObj,10) + 1}>
                                 {dressObj.dresses.map((dress,key) => {
                                     return (
-                                        dress && <div className="results-col" onClick={() => this.goToItemView(dress, key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
+                                        dress && <div className="results-col" id={ (parseInt(keyDressObj,10) + 1).toString() + key} onClick={() => this.goToItemView(dress, (parseInt(keyDressObj,10) + 1).toString() + key, this.state.nextBestDressesIDs[keyDressObj].dressIDs[key], this.getMeasurementsFromConcat(dressObj.measurement), dressObj.reviewIDs[key], this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID)} key={key}>
                                         
                                             {dress && <div className={itemDivClass} key={key}>
                                                 <ProgressiveImage src={dress.img}>

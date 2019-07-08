@@ -6,7 +6,6 @@
 
 .itemView-c1 {
     height: calc(100% - 50px);
-    margin-bottom: 50px;
 }
 
 .itemView-c1-inner {
@@ -57,6 +56,8 @@
 .itemView-item-brand {
     font-size: 1.25em;
     color: #652D2D;
+    margin-top: 12px;
+    margin-bottom: 12px;
     text-transform: capitalize;
     font-family: 'Futura', sans-serif;
 }
@@ -64,11 +65,15 @@
 .itemView-item-price {
     font-size: 1.25em;
     color: #652D2D;
+    margin-top: 30px;
+    margin-bottom: 12px;
     font-family: 'Futura', sans-serif;
 }
 
 .itemView-item-size {
     font-size: 1.25em;
+    margin-top: 12px;
+    margin-bottom: 12px;
     color: #652D2D;
     font-family: 'Futura', sans-serif;
 }
@@ -99,7 +104,7 @@
     color: white;
     border: none;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .itemView-text-small {
