@@ -83,7 +83,7 @@ class HowItWorks extends React.Component {
                   <p className="howitworks-bigNum">02</p>
                   <div className="howitworks-child-c2-content">
                     <p className="howitworks-subtitle">WE CHECK THE FIT</p>
-                    <p className="howitworks-desc">Hundreds of women with different measurements try on each piece,. We see what fits, and most importantly how they feel.</p>
+                    <p className="howitworks-desc">Hundreds of women with different measurements try on each piece. We see what fits, and most importantly how they feel.</p>
                   </div>
                 </div>
               </div>

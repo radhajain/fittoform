@@ -2,6 +2,7 @@
     height: calc(100vh - 50px);
     width: 100vw;
     margin-top: 50px;
+    overflow-y: auto;
 }
 
 .itemView-c1 {
@@ -148,6 +149,7 @@
     flex-direction: row;
     color: #707070;
     border-bottom: 1px solid #E4E4E4;
+    margin-bottom: 45px;
 }
 
 .itemView-numRating {
