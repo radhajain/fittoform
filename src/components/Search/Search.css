@@ -54,7 +54,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: 'Raleway', sans-serif;
     text-align: center;
     width: 80px;
-    font-size: 1.5em;
+    font-size: 3.3em;
 }
 
 .search-input:focus {
@@ -70,8 +70,9 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
     border-radius: 0px;
     width: 80px;
-    font-size: 1.5em;
     color: #FF8181;
+    font-size: 3.3em;
+
 }
 
 .search-input-error:focus {
@@ -148,7 +149,7 @@ button:focus {
 }
 
 .search-error-msg {
-    font-size: 0.5em;
+    font-size: 1em;
     color: #FF8181;
 }
 

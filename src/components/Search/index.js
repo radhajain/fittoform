@@ -184,7 +184,7 @@ class Search extends Component {
         this.setState({
             touched: { ...this.state.touched, heightft: true },
         });
-        if (e.key === 'Enter' || e.target.name === 'inchesft') {
+        if (e.key === 'Enter') {
             e.preventDefault();
             var errors = this.getErrorObj();
             if (!errors['heightft']) {
@@ -206,7 +206,6 @@ class Search extends Component {
         if (e.key === 'Enter') {
             e.preventDefault();
             var errors = this.getErrorObj();
-            console.log(errors)
             if (!errors[field]) {
                 this.sizeRef.current.scrollIntoView({
                     behavior: 'smooth',
@@ -214,7 +213,6 @@ class Search extends Component {
                 });
                 this.refs.sizeinput.focus();
             } else {
-                console.log("errors were found");
                 this.setState({
                     focused: { ...this.state.focused, [field]: true },
                 });
@@ -340,6 +338,7 @@ class Search extends Component {
                 <form className="search-form">
                   <label className="search-search-label">
                     I am
+                </label>
                     <input
                       name="heightft"
                       type="number"
@@ -349,7 +348,9 @@ class Search extends Component {
                       className={shouldMarkError('heightft') ? "search-input-error" : "search-input"}
                       onKeyPress={this._handleKeyPressHeightFt}
                       onChange={this.handleInputChange} />
+                    <label className="search-search-label">
                     ft, 
+                    </label>
                     <input
                       name="heightin"
                       type="number"
@@ -359,9 +360,11 @@ class Search extends Component {
                       onKeyPress={this._handleKeyPressHeightIn('heightin') }
                       ref="heightininput"
                       onChange={this.handleInputChange} />
+                    <label className="search-search-label">
                     inches tall.
+                    </label>
                     <p className={ (shouldMarkError('heightin') || shouldMarkError('heightft')) ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i></p>
-                  </label>
+                  
                   <div className={shouldShowNext('height') ? "search-nextDiv" : "search-nextDiv-hide"} >
                     <button className="search-ok-btn" onClick={this.goToSize}>
                         <div className="search-ok-flexWrapper">
@@ -379,6 +382,8 @@ class Search extends Component {
                 <form className="search-form">
                   <label className="search-search-label">
                     I normally wear US size
+                    </label>
+
                     <input
                       name="size"
                       type="number"
@@ -389,8 +394,7 @@ class Search extends Component {
                       onKeyPress={this._handleKeyPressSize('size')}
                       onChange={this.handleInputChange} />
                       .
-                      <p className={shouldMarkError('size') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i></p>
-                  </label>
+                  <p className={shouldMarkError('size') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i></p>
                   <div className={shouldShowNext('size') ? "search-nextDiv" : "search-nextDiv-hide"} >
                     <button className="search-ok-btn" onClick={this.goToBra}>
                         <div className="search-ok-flexWrapper">
@@ -408,6 +412,8 @@ class Search extends Component {
                 <form className="search-form">
                   <label className="search-search-label">
                     My bra size is
+                    </label>
+
                     <input
                       name="bra"
                       type="text"
@@ -418,9 +424,8 @@ class Search extends Component {
                       className={shouldMarkError('bra') ? "search-input-error search-bra" : "search-input search-bra"}
                       onChange={this.handleInputChangeBra} />
                       .
-                      <p className={shouldMarkError('bra') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
-                    
-                  </label>
+                  <p className={shouldMarkError('bra') ? "search-error-msg" : "hide-search-error-msg"}><i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i></p>
+
                   <div className={shouldShowNext('bra') ? "search-nextDiv" : "search-nextDiv-hide"} >
                     <button className="search-ok-btn" onClick={this.goToSizing}>
                         <div className="search-ok-flexWrapper">
