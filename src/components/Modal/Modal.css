@@ -39,6 +39,12 @@
     border-radius: 5px;
 }
 
+.modal-subtitle {
+    font-family: 'Raleway', sans-serif;
+    color: #2F0101;
+    font-size: 14px;
+}
+
 .modal-title {
     font-family: 'Raleway', sans-serif;
     color: #2F0101;

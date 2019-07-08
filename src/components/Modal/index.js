@@ -34,24 +34,33 @@ class Modal extends Component {
     }
 
     goToSignIn() {
-
+        this.props.history.push({
+            pathname: '/signin'
+        })
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        var name = this.state.name;
-        var email = this.state.email;
-        var password = this.state.password;
-        this.props.createAccount(name, email, password);
-    }
-
-    render() {
         const {
             name,
             email,
             password,
+        } = this.state;
+        this.props.createAccount(name, email, password);
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            name: props.name
+        })
+    }
+
+    render() {
+        var {
+            name,
+            email,
+            password,
           } = this.state;
-      
         const errors = validate(this.state.name, this.state.email, this.state.password);
         const isDisabled = Object.keys(errors).some(x => errors[x]);
 
@@ -63,7 +72,8 @@ class Modal extends Component {
                 <div className="modal-overlay"></div>
                 <div className="modal-wrapper">
                 <div className="modal-header">
-                    <p className="modal-title">Create an account to edit your measurements</p>
+                    <p className="modal-title">{this.props.message}</p>
+                    <p className="modal-subtitle">{this.props.desc}</p>
                     <span className="close-modal-btn" onClick={this.props.close}>×</span>
                 </div>
                 <div className="modal-body">
@@ -73,7 +83,7 @@ class Modal extends Component {
                             value={name}
                             onChange={this.handleInputChange}
                             type="text" 
-                            style={{marginTop: 20}}
+                            style={{marginTop: 20, textTransform: 'capitalize'}}
                             className="modal-input"
                             placeholder="NAME"/>
                         <input 
@@ -92,11 +102,11 @@ class Modal extends Component {
                             className="modal-input"
                             placeholder="PASSWORD"/>
                         <button disabled={isDisabled} type="submit" className={isDisabled ? "modal-btn-disabled" : "modal-btn-createAccount"} >
-                            Join the FtF fam
+                            {this.props.btnMsg}
                             <img src={whiteArrow} style={{width: 15, marginLeft: 15}}/>
                         </button>
                         {/* {error && <p>{error.message}</p>} */}
-                        <p className="modal-signin-text">Already have an account? <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={this.goToSignIn}>Sign in</span></p>
+                        <p className="modal-signin-text">Already have an account? <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={this.props.goToSignIn}>Sign in</span></p>
                     </form>
                 </div>
             </div>
