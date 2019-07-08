@@ -122,7 +122,7 @@ class Results extends Component {
         var rect =  el.getBoundingClientRect();
         return (
             // rect.top >= 300 && rect.bottom <= window.innerHeight
-            rect.top < 300 && rect.bottom > 300
+            rect.top < 150 && rect.bottom > 150
         )
     }
 
