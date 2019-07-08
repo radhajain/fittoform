@@ -16,6 +16,10 @@
     position: relative;
 }
 
+.signup-container-intro {
+    background: linear-gradient(#250f16, #3E1724);
+}
+
 
 .signup-container-first {
     background: linear-gradient(#3E1724, #4E1A29)
@@ -46,6 +50,81 @@
 .signup-container-sixth {
     background: linear-gradient( #9F3E53,#B3485F )
 }
+
+
+
+.signup-benefits-inner {
+    width: 80%;
+}
+
+.signup-benefits-steps {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.signup-benefits-box {
+    flex-basis: 30%;
+    padding: 20px 20px;
+    min-width: 140px;
+}
+
+
+.signup-benefits-title {
+    color: white;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+
+.signup-benefits-waist {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 5.0em;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.signup-benefits-desc {
+    color: white;
+    font-weight: lighter;
+    line-height: 1.2em;
+    font-family: 'Raleway', sans-serif;
+}
+
+.signup-benfits-box {
+    flex-basis: 30%;
+    padding: 20px 20px;
+    min-width: 140px;
+}
+
+.signup-child-dressgrid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 100%;
+}
+
+.signup-dress-icon {
+    flex-basis: 15%;
+    padding: 10px;
+    width: 5vw;
+    max-width: 80px;
+}
+
+.signup-benefits-waist-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+
+
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
