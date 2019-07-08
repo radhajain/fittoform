@@ -629,13 +629,6 @@
     .landing-fourth-title {
         font-size: 2em;
     }
-    .landing-container-intro {
-        background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-bkg.jpg);
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
 }
 
 @media (max-width: 372px) {
