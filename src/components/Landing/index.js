@@ -23,7 +23,7 @@ class Landing extends React.Component {
                 <div className="landing-intro-hero">
                     <div className="landing-intro-content">
                         <p className="landing-title">We try on dresses so you don't have to</p>
-                        <p className="landing-desc">It's hard to know what fits well while shopping online. We show you a curated set of dresses, recommended by real women with the same measurements as you. Buy with confidence, every time.</p>
+                        <p className="landing-desc">It's hard to know what fits your body while shopping online. We show you dresses recommended by women with your measurements. Buy with confidence, every time.</p>
                         <Link to='/search'>
                             <button className="landing-callToAction">
                                 Try it out
