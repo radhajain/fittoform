@@ -525,6 +525,18 @@ class Results extends Component {
     }
 
     getRecommendedStr() {
+        // var heightDiff = this.state.height - this.state.currMeasurements.height;
+        // var waistDiff = this.state.waist - this.state.currMeasurements.waist;
+        // var hipsDiff = this.state.hips - this.state.currMeasurements.hips;
+        // var bustDiff = this.state.bust - this.state.currMeasurements.bust;
+        // var heightStr, waistStr, hipsStr, bustStr;
+        // if (heightDiff > 0) {
+        //     heightStr = heightDiff + "in shorter than you"
+        // } else if (heightDiff < 0) {
+        //     heightStr = Math.abs(heightDiff) + "in taller than you"
+        // } else {
+        //     heightStr = ""
+        // }
         return ("Recommended by other women that are " + this.getHeightStr(this.state.currMeasurements.height) + ", bust " + this.state.currMeasurements.bust + ", waist: " + this.state.currMeasurements.waist + ", hips: " + this.state.currMeasurements.hips);
     }
 
