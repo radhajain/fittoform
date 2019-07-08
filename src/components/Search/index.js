@@ -184,7 +184,7 @@ class Search extends Component {
         this.setState({
             touched: { ...this.state.touched, heightft: true },
         });
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' || e.target.name === 'inchesft') {
             e.preventDefault();
             var errors = this.getErrorObj();
             if (!errors['heightft']) {
