@@ -5,6 +5,7 @@ import backBtn from '../../assets/images/back-btn.png';
 import './Item.css';
 import { FooterSmall } from '../Footer';
 import names from '../../constants/shoppingConstants.js';
+import Modal from '../Modal';
 
 
 
@@ -29,11 +30,16 @@ class Item extends Component {
         this.state.reviews = [review];
         this.state.cachedReviewIDs = [];
         this.state.reviewsFound = false;
+        this.state.isModalShowing = false;
+        this.state.modalDesc = "You will be redirected to " + this.state.item.brand + " to buy the dress.";
         this.getHeightStr = this.getHeightStr.bind(this);
         this.getReviewData = this.getReviewData.bind(this);
         this.goToResultsView = this.goToResultsView.bind(this);
         this.getReviewsFromCache = this.getReviewsFromCache.bind(this);
         this.getReviewFromReviewID = this.getReviewFromReviewID.bind(this);
+        this.shopItem = this.shopItem.bind(this);
+        this.closeModalHandler = this.closeModalHandler.bind(this);
+        this.goToSignIn = this.goToSignIn.bind(this);
     }
 
     getHeightStr(height) {
@@ -41,6 +47,12 @@ class Item extends Component {
         var heightIn = height % 12;
         return heightFt + "'" + heightIn;
     };
+
+    goToSignIn = () => {
+        this.props.history.push({
+            pathname: '/signin'
+        });
+    }
 
     //TODO: data cleanup: add all reviewIDs to the dressGroup where the dressGroupObj dressID matches dressID
     getReviewData() {
@@ -143,6 +155,7 @@ class Item extends Component {
                 waist: this.state.waist,
                 hips: this.state.hips,
                 bust: this.state.bust,
+                bra: this.state.bra,
                 size: this.state.size,
                 name: this.state.name,
                 closestMeasurements: this.state.closestMeasurements,
@@ -153,12 +166,74 @@ class Item extends Component {
         });
     }
 
+    shopItem() {
+        if (this.state.authUser) {
+            window.open(this.state.item.dressLink,'_blank');
+        } else {
+            this.setState({
+                isModalShowing: true,
+            })
+        }
+
+    }
+
+    closeModalHandler() {
+        this.setState({
+            isModalShowing: false,
+        });
+        window.open(this.state.item.dressLink,'_blank');
+    }
+
+    createAccount = (name, email, password) => {
+        console.log("account being created!");
+        console.log(name + ", " + email + ", " + password);
+        const { bust, height, size, waist, hips, bra } = this.state;
+        this.props.firebase
+        .doCreateUserWithEmailAndPassword(email, password)
+        .then(authUser => {
+            // Create a user in your Firebase realtime database
+            return this.props.firebase
+            .user(authUser.user.uid)
+            .set({
+                email: email,
+                name: name,
+                height: height,
+                waist: waist,
+                bust: bust,
+                hips: hips,
+                size: size,
+                bra: bra
+            });
+        })
+        .then(authUser => {
+            this.setState({
+                isModalShowing: false,
+            }, () => {
+                window.open(this.state.item.dressLink,'_blank');
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
     render() {
         return (
         <div className="itemView">
             <div className="itemView-c1">
                 <div className="itemView-c1-inner">
                     <div className="itemView-c1-left">
+                        <Modal
+                            className="modal"
+                            show={this.state.isModalShowing}
+                            close={this.closeModalHandler}
+                            createAccount={this.createAccount}
+                            goToSignIn={this.goToSignIn}
+                            name={this.state.name}
+                            btnMsg="Shop item"
+                            message="Before you go, create an account to save your results"
+                            desc={this.state.modalDesc}>
+                        </Modal>
                         <div className="itemView-c1-text">
                             
                             <div className="itemView-titleBtn-div">
@@ -170,9 +245,7 @@ class Item extends Component {
                                     </button>
                                     <p className="itemView-item-title">{this.state.item.name}</p>
                                 </div>
-                                <a href={this.state.item.dressLink} style={{display: "table-cell", width: '100%'}} target="_blank">
-                                    <button className="itemView-shop-btn">SHOP</button>
-                                </a>
+                                <button className="itemView-shop-btn" onClick={this.shopItem}>SHOP</button>
                             </div>
                             <p className="itemView-item-price">${this.state.item.price}</p>
                             {this.state.reviewsFound && 

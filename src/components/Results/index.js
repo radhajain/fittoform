@@ -64,6 +64,7 @@ class Results extends Component {
             currMeasurements: '',
             seenDresses: [],
             isModalShowing: false,
+            modalMsg: ''
         };
         console.log(this.state);
         this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -86,9 +87,11 @@ class Results extends Component {
         this.openModalHandler = this.openModalHandler.bind(this);
         this.closeModalHandler = this.closeModalHandler.bind(this);
         this.createAccount = this.createAccount.bind(this);
+        this.goToSignIn = this.goToSignIn.bind(this);
+        
     }
 
-    openModalHandler = () => {
+    openModalHandler = (msg) => {
         //if auth user then go to account
         if (this.state.authUser) {
             this.props.history.push({
@@ -96,7 +99,8 @@ class Results extends Component {
             });
         } else {
             this.setState({
-                isModalShowing: true
+                modalMsg: msg,
+                isModalShowing: true,
             });
         }
         
@@ -105,6 +109,12 @@ class Results extends Component {
     closeModalHandler = () => {
         this.setState({
             isModalShowing: false
+        });
+    }
+
+    goToSignIn = () => {
+        this.props.history.push({
+            pathname: '/signin'
         });
     }
 
@@ -229,6 +239,11 @@ class Results extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.refs.resultsName.blur();
+        if (this.state.name.length !== 0) {
+            var capitalizedName = this.state.name.charAt(0).toUpperCase() + this.state.name.slice(1)
+            this.openModalHandler("Hey " + capitalizedName + ", sign up to save your results.");
+        }
+
     }
 
 
@@ -469,7 +484,9 @@ class Results extends Component {
                 waist: this.state.waist,
                 hips: this.state.hips,
                 bust: this.state.bust,
+                bra: this.state.bra,
                 size: this.state.size,
+                authUser: this.state.authUser,
                 name: this.state.name,
                 divID: key,
                 dressGroupID: dressGroupID,
@@ -562,7 +579,11 @@ class Results extends Component {
                             className="modal"
                             show={this.state.isModalShowing}
                             close={this.closeModalHandler}
-                            createAccount={this.createAccount}>
+                            createAccount={this.createAccount}
+                            goToSignIn = {this.goToSignIn}
+                            name={this.state.name}
+                            btnMsg="Join the FtF Fam"
+                            message={this.state.modalMsg}>
                         </Modal>
                         <div className="results-grid" id="0">
                             {this.state.dressesObjs.dresses && this.state.dressesObjs.dresses.map((dress, key) => {
@@ -633,7 +654,7 @@ class Results extends Component {
                                     <img src={downArrow} className="results-menu-hide-arrow" onClick={this.dismissRecommendationPanel}/>
                                 </div>
                                 {this.state.closestMeasurements && <p className="results-text">{this.getRecommendedStr()} </p>}
-                                <p className="results-text-small" onClick={this.openModalHandler} style={{cursor: 'pointer'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
+                                <p className="results-text-small" onClick={() => this.openModalHandler("Know your exact measurements? Create an account to edit")} style={{cursor: 'pointer'}}><i>Your measurements: {this.getHeightStr(this.state.height)}, bust: {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}</i> </p>
                                 {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
                             </div>
                         </div>
