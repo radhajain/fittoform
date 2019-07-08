@@ -225,7 +225,7 @@ input:focus {
 }
 
 .results-img-single {
-    height: 70vh;
+    height: 60vh;
     max-height: 800px;
     width: auto;
     transition: all .2s ease-in-out;
