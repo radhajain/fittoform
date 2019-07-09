@@ -144,6 +144,7 @@ class SignUpFormBase extends Component {
             "DD" : 5,
             "DDD" : 6,
             "E" : 6,
+            "EE" : 7,
             "F" : 7,
             "G" : 8
         }
@@ -405,6 +406,8 @@ class SignUpFormBase extends Component {
           evt.preventDefault();
           return;
         }
+        console.log(this.state);
+        console.log(this.getErrorObj());
         const { name, email, passwordOne } = this.state;
         var measurements = this.USsizeArray[this.state.size.toString()];
         var height = (parseInt(this.state.heightft,10) * 12) + parseInt(this.state.heightin,10);
@@ -742,6 +745,8 @@ class SignUpFormBase extends Component {
                       className={shouldMarkError('passwordTwo') ? "signup-input-error signup-long-input" : "signup-input signup-long-input"}
                       />
                       <p className={shouldMarkError('passwordTwo') ? "signup-error-msg" : "hide-signup-error-msg"}><i>Oops, your passwords don't match. Try again.</i></p>
+                      {this.state.error && <p className={"signup-error-msg"}><i>{this.state.error.message}</i></p>}
+
                   </label>
                   </div>
                 </form>
