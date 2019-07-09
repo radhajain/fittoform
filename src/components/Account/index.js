@@ -172,7 +172,7 @@ class AccountPage extends React.Component {
               <div className="account-wrapper-item">
                 <label className="account-item-label">Hips (in.) </label>
                 <select value={this.state.hips} onChange={this.handleChange('hips')}  name="hips" className="account-select">
-                  <option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="40">41</option><option value="40">42</option><option value="40">43</option><option value="40">44</option><option value="40">45</option><option value="40">46</option>
+                  <option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="40">41</option><option value="40">42</option><option value="40">43</option><option value="40">44</option><option value="40">45</option><option value="40">46</option>
                 </select>
               </div>
             </div>
