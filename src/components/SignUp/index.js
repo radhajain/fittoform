@@ -142,8 +142,8 @@ class SignUpFormBase extends Component {
             "C" : 3,
             "D" : 4,
             "DD" : 5,
+            "E" : 5,
             "DDD" : 6,
-            "E" : 6,
             "EE" : 7,
             "F" : 7,
             "G" : 8

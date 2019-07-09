@@ -27,7 +27,7 @@
 }
 
 .landing-container-intro {
-    background-image: url(../../assets//images/landing-bkg.png);
+    background-image: url(../../assets//images/landing-bkg.jpg);
     background-position: center;
     background-attachment: fixed;
     display: flex;
