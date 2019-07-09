@@ -32,6 +32,7 @@ class Results extends Component {
         }
       ]
     };
+    //TODO: should be getting from authuser
     console.log(this.props.location.state);
     this.state = {
       bust: this.props.location.state.bust,
@@ -657,7 +658,7 @@ class Results extends Component {
               {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && (
                 <div className="results-loadMore-btn-div">
                   <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>
-                    Show near perfect matches{' '}
+                    Show near perfect matches
                   </button>
                 </div>
               )}

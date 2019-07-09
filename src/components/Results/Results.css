@@ -84,7 +84,7 @@ input:focus {
 }
 
 .results-text {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   color: #7c3d4b;
   font-size: 1em;
   font-weight: bold;
@@ -93,7 +93,7 @@ input:focus {
 }
 
 .results-text-small {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   color: #652d2d;
   font-size: 0.75em;
   line-height: 1.25em;
@@ -119,7 +119,7 @@ input:focus {
   border-bottom: 2px solid #de8585;
   width: 200px;
   text-align: right;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   color: #de8585;
   font-size: 1em;
   background-color: unset;
@@ -128,7 +128,7 @@ input:focus {
 
 .results-match {
   color: #e86b6a;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   font-size: 1.15em;
 }
 
@@ -144,7 +144,7 @@ input:focus {
   font-size: 1em;
   padding: 12px 25px;
   border: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   cursor: pointer;
 }
 
@@ -201,7 +201,7 @@ input:focus {
 }
 
 .results-rating {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   color: #802c3f;
 }
 
