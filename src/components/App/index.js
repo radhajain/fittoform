@@ -23,31 +23,29 @@ import HttpsRedirect from 'react-https-redirect';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
-
 const App = () => (
   <HttpsRedirect>
-  <Router>
-    <div>
-      <Navigation />
+    <Router>
+      <div>
+        <Navigation />
 
-      <Route exact path={ROUTES.LANDING} component={LandingPage} />
-      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
-      <Route path={ROUTES.HOME} component={HomePage} />
-      <Route path={ROUTES.SEARCH} component={SearchPage} />
-      <Route path={ROUTES.RESULTS} component={ResultsPage} />
-      <Route path={ROUTES.ITEM} component={ItemPage} />
-      <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-      <Route path={ROUTES.ADMIN} component={AdminPage} />
-      <Route path={ROUTES.ADDITEM} component={AddItem} />
-      <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-      <Route path={ROUTES.CONTACT} component={Contact} />
-      <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
-      <Route path={ROUTES.ANALYTICS} component={Analytics} />
-      
-    </div>
-  </Router>
+        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+        <Route path={ROUTES.HOME} component={HomePage} />
+        <Route path={ROUTES.SEARCH} component={SearchPage} />
+        <Route path={ROUTES.RESULTS} component={ResultsPage} />
+        <Route path={ROUTES.ITEM} component={ItemPage} />
+        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+        <Route path={ROUTES.ADMIN} component={AdminPage} />
+        <Route path={ROUTES.ADDITEM} component={AddItem} />
+        <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+        <Route path={ROUTES.CONTACT} component={Contact} />
+        <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
+        <Route path={ROUTES.ANALYTICS} component={Analytics} />
+      </div>
+    </Router>
   </HttpsRedirect>
 );
 

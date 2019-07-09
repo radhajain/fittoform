@@ -15,20 +15,15 @@ class Navigation extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <AuthUserContext.Consumer>
-          {authUser =>
-            authUser ? <NavigationAuth /> : <NavigationNonAuth />
-          }
+          {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
         </AuthUserContext.Consumer>
       </div>
     );
   }
 }
-
-
-
 
 class NavigationAuth extends React.Component {
   constructor(props) {
@@ -43,14 +38,17 @@ class NavigationAuth extends React.Component {
       hips: '',
       bust: '',
       size: '',
-      bra: '',
-    }
+      bra: ''
+    };
   }
 
   // Sets the user values
   getUserData(uid) {
-    let UserRef = firebase.database().ref('users').child(`${uid}`);
-    UserRef.once('value').then((snapshot) => {
+    let UserRef = firebase
+      .database()
+      .ref('users')
+      .child(`${uid}`);
+    UserRef.once('value').then(snapshot => {
       let user = snapshot.val();
       this.setState({
         name: user.name,
@@ -59,28 +57,25 @@ class NavigationAuth extends React.Component {
         hips: user.hips,
         bust: user.bust,
         size: user.size,
-        bra: user.bra,
+        bra: user.bra
       });
     });
   }
-  
+
   authlistener() {
-    this.listener = firebase.auth().onAuthStateChanged(
-      authUser => {
-        authUser ? this.setState({authUser: true}): this.setState({authUser:null});
-        authUser ? this.setState({uid: authUser.uid}) : this.setState({uid: null});
-        authUser ? this.getUserData(this.state.uid) : this.setState({name : null})
-      },
-    );
+    this.listener = firebase.auth().onAuthStateChanged(authUser => {
+      authUser ? this.setState({ authUser: true }) : this.setState({ authUser: null });
+      authUser ? this.setState({ uid: authUser.uid }) : this.setState({ uid: null });
+      authUser ? this.getUserData(this.state.uid) : this.setState({ name: null });
+    });
   }
 
   componentDidMount() {
     this._isMounted = true;
     this.authlistener = this.authlistener.bind(this);
     if (this._isMounted) {
-       this.authlistener();
+      this.authlistener();
     }
-
   }
 
   componentWillUnmount() {
@@ -102,32 +97,32 @@ class NavigationAuth extends React.Component {
         <div className="nav-inner">
           <div className="nav-c1">
             <Link to={ROUTES.LANDING} className="nav-logo-right">
-              <img src={ShortLogo} style={{height: 30}}/> 
+              <img src={ShortLogo} style={{ height: 30 }} />
             </Link>
           </div>
-            <div className="nav-c2">
-              <Link to={ROUTES.LANDING} className="nav-logo-center"> 
-                <img src={ShortLogo} style={{height: 30}} /> 
-              </Link>
-            </div>
-      <div className="nav-c3">
-            <div className="dropdown">
-          <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
-          <img src={WhiteArrow} className="nav-whitearrow"/>
-          <div className="dropdown-content">
-            <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">Your Profile</Link>
-            <hr></hr>
-              <SignOutButton/>
+          <div className="nav-c2">
+            <Link to={ROUTES.LANDING} className="nav-logo-center">
+              <img src={ShortLogo} style={{ height: 30 }} />
+            </Link>
           </div>
-        </div>
-        </div>
-
+          <div className="nav-c3">
+            <div className="dropdown">
+              <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
+              <img src={WhiteArrow} className="nav-whitearrow" />
+              <div className="dropdown-content">
+                <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">
+                  Your Profile
+                </Link>
+                <hr></hr>
+                <SignOutButton />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
-
 
 /*
   This code defines what the header will look like for a user who is
@@ -138,20 +133,20 @@ const NavigationNonAuth = () => (
     <div className="nav-inner">
       <div className="nav-c1">
         <Link to={ROUTES.LANDING} className="nav-logo-right">
-          <img src={ShortLogo} style={{height: 30}}/> 
+          <img src={ShortLogo} style={{ height: 30 }} />
         </Link>
       </div>
       <div className="nav-c2">
         <Link to={ROUTES.LANDING} className="nav-logo-center">
-          <img src={ShortLogo} style={{height: 30}}/> 
+          <img src={ShortLogo} style={{ height: 30 }} />
         </Link>
       </div>
       <div className="nav-c3">
-        <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">Sign In</Link>
+        <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">
+          Sign In
+        </Link>
         <Link to={ROUTES.SIGN_UP} className="nav-href">
-          <button className="nav-signup-btn">
-            Sign Up
-          </button>
+          <button className="nav-signup-btn">Sign Up</button>
         </Link>
       </div>
     </div>
