@@ -67,6 +67,7 @@ class Results extends Component {
       currMeasurements: '',
       seenDresses: [],
       isModalShowing: false,
+      currDiv: 0,
       modalMsg: ''
     };
     console.log(this.state);
@@ -209,14 +210,17 @@ class Results extends Component {
       if (this.isElementInViewport(currPage)) {
         if (i === 0) {
           this.setState({
-            currMeasurements: this.state.closestMeasurements
+            currMeasurements: this.state.closestMeasurements,
+            currDiv: 0
           });
         } else {
           if (this.state.currMeasurements !== this.state.nextBestDressGroupIDs[i - 1]) {
             this.setState({
-              currMeasurements: this.state.nextBestDressGroupIDs[i - 1]
+              currMeasurements: this.state.nextBestDressGroupIDs[i - 1],
+              currDiv: i
             });
           }
+          console.log(this.state);
         }
       }
     }
@@ -776,7 +780,9 @@ class Results extends Component {
                       {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}
                     </i>{' '}
                   </p>
-                  {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
+                  {this.state.exactMatch && this.state.currDiv === 0 && (
+                    <p className="results-match">EXACT MATCH</p>
+                  )}
                 </div>
               </div>
             </div>
