@@ -55,26 +55,50 @@
 
 .signup-benefits-inner {
     width: 80%;
+    height: 80%;
 }
 
 .signup-benefits-steps {
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    width: 100%;
 }
 
 .signup-benefits-box {
     flex-basis: 30%;
     padding: 20px 20px;
     min-width: 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-benefits-graphic {
+    height: 250px;
+    width: 200px;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
 }
 
 
 .signup-benefits-title {
     color: white;
-    font-weight: bold;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'DM Serif Display', serif;
     text-align: center;
+    font-size: 2.5em;
+}
+
+.signup-benefits-waist-title {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 1.75em;
+    margin-bottom: 0px;
 }
 
 .signup-benefits-waist {
@@ -83,6 +107,8 @@
     font-size: 5.0em;
     text-align: center;
     padding-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .signup-benefits-desc {
@@ -90,6 +116,7 @@
     font-weight: lighter;
     line-height: 1.2em;
     font-family: 'Raleway', sans-serif;
+    text-align: center;
 }
 
 .signup-benfits-box {
@@ -109,8 +136,7 @@
 .signup-dress-icon {
     flex-basis: 15%;
     padding: 10px;
-    width: 5vw;
-    max-width: 80px;
+    max-width: 45px;
 }
 
 .signup-benefits-waist-box {
@@ -371,6 +397,15 @@ button:focus {
 
     .signup-desc {
         text-align: center;
+    }
+
+    .signup-benefits-steps {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .signup-benefits-box {
+        flex-direction: row;
     }
 }
 

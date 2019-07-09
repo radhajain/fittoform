@@ -13,6 +13,7 @@ import dress3 from '../../assets/images/howitworks-3.svg';
 import dress4 from '../../assets/images/howitworks-4.svg';
 import dress5 from '../../assets/images/howitworks-5.svg';
 import dress6 from '../../assets/images/howitworks-6.svg';
+import save from '../../assets/images/signup-save.svg';
 
 
 const SignUpPage = () => (
@@ -497,12 +498,13 @@ class SignUpFormBase extends Component {
       }
         return (
             <div className="signup-parent">
-              <div className="signup-container-intro signup-child">
+              {/* <div className="signup-container-intro signup-child">
                 <div className="signup-benefits-inner">
-                    <p className="signup-signup-label">Why join the Ftf fam?</p>
+                    <p className="signup-benefits-title">Why join the Ftf fam?</p>
                     <hr />
                     <div className="signup-benefits-steps">
                         <div className="signup-benefits-box">
+                        <div className="signup-benefits-graphic">
                           <div className="howitworks-child-dressgrid">
                             <img src={dress1} className="signup-dress-icon"/>
                             <img src={dress2} className="signup-dress-icon"/>
@@ -511,21 +513,27 @@ class SignUpFormBase extends Component {
                             <img src={dress5} className="signup-dress-icon"/>
                             <img src={dress6} className="signup-dress-icon hiw-dress6"/>
                           </div>
+                          </div>
                             <p className="signup-benefits-desc">Be the first to hear about dresses recommended for your size</p>
                         </div>
                         <div className="signup-benefits-box">
-                            <div className= "signup-benefits-waist-box">
-                            <p className="signup-benefits-title">WAIST</p>
-                            <p className="signup-benefits-waist">27</p>
-                            <p className="signup-benefits-desc">Edit your measurements to find the perfect fit</p>
+                            <div className="signup-benefits-graphic">
+                              <div className= "signup-benefits-waist-box">
+                                <p className="signup-benefits-waist-title">WAIST</p>
+                                <p className="signup-benefits-waist">27<span style={{fontWeight: 'lighter', fontSize: 40}}>I</span></p>
+                              </div>
                             </div>
+                            <p className="signup-benefits-desc">Edit your measurements to find the perfect fit</p>
                         </div>
                         <div className="signup-benefits-box">
+                          <div className="signup-benefits-graphic">
+                              <img src={save} style={{maxHeight: '200px'}} />
+                          </div>
                           <p className="signup-benefits-desc">Save items you love to come back to later</p>
                         </div>
                     </div>
                   </div>
-              </div>
+              </div> */}
               <div className="signup-container-first signup-child">
                 <div className="signup-signup-content">
                   <form>

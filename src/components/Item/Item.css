@@ -6,6 +6,7 @@
 
 .itemView-c1 {
     height: calc(100% - 50px);
+    padding-bottom: 50px;
 }
 
 .itemView-c1-inner {
@@ -244,5 +245,25 @@
 
     .itemView-shop-btn {
         margin-top: 0px;
+    }
+
+    .itemView-item-title {
+        font-size: 1.75em;
+    }
+
+    .itemView-shop-btn {
+        font-size: 1em;
+    }
+
+    .itemView-item-brand {
+        font-size: 1em;
+    }
+
+    .itemView-item-brand {
+        font-size: 1em;
+    }
+
+    .itemView-item-size {
+        font-size: 1em;
     }
 }

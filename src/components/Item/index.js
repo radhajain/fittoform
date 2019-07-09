@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import * as CONST from '../../constants/shoppingConstants';
+import { withFirebase } from '../Firebase';
 import backBtn from '../../assets/images/back-btn.png';
 import './Item.css';
 import { FooterSmall } from '../Footer';
@@ -292,4 +293,4 @@ class Item extends Component {
     }
  }
 
-export default Item;
+export default withFirebase(Item);
