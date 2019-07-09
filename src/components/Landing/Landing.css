@@ -53,8 +53,8 @@
   width: 25px;
 }
 
-.Raleway {
-  font-family: 'Raleway', sans-serif;
+.Gibson {
+  font-family: 'Gibson', sans-serif;
 }
 
 .serif {
@@ -70,7 +70,7 @@
 }
 
 .landing-desc {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   color: white;
   font-size: 1.25em;
   line-height: 1.3em;
@@ -85,7 +85,7 @@
   font-size: 1.25em;
   padding: 20px 50px;
   border: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   margin-top: 48px;
   cursor: pointer;
   margin-bottom: 48px;
@@ -120,14 +120,14 @@
 .landing-howitworks-title {
   color: #e86b6a;
   font-weight: bold;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
 }
 
 .landing-howitworks-desc {
   color: white;
   font-weight: lighter;
   line-height: 1.2em;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
 }
 
 .landing-howitworks-box {
@@ -187,7 +187,7 @@
 }
 
 .landing-second-desc {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   font-size: 1.25em;
   line-height: 1.3em;
   color: #e8dcdc;
@@ -239,7 +239,7 @@
 
 .landing-third-desc {
   color: white;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   line-height: 1.3em;
   font-size: 1.25em;
 }
@@ -270,7 +270,7 @@
 }
 
 .landing-fourth-desc {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Gibson', sans-serif;
   font-size: 1.25em;
   line-height: 1.3em;
   color: #e8dcdc;

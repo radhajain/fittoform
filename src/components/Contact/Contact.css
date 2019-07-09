@@ -1,13 +1,11 @@
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400, 300, 600);
 
 .contactus-parent {
   flex: 0 0 40%;
-  background-color: #E4E4E4;
+  background-color: #e4e4e4;
   background-image: url(../../assets/images/item-stripe.png);
   background-position: center;
-  
+
   overflow-y: scroll;
   height: 100vh;
   overflow-x: hidden;
@@ -15,12 +13,12 @@
 }
 
 .contactus-message {
-    padding-top: 70px;
-    margin-top: 40px;
-    text-align: center;
-    width: 100%;
-    color: #2A0011;
-    font-family: 'Raleway', sans-serif;
+  padding-top: 70px;
+  margin-top: 40px;
+  text-align: center;
+  width: 100%;
+  color: #2a0011;
+  font-family: 'Gibson', sans-serif;
 }
 
 .contactus-messagebackground {
@@ -35,7 +33,6 @@
   font-size: 2.5em;
   font-family: 'DM Serif Display', serif;
 }
-
 
 /*
 .container {
@@ -167,45 +164,55 @@ label {
 
 .highlight {
   position: absolute;
-  height: 60%; 
-  width: 100px; 
-  top: 25%; 
+  height: 60%;
+  width: 100px;
+  top: 25%;
   left: 0;
   pointer-events: none;
   opacity: 0.5;
 }
 
-
 .form-input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
 }
-
 
 @-webkit-keyframes inputHighlighter {
-  from { background:#B1B1B1; }
-  to 	{ width:0; background:transparent; }
+  from {
+    background: #b1b1b1;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 @-moz-keyframes inputHighlighter {
-  from { background:#B1B1B1; }
-  to 	{ width:0; background:transparent; }
+  from {
+    background: #b1b1b1;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 @keyframes inputHighlighter {
-  from { background:#B1B1B1; }
-  to 	{ width:0; background:transparent; }
+  from {
+    background: #b1b1b1;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 
 a.send-btn {
   float: right;
-  color: #B1B1B1;
+  color: #b1b1b1;
   transition: 0.2s ease;
 }
 
 a.send-btn:hover {
-  color: #DD9E75;
+  color: #dd9e75;
   cursor: pointer;
 }
-
-
-

@@ -272,7 +272,7 @@ class Item extends Component {
                             : <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Save for later</button>
                             } */}
                 {this.state.reviewsFound && (
-                  <div>
+                  <div style={{ marginTop: 50 }}>
                     <p className="itemView-review-title">
                       {' '}
                       <i>See what other people with your measurements have to say</i>

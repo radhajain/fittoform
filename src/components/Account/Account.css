@@ -1,133 +1,125 @@
 .account-outer {
-    height: calc(100vh - 100px);
-    padding-top: 50px;
-    padding-bottom:50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('../../assets/images/item-stripe-light.png') no-repeat right -200px center;
+  height: calc(100vh - 100px);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/images/item-stripe-light.png') no-repeat right -200px center;
 }
 
 .account-inner {
-    width: 80%;
-    height: 90%;
-    
+  width: 80%;
+  height: 90%;
 }
 
 .account-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2em;
-    color: #34121F;
+  font-family: 'DM Serif Display', serif;
+  font-size: 2em;
+  color: #34121f;
 }
 
 .account-section-title {
-    font-family: 'Raleway', serif;
-    font-weight: bolder;
-    color: #694F5B;
-
+  font-family: 'Gibson', serif;
+  font-weight: bolder;
+  color: #694f5b;
 }
 
 .account-edit-btn {
-    background-color: white;
-    border: none;
-    text-transform: uppercase;
-    font-size: 1.1em
+  background-color: white;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.1em;
 }
 
 .account-section-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
-
 .account-wrapper-item {
-    flex-basis: 280px;
-    max-width: 280px;
-    padding: 2px 20px 2px 0px;
-    margin: 15px 0px 10px;
+  flex-basis: 280px;
+  max-width: 280px;
+  padding: 2px 20px 2px 0px;
+  margin: 15px 0px 10px;
 }
 
 .account-item-label {
-    font-family: 'Raleway', serif;
-    font-weight: lighter;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 2px;
-    line-height: 18px;
+  font-family: 'Gibson', serif;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 18px;
 }
 
-select::-ms-expand
-    {
-        display: none;
-    }
-select
-{
-    -webkit-appearance: none;
-    -moz-appearance: none;      
-    appearance: none;
-    padding: 2px 30px 2px 2px;
-    /*border: none; - if you want the border removed*/
+select::-ms-expand {
+  display: none;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 2px 30px 2px 2px;
+  /*border: none; - if you want the border removed*/
 }
 
 .account-select {
-    
-    background: white url(../../assets/images/dropdown-arrow.png) no-repeat right 12px center;
-    border: 1px solid #DDDDDD;
-    margin:0;
-    font-size: 16px;
-    padding: 12px 10px;
-    width: 100%;
-    border-radius: none;
+  background: white url(../../assets/images/dropdown-arrow.png) no-repeat right 12px center;
+  border: 1px solid #dddddd;
+  margin: 0;
+  font-size: 16px;
+  padding: 12px 10px;
+  width: 100%;
+  border-radius: none;
 }
 
 .account-select:focus {
-    outline: none;
+  outline: none;
 }
 
 .account-hr {
-    border-top: 1px solid #EDEDED !important;
+  border-top: 1px solid #ededed !important;
 }
 
 .account-section-title-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .account-links {
-    display: block;
-    margin-top: 20px;
-    text-decoration: none;
-    text-decoration: underline;
-    color: #34121F;
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  text-decoration: underline;
+  color: #34121f;
 }
 
 .account-links:hover {
-    font-weight: bolder;
-    font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  font-family: 'Gibson', sans-serif;
 }
 
 .account-save-btn {
-    margin-top: 10px;
-    background-color: #E86B6A;
-    padding: 12px 30px;
-    font-size: 1.0em;
-    border: none;
-    font-family: 'Raleway', sans-serif;
-    font-weight:bolder;
-    cursor: pointer;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
-    min-height: 40px;
-    transition: #E86B6A 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
-    outline: none;
+  margin-top: 10px;
+  background-color: #e86b6a;
+  padding: 12px 30px;
+  font-size: 1em;
+  border: none;
+  font-family: 'Gibson', sans-serif;
+  font-weight: bolder;
+  cursor: pointer;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+  min-height: 40px;
+  transition: #e86b6a 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
+  outline: none;
 }
 
 .account-saved-text {
-    color: #E86B6A;
-    font-size: 1em;
-    font-family: 'Raleway', sans-serif;
-
+  color: #e86b6a;
+  font-size: 1em;
+  font-family: 'Gibson', sans-serif;
 }
-
