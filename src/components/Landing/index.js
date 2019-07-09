@@ -109,7 +109,7 @@ class Landing extends React.Component {
                 </p>
                 <Link to="/search">
                   <button className="landing-callToAction">
-                    Find your perfect dress
+                    Get started
                     <img src={WhiteArrow} className="landing-whitearrow" />
                   </button>
                 </Link>
