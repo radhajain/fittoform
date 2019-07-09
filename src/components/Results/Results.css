@@ -84,7 +84,7 @@ input:focus {
 }
 
 .results-text {
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #7c3d4b;
   font-size: 1em;
   font-weight: bold;
@@ -93,7 +93,7 @@ input:focus {
 }
 
 .results-text-small {
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #652d2d;
   font-size: 0.75em;
   line-height: 1.25em;
@@ -119,7 +119,7 @@ input:focus {
   border-bottom: 2px solid #de8585;
   width: 200px;
   text-align: right;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #de8585;
   font-size: 1em;
   background-color: unset;
@@ -128,7 +128,7 @@ input:focus {
 
 .results-match {
   color: #e86b6a;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.15em;
 }
 
@@ -144,7 +144,7 @@ input:focus {
   font-size: 1em;
   padding: 12px 25px;
   border: none;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
   cursor: pointer;
 }
 
@@ -201,7 +201,7 @@ input:focus {
 }
 
 .results-rating {
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #802c3f;
 }
 
@@ -220,17 +220,10 @@ input:focus {
 }
 
 .results-img-single {
-<<<<<<< HEAD
-    height: 60vh;
-    max-height: 800px;
-    width: auto;
-    transition: all .2s ease-in-out;
-=======
   height: 70vh;
   max-height: 800px;
   width: auto;
   transition: all 0.2s ease-in-out;
->>>>>>> a905595ac6f3d488abe337e458f30f3e3e347fbc
 }
 
 .results-img-single:hover {
