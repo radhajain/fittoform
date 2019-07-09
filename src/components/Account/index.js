@@ -16,6 +16,7 @@ class AccountPage extends React.Component {
       "DD" : 5,
       "DDD" : 6,
       "E" : 6,
+      "EE": 7,
       "F" : 7,
       "G" : 8
 
@@ -159,7 +160,7 @@ class AccountPage extends React.Component {
               <div className="account-wrapper-item">
                 <label className="account-item-label">Dress size </label>
                 <select value={this.state.size} onChange={this.handleChange('size')} name="size" className="account-select">
-                    <option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="10">10</option><option value="12">12</option><option value="14">14</option><option value="16">16</option>
+                    <option value="00">00</option><option value="0">0</option><option value="2">2</option><option value="4">4</option><option value="6">6</option><option value="8">8</option><option value="10">10</option><option value="12">12</option><option value="14">14</option><option value="16">16</option>
                 </select>
               </div>
               <div className="account-wrapper-item">
@@ -171,7 +172,7 @@ class AccountPage extends React.Component {
               <div className="account-wrapper-item">
                 <label className="account-item-label">Hips (in.) </label>
                 <select value={this.state.hips} onChange={this.handleChange('hips')}  name="hips" className="account-select">
-                  <option value="37">35</option><option value="37">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="40">41</option><option value="40">42</option><option value="40">43</option><option value="40">44</option><option value="40">45</option><option value="40">46</option>
+                  <option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="40">41</option><option value="40">42</option><option value="40">43</option><option value="40">44</option><option value="40">45</option><option value="40">46</option>
                 </select>
               </div>
             </div>
