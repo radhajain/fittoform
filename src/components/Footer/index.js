@@ -12,7 +12,7 @@ const FooterLarge = () => (
         <div className="row">
           <div className="footer-about">
             <p style={{fontSize: '1.3em'}} className="serif">About</p>
-            <p className="footer-abouttext">Based in San Francisco, Fit to Form is the only shopping experience that is focused on fit. We understand the uncertainties of online shopping and the frustrations that come with returns. Our mission is to help every woman find their perfect dress that makes them feel like a million bucks.</p>
+            <p className="footer-abouttext">Based in San Francisco, Fit to Form is the only shopping experience that is focused on fit. We understand the uncertainties of online shopping and the frustrations that come with returns. Our mission is to help every woman find their perfect dress that makes them feel their best.</p>
           </div>
 
           <div className="footer-about">

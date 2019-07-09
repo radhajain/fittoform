@@ -155,8 +155,7 @@ class Landing extends React.Component {
                 <div className="landing-2-content">
                   <p className="landing-second-title">Clothes look best when they fit.</p>
                   <p className="landing-second-desc">
-                    You look like a million bucks when the dress fits just right. There’s a perfect
-                    dress for everyone, and we’re here to help you find it.
+                    There’s a perfect dress for everyone, and we’re here to help you find it.
                   </p>
                 </div>
               </div>
