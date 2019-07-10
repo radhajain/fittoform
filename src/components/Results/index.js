@@ -153,7 +153,7 @@ class Results extends Component {
   isElementInViewport(el) {
     if (!el) return false;
     var rect = el.getBoundingClientRect();
-    return rect.top < 150 && rect.bottom > 150;
+    return rect.top < 100 && rect.bottom > 100;
   }
 
   authlistener() {
