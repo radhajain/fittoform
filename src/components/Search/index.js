@@ -103,6 +103,7 @@ class Search extends Component {
       DD: 5,
       DDD: 6,
       E: 6,
+      EE: 7,
       F: 7,
       G: 8
     };
