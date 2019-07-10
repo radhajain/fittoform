@@ -1,7 +1,6 @@
 .nav-outer {
   /*overflow: hidden;*/
   height: 50px;
-  background-color: rgba(42, 0, 17, 0.7);
   position: fixed;
   top: 0px;
   width: 100%;
@@ -42,11 +41,11 @@
 
 .nav-signup-btn {
   color: white;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: bold;
   border: none;
   background-color: unset;
-  font-size: 0.9em;
-  padding: 7px 25px;
+  font-size: 1em;
   text-decoration: none;
   cursor: pointer;
 }
@@ -61,10 +60,11 @@
 
 .nav-signin-btn {
   color: white;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: bold;
   margin-right: 50px;
   text-decoration: none;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .nav-profile-btn {

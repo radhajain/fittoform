@@ -3,9 +3,10 @@ import { withFirebase } from '../Firebase';
 import firebase from 'firebase';
 import './Results.css';
 import { FooterSmall } from '../Footer';
-import downArrow from '../../assets/images/menu-hide-arrow.png';
+import downArrow from '../../assets/images/down triangle.svg';
 import ProgressiveImage from 'react-progressive-image';
 import Modal from '../Modal';
+import upArrow from '../../assets/images/up arrow.svg';
 
 class Results extends Component {
   constructor(props) {
@@ -85,6 +86,7 @@ class Results extends Component {
     this.getNextBestDressesIDHelper = this.getNextBestDressesIDHelper.bind(this);
     this.getNextBestDressesInfo = this.getNextBestDressesInfo.bind(this);
     this.dismissRecommendationPanel = this.dismissRecommendationPanel.bind(this);
+    this.showRecommendationPanel = this.showRecommendationPanel.bind(this);
     this.isElementInViewport = this.isElementInViewport.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.getRecommendedStr = this.getRecommendedStr.bind(this);
@@ -550,6 +552,12 @@ class Results extends Component {
     });
   }
 
+  showRecommendationPanel() {
+    this.setState({
+      showRecInfo: true
+    });
+  }
+
   getFirstName(name) {
     if (name.includes(' ')) {
       return name.split(' ')[0];
@@ -558,34 +566,16 @@ class Results extends Component {
   }
 
   getRecommendedStr() {
-    // var heightDiff = this.state.height - this.state.currMeasurements.height;
-    // var waistDiff = this.state.waist - this.state.currMeasurements.waist;
-    // var hipsDiff = this.state.hips - this.state.currMeasurements.hips;
-    // var bustDiff = this.state.bust - this.state.currMeasurements.bust;
-    // var heightStr, waistStr, hipsStr, bustStr;
-    // if (heightDiff > 0) {
-    //     heightStr = heightDiff + "in shorter than you"
-    // } else if (heightDiff < 0) {
-    //     heightStr = Math.abs(heightDiff) + "in taller than you"
-    // } else {
-    //     heightStr = ""
-    // }
-    return (
-      'Recommended by other women that are ' +
-      this.getHeightStr(this.state.currMeasurements.height) +
-      ', bust ' +
-      this.state.currMeasurements.bust +
-      ', waist: ' +
-      this.state.currMeasurements.waist +
-      ', hips: ' +
-      this.state.currMeasurements.hips
-    );
+    var height = this.getHeightStr(this.state.currMeasurements.height);
+    var heightObj = { label: 'Height', mmt: height };
+    var bustObj = { label: 'Bust', mmt: this.state.currMeasurements.bust };
+    var waistObj = { label: 'Waist', mmt: this.state.currMeasurements.waist };
+    var hipsObj = { label: 'Hips', mmt: this.state.currMeasurements.hips };
+    var recommmendedArr = [heightObj, bustObj, waistObj, hipsObj];
+    return recommmendedArr;
   }
 
   render() {
-    var imgClassName = dresses => {
-      return dresses.length === 1 ? 'results-img-single' : 'results-img';
-    };
     const itemDivClass =
       this.state.dressesObjs.dresses.length === 1
         ? 'results-item-div'
@@ -600,11 +590,8 @@ class Results extends Component {
     return (
       <div>
         <div className="results-container-outer">
-          <div
-            className={
-              this.state.exactMatch ? 'results-leftCol results-leftCol-adjust' : 'results-leftCol'
-            }
-          >
+          <div className="results-leftCol">
+            <div className="results-leftCol-fakeNav"></div>
             <div className="results-leftCol-inner">
               <Modal
                 className="modal"
@@ -642,11 +629,7 @@ class Results extends Component {
                                 return loading ? (
                                   placeholder
                                 ) : (
-                                  <img
-                                    src={src}
-                                    alt="dress image"
-                                    className={imgClassName(this.state.dressesObjs.dresses)}
-                                  />
+                                  <img src={src} alt="dress image" className="results-img" />
                                 );
                               }}
                             </ProgressiveImage>
@@ -678,14 +661,6 @@ class Results extends Component {
                         key={keyDressObj}
                         id={parseInt(keyDressObj, 10) + 1}
                       >
-                        <div
-                          style={{
-                            height: 1,
-                            backgroundColor: 'lightgray',
-                            width: '100%',
-                            marginBottom: 50
-                          }}
-                        />
                         {dressObj.dresses.map((dress, key) => {
                           return (
                             dress && (
@@ -714,7 +689,7 @@ class Results extends Component {
                                           <img
                                             src={src}
                                             alt="dress image"
-                                            className={imgClassName(dressObj.dresses)}
+                                            className="results-img"
                                           />
                                         );
                                       }}
@@ -738,10 +713,8 @@ class Results extends Component {
           <div className={rightColClass}>
             <div className="results-rightCol-inner">
               <div className="results-name-div">
-                <p className="results-text" style={{ textAlign: 'right' }}>
-                  Curated for:
-                </p>
-                <form style={{ textAlign: 'right' }} onSubmit={this.handleSubmit}>
+                <p className="results-text">Curated for</p>
+                <form onSubmit={this.handleSubmit}>
                   <input
                     name="name"
                     type="text"
@@ -749,45 +722,58 @@ class Results extends Component {
                     value={this.getFirstName(this.state.name)}
                     className="results-input"
                     onChange={this.handleInput}
-                    placeholder="ADD YOUR NAME"
+                    placeholder="Add Your Name"
                   />
                 </form>
               </div>
-              <div className="results-title-div">
-                <p className="results-title">Chosen for you</p>
-              </div>
-              <div className="results-right-flexCol">
-                <div className="results-text-div">
-                  <div className="results-menu-hide-div">
-                    <img
-                      src={downArrow}
-                      className="results-menu-hide-arrow"
-                      onClick={this.dismissRecommendationPanel}
-                    />
-                  </div>
-                  {this.state.closestMeasurements && (
-                    <p className="results-text">{this.getRecommendedStr()} </p>
-                  )}
-                  <p
-                    className="results-text-small"
-                    onClick={() =>
-                      this.openModalHandler(
-                        'Know your exact measurements? Create an account to edit'
-                      )
-                    }
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <i>
-                      Your measurements: {this.getHeightStr(this.state.height)}, bust:{' '}
-                      {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}
-                    </i>{' '}
-                  </p>
-                  {this.state.exactMatch && this.state.currDiv === 0 && (
-                    <p className="results-match">EXACT MATCH</p>
-                  )}
+              <div className="results-recommended-wrapper">
+                <div className="results-menu-hide-div">
+                  <img
+                    src={downArrow}
+                    className="results-menu-hide-arrow"
+                    onClick={this.dismissRecommendationPanel}
+                  />
                 </div>
+                {this.state.exactMatch && this.state.currDiv === 0 && (
+                  <p className="results-match">Exact Match</p>
+                )}
+                {!this.state.exactMatch && this.state.currDiv === 0 && (
+                  <p className="results-match">Closest Match</p>
+                )}
+                <p className="results-text">Recommended by other women that are</p>
+                {this.state.closestMeasurements &&
+                  this.getRecommendedStr().map(line => (
+                    <div className="results-measurement-wrapper">
+                      <p className="results-measurement-label">{line.label}</p>
+                      <p className="results-measurement">{line.mmt}</p>
+                    </div>
+                  ))}
+              </div>
+              <div className="results-your-measurements-wrapper">
+                <p className="results-text">Your measurements are</p>
+                <p
+                  className="results-your-measurements"
+                  onClick={() =>
+                    this.openModalHandler('Know your exact measurements? Create an account to edit')
+                  }
+                  style={{ cursor: 'pointer' }}
+                >
+                  {this.getHeightStr(this.state.height)}, Bust: {this.state.bust}, Waist:{' '}
+                  {this.state.waist}, Hips: {this.state.hips}
+                </p>
               </div>
             </div>
+          </div>
+          <div
+            className={
+              this.state.showRecInfo ? 'results-menu-show-div-hidden' : 'results-menu-show-div'
+            }
+          >
+            <img
+              src={upArrow}
+              className="results-menu-hide-arrow"
+              onClick={this.showRecommendationPanel}
+            />
           </div>
         </div>
         <FooterSmall />

@@ -5,7 +5,8 @@ import SignOutButton from '../SignOut';
 import SignInLink from '../SignIn';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext, withAuthorization } from '../Session';
-import ShortLogo from '../../assets/images/one-line-logo.png';
+import WhiteLogo from '../../assets/images/one-line-logo.png';
+import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
 import WhiteArrow from '../../assets/images/white-down-arrow.png';
 
@@ -97,12 +98,12 @@ class NavigationAuth extends React.Component {
         <div className="nav-inner">
           <div className="nav-c1">
             <Link to={ROUTES.LANDING} className="nav-logo-right">
-              <img src={ShortLogo} style={{ height: 30 }} />
+              <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c2">
             <Link to={ROUTES.LANDING} className="nav-logo-center">
-              <img src={ShortLogo} style={{ height: 30 }} />
+              <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c3">
@@ -133,12 +134,12 @@ const NavigationNonAuth = () => (
     <div className="nav-inner">
       <div className="nav-c1">
         <Link to={ROUTES.LANDING} className="nav-logo-right">
-          <img src={ShortLogo} style={{ height: 30 }} />
+          <img src={BlackLogo} style={{ height: 20 }} />
         </Link>
       </div>
       <div className="nav-c2">
         <Link to={ROUTES.LANDING} className="nav-logo-center">
-          <img src={ShortLogo} style={{ height: 30 }} />
+          <img src={BlackLogo} style={{ height: 20 }} />
         </Link>
       </div>
       <div className="nav-c3">

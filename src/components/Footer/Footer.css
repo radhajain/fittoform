@@ -1,10 +1,10 @@
 .site-footer {
-  background-color: #3c1123;
+  background-color: black;
   padding: 20px 0 10px;
   font-size: 15px;
   line-height: 24px;
   color: #e8dcdc;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   width: 100%;
 }
 
@@ -92,7 +92,8 @@
   margin: 0;
   color: #e8dcdc;
   font-size: 0.8em;
-  font-family: 'Gibson', sans-serif;
+  font-weight: bold;
+  font-family: 'Helvetica', sans-serif;
 }
 
 .footer-social-icons {
@@ -100,7 +101,7 @@
 }
 
 .footer-sm-outer {
-  background-color: #3c1123;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,7 +131,8 @@
   color: white;
   display: inline-block;
   text-decoration: none;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: bold;
   padding: 0px 10px;
   font-size: 0.8em;
 }
@@ -141,8 +143,9 @@
 
 .footer-sm-label {
   color: white;
-  font-family: 'Gibson', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   display: inline-block;
+  font-weight: bold;
   font-size: 0.8em;
 }
 
@@ -167,6 +170,12 @@
 
   .footer-sm-c3 {
     width: 40%;
+  }
+}
+
+@media (max-width: 540px) {
+  .footer-sm-outer {
+    position: relative;
   }
 }
 
