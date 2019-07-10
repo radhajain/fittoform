@@ -620,42 +620,44 @@ class Results extends Component {
                 {this.state.dressesObjs.dresses &&
                   this.state.dressesObjs.dresses.map((dress, key) => {
                     return (
-                      <div
-                        className="results-col"
-                        id={'0' + key}
-                        onClick={() =>
-                          this.goToItemView(
-                            dress,
-                            '0' + key,
-                            this.state.dressesIDObjs.dressIDs[key],
-                            this.state.closestMeasurements,
-                            this.state.dressesObjs.reviewIDs[key],
-                            this.state.dressGroupID
-                          )
-                        }
-                        key={key}
-                      >
-                        <div className={itemDivClass}>
-                          <ProgressiveImage src={dress.img}>
-                            {(src, loading) => {
-                              return loading ? (
-                                placeholder
-                              ) : (
-                                <img
-                                  src={src}
-                                  alt="dress image"
-                                  className={imgClassName(this.state.dressesObjs.dresses)}
-                                />
-                              );
-                            }}
-                          </ProgressiveImage>
-                          <p className="results-rating">
-                            Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by women
-                            like you
-                          </p>
-                          <p className="results-price">${dress.price}</p>
+                      dress && (
+                        <div
+                          className="results-col"
+                          id={'0' + key}
+                          onClick={() =>
+                            this.goToItemView(
+                              dress,
+                              '0' + key,
+                              this.state.dressesIDObjs.dressIDs[key],
+                              this.state.closestMeasurements,
+                              this.state.dressesObjs.reviewIDs[key],
+                              this.state.dressGroupID
+                            )
+                          }
+                          key={key}
+                        >
+                          <div className={itemDivClass}>
+                            <ProgressiveImage src={dress.img}>
+                              {(src, loading) => {
+                                return loading ? (
+                                  placeholder
+                                ) : (
+                                  <img
+                                    src={src}
+                                    alt="dress image"
+                                    className={imgClassName(this.state.dressesObjs.dresses)}
+                                  />
+                                );
+                              }}
+                            </ProgressiveImage>
+                            <p className="results-rating">
+                              Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
+                              women like you
+                            </p>
+                            <p className="results-price">${dress.price}</p>
+                          </div>
                         </div>
-                      </div>
+                      )
                     );
                   })}
               </div>
