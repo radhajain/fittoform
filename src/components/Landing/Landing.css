@@ -25,7 +25,7 @@
 
 .landing-container-intro {
   height: 100vh;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-bkg%402x.jpg);
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landingcompressed.jpg);
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -430,7 +430,7 @@
 
 @media (max-width: 633px) {
   .landing-container-intro {
-    background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-bkg.jpg);
+    background-image: url(https://fittoform-landing.s3.amazonaws.com/landingpage1x.jpg);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
