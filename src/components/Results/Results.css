@@ -88,6 +88,10 @@ input:focus {
   font-weight: bold;
 }
 
+.results-your-measurements:hover {
+  text-decoration: underline;
+}
+
 .results-input {
   border: none;
   text-align: left;
