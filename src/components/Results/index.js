@@ -67,6 +67,7 @@ class Results extends Component {
       currMeasurements: '',
       seenDresses: [],
       isModalShowing: false,
+      currDiv: 0,
       modalMsg: ''
     };
     console.log(this.state);
@@ -209,14 +210,17 @@ class Results extends Component {
       if (this.isElementInViewport(currPage)) {
         if (i === 0) {
           this.setState({
-            currMeasurements: this.state.closestMeasurements
+            currMeasurements: this.state.closestMeasurements,
+            currDiv: 0
           });
         } else {
           if (this.state.currMeasurements !== this.state.nextBestDressGroupIDs[i - 1]) {
             this.setState({
-              currMeasurements: this.state.nextBestDressGroupIDs[i - 1]
+              currMeasurements: this.state.nextBestDressGroupIDs[i - 1],
+              currDiv: i
             });
           }
+          console.log(this.state);
         }
       }
     }
@@ -616,42 +620,44 @@ class Results extends Component {
                 {this.state.dressesObjs.dresses &&
                   this.state.dressesObjs.dresses.map((dress, key) => {
                     return (
-                      <div
-                        className="results-col"
-                        id={'0' + key}
-                        onClick={() =>
-                          this.goToItemView(
-                            dress,
-                            '0' + key,
-                            this.state.dressesIDObjs.dressIDs[key],
-                            this.state.closestMeasurements,
-                            this.state.dressesObjs.reviewIDs[key],
-                            this.state.dressGroupID
-                          )
-                        }
-                        key={key}
-                      >
-                        <div className={itemDivClass}>
-                          <ProgressiveImage src={dress.img}>
-                            {(src, loading) => {
-                              return loading ? (
-                                placeholder
-                              ) : (
-                                <img
-                                  src={src}
-                                  alt="dress image"
-                                  className={imgClassName(this.state.dressesObjs.dresses)}
-                                />
-                              );
-                            }}
-                          </ProgressiveImage>
-                          <p className="results-rating">
-                            Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by women
-                            like you
-                          </p>
-                          <p className="results-price">${dress.price}</p>
+                      dress && (
+                        <div
+                          className="results-col"
+                          id={'0' + key}
+                          onClick={() =>
+                            this.goToItemView(
+                              dress,
+                              '0' + key,
+                              this.state.dressesIDObjs.dressIDs[key],
+                              this.state.closestMeasurements,
+                              this.state.dressesObjs.reviewIDs[key],
+                              this.state.dressGroupID
+                            )
+                          }
+                          key={key}
+                        >
+                          <div className={itemDivClass}>
+                            <ProgressiveImage src={dress.img}>
+                              {(src, loading) => {
+                                return loading ? (
+                                  placeholder
+                                ) : (
+                                  <img
+                                    src={src}
+                                    alt="dress image"
+                                    className={imgClassName(this.state.dressesObjs.dresses)}
+                                  />
+                                );
+                              }}
+                            </ProgressiveImage>
+                            <p className="results-rating">
+                              Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
+                              women like you
+                            </p>
+                            <p className="results-price">${dress.price}</p>
+                          </div>
                         </div>
-                      </div>
+                      )
                     );
                   })}
               </div>
@@ -776,7 +782,9 @@ class Results extends Component {
                       {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}
                     </i>{' '}
                   </p>
-                  {this.state.exactMatch && <p className="results-match">EXACT MATCH</p>}
+                  {this.state.exactMatch && this.state.currDiv === 0 && (
+                    <p className="results-match">EXACT MATCH</p>
+                  )}
                 </div>
               </div>
             </div>
