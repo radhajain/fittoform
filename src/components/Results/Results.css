@@ -84,7 +84,7 @@ input:focus {
 .results-your-measurements {
   color: white;
   font-size: 1.5em;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
 }
 
@@ -108,7 +108,7 @@ input:focus {
 
 .results-match {
   color: white;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -116,7 +116,7 @@ input:focus {
 ::placeholder {
   color: white;
   text-align: left;
-  opacity: 0.6;
+  opacity: 0.75;
   text-decoration: underline;
 }
 
@@ -128,7 +128,7 @@ input:focus {
   font-weight: bold;
   padding: 12px 25px;
   border: none;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   cursor: pointer;
 }
 
@@ -172,7 +172,7 @@ input:focus {
 .results-text {
   font-weight: bold;
   color: black;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   text-align: left;
 }
 
@@ -196,7 +196,7 @@ input:focus {
 
 .results-measurement {
   color: white;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   font-size: 2em;
   font-weight: bold;
   display: inline-block;
@@ -211,7 +211,7 @@ input:focus {
 .results-price {
   bottom: 0;
   left: 0;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
   color: black;
   font-size: 1.25em;
@@ -219,7 +219,7 @@ input:focus {
 }
 
 .results-rating {
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
   color: black;
   margin-bottom: 5px;

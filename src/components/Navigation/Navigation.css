@@ -39,32 +39,28 @@
   align-content: center;
 }
 
-.nav-signup-btn {
-  color: white;
-  font-family: 'Helvetica', sans-serif;
-  font-weight: bold;
-  border: none;
-  background-color: unset;
-  font-size: 1em;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .nav-href {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  font-size: 0.9em;
+  font-size: 1em;
+  font-family: 'Helvetiva Neue', sans-serif;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.nav-signin-btn {
-  color: white;
-  font-family: 'Helvetica', sans-serif;
-  font-weight: bold;
-  margin-right: 50px;
+.nav-href-black {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   font-size: 1em;
+  font-family: 'Helvetiva Neue', sans-serif;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .nav-profile-btn {
@@ -78,12 +74,12 @@
   text-decoration: underline;
 }
 
-.nav-signin-btn:hover {
-  text-decoration: underline;
+.nav-href:hover {
+  font-weight: bolder;
 }
 
-.nav-signup-btn:hover {
-  text-decoration: underline;
+.nav-href-black:hover {
+  font-weight: bolder;
 }
 
 a:focus {

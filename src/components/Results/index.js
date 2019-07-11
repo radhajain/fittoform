@@ -248,6 +248,7 @@ class Results extends Component {
   // TODO: when want to edit measurements -> profile page (create an account)
   //TODO: maintain scroll position when come from item view
   //TODO: show difference between current and future
+  //TODO: horizontal scroll
 
   getBestDressGroupID() {
     //Gets the ID of a group corresponding to an array of dress IDs. Populates this.state.closestMeasurements
