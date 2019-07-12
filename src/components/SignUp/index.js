@@ -158,7 +158,7 @@ class SignUpFormBase extends Component {
     this.goToSize = this.goToSize.bind(this);
     this.goToHeight = this.goToHeight.bind(this);
     this.goToBra = this.goToBra.bind(this);
-    this.goToSize = this.goToSizing.bind(this);
+    this.goToSizing = this.goToSizing.bind(this);
     this.goToAccount = this.goToAccount.bind(this);
     this.getErrorObj = this.getErrorObj.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -573,10 +573,7 @@ class SignUpFormBase extends Component {
               </label>
               <div className={shouldShowNext('name') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToHeight}>
-                  <div className="signup-ok-flexWrapper">
-                    <span className="signup-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="signup-ok-flexWrapper">OK</div>
                 </button>
                 <p className="signup-pressEnter">
                   <i>
@@ -624,10 +621,7 @@ class SignUpFormBase extends Component {
               </label>
               <div className={shouldShowNext('height') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToSize}>
-                  <div className="signup-ok-flexWrapper">
-                    <span className="signup-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="signup-ok-flexWrapper">OK</div>
                 </button>
                 <p className="signup-pressEnter">
                   <i>
@@ -661,10 +655,7 @@ class SignUpFormBase extends Component {
               </label>
               <div className={shouldShowNext('size') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToBra}>
-                  <div className="signup-ok-flexWrapper">
-                    <span className="signup-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="signup-ok-flexWrapper">OK</div>
                 </button>
                 <p className="signup-pressEnter">
                   <i>
@@ -686,7 +677,11 @@ class SignUpFormBase extends Component {
                   ref="brainput"
                   onBlur={this.handleBlur('bra')}
                   onKeyPress={this._handleKeyPressBra}
-                  className={shouldMarkError('bra') ? 'signup-input-error' : 'signup-input'}
+                  className={
+                    shouldMarkError('bra')
+                      ? 'signup-input-error signup-bra'
+                      : 'signup-input signup-bra'
+                  }
                   style={{ width: 150 }}
                   onChange={this.handleInputChange}
                 />
@@ -699,10 +694,7 @@ class SignUpFormBase extends Component {
               </label>
               <div className={shouldShowNext('bra') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToSizing}>
-                  <div className="signup-ok-flexWrapper">
-                    <span className="signup-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="signup-ok-flexWrapper">OK</div>
                 </button>
                 <p className="signup-pressEnter">
                   <i>
@@ -721,7 +713,7 @@ class SignUpFormBase extends Component {
             </p>
             <div className="signup-size-box">
               <div className="signup-selector" style={{ display: 'block' }}>
-                <p className="signup-desc">WAIST</p>
+                <p className="signup-desc">Waist</p>
                 <div className="signup-btn-group">
                   <button
                     className={
@@ -776,7 +768,7 @@ class SignUpFormBase extends Component {
                 </div>
               </div>
               <div className="signup-selector">
-                <p className="signup-desc">HIPS</p>
+                <p className="signup-desc">Hips</p>
                 <div className="signup-btn-group">
                   <button
                     className={
@@ -834,10 +826,7 @@ class SignUpFormBase extends Component {
           </div>
           <div className="signup-nextDiv" style={{ marginTop: 50 }}>
             <button className="signup-ok-btn" onClick={this.goToAccount}>
-              <div className="signup-ok-flexWrapper">
-                <span className="signup-ok-text">OK</span>
-                <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-              </div>
+              <div className="signup-ok-flexWrapper">OK</div>
             </button>
           </div>
         </div>
