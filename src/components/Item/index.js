@@ -236,9 +236,9 @@ class Item extends Component {
           <div className="itemView-c1-inner">
             <div className="itemView-c1-left">
               <div className="itemView-img-wrapper">
-                {/* <button className="itemView-backbtn" onClick={() => this.goToResultsView()}>
+                <button className="itemView-backbtn" onClick={() => this.goToResultsView()}>
                   <img src={backBtn} style={{ width: 45 }} />
-                </button> */}
+                </button>
                 <img
                   alt={this.state.item.name}
                   src={this.state.item.img}

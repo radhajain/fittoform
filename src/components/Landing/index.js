@@ -97,25 +97,30 @@ class Landing extends React.Component {
   render() {
     return (
       <div className="landing-parent">
-        <div className="landing-child" style={{ display: 'block' }}>
-          <div className="landing-container-intro">
+        <div className="landing-fakeNav" />
+        <div className="landing-child">
+          <div className="landing-container-inner">
             <div className="landing-intro-hero">
-              <div className="landing-intro-content">
-                <p className="landing-title">We try on dresses so you don't have to</p>
+              <div className="landing-title-wrapper">
+                <p className="landing-title">We try on dresses so you don't have to.</p>
+              </div>
+              <div className="landing-intro-img"></div>
+            </div>
+            <div className="landing-intro-footer">
+              <div className="landing-intro-footer-inner">
                 <p className="landing-desc">
                   It's hard to know what fits well while shopping online. We show you a curated set
                   of dresses, recommended by real women with the same measurements as you. Buy with
                   confidence, every time.
                 </p>
-                <Link to="/search">
-                  <button className="landing-callToAction">
-                    Find your perfect dress
-                    <img src={WhiteArrow} className="landing-whitearrow" />
-                  </button>
-                </Link>
+                <div className="landing-callToAction-wrapper">
+                  <Link to="/search">
+                    <button className="landing-callToAction">Get Started</button>
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="landing-howitworks-outer">
+            {/* <div className="landing-howitworks-outer">
               <div className="landing-howitworks-inner">
                 <p
                   className="serif"
@@ -145,7 +150,7 @@ class Landing extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="landing-child landing-second-page">
@@ -240,10 +245,7 @@ class Landing extends React.Component {
                 and styles you want - and the knowledge that they will flatter you.{' '}
               </p>
               <Link to="/search">
-                <button className="landing-callToAction">
-                  Try it out
-                  <img src={WhiteArrow} className="landing-whitearrow" />
-                </button>
+                <button className="landing-callToAction">Try it out</button>
               </Link>
             </div>
           </div>

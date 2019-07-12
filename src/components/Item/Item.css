@@ -150,6 +150,8 @@
 .itemView-backbtn {
   font-size: 1.1em;
   cursor: pointer;
+  position: relative;
+  z-index: 100;
 }
 
 .itemView-save-btn {
@@ -223,6 +225,8 @@
 
 .itemView-img {
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 .itemView-shop-btn-mobile {
@@ -326,6 +330,8 @@
   .itemView-c1-left {
     flex-basis: 100%;
     padding: 0px;
+    position: relative;
+    z-index: 2;
   }
 
   .itemView-c1-right {

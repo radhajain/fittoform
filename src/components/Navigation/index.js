@@ -8,7 +8,7 @@ import { AuthUserContext, withAuthorization } from '../Session';
 import WhiteLogo from '../../assets/images/one-line-logo.png';
 import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
-import WhiteArrow from '../../assets/images/white-down-arrow.png';
+import WhiteArrow from '../../assets/images/down triangle.svg';
 import { withRouter } from 'react-router-dom';
 
 class Navigation extends React.Component {
@@ -20,13 +20,7 @@ class Navigation extends React.Component {
     return (
       <div>
         <AuthUserContext.Consumer>
-          {authUser =>
-            authUser ? (
-              <NavigationAuth path={this.props.location.pathname} />
-            ) : (
-              <NavigationNonAuth path={this.props.location.pathname} />
-            )
-          }
+          {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
         </AuthUserContext.Consumer>
       </div>
     );
@@ -142,25 +136,25 @@ class NavigationNonAuth extends React.Component {
     super(props);
     console.log(this.props);
     this.state = {
-      whiteLogo: true,
-      whiteNav: true
+      whiteLogo: false,
+      whiteNav: false
     };
-    if (
-      this.props.path === '/' ||
-      this.props.path === 'search' ||
-      this.props.path === 'signup' ||
-      this.props.path === 'signin' ||
-      this.props.path === 'howitworks'
-    ) {
-      this.state.whiteLogo = true;
-      this.state.whiteNav = true;
-    } else {
-      this.state.whiteLogo = false;
-      this.state.whiteNav = false;
-      if (this.props.path === 'results') {
-        this.state.whiteNav = true;
-      }
-    }
+    // if (
+    //   this.props.path === '/' ||
+    //   this.props.path === 'search' ||
+    //   this.props.path === 'signup' ||
+    //   this.props.path === 'signin' ||
+    //   this.props.path === 'howitworks'
+    // ) {
+    //   this.state.whiteLogo = true;
+    //   this.state.whiteNav = true;
+    // } else {
+    //   this.state.whiteLogo = false;
+    //   this.state.whiteNav = false;
+    //   if (this.props.path === 'results') {
+    //     this.state.whiteNav = true;
+    //   }
+    // }
   }
 
   render() {
@@ -199,4 +193,4 @@ class NavigationNonAuth extends React.Component {
   }
 }
 
-export default withRouter(Navigation);
+export default Navigation;

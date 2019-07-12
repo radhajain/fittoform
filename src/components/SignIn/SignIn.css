@@ -1,49 +1,39 @@
 @font-face {
-    font-family: 'Albertus';
-    font-style: normal;
-    font-weight: 400;
-    src:
-      local('Albertus-Medium'),
-      local('Roboto-Regular'),
-      url(../../assets/fonts/Albertus/Albertus-Medium.ttf) format('ttf'),
-      url(../../assets/fonts/Albertus/Albertus-Regular.ttf) format('ttf');
-  }
-
+  font-family: 'Albertus';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Albertus-Medium'), local('Helvetiva Neue-Regular'),
+    url(../../assets/fonts/Albertus/Albertus-Medium.ttf) format('ttf'),
+    url(../../assets/fonts/Albertus/Albertus-Regular.ttf) format('ttf');
+}
 
 .signin-background {
-    width: 100%;
-    height: 100vh;
-    margin: auto;
-    background-image: url(../../assets//images/landing-bkg.jpg);
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .signin-box {
-    width: 80%;
-    height: 60%;
-    max-width: 723px;
-    margin: auto;
-    background-color:#17080E;
+  width: 80%;
+  height: 60%;
+  max-width: 723px;
+  margin: auto;
+  background-color: #17080e;
 }
 
-
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=HelvetivaNeue:300);
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
   margin: auto;
 }
 .signin-form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: #ffffff;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -51,7 +41,7 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .signin-form input {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -61,32 +51,35 @@
   box-sizing: border-box;
   font-size: 14px;
   text-decoration: none;
-  color: #4B2431;
+  color: #4b2431;
 }
 
-.signin-form input::placeholder{
-  font-family: "Roboto", sans-serif;
+.signin-form input::placeholder {
+  font-family: 'Helvetiva Neue', sans-serif;
   box-sizing: border-box;
   font-size: 14px;
   text-decoration: none;
   color: #3c1d27;
 }
 .signin-form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
   outline: 0;
-  background: #4B2431;
+  background: #ffd2ba;
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+  color: #ffffff;
+  font-size: 1.2em;
+  -webkit-transition: all 0.4 ease;
+  transition: all 0.4s ease;
   cursor: pointer;
 }
-.signin-form button:hover,.form button:active,.form button:focus {
-  background: #3c1d27;
+.signin-form button:hover,
+.form button:active,
+.form button:focus {
+  background: #69dbd3;
 }
 .signin-form .message {
   margin: 15px 0 0;
@@ -94,7 +87,7 @@
   font-size: 12px;
 }
 .signin-form .message a {
-  color: #4B2431;
+  color: #4b2431;
   text-decoration: none;
 }
 
@@ -103,16 +96,14 @@
   text-decoration: none;
 }
 .signin-form .forgot {
-    color: #7f7f7f;
-    display: inline-block;
-    float: right;
-    font: 12px/1 sans-serif;
-    left: -19px;
-    position: relative;
-    text-decoration: none;
-    top: 5px;
-    transition: color .4s;
-    margin: 0px 2px 25px 2px;
-    
+  color: #7f7f7f;
+  display: inline-block;
+  float: right;
+  font: 12px/1 sans-serif;
+  left: -19px;
+  position: relative;
+  text-decoration: none;
+  top: 5px;
+  transition: color 0.4s;
+  margin: 0px 2px 25px 2px;
 }
-

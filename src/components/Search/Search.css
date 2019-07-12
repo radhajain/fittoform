@@ -45,7 +45,7 @@ input[type='number']::-webkit-outer-spin-button {
   border-bottom: 2px solid white;
   border-radius: 0px;
   color: white;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   text-align: center;
   width: 70px;
   font-size: 3em;
@@ -59,7 +59,7 @@ input[type='number']::-webkit-outer-spin-button {
   background: none;
   border: none;
   border-bottom: 2px solid #ff8181;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   font-weight: lighter;
   text-align: center;
   border-radius: 0px;
@@ -77,13 +77,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .search-desc {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   color: white;
   text-align: left;
 }
 
 .search-search-label {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   color: white;
   font-size: 2.5em;
   line-height: 1.5em;
@@ -101,7 +101,7 @@ input[type='number']::-webkit-outer-spin-button {
 .search-size-buttons {
   background: none;
   border: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   color: #d3b1b1;
   font-size: 1em;
   margin-top: 15px;
@@ -113,7 +113,7 @@ input[type='number']::-webkit-outer-spin-button {
 .search-size-buttons-selected {
   background: none;
   border: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   color: white;
   font-size: 1em;
   margin-top: 15px;
@@ -160,7 +160,7 @@ button:focus {
   padding: 6px 14px;
   border: none;
   border-radius: 4px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
 
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
@@ -188,7 +188,7 @@ button:focus {
 .search-pressEnter {
   color: #d3b1b1;
   font-size: 0.9em;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   display: inline-block;
   margin-left: 12px;
 }
@@ -204,7 +204,7 @@ button:focus {
   margin-bottom: 100px;
   border: none;
   padding: 16px 20px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
   cursor: pointer;
 }
 
@@ -215,7 +215,7 @@ button:focus {
   margin-bottom: 100px;
   border: none;
   padding: 16px 20px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
 }
 
 .search-size-box {
@@ -274,7 +274,7 @@ input[type='number'] {
 
 @media (max-width: 588px) {
   .search-search-label {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Helvetiva Neue', sans-serif;
     color: white;
     font-size: 2em;
   }
@@ -282,7 +282,7 @@ input[type='number'] {
 
 @media (max-width: 510px) {
   .search-search-label {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Helvetiva Neue', sans-serif;
     color: white;
     font-size: 1.75em;
     line-height: 2em;

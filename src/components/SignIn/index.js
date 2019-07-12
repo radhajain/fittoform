@@ -8,7 +8,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
-import './SignIn.css'
+import './SignIn.css';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 const SignInPage = () => (
@@ -20,7 +20,7 @@ const SignInPage = () => (
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       email: '',
       password: '',
       error: null,
@@ -31,17 +31,18 @@ class SignInFormBase extends Component {
         hips: '',
         bust: '',
         size: '',
-        bra: '',
+        bra: ''
       }
-      
     };
   }
 
-
   // Sets the user values
   getUserData(uid) {
-    let UserRef = firebase.database().ref('users').child(`${uid}`);
-    return UserRef.once('value').then((snapshot) => {
+    let UserRef = firebase
+      .database()
+      .ref('users')
+      .child(`${uid}`);
+    return UserRef.once('value').then(snapshot => {
       let user = snapshot.val();
       var userInfo = {
         bra: user.bra,
@@ -51,51 +52,52 @@ class SignInFormBase extends Component {
         hips: user.hips,
         size: user.size,
         waist: user.waist,
-        id: uid,
-      }
+        id: uid
+      };
       return userInfo;
-      
     });
-  }  
-
-  componentDidMount() {
-    this.listener = firebase.auth().onAuthStateChanged(
-      authUser => {
-        if (authUser) {
-            this.getUserData(authUser.uid).then((userInfo) => {
-              this.setState({
-                user: userInfo
-              }, () => {
-                console.log(this.state);
-                this.props.history.push({
-                  pathname: '/results',
-                  state: {
-                      height: this.state.user.height,
-                      waist: this.state.user.waist,
-                      hips: this.state.user.hips,
-                      bra: this.state.user.bra,
-                      bust: this.state.user.bust,
-                      size: this.state.user.size,
-                      name: this.state.user.name
-                  }
-                });
-              });
-            });
-        }
-      },
-    );
   }
 
+  componentDidMount() {
+    this.listener = firebase.auth().onAuthStateChanged(authUser => {
+      if (authUser) {
+        this.getUserData(authUser.uid).then(userInfo => {
+          this.setState(
+            {
+              user: userInfo
+            },
+            () => {
+              console.log(this.state);
+              this.props.history.push({
+                pathname: '/results',
+                state: {
+                  height: this.state.user.height,
+                  waist: this.state.user.waist,
+                  hips: this.state.user.hips,
+                  bra: this.state.user.bra,
+                  bust: this.state.user.bust,
+                  size: this.state.user.size,
+                  name: this.state.user.name
+                }
+              });
+            }
+          );
+        });
+      }
+    });
+  }
 
   onSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.props.firebase.doSignInWithEmailAndPassword(email, password).then(() => {
-      console.log("logging in...");
-    }).catch(error => {
-      this.setState({ error });
-    });
-    
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('logging in...');
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
   };
 
   onChange = event => {
@@ -109,41 +111,47 @@ class SignInFormBase extends Component {
 
     return (
       //<div style={{padding: '50px 30px 20px 30px'}}>
-  
+
       <div className="login-page">
         <div className="signin-form">
-          <form className="login-form" onSubmit={this.onSubmit} >
-            <input 
+          <form className="login-form" onSubmit={this.onSubmit}>
+            <input
               name="email"
               value={email}
               onChange={this.onChange}
-              type="text" 
-              placeholder="username"/>
-            <input 
+              type="text"
+              placeholder="email"
+            />
+            <input
               name="password"
               value={password}
               onChange={this.onChange}
-              type="password" 
-              placeholder="password"/>
+              type="password"
+              placeholder="password"
+            />
             <PasswordForgetLink />
-            <button disabled={isInvalid} type="submit" >login</button>
+            <button disabled={isInvalid} type="submit">
+              login
+            </button>
             {error && <p>{error.message}</p>}
             <SignUpLink />
           </form>
         </div>
       </div>
       //</div>
-   );
+    );
   }
 }
 
 const SignInLink = () => (
-  <button className="signout-btn"><Link to={ROUTES.SIGN_IN}> SIGN IN</Link></button>
+  <button className="signout-btn">
+    <Link to={ROUTES.SIGN_IN}> SIGN IN</Link>
+  </button>
 );
 
 const SignInForm = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignInFormBase);
 
 export default SignInPage;

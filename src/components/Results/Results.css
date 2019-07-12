@@ -132,6 +132,10 @@ input:focus {
   cursor: pointer;
 }
 
+.results-loadMore-btn:hover {
+  background-color: #ffbb96;
+}
+
 .results-loadMore-btn-div {
   margin-top: 20px;
   width: 100%;
