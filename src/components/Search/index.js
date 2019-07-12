@@ -403,7 +403,7 @@ class Search extends Component {
                 onKeyPress={this._handleKeyPressSize('size')}
                 onChange={this.handleInputChange}
               />
-              .
+              <label className="search-search-label">.</label>
               <p className={shouldMarkError('size') ? 'search-error-msg' : 'hide-search-error-msg'}>
                 <i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i>
               </p>
@@ -438,7 +438,7 @@ class Search extends Component {
                 }
                 onChange={this.handleInputChangeBra}
               />
-              .
+              <label className="search-search-label">.</label>
               <p className={shouldMarkError('bra') ? 'search-error-msg' : 'hide-search-error-msg'}>
                 <i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i>
               </p>
@@ -462,7 +462,7 @@ class Search extends Component {
               On me, size {this.state.size} is generally:
             </p>
             <div className="search-size-box">
-              <div className="search-selector" style={{ display: 'block' }}>
+              <div className="search-selector">
                 <p className="search-desc">Waist</p>
                 <div className="search-btn-group">
                   <button
@@ -473,7 +473,7 @@ class Search extends Component {
                     }
                     onClick={() => this.modifyWaist(2)}
                   >
-                    Tight
+                    Too Tight
                   </button>
                   <button
                     className={
@@ -528,7 +528,7 @@ class Search extends Component {
                     }
                     onClick={() => this.modifyHips(2)}
                   >
-                    Tight
+                    Too Tight
                   </button>
                   <button
                     className={

@@ -89,7 +89,6 @@ input[type='number']::-webkit-outer-spin-button {
   color: white;
   font-size: 2.5em;
   font-weight: bold;
-  letter-spacing: 1.5px;
 }
 
 .search-search-content {
@@ -171,7 +170,6 @@ button:focus {
   line-height: 28px;
   margin: 0;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 .search-ok-btn:hover {
@@ -184,9 +182,6 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.search-ok-text {
 }
 
 .search-pressEnter {
@@ -237,7 +232,7 @@ button:focus {
   flex-direction: row;
   justify-content: space-evenly;
   flex-basis: 50%;
-  min-width: 250px;
+  min-width: 380px;
 }
 
 .final-search-label {
@@ -277,8 +272,29 @@ input[type='number'] {
     text-align: center;
   }
 
+  .search-btn-group {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .search-size-box {
+    flex-wrap: wrap;
+    display: block;
+    flex-basis: unset;
+  }
+
+  .search-selector {
+    flex-basis: 100%;
+    margin-top: 50px;
+  }
+
+  .final-search-label {
+    margin-bottom: 0px;
+  }
+
   .search-size-buttons-selected {
     text-align: center;
+    padding: 0px 20px;
   }
 
   .search-desc {
@@ -292,6 +308,30 @@ input[type='number'] {
     color: white;
     font-size: 2em;
   }
+
+  .search-input {
+    font-size: 2.5em;
+    width: 55px;
+  }
+
+  .search-input-error {
+    font-size: 2.5em;
+    width: 55px;
+  }
+
+  .search-results-btn {
+    font-size: 1.1em;
+  }
+
+  .search-results-btn-disabled {
+    font-size: 1.1em;
+  }
+
+  .search-ok-btn {
+    padding: 17px 17px;
+    font-size: 17px;
+    line-height: 25px;
+  }
 }
 
 @media (max-width: 510px) {
@@ -299,8 +339,22 @@ input[type='number'] {
     font-family: 'Helvetiva Neue', sans-serif;
     color: white;
     font-size: 1.75em;
-    line-height: 2em;
     margin-bottom: 0px;
+  }
+
+  .search-input {
+    font-size: 2.25em;
+  }
+
+  .search-input-error {
+    font-size: 2.25em;
+  }
+
+  .search-results-btn-disabled {
+    font-size: 1em;
+  }
+  .search-results-btn {
+    font-size: 1em;
   }
 
   .search-parent {
@@ -309,6 +363,12 @@ input[type='number'] {
   }
   .search-child {
     scroll-snap-align: none;
+  }
+
+  .search-ok-btn {
+    padding: 15px 15px;
+    font-size: 15px;
+    line-height: 23px;
   }
 }
 
@@ -319,35 +379,15 @@ input[type='number'] {
     flex-wrap: wrap;
     min-width: unset;
   }
-  .search-selector {
-    flex-basis: 100%;
-    text-align: center;
-    padding-top: 50px;
-  }
 
   .search-btn-group {
     text-align: center;
     flex-direction: row;
     justify-content: space-between;
   }
-
-  .search-search-label {
-    letter-spacing: 1px;
-  }
-
-  .search-results-btn-disabled {
-    font-size: 1em;
-  }
-  .search-results-btn {
-    font-size: 1em;
-  }
 }
 
 @media (max-width: 440px) {
-  .search-form {
-    text-align: center;
-  }
-
   .search-results-btn {
     margin-bottom: 0px;
   }
@@ -355,22 +395,13 @@ input[type='number'] {
   .search-input {
     width: 60px;
   }
+
+  .search-input-error {
+    width: 60px;
+  }
+
   .search-bra {
     width: 110px;
-  }
-}
-
-@media (max-width: 414px) {
-  .search-results-btn-div {
-    margin-top: 50px;
-  }
-
-  .search-results-btn {
-    margin-bottom: 50px;
-  }
-
-  .search-results-btn-disabled {
-    margin-bottom: 50px;
   }
 }
 
@@ -385,38 +416,15 @@ input[type='number'] {
     font-size: 1.55em;
     padding-top: 100px;
   }
-  .search-size-box {
-    padding-left: 35px;
-    padding-right: 35px;
-    flex-wrap: wrap;
-    min-width: unset;
-    justify-content: space-evenly;
-    width: 80%;
-  }
-  .search-btn-group {
-    text-align: center;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
+
   .search-selector {
     flex-basis: 70%;
     text-align: center;
-    padding-top: 50px;
   }
   .search-size-buttons {
     font-size: 0.95em;
   }
   .search-size-buttons-selected {
     font-size: 0.95em;
-  }
-}
-
-@media (max-width: 325px) {
-  .search-size-buttons {
-    font-size: 10px;
-  }
-
-  .search-size-buttons-selected {
-    font-size: 10px;
   }
 }
