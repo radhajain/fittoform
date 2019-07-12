@@ -8,6 +8,7 @@ import WrapImg from '../../assets/images/wrap-lady.png';
 import firebase from 'firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 import { FooterLarge } from '../Footer';
+import grid from '../../assets/images/landingpage_grid.jpg';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -99,14 +100,21 @@ class Landing extends React.Component {
       <div className="landing-parent">
         <div className="landing-fakeNav" />
         <div className="landing-child">
-          <div className="landing-container-inner">
+          <div className="landing-container-inner-85">
             <div className="landing-intro-hero">
               <div className="landing-title-wrapper">
                 <p className="landing-title">We try on dresses so you don't have to.</p>
               </div>
-              <div className="landing-intro-img"></div>
+              <div className="landing-img-wrapper">
+                <div>
+                  <img
+                    src="https://fittoform-landing.s3.amazonaws.com/orangedress_50p_progressive.jpg"
+                    className="landing-img"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="landing-intro-footer">
+            <div className="landing-intro-footer landing-intro-footer-btn">
               <div className="landing-intro-footer-inner">
                 <p className="landing-desc">
                   It's hard to know what fits well while shopping online. We show you a curated set
@@ -115,169 +123,129 @@ class Landing extends React.Component {
                 </p>
                 <div className="landing-callToAction-wrapper">
                   <Link to="/search">
-                    <button className="landing-callToAction">Get Started</button>
+                    <button className="landing-callToAction landing-btn-top">
+                      <div className="landing-btn-flexWrapper">Get Started</div>
+                    </button>
                   </Link>
                 </div>
               </div>
             </div>
-            {/* <div className="landing-howitworks-outer">
-              <div className="landing-howitworks-inner">
-                <p
-                  className="serif"
-                  style={{ color: 'white', textAlign: 'center', fontSize: '1.75em' }}
-                >
-                  How it works
-                </p>
-                <hr />
+          </div>
+        </div>
+        {/* PAGE 2 */}
+        <div className="landing-child" style={{ display: 'block' }}>
+          <div className="landing-2-header"></div>
+          <div className="landing-container-inner-60 landing-2-container">
+            <div className="landing-2-col-container">
+              <div className="landing-2-leftCol">
+                <p className="landing-title">How it works</p>
+              </div>
+              <div className="landing-2-rightCol">
                 <div className="landing-howitworks-steps">
-                  <div className="landing-howitworks-box">
-                    <p className="landing-howitworks-title">1. Tell us your size</p>
+                  <div className="landing-howitworks-box landing-howitworks-box-1">
+                    <p className="landing-desc">Tell us your size</p>
                     <p className="landing-howitworks-desc">
                       Tell us what sizes you wear and how they normally fit
                     </p>
                   </div>
                   <div className="landing-howitworks-box">
-                    <p className="landing-howitworks-title">2. Browse curations</p>
+                    <p className="landing-desc">Browse curations</p>
                     <p className="landing-howitworks-desc">
                       Get personalized recommendations by women with the same measurements as you
                     </p>
                   </div>
                   <div className="landing-howitworks-box">
-                    <p className="landing-howitworks-title">3. Buy with confidence</p>
+                    <p className="landing-desc">Buy with confidence</p>
                     <p className="landing-howitworks-desc">
                       Read reviews from women with your measurements who have tried each dress on
                     </p>
                   </div>
                 </div>
               </div>
-            </div> */}
-          </div>
-        </div>
-        <div className="landing-child" style={{ position: 'relative', display: 'block' }}>
-          <div className="landing-2-header"></div>
-          <div className="landing-2-container-inner">
-            <div className="landing-2-col-container">
-              <div className="landing-2-leftCol">
-                <div className="landing-2-content">
-                  <p className="landing-2-title">How it works</p>
-                </div>
-              </div>
-              <div className="landing-2-rightCol">
-                <div className="landing-howitworks-steps">
-                  <div className="landing-howitworks-box landing-howitowkrs-box-1">
-                    <div className="landing-howitworks-num-wrapper">
-                      <p className="landing-howitworks-num">1</p>
-                    </div>
-                    <div className="landing-howitworks-content">
-                      <p className="landing-howitworks-title">Tell us your size</p>
-                      <p className="landing-howitworks-desc">
-                        Tell us what sizes you wear and how they normally fit
-                      </p>
-                    </div>
-                  </div>
-                  <div className="landing-howitworks-box">
-                    <div className="landing-howitworks-num-wrapper">
-                      <p className="landing-howitworks-num">2</p>
-                    </div>
-                    <div className="landing-howitworks-content">
-                      <p className="landing-howitworks-title">Browse curations</p>
-                      <p className="landing-howitworks-desc">
-                        Get personalized recommendations by women with the same measurements as you
-                      </p>
-                    </div>
-                  </div>
-                  <div className="landing-howitworks-box">
-                    <div className="landing-howitworks-num-wrapper">
-                      <p className="landing-howitworks-num">3</p>
-                    </div>
-                    <div className="landing-howitworks-content">
-                      <p className="landing-howitworks-title">Buy with confidence</p>
-                      <p className="landing-howitworks-desc">
-                        Read reviews from women with your measurements who have tried each dress on
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
+        {/* PAGE 3 */}
         <div className="landing-child landing-third-page">
-          <img src={WrapImg} className="landing-third-img" />
-
-          <div
-            className="landing-container-inner"
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.2)',
-              height: '80%',
-              zIndex: 100,
-              position: 'relative'
-            }}
-          >
-            <div className="landing-third-content">
-              <p className="landing-third-title">Women like you have tried on these dresses.</p>
-              <p className="landing-third-desc">
-                Brands and even items can have inconsistent sizing. Every piece on our site has been
-                tried on by real women who are the same size as you. We show you a curated selection
-                of dresses that we know will make you look fantastic.{' '}
-              </p>
+          <div className="landing-container-inner-60 landing-3-container">
+            <img src={grid} className="landing-3-img" />
+          </div>
+        </div>
+        {/* PAGE 4 */}
+        <div className="landing-child landing-fourth-page">
+          <div className="landing-container-inner-60 landing-4-container">
+            <div className="landing-4-content">
+              <div className="landing-4-leftCol">
+                <p className="landing-title">Clothes look best when they fit. </p>
+              </div>
+              <div className="landing-4-rightCol">
+                <p className="landing-desc">
+                  There's a perfect dress for everyone, and we're here to help you find it.
+                </p>
+              </div>
             </div>
-            <div>
-              <img
-                src="https://fittoform-landing.s3.amazonaws.com/wrap-sm%402x.jpg"
-                className="landing-third-sm"
-              />
+          </div>
+          <div className="landing-4-footer"></div>
+        </div>
+        {/* PAGE 5 */}
+        <div className="landing-child landing-fifth-page">
+          <div className="landing-container-inner-85">
+            <div className="landing-intro-hero">
+              <div className="landing-title-wrapper">
+                <p className="landing-title landing-5-title">
+                  Women with your body have tried on these dresses.
+                </p>
+              </div>
+              <div className="landing-img-wrapper">
+                <div>
+                  <img
+                    src="https://fittoform-landing.s3.amazonaws.com/dresses_45p_progressive.jpg"
+                    className="landing-img"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="landing-intro-footer">
+              <div className="landing-intro-footer-inner">
+                <p className="landing-desc">
+                  Brands and even items can have inconsistent sizing. Every piece on our site has
+                  been tried on by women with your measurements. Then, we show you a curated set of
+                  the dresses that fit them perfectly.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="landing-child landing-fourth-page">
-          <div className="landing-container-inner" style={{ position: 'relative' }}>
-            <div className="landing-fourth-img-rows">
-              <div className="landing-fourth-flex-grid">
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-1%402x.jpg"
-                  className="landing-fourth-img dress1"
-                />
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-2%402x.jpg"
-                  className="landing-fourth-img dress2"
-                />
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-3%402x.jpg"
-                  className="landing-fourth-img dress3"
-                />
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-4%402x.jpg"
-                  className="landing-fourth-img dress4"
-                />
+        {/* PAGE 6 */}
+        <div className="landing-child landing-sixth-page">
+          <div className="landing-container-inner-85">
+            <div className="landing-intro-hero">
+              <div className="landing-title-wrapper">
+                <p className="landing-title">You're the stylist.</p>
               </div>
-              <div
-                className="landing-fourth-flex-grid landing-fourth-row2"
-                style={{ float: 'right', marginTop: 50 }}
-              >
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-5%402x.jpg"
-                  className="landing-fourth-img2 dress5"
-                />
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-6%402x.jpg"
-                  className="landing-fourth-img2 dress6"
-                />
-                <img
-                  src="https://fittoform-landing.s3.amazonaws.com/landing-4-7%402x.jpg"
-                  className="landing-fourth-img2 dress7"
-                />
+              <div className="landing-img-wrapper">
+                <div>
+                  <img
+                    src="https://fittoform-landing.s3.amazonaws.com/hatlady_60p_progressive.jpg"
+                    className="landing-img"
+                  />
+                </div>
               </div>
             </div>
-            <div className="landing-fourth-content">
-              <p className="landing-fourth-title">You're the stylist.</p>
-              <p className="landing-fourth-desc">
-                No commitments, no subscriptions, no fees. We give you the tools to find the pieces
-                and styles you want - and the knowledge that they will flatter you.{' '}
-              </p>
-              <Link to="/search">
-                <button className="landing-callToAction">Try it out</button>
-              </Link>
+            <div className="landing-intro-footer landing-intro-footer-btn">
+              <div className="landing-intro-footer-inner">
+                <p className="landing-desc">
+                  No commitments, no subscriptions, no fees. We give you the tools to find the
+                  pieces you want - and the peace of mind that they will flatter you.
+                </p>
+                <div className="landing-callToAction-wrapper">
+                  <Link to="/search">
+                    <button className="landing-callToAction landing-btn-bottom">
+                      <div className="landing-btn-flexWrapper">Try it out</div>
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

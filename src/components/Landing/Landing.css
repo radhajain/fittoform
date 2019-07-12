@@ -15,7 +15,7 @@
 }
 
 .landing-child {
-  height: 100vh;
+  height: calc(100vh - 50px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,14 +46,17 @@
   flex-basis: 50%;
 }
 
-.landing-intro-img {
+.landing-img-wrapper {
   margin: 25px;
   flex-basis: 50%;
   height: 100%;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-4-5%402x.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  display: flex;
+  align-items: center;
+}
+
+.landing-img {
+  width: 100%;
+  object-fit: cover;
 }
 
 .sans-serif {
@@ -77,16 +80,20 @@
   margin-bottom: 0px;
   font-family: 'Helvetiva Neue', sans-serif;
   color: black;
-  font-size: 1.25em;
+  font-size: 1.45em;
   font-weight: bolder;
-  line-height: 1.3em;
   width: 90%;
 }
 
-.landing-container-inner {
+.landing-container-inner-85 {
   width: 85%;
   height: 90%;
-  padding-top: 50px;
+}
+
+.landing-container-inner-60 {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .landing-intro-footer {
@@ -95,6 +102,18 @@
   padding-bottom: 25px;
   display: flex;
   align-items: center;
+}
+
+.landing-intro-footer-btn-top {
+  height: calc(50% - 100px);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.landing-intro-footer-btn {
+  height: calc(50% - 100px);
+  padding-top: 100px;
+  padding-bottom: 0px;
 }
 
 .landing-intro-footer-inner {
@@ -112,14 +131,31 @@
 .landing-callToAction {
   border-radius: 50%;
   background-color: #ffd2ba;
-  padding: 70px 30px;
-  font-family: 'DM Serif Display', sans-serif;
+  min-height: 50px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
   font-size: 1.45em;
+  line-height: 1.5em;
   color: black;
   border: none;
   cursor: pointer;
   -webkit-transition: all 0.4 ease;
   transition: all 0.4s ease;
+}
+
+.landing-btn-top {
+  padding: 69px 24px;
+}
+
+.landing-btn-bottom {
+  padding: 60px 30px;
+}
+
+.landing-btn-flexWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .landing-callToAction:hover {
@@ -131,7 +167,11 @@
 /* PAGE 2 */
 
 .landing-2-header {
-  background-color: black;
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/girl_glasses.jpg);
+  background-position: top center;
+  background-size: cover;
+
+  background-repeat: no-repeat;
   height: 25vh;
   position: absolute;
   width: 100%;
@@ -139,12 +179,9 @@
   left: 0px;
 }
 
-.landing-2-container-inner {
-  width: 85%;
-  height: 75vh;
+.landing-2-container {
+  height: calc(75vh - 50px);
   padding-top: 25vh;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -160,16 +197,8 @@
 .landing-2-leftCol {
   flex-basis: 50%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-}
-
-.landing-2-title {
-  font-family: 'DM Serif Display', serif;
-  color: black;
-  font-size: 2.5em;
-  margin: 0;
-  max-width: 388px;
 }
 
 .landing-2-rightCol {
@@ -179,30 +208,12 @@
   min-width: 300px;
 }
 
-.landing-howitworks-num-wrapper {
-  flex-basis: 20%;
-}
-
-.landing-howitworks-num {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 2.5em;
-  color: black;
-  font-weight: bold;
-  margin: 0px;
-}
-
 .landing-howitworks-box {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
-.landing-howitowkrs-box-1 {
+.landing-howitworks-box-1 {
   margin-top: 0px;
-}
-
-.landing-howitworks-content {
-  flex-basis: 80%;
 }
 
 .landing-howitworks-steps {
@@ -214,7 +225,7 @@
 .landing-howitworks-title {
   color: black;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.35em;
   margin: 0px;
   font-family: 'Helvetiva Neue', sans-serif;
 }
@@ -222,7 +233,7 @@
 .landing-howitworks-desc {
   color: black;
   font-weight: bolder;
-  font-size: 1.25em;
+  font-size: 1.05em;
   line-height: 1.3em;
   font-family: 'Helvetiva Neue', sans-serif;
 }
@@ -232,41 +243,18 @@
 /* PAGE 3 */
 
 .landing-third-page {
-  background-color: #4b2431;
+  height: unset;
 }
 
-.landing-third-img {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 90%;
+.landing-3-container-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing-third-sm {
-  display: none;
-}
-
-.landing-third-content {
-  float: right;
-  text-align: right;
-  background-color: #3c1d27;
-  width: 30%;
-  min-width: 450px;
-  margin-top: 100px;
-  margin-right: 30px;
-}
-
-.landing-third-title {
-  color: white;
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.5em;
-}
-
-.landing-third-desc {
-  color: white;
-  font-family: 'Helvetiva Neue', sans-serif;
-  line-height: 1.3em;
-  font-size: 1.25em;
+.landing-3-img {
+  width: 100%;
+  height: auto;
 }
 
 /* ------------------------------------- */
@@ -274,383 +262,60 @@
 /* PAGE 4 */
 
 .landing-fourth-page {
-  background-color: #2a0011;
 }
 
-.landing-fourth-content {
-  position: absolute;
-  bottom: 100px;
-  left: 100px;
-  width: 500px;
-}
-
-.landing-fourth-title {
-  background-color: #e8dcdc;
-  color: black;
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.5em;
-  position: relative;
-  z-index: 100;
-  padding-left: 10px;
-}
-
-.landing-fourth-desc {
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-size: 1.25em;
-  line-height: 1.3em;
-  color: #e8dcdc;
-  width: 80%;
-}
-
-.landing-fourth-img-rows {
-  height: 90%;
-}
-
-.landing-fourth-flex-grid {
+.landing-4-container {
+  height: calc(75vh - 50px);
+  padding-bottom: 25vh;
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-4-content {
+  display: flex;
   flex-direction: row;
-  height: 40%;
 }
 
-.landing-fourth-img {
-  height: 100%;
+.landing-4-leftCol {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing-fourth-row2 {
-  width: calc(100% - 500px);
+.landing-4-rightCol {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing-fourth-img2 {
-  height: 80%;
-  margin-top: 10%;
+.landing-4-footer {
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/shadow_optimized.jpg);
+  background-position: top center;
+  background-size: cover;
+  height: 25vh;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
 }
 
 /* ------------------------------------------- */
+/* PAGE 5 */
 
-@media (max-width: 1514px) {
-  .dress7 {
-    display: none;
-  }
+.landing-fifth-page {
+  margin-top: 20vh;
+  height: 90vh;
 }
 
-@media (max-width: 1507px) {
-  .landing-second-title {
-    font-size: 2em;
-  }
+.landing-sixth-page {
+  height: 90vh;
 }
 
-@media (max-width: 1423px) {
-  .landing-third-content {
-    margin-top: 0px;
-  }
+.landing-5-title {
+  max-width: 500px;
 }
 
-@media (max-width: 1315px) {
-  .dress4 {
-    display: none;
-  }
-
-  .landing-howitworks-desc {
-    font-size: 1.1em;
-  }
-}
-
-@media (max-width: 1207px) {
-  .landing-second-title {
-    font-size: 1.75em;
-  }
-
-  .dress6 {
-    display: none;
-  }
-}
-
-@media (max-width: 1085px) {
-  .landing-desc {
-    width: 90%;
-  }
-}
-
-@media (max-width: 977px) {
-  .landing-title {
-    font-size: 2em;
-    max-width: 345px;
-  }
-
-  .landing-2-title {
-    font-size: 2em;
-  }
-
-  .landing-howitworks-title {
-    font-size: 1.35em;
-  }
-
-  .landing-howitworks-desc {
-    font-size: 1.05em;
-  }
-
-  .landing-howitworks-num {
-    font-size: 2em;
-  }
-
-  .landing-desc {
-    font-size: 1.15em;
-    width: 95%;
-  }
-
-  .landing-third-img {
-    height: 70%;
-  }
-
-  .landing-third-content {
-    width: 90%;
-    padding-left: 50px;
-  }
-
-  .landing-third-desc {
-    width: 80%;
-    float: right;
-    margin-top: 0px;
-  }
-
-  .landing-fourth-row2 {
-    width: calc(100% - 400px);
-  }
-
-  .landing-fourth-content {
-    bottom: 250px;
-  }
-
-  .landing-fourth-page {
-    padding-top: 200px;
-  }
-}
-
-@media (max-width: 940px) {
-  .dress2 {
-    display: none;
-  }
-
-  .landing-third-title {
-    font-size: 2em;
-  }
-}
-
-@media (max-width: 796px) {
-  .landing-callToAction {
-    font-size: 1.4em;
-  }
-
-  .landing-howitworks-steps {
-    margin-bottom: 0px;
-  }
-}
-
-@media (max-width: 790px) {
-  .landing-title {
-    font-size: 1.75em;
-  }
-
-  .landing-desc {
-    font-size: 1.05em;
-  }
-
-  .landing-callToAction {
-    font-size: 1.25em;
-    padding: 60px 28px;
-  }
-
-  .landing-container-inner {
-    width: 90%;
-  }
-}
-
-@media (max-width: 705px) {
-  .landing-2-col-container {
-    flex-wrap: wrap;
-  }
-
-  .landing-2-leftCol {
-    flex-basis: 100%;
-    margin-bottom: 50px;
-  }
-
-  .landing-2-rightCol {
-    flex-basis: 100%;
-  }
-}
-
-@media (max-width: 633px) {
-  .landing-container-intro {
-    background-image: url(https://fittoform-landing.s3.amazonaws.com/landingpage1x.jpg);
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .landing-howitworks-box {
-    min-width: 180px;
-    padding: 5px 20px;
-    display: flex;
-    flex-direction: row;
-  }
-
-  .landing-howitworks-steps {
-    flex-wrap: wrap;
-  }
-
-  .landing-howitworks-outer {
-    position: relative;
-    z-index: 100;
-  }
-
-  .landing-intro-content {
-    margin-top: 50px;
-  }
-
-  .landing-desc {
-    font-size: 1.1em;
-  }
-
-  .landing-second-title {
-    font-size: 2em;
-  }
-
-  .landing-second-desc {
-    font-size: 1.1em;
-  }
-
-  .landing-third-content {
-    margin-top: 70px;
-  }
-
-  .landing-third-desc {
-    font-size: 1.1em;
-  }
-
-  .landing-third-img {
-    display: none;
-  }
-
-  .landing-third-sm {
-    display: block;
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-  }
-
-  .landing-fourth-img-rows {
-    height: 40%;
-  }
-
-  .landing-fourth-title {
-    font-size: 2em;
-  }
-
-  .landing-fourth-desc {
-    font-size: 1.1em;
-  }
-
-  .dress3 {
-    height: 350px;
-  }
-
-  .landing-fourth-content {
-    position: initial;
-    width: 80%;
-    margin-left: 10%;
-  }
-
-  .dress1 {
-    display: none;
-  }
-}
-
-@media (max-height: 700px) {
-  .landing-third-content {
-    margin-top: 30px;
-  }
-}
-
-@media (max-height: 611px) {
-  .landing-third-content {
-    margin-top: 0px;
-  }
-}
-
-@media (max-width: 622px) {
-  .landing-2-leftCol {
-    min-width: 229px;
-    flex-basis: 100%;
-    align-items: flex-start;
-  }
-
-  .landing-2-rightCol {
-    flex-basis: 100%;
-    background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-2-sm.png);
-    margin-top: 0px;
-  }
-
-  .landing-second-desc {
-    width: 100%;
-  }
-
-  .landing-second-page {
-    height: calc(120vh + 300px);
-  }
-
-  .landing-2-col-container {
-    margin-top: 300px;
-  }
-
-  .landing-2-col-container {
-    flex-wrap: wrap-reverse;
-  }
-}
-
-@media (max-width: 571px) {
-  .landing-second-desc {
-    font-size: 1.1em;
-  }
-}
-
-@media (max-width: 555px) {
-  .landing-fourth-desc {
-    width: 100%;
-  }
-}
-
-@media (max-width: 511px) {
-  .dress3 {
-    height: 300px;
-  }
-}
-
-@media (max-width: 497px) {
-  .landing-third-content {
-    min-width: unset;
-  }
-
-  .landing-third-desc {
-    width: 90%;
-  }
-}
-
-@media (max-width: 423px) {
-  .landing-fourth-title {
-    font-size: 2em;
-  }
-}
-
-@media (max-width: 372px) {
-  .landing-whitearrow {
-    display: none;
-  }
-
-  .landing-desc {
-    font-size: 1.1em;
-  }
-}
+/* ------------------------------------------- */
