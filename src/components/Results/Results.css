@@ -117,7 +117,6 @@ input:focus {
   color: white;
   text-align: left;
   opacity: 0.75;
-  text-decoration: underline;
 }
 
 .results-loadMore-btn {
@@ -130,10 +129,11 @@ input:focus {
   border: none;
   font-family: 'Helvetiva Neue', sans-serif;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .results-loadMore-btn:hover {
-  background-color: #ffbb96;
+  background-color: #69dbd3;
 }
 
 .results-loadMore-btn-div {

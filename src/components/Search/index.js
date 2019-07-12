@@ -378,10 +378,7 @@ class Search extends Component {
 
               <div className={shouldShowNext('height') ? 'search-nextDiv' : 'search-nextDiv-hide'}>
                 <button className="search-ok-btn" onClick={this.goToSize}>
-                  <div className="search-ok-flexWrapper">
-                    <span className="search-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="search-ok-flexWrapper">OK</div>
                 </button>
                 <p className="search-pressEnter">
                   <i>
@@ -412,10 +409,7 @@ class Search extends Component {
               </p>
               <div className={shouldShowNext('size') ? 'search-nextDiv' : 'search-nextDiv-hide'}>
                 <button className="search-ok-btn" onClick={this.goToBra}>
-                  <div className="search-ok-flexWrapper">
-                    <span className="search-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="search-ok-flexWrapper">OK</div>
                 </button>
                 <p className="search-pressEnter">
                   <i>
@@ -450,10 +444,7 @@ class Search extends Component {
               </p>
               <div className={shouldShowNext('bra') ? 'search-nextDiv' : 'search-nextDiv-hide'}>
                 <button className="search-ok-btn" onClick={this.goToSizing}>
-                  <div className="search-ok-flexWrapper">
-                    <span className="search-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="search-ok-flexWrapper">OK</div>
                 </button>
                 <p className="search-pressEnter">
                   <i>
@@ -472,7 +463,7 @@ class Search extends Component {
             </p>
             <div className="search-size-box">
               <div className="search-selector" style={{ display: 'block' }}>
-                <p className="search-desc">WAIST</p>
+                <p className="search-desc">Waist</p>
                 <div className="search-btn-group">
                   <button
                     className={
@@ -527,7 +518,7 @@ class Search extends Component {
                 </div>
               </div>
               <div className="search-selector">
-                <p className="search-desc">HIPS</p>
+                <p className="search-desc">Hips</p>
                 <div className="search-btn-group">
                   <button
                     className={

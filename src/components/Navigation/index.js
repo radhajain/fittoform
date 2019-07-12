@@ -134,27 +134,6 @@ class NavigationAuth extends React.Component {
 class NavigationNonAuth extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
-    this.state = {
-      whiteLogo: false,
-      whiteNav: false
-    };
-    // if (
-    //   this.props.path === '/' ||
-    //   this.props.path === 'search' ||
-    //   this.props.path === 'signup' ||
-    //   this.props.path === 'signin' ||
-    //   this.props.path === 'howitworks'
-    // ) {
-    //   this.state.whiteLogo = true;
-    //   this.state.whiteNav = true;
-    // } else {
-    //   this.state.whiteLogo = false;
-    //   this.state.whiteNav = false;
-    //   if (this.props.path === 'results') {
-    //     this.state.whiteNav = true;
-    //   }
-    // }
   }
 
   render() {
@@ -168,22 +147,14 @@ class NavigationNonAuth extends React.Component {
           </div>
           <div className="nav-c2">
             <Link to={ROUTES.LANDING} className="nav-logo-center">
-              {!this.state.whiteLogo && <img src={BlackLogo} style={{ height: 20 }} />}
-              {this.state.whiteLogo && <img src={WhiteLogo} style={{ height: 30 }} />}
+              <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c3">
-            <Link
-              to={ROUTES.SIGN_IN}
-              className={this.state.whiteNav ? 'nav-href' : 'nav-href-black'}
-            >
+            <Link to={ROUTES.SIGN_IN} className="nav-href">
               Sign In
             </Link>
-            <Link
-              to={ROUTES.SIGN_UP}
-              className={this.state.whiteNav ? 'nav-href' : 'nav-href-black'}
-              style={{ marginLeft: 30 }}
-            >
+            <Link to={ROUTES.SIGN_UP} className="nav-href" style={{ marginLeft: 80 }}>
               Sign Up
             </Link>
           </div>

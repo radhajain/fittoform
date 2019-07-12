@@ -153,20 +153,51 @@ class Landing extends React.Component {
             </div> */}
           </div>
         </div>
-        <div className="landing-child landing-second-page">
-          <div className="landing-container-inner">
+        <div className="landing-child" style={{ position: 'relative', display: 'block' }}>
+          <div className="landing-2-header"></div>
+          <div className="landing-2-container-inner">
             <div className="landing-2-col-container">
               <div className="landing-2-leftCol">
                 <div className="landing-2-content">
-                  <p className="landing-second-title">Clothes look best when they fit.</p>
-                  <p className="landing-second-desc">
-                    You look like a million bucks when the dress fits just right. There’s a perfect
-                    dress for everyone, and we’re here to help you find it.
-                  </p>
+                  <p className="landing-2-title">How it works</p>
                 </div>
               </div>
               <div className="landing-2-rightCol">
-                {/* <img src={pg2} className="landing-2-rightImg"/> */}
+                <div className="landing-howitworks-steps">
+                  <div className="landing-howitworks-box landing-howitowkrs-box-1">
+                    <div className="landing-howitworks-num-wrapper">
+                      <p className="landing-howitworks-num">1</p>
+                    </div>
+                    <div className="landing-howitworks-content">
+                      <p className="landing-howitworks-title">Tell us your size</p>
+                      <p className="landing-howitworks-desc">
+                        Tell us what sizes you wear and how they normally fit
+                      </p>
+                    </div>
+                  </div>
+                  <div className="landing-howitworks-box">
+                    <div className="landing-howitworks-num-wrapper">
+                      <p className="landing-howitworks-num">2</p>
+                    </div>
+                    <div className="landing-howitworks-content">
+                      <p className="landing-howitworks-title">Browse curations</p>
+                      <p className="landing-howitworks-desc">
+                        Get personalized recommendations by women with the same measurements as you
+                      </p>
+                    </div>
+                  </div>
+                  <div className="landing-howitworks-box">
+                    <div className="landing-howitworks-num-wrapper">
+                      <p className="landing-howitworks-num">3</p>
+                    </div>
+                    <div className="landing-howitworks-content">
+                      <p className="landing-howitworks-title">Buy with confidence</p>
+                      <p className="landing-howitworks-desc">
+                        Read reviews from women with your measurements who have tried each dress on
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
