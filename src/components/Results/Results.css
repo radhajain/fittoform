@@ -471,6 +471,7 @@ input:focus {
     padding-bottom: 0px;
     z-index: 3000;
     min-height: 350px;
+    max-height: 430px;
   }
 
   .results-rightCol-inner {

@@ -586,8 +586,7 @@ class Results extends Component {
         ? 'results-rightCol results-rightCol-adjust'
         : 'results-rightCol'
       : 'hide';
-    const placeholder = <img src="https://fittoform-landing.s3.amazonaws.com/dress-loading.gif" />;
-
+    const placeholder = <div style={{ backgroundColor: '#E2F8F6', height: 500, width: 350 }} />;
     return (
       <div>
         <div className="results-container-outer">
