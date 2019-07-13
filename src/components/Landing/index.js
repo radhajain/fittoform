@@ -114,7 +114,7 @@ class Landing extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="landing-intro-footer landing-intro-footer-btn">
+            <div className="landing-intro-footer landing-intro-footer-btn-top">
               <div className="landing-intro-footer-inner">
                 <p className="landing-desc">
                   It's hard to know what fits well while shopping online. We show you a curated set
@@ -133,12 +133,12 @@ class Landing extends React.Component {
           </div>
         </div>
         {/* PAGE 2 */}
-        <div className="landing-child" style={{ display: 'block' }}>
+        <div className="landing-child landing-child-1" style={{ display: 'block' }}>
           <div className="landing-2-header"></div>
           <div className="landing-container-inner-60 landing-2-container">
             <div className="landing-2-col-container">
               <div className="landing-2-leftCol">
-                <p className="landing-title">How it works</p>
+                <p className="landing-title landing-2-title">How it works</p>
               </div>
               <div className="landing-2-rightCol">
                 <div className="landing-howitworks-steps">
@@ -176,10 +176,10 @@ class Landing extends React.Component {
           <div className="landing-container-inner-60 landing-4-container">
             <div className="landing-4-content">
               <div className="landing-4-leftCol">
-                <p className="landing-title">Clothes look best when they fit. </p>
+                <p className="landing-title landing-4-title">Clothes look best when they fit. </p>
               </div>
               <div className="landing-4-rightCol">
-                <p className="landing-desc">
+                <p className="landing-desc landing-desc-4">
                   There's a perfect dress for everyone, and we're here to help you find it.
                 </p>
               </div>

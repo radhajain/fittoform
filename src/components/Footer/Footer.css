@@ -14,6 +14,13 @@
   max-width: 100%;
 }
 
+.footer-headers {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+}
+
 .footer-container {
   position: relative;
   z-index: 1;
@@ -28,6 +35,10 @@
 
 .serif {
   font-family: 'DM Serif Display', serif;
+}
+
+.sans-serif {
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .site-footer hr {
@@ -53,22 +64,25 @@
   padding-left: 0;
   list-style: none;
   text-decoration: none;
-  color: #e8dcdc;
-  font-size: 0.9em;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .footer-links {
   padding-left: 0;
   list-style: none;
   text-decoration: none;
-  color: #e8dcdc;
+  color: white;
   font-size: 0.9em;
+  font-weight: bold;
 }
 
 .footer-links a {
-  color: #e8dcdc;
+  color: white;
   padding-left: 0;
   list-style: none;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -93,7 +107,7 @@
   color: #e8dcdc;
   font-size: 0.8em;
   font-weight: bold;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .footer-social-icons {
@@ -131,7 +145,7 @@
   color: white;
   display: inline-block;
   text-decoration: none;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
   padding: 0px 10px;
   font-size: 0.8em;
@@ -143,7 +157,7 @@
 
 .footer-sm-label {
   color: white;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   display: inline-block;
   font-weight: bold;
   font-size: 0.8em;
