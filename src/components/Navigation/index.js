@@ -154,7 +154,7 @@ class NavigationNonAuth extends React.Component {
             <Link to={ROUTES.SIGN_IN} className="nav-href">
               Sign In
             </Link>
-            <Link to={ROUTES.SIGN_UP} className="nav-href" style={{ marginLeft: 80 }}>
+            <Link to={ROUTES.SIGN_UP} className="nav-href nav-margin-left">
               Sign Up
             </Link>
           </div>

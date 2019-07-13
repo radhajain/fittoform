@@ -168,7 +168,13 @@ class Landing extends React.Component {
         {/* PAGE 3 */}
         <div className="landing-child landing-third-page">
           <div className="landing-container-inner-60 landing-3-container">
-            <img src={grid} className="landing-3-img" />
+            <img
+              src="https://fittoform-landing.s3.amazonaws.com/grid_40p_progressive.jpg"
+              className="landing-3-img"
+            />
+            {/* <img src='https://fittoform-landing.s3.amazonaws.com/grid_3x3_40p_progressive.jpg'
+              className="landing-3-mobile-img"
+              /> */}
           </div>
         </div>
         {/* PAGE 4 */}

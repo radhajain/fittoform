@@ -3,7 +3,7 @@
 .signin-page {
   background-color: #69dbd3;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,6 +69,7 @@ input::placeholder {
   color: black;
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
+  font-size: 1em;
 }
 
 .signin-form .pforgot {
@@ -87,4 +88,50 @@ input::placeholder {
 
 .signin-form .pforgot:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 795px) {
+  .signin-form input {
+    width: 400px;
+    font-size: 1.5em;
+  }
+
+  .signin-form input::placeholder {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 625px) {
+  .signin-form input {
+    width: 350px;
+    font-size: 1.25em;
+    height: 40px;
+  }
+
+  .signin-form input::placeholder {
+    font-size: 1.25em;
+  }
+}
+
+@media (max-width: 482px) {
+  .signin-form input {
+    width: 280px;
+    font-size: 1.15em;
+    height: 30px;
+  }
+
+  .signin-form input::placeholder {
+    font-size: 1.15em;
+  }
+
+  .signin-btn {
+    font-size: 1.15em;
+  }
+
+  .signin-btn-disabled {
+    font-size: 1.15em;
+  }
+  .signin-form .message {
+    font-size: 0.9em;
+  }
 }
