@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 import SignOutButton from '../SignOut';
-import SignInLink from '../SignIn';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext, withAuthorization } from '../Session';
-import ShortLogo from '../../assets/images/one-line-logo.png';
+import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
-import WhiteArrow from '../../assets/images/white-down-arrow.png';
+import WhiteArrow from '../../assets/images/down triangle.svg';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -28,6 +27,7 @@ class Navigation extends React.Component {
 class NavigationAuth extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this._isMounted = false;
     this.state = {
       authUser: false,
@@ -97,12 +97,12 @@ class NavigationAuth extends React.Component {
         <div className="nav-inner">
           <div className="nav-c1">
             <Link to={ROUTES.LANDING} className="nav-logo-right">
-              <img src={ShortLogo} style={{ height: 30 }} />
+              <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c2">
             <Link to={ROUTES.LANDING} className="nav-logo-center">
-              <img src={ShortLogo} style={{ height: 30 }} />
+              <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c3">
@@ -128,29 +128,37 @@ class NavigationAuth extends React.Component {
   This code defines what the header will look like for a user who is
   NOT logged in to the website.
 */
-const NavigationNonAuth = () => (
-  <div className="nav-outer">
-    <div className="nav-inner">
-      <div className="nav-c1">
-        <Link to={ROUTES.LANDING} className="nav-logo-right">
-          <img src={ShortLogo} style={{ height: 30 }} />
-        </Link>
+class NavigationNonAuth extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="nav-outer">
+        <div className="nav-inner">
+          <div className="nav-c1">
+            <Link to={ROUTES.LANDING} className="nav-logo-right">
+              <img src={BlackLogo} style={{ height: 20 }} />
+            </Link>
+          </div>
+          <div className="nav-c2">
+            <Link to={ROUTES.LANDING} className="nav-logo-center">
+              <img src={BlackLogo} style={{ height: 20 }} />
+            </Link>
+          </div>
+          <div className="nav-c3">
+            <Link to={ROUTES.SIGN_IN} className="nav-href">
+              Sign In
+            </Link>
+            <Link to={ROUTES.SIGN_UP} className="nav-href nav-margin-left">
+              Sign Up
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="nav-c2">
-        <Link to={ROUTES.LANDING} className="nav-logo-center">
-          <img src={ShortLogo} style={{ height: 30 }} />
-        </Link>
-      </div>
-      <div className="nav-c3">
-        <Link to={ROUTES.SIGN_IN} className="nav-signin-btn nav-href">
-          Sign In
-        </Link>
-        <Link to={ROUTES.SIGN_UP} className="nav-href">
-          <button className="nav-signup-btn">Sign Up</button>
-        </Link>
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 export default Navigation;

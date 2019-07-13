@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './Search.css';
-import whiteArrow from '../../assets/images/white-arrow.png';
-import whiteTick from '../../assets/images/white-tick.png';
 
 function validate(heightft, heightin, size, bra) {
   var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
@@ -378,10 +376,7 @@ class Search extends Component {
 
               <div className={shouldShowNext('height') ? 'search-nextDiv' : 'search-nextDiv-hide'}>
                 <button className="search-ok-btn" onClick={this.goToSize}>
-                  <div className="search-ok-flexWrapper">
-                    <span className="search-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="search-ok-flexWrapper">OK</div>
                 </button>
                 <p className="search-pressEnter">
                   <i>
@@ -406,16 +401,13 @@ class Search extends Component {
                 onKeyPress={this._handleKeyPressSize('size')}
                 onChange={this.handleInputChange}
               />
-              .
+              <label className="search-search-label">.</label>
               <p className={shouldMarkError('size') ? 'search-error-msg' : 'hide-search-error-msg'}>
                 <i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i>
               </p>
               <div className={shouldShowNext('size') ? 'search-nextDiv' : 'search-nextDiv-hide'}>
                 <button className="search-ok-btn" onClick={this.goToBra}>
-                  <div className="search-ok-flexWrapper">
-                    <span className="search-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="search-ok-flexWrapper">OK</div>
                 </button>
                 <p className="search-pressEnter">
                   <i>
@@ -444,16 +436,13 @@ class Search extends Component {
                 }
                 onChange={this.handleInputChangeBra}
               />
-              .
+              <label className="search-search-label">.</label>
               <p className={shouldMarkError('bra') ? 'search-error-msg' : 'hide-search-error-msg'}>
                 <i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i>
               </p>
               <div className={shouldShowNext('bra') ? 'search-nextDiv' : 'search-nextDiv-hide'}>
                 <button className="search-ok-btn" onClick={this.goToSizing}>
-                  <div className="search-ok-flexWrapper">
-                    <span className="search-ok-text">OK</span>
-                    <img src={whiteTick} style={{ width: 16, marginLeft: 8 }} />
-                  </div>
+                  <div className="search-ok-flexWrapper">OK</div>
                 </button>
                 <p className="search-pressEnter">
                   <i>
@@ -471,8 +460,8 @@ class Search extends Component {
               On me, size {this.state.size} is generally:
             </p>
             <div className="search-size-box">
-              <div className="search-selector" style={{ display: 'block' }}>
-                <p className="search-desc">WAIST</p>
+              <div className="search-selector">
+                <p className="search-desc">Waist</p>
                 <div className="search-btn-group">
                   <button
                     className={
@@ -482,7 +471,7 @@ class Search extends Component {
                     }
                     onClick={() => this.modifyWaist(2)}
                   >
-                    Tight
+                    Too Tight
                   </button>
                   <button
                     className={
@@ -527,7 +516,7 @@ class Search extends Component {
                 </div>
               </div>
               <div className="search-selector">
-                <p className="search-desc">HIPS</p>
+                <p className="search-desc">Hips</p>
                 <div className="search-btn-group">
                   <button
                     className={
@@ -537,7 +526,7 @@ class Search extends Component {
                     }
                     onClick={() => this.modifyHips(2)}
                   >
-                    Tight
+                    Too Tight
                   </button>
                   <button
                     className={
@@ -590,7 +579,7 @@ class Search extends Component {
               disabled={isDisabled}
             >
               See dresses picked for my size
-              <img src={whiteArrow} className="search-whitearrow" />
+              {!isDisabled && <span className="search-whitearrow" />}
             </button>
           </div>
         </div>

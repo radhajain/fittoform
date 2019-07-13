@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-import './PasswordForget.css'
-
-
+import './PasswordForget.css';
 
 const PasswordForgetPage = () => (
   <div>
@@ -15,7 +13,7 @@ const PasswordForgetPage = () => (
 
 const INITIAL_STATE = {
   email: '',
-  error: null,
+  error: null
 };
 
 class PasswordForgetFormBase extends Component {
@@ -50,30 +48,31 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === '';
 
     return (
-
       <div className="pforgot-background">
-      <div className="signin-form">
-        <form className="login-form" onSubmit={this.onSubmit} >
-          <input
-            name="email"
-            value={this.state.email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Email Address"/>
-          <button disabled={isInvalid} type="submit">
-            Reset My Password
-          </button>
-          {error && <p>{error.message}</p>}
-        </form>
+        <div className="signin-form">
+          <form className="login-form" onSubmit={this.onSubmit}>
+            <input
+              name="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+            />
+            <button disabled={isInvalid} className="pforgot-btn" type="submit">
+              Reset My Password
+            </button>
+            {error && <p>{error.message}</p>}
+          </form>
+        </div>
       </div>
-    </div>
-
     );
   }
 }
 
 const PasswordForgetLink = () => (
-  <Link to={ROUTES.PASSWORD_FORGET} className="pforgot"> forgot password?</Link>
+  <Link to={ROUTES.PASSWORD_FORGET} className="pforgot">
+    Forgot password?
+  </Link>
 );
 
 export default PasswordForgetPage;

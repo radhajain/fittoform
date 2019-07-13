@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
+import { withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-import './SignOut.css'
+import './SignOut.css';
 
 class SignOutButton extends React.Component {
   constructor(props) {
@@ -13,13 +12,16 @@ class SignOutButton extends React.Component {
 
   handleSignOut(e) {
     e.preventDefault();
-    this.props.firebase.doSignOut().then(authUser => {
-      this.props.history.push({
-        pathname: '/'
+    this.props.firebase
+      .doSignOut()
+      .then(authUser => {
+        this.props.history.push({
+          pathname: '/'
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
-    }).catch(error => {
-      console.log(error);
-    });
   }
 
   render() {
@@ -29,6 +31,6 @@ class SignOutButton extends React.Component {
       </button>
     );
   }
-} 
+}
 
 export default withRouter(withFirebase(SignOutButton));

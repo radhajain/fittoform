@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import * as CONST from '../../constants/shoppingConstants';
 import { withFirebase } from '../Firebase';
 import backBtn from '../../assets/images/back-btn.png';
 import './Item.css';
 import { FooterSmall } from '../Footer';
-import names from '../../constants/shoppingConstants.js';
 import Modal from '../Modal';
 
 class Item extends Component {
@@ -223,12 +221,41 @@ class Item extends Component {
       });
   };
 
+  /* { isSaved(this.selectedItem.name)
+                            ? <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Removed from Saved</button>
+                            : <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Save for later</button>
+                            } */
+
   render() {
     return (
       <div className="itemView">
+        <div className="itemView-fakeNav"></div>
         <div className="itemView-c1">
           <div className="itemView-c1-inner">
             <div className="itemView-c1-left">
+              <div className="itemView-img-wrapper">
+                <button className="itemView-backbtn" onClick={() => this.goToResultsView()}>
+                  <img src={backBtn} style={{ width: 45 }} />
+                </button>
+                <img
+                  alt={this.state.item.name}
+                  src={this.state.item.img}
+                  className="itemView-img"
+                />
+                <button className="itemView-shop-btn-alt" onClick={this.shopItem}>
+                  Shop
+                </button>
+              </div>
+            </div>
+            <div className="itemView-c1-center">
+              <button className="itemView-shop-btn" onClick={this.shopItem}>
+                Shop
+              </button>
+            </div>
+            {/* <button className="itemView-shop-btn-alt" onClick={this.shopItem}>
+              Shop
+            </button> */}
+            <div className="itemView-c1-right">
               <Modal
                 className="modal"
                 show={this.state.isModalShowing}
@@ -241,74 +268,60 @@ class Item extends Component {
                 desc={this.state.modalDesc}
               ></Modal>
               <div className="itemView-c1-text">
-                <div className="itemView-titleBtn-div">
-                  <div className="itemView-title-div">
-                    <button className="itemView-backbtn" onClick={() => this.goToResultsView()}>
-                      <img src={backBtn} style={{ paddingRight: 15, width: 25 }} />
-                      Back to all results
-                    </button>
-                    <p className="itemView-item-title">{this.state.item.name}</p>
-                  </div>
-                  <button className="itemView-shop-btn" onClick={this.shopItem}>
-                    SHOP
+                <div className="itemView-title-div">
+                  <p className="itemView-item-title">{this.state.item.name}</p>
+                  <p className="itemView-item-price">${this.state.item.price}</p>
+                </div>
+                <div className="itemView-c1-desc">
+                  {this.state.reviewsFound && (
+                    <p className="itemView-item-size">
+                      Recommended size: {this.state.reviews[0].size}
+                    </p>
+                  )}
+                  <p className="itemView-item-brand">
+                    Available
+                    <span style={{ textTransform: 'lowercase' }}> in {this.state.item.color}</span>
+                  </p>
+                  <p className="itemView-item-brand" style={{ marginTop: 0 }}>
+                    Brand: {this.state.item.brand}
+                  </p>
+                  <button className="itemView-shop-btn-mobile" onClick={this.shopItem}>
+                    Shop
                   </button>
                 </div>
-                <p className="itemView-item-price">${this.state.item.price}</p>
-                {this.state.reviewsFound && (
-                  <p className="itemView-item-size">
-                    Recommended size: {this.state.reviews[0].size}
-                  </p>
-                )}
-                <p className="itemView-item-brand">
-                  Available{' '}
-                  <span style={{ textTransform: 'lowercase' }}>in {this.state.item.color}</span>
-                </p>
-                <p className="itemView-item-brand" style={{ marginTop: 0 }}>
-                  {this.state.item.brand}
-                </p>
 
-                {/* { isSaved(this.selectedItem.name)
-                            ? <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Removed from Saved</button>
-                            : <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Save for later</button>
-                            } */}
+                <hr />
                 {this.state.reviewsFound && (
-                  <div style={{ marginTop: 50 }}>
+                  <div className="itemView-reviews-header">
                     <p className="itemView-review-title">
-                      {' '}
-                      <i>See what other people with your measurements have to say</i>
+                      See what other people with your measurements have to say
                     </p>
                     <p className="itemView-text-small">
                       <i>
                         Your measurements: {this.getHeightStr(this.state.height)}, bust:{' '}
                         {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}
-                      </i>{' '}
+                      </i>
                     </p>
-                    <hr />
-                    {this.state.reviewsFound &&
-                      this.state.reviews.map((review, key) => {
-                        return (
-                          <div className="itemView-review" key={key}>
-                            <p className="itemView-numRating">{review.rating}/10</p>
-                            <div>
-                              <p className="itemView-comment">{review.comment}</p>
-                              <p className="itemView-review-name"> - {review.userInfo.name}</p>
-                              <p className="itemView-item-measurements">
-                                <i>
-                                  {review.userInfo.age}, {this.getHeightStr(review.userInfo.height)}
-                                  , bust: {review.userInfo.bust}", waist: {review.userInfo.waist}",
-                                  hips: {review.userInfo.hips}"{' '}
-                                </i>
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
                   </div>
                 )}
+                {this.state.reviewsFound &&
+                  this.state.reviews.map((review, key) => {
+                    return (
+                      <div className="itemView-review" key={key}>
+                        <p className="itemView-numRating">{review.rating}/10</p>
+                        <div>
+                          <p className="itemView-comment">{review.comment}</p>
+                          <p className="itemView-review-name">{review.userInfo.name}</p>
+                          <p className="itemView-item-measurements">
+                            {review.userInfo.age}, {this.getHeightStr(review.userInfo.height)},
+                            bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips:{' '}
+                            {review.userInfo.hips}"{' '}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
-            </div>
-            <div className="itemView-c1-right">
-              <img alt={this.state.item.name} src={this.state.item.img} className="itemView-img" />
             </div>
           </div>
         </div>

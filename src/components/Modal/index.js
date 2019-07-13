@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Modal.css';
-import whiteArrow from '../../assets/images/white-arrow.png';
 
 function validate(name, email, password) {
   var emailRe = /^.+@.+\..+$/;
@@ -81,7 +80,7 @@ class Modal extends Component {
                 type="text"
                 style={{ marginTop: 20, textTransform: 'capitalize' }}
                 className="modal-input"
-                placeholder="NAME"
+                placeholder="Name"
               />
               <input
                 name="email"
@@ -89,7 +88,7 @@ class Modal extends Component {
                 onChange={this.handleInputChange}
                 type="text"
                 className="modal-input"
-                placeholder="EMAIL"
+                placeholder="Email"
               />
               <input
                 name="password"
@@ -98,7 +97,7 @@ class Modal extends Component {
                 onChange={this.handleInputChange}
                 type="password"
                 className="modal-input"
-                placeholder="PASSWORD"
+                placeholder="Password"
               />
               <button
                 disabled={isDisabled}
@@ -106,7 +105,6 @@ class Modal extends Component {
                 className={isDisabled ? 'modal-btn-disabled' : 'modal-btn-createAccount'}
               >
                 {this.props.btnMsg}
-                <img src={whiteArrow} style={{ width: 15, marginLeft: 15 }} />
               </button>
               {/* {error && <p>{error.message}</p>} */}
               <p className="modal-signin-text">

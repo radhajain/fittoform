@@ -3,42 +3,38 @@ import React from 'react';
 import { AuthUserContext, withAuthorization } from '../Session';
 import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
-import './Contact.css'
+import './Contact.css';
 import { FooterLarge } from '../Footer';
 
 class Contact extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            email: '',
-            message: '',
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      message: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    handleChange(e) {
+  handleChange(e) {}
 
-    }
+  handleSubmit(e) {}
 
-    handleSubmit(e) {
+  render() {
+    return (
+      <div className="contactus-parent">
+        <div className="contactus-messagebackground">
+          <div className="contactus-message">
+            <p className="contactus-title">We'd love to hear from you!</p>
+            <p style={{ fontSize: '1.2em' }}>
+              Email us at contact@thefittoform.com or DM us on Instagram @fit.to.form
+            </p>
+          </div>
+        </div>
 
-    }
-
-    render() {
-        return (
-          
-
-            <div className="contactus-parent">
-                <div className="contactus-messagebackground">
-                    <div className="contactus-message">
-                        <p className="contactus-title">We'd love to hear from you!</p>
-                        <p style={{fontSize:'1.2em'}}>Email us at contact@thefittoform.com or dm us on Instagram @fit.to.form</p>
-                    </div>
-                </div>
-              
-                {/* <div className="contact-form" method="post" action="Contact.php">
+        {/* <div className="contact-form" method="post" action="Contact.php">
                     
                     <div className="messages"></div>
 
@@ -60,18 +56,12 @@ class Contact extends React.Component {
                     </div>
                     <a className="send-btn">Send</a>
                 </div> */}
-                <div style={{position: 'absolute', bottom: 0, width: '100%'}}>
-                    <FooterLarge />
-                </div>
-                  
-            </div>
-        
-           
-        );
-    }
+        <div style={{ position: 'absolute', bottom: 0, width: '100%' }}>
+          <FooterLarge />
+        </div>
+      </div>
+    );
+  }
 }
-
-
-
 
 export default Contact;

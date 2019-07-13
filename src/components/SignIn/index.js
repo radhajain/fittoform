@@ -8,19 +8,14 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
-import './SignIn.css'
-import { AuthUserContext, withAuthorization } from '../Session';
+import './SignIn.css';
 
-const SignInPage = () => (
-  <div className="signin-background">
-    <SignInForm />
-  </div>
-);
+const SignInPage = () => <SignInForm />;
 
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       email: '',
       password: '',
       error: null,
@@ -31,17 +26,18 @@ class SignInFormBase extends Component {
         hips: '',
         bust: '',
         size: '',
-        bra: '',
+        bra: ''
       }
-      
     };
   }
 
-
   // Sets the user values
   getUserData(uid) {
-    let UserRef = firebase.database().ref('users').child(`${uid}`);
-    return UserRef.once('value').then((snapshot) => {
+    let UserRef = firebase
+      .database()
+      .ref('users')
+      .child(`${uid}`);
+    return UserRef.once('value').then(snapshot => {
       let user = snapshot.val();
       var userInfo = {
         bra: user.bra,
@@ -51,51 +47,52 @@ class SignInFormBase extends Component {
         hips: user.hips,
         size: user.size,
         waist: user.waist,
-        id: uid,
-      }
+        id: uid
+      };
       return userInfo;
-      
     });
-  }  
-
-  componentDidMount() {
-    this.listener = firebase.auth().onAuthStateChanged(
-      authUser => {
-        if (authUser) {
-            this.getUserData(authUser.uid).then((userInfo) => {
-              this.setState({
-                user: userInfo
-              }, () => {
-                console.log(this.state);
-                this.props.history.push({
-                  pathname: '/results',
-                  state: {
-                      height: this.state.user.height,
-                      waist: this.state.user.waist,
-                      hips: this.state.user.hips,
-                      bra: this.state.user.bra,
-                      bust: this.state.user.bust,
-                      size: this.state.user.size,
-                      name: this.state.user.name
-                  }
-                });
-              });
-            });
-        }
-      },
-    );
   }
 
+  componentDidMount() {
+    this.listener = firebase.auth().onAuthStateChanged(authUser => {
+      if (authUser) {
+        this.getUserData(authUser.uid).then(userInfo => {
+          this.setState(
+            {
+              user: userInfo
+            },
+            () => {
+              console.log(this.state);
+              this.props.history.push({
+                pathname: '/results',
+                state: {
+                  height: this.state.user.height,
+                  waist: this.state.user.waist,
+                  hips: this.state.user.hips,
+                  bra: this.state.user.bra,
+                  bust: this.state.user.bust,
+                  size: this.state.user.size,
+                  name: this.state.user.name
+                }
+              });
+            }
+          );
+        });
+      }
+    });
+  }
 
   onSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.props.firebase.doSignInWithEmailAndPassword(email, password).then(() => {
-      console.log("logging in...");
-    }).catch(error => {
-      this.setState({ error });
-    });
-    
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('logging in...');
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
   };
 
   onChange = event => {
@@ -108,42 +105,61 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      //<div style={{padding: '50px 30px 20px 30px'}}>
-  
-      <div className="login-page">
-        <div className="signin-form">
-          <form className="login-form" onSubmit={this.onSubmit} >
-            <input 
-              name="email"
-              value={email}
-              onChange={this.onChange}
-              type="text" 
-              placeholder="username"/>
-            <input 
-              name="password"
-              value={password}
-              onChange={this.onChange}
-              type="password" 
-              placeholder="password"/>
+      <div className="signin-page">
+        <div className="signin-content">
+          <form className="signin-form" onSubmit={this.onSubmit}>
+            <div className="signin-form-div">
+              <input
+                name="email"
+                placeholder="Email"
+                value={email}
+                onChange={this.onChange}
+                type="text"
+                className="signin-input"
+              />
+            </div>
+            <div className="signin-form-div">
+              <input
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={this.onChange}
+                type="password"
+                className="signin-input"
+              />
+            </div>
             <PasswordForgetLink />
-            <button disabled={isInvalid} type="submit" >login</button>
-            {error && <p>{error.message}</p>}
-            <SignUpLink />
+            <div style={{ marginTop: 100, textAlign: 'center' }}>
+              <button
+                className={isInvalid ? 'signin-btn-disabled' : 'signin-btn'}
+                disabled={isInvalid}
+                type="submit"
+              >
+                Sign in
+              </button>
+              {error && (
+                <p className="signin-error-msg">
+                  We couldn't find an account with this username and password. Please try again
+                </p>
+              )}
+              <SignUpLink />
+            </div>
           </form>
         </div>
       </div>
-      //</div>
-   );
+    );
   }
 }
 
 const SignInLink = () => (
-  <button className="signout-btn"><Link to={ROUTES.SIGN_IN}> SIGN IN</Link></button>
+  <button className="signout-btn">
+    <Link to={ROUTES.SIGN_IN}> SIGN IN</Link>
+  </button>
 );
 
 const SignInForm = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignInFormBase);
 
 export default SignInPage;
