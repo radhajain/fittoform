@@ -524,9 +524,20 @@
   .landing-fifth-page {
     margin-top: 10vh;
   }
+
+  .landing-sixth-page .landing-intro-hero {
+    height: 40%;
+  }
 }
 
 @media (max-width: 500px) {
+  .landing-intro-hero {
+    height: unset;
+  }
+
+  .landing-intro-hero .landing-sixth-page {
+    height: unset;
+  }
   .landing-desc {
     font-size: 1.05em;
     width: 100%;
@@ -549,5 +560,30 @@
 
   .landing-desc-4 {
     width: 80%;
+  }
+}
+
+@media (max-width: 375px) {
+  .landing-howitworks-steps {
+    width: 90%;
+    margin-left: 0px;
+  }
+}
+
+@media (min-width: 375px) and (min-height: 812px) {
+  .landing-child {
+    height: 90vh;
+  }
+
+  .landing-third-page {
+    height: unset;
+  }
+
+  .landing-2-container {
+    height: 75vh;
+  }
+
+  .landing-fourth-page {
+    height: 60vh;
   }
 }

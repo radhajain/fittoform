@@ -648,7 +648,7 @@ class Results extends Component {
                 <div className="results-loadMore-btn-div">
                   <div className="results-loadMore-wrapper">
                     <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>
-                      Show near perfect matches
+                      <div style={{ position: 'relative' }}>Show near perfect matches</div>
                     </button>
                   </div>
                 </div>

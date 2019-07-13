@@ -416,12 +416,20 @@ input[type='number'] {
   .search-whitearrow {
     display: none;
   }
+  .search-results-btn {
+    padding: 16px 20px;
+    font-size: 0.95em;
+  }
+
+  .search-results-btn-disabled {
+    padding: 16px 20px;
+    font-size: 0.95em;
+  }
 }
 
 @media (max-width: 375px) {
   .search-search-label {
     font-size: 1.55em;
-    padding-top: 100px;
   }
 
   .search-selector {
@@ -433,5 +441,13 @@ input[type='number'] {
   }
   .search-size-buttons-selected {
     font-size: 0.95em;
+  }
+
+  .search-selector {
+    margin-top: 45px;
+  }
+
+  .search-results-btn-div {
+    margin-top: 45px;
   }
 }

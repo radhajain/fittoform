@@ -19,7 +19,7 @@ const FooterLarge = () => (
           </p>
         </div>
 
-        <div className="footer-about">
+        <div className="footer-about footer-c2">
           <ul className="footer-links">
             <li>
               <Link to={ROUTES.HOWITWORKS}>How It Works</Link>
