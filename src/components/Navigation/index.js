@@ -2,14 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 import SignOutButton from '../SignOut';
-import SignInLink from '../SignIn';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext, withAuthorization } from '../Session';
-import WhiteLogo from '../../assets/images/one-line-logo.png';
 import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
 import WhiteArrow from '../../assets/images/down triangle.svg';
-import { withRouter } from 'react-router-dom';
 
 class Navigation extends React.Component {
   constructor(props) {

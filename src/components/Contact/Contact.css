@@ -1,11 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400, 300, 600);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600');
 
 .contactus-parent {
   flex: 0 0 40%;
-  background-color: #e4e4e4;
-  background-image: url(../../assets/images/item-stripe.png);
-  background-position: center;
-
   overflow-y: scroll;
   height: 100vh;
   overflow-x: hidden;
@@ -17,21 +13,21 @@
   margin-top: 40px;
   text-align: center;
   width: 100%;
-  color: #2a0011;
-  font-family: 'Gibson', sans-serif;
+  color: black;
+  font-weight: bold;
+  font-family: 'Helvetiva Neue', sans-serif;
 }
 
 .contactus-messagebackground {
   margin-top: 40px;
   padding-bottom: 40px;
-  background-color: #eaeaea;
   width: 100%;
-  box-shadow: 4px 4px 3px #d9d9d9;
 }
 
 .contactus-title {
   font-size: 2.5em;
   font-family: 'DM Serif Display', serif;
+  font-weight: normal;
 }
 
 /*

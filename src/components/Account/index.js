@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ROUTES from '../../constants/routes';
-import { AuthUserContext, withAuthorization } from '../Session';
+import { withAuthorization } from '../Session';
 import { Link } from 'react-router-dom';
 import './Account.css';
 import { FooterSmall } from '../Footer';

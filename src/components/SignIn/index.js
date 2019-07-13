@@ -9,7 +9,6 @@ import * as ROUTES from '../../constants/routes';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import './SignIn.css';
-import { AuthUserContext, withAuthorization } from '../Session';
 
 const SignInPage = () => <SignInForm />;
 
@@ -138,7 +137,11 @@ class SignInFormBase extends Component {
               >
                 Sign in
               </button>
-              {error && <p>{error.message}</p>}
+              {error && (
+                <p className="signin-error-msg">
+                  We couldn't find an account with this username and password. Please try again
+                </p>
+              )}
               <SignUpLink />
             </div>
           </form>

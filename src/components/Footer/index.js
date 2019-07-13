@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IGLogo from '../../assets/images/ig-logo.png';
 import * as ROUTES from '../../constants/routes';
-import { compose } from 'recompose';
 
 import './Footer.css';
 

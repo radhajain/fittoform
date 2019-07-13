@@ -71,6 +71,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  padding-top: 0px;
 }
 
 .modal-form {
@@ -96,33 +97,40 @@
 }
 
 .modal-btn-createAccount {
+  display: block;
   background-color: #ffd2ba;
   border-radius: 50px;
   color: white;
-  font-size: 1em;
-  padding: 12px 20px;
+  font-size: 1.2em;
+  padding: 12px 24px;
   border: none;
   font-family: 'Helvetiva Neue', sans-serif;
-  margin-top: 10px;
+  white-space: nowrap;
+  width: 24px;
+  margin-top: 20px;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-weight: bolder;
 }
 
 .modal-btn-createAccount:hover {
-  background-color: #c99e87;
+  width: 120px;
 }
 
 .modal-btn-disabled {
+  display: block;
   background-color: #ffd2ba;
   border-radius: 50px;
-  color: #888282;
-  font-size: 1em;
-  padding: 12px 20px;
+  color: white;
+  font-size: 1.2em;
+  padding: 12px 24px;
+  white-space: nowrap;
+  width: 20px;
   border: none;
   font-family: 'Helvetiva Neue', sans-serif;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .modal-signin-text {

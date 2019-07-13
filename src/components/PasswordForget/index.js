@@ -49,7 +49,7 @@ class PasswordForgetFormBase extends Component {
 
     return (
       <div className="pforgot-background">
-        <div className="signin-form" style={{ flexDirection: 'column' }}>
+        <div className="signin-form">
           <form className="login-form" onSubmit={this.onSubmit}>
             <input
               name="email"

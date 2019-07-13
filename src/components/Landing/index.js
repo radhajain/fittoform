@@ -1,14 +1,8 @@
 import React from 'react';
 import './Landing.css';
 import { Link } from 'react-router-dom';
-import WhiteArrow from '../../assets/images/white-arrow.png';
-import pg2 from '../../assets/images/landing-p2.png';
-import pg2SM from '../../assets/images/landing-2-sm.png';
-import WrapImg from '../../assets/images/wrap-lady.png';
 import firebase from 'firebase';
-import { AuthUserContext, withAuthorization } from '../Session';
 import { FooterLarge } from '../Footer';
-import grid from '../../assets/images/landingpage_grid.jpg';
 
 class Landing extends React.Component {
   constructor(props) {

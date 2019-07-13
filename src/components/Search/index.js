@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './Search.css';
-import whiteArrow from '../../assets/images/white-arrow.png';
-import whiteTick from '../../assets/images/white-tick.png';
 
 function validate(heightft, heightin, size, bra) {
   var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
@@ -581,7 +579,7 @@ class Search extends Component {
               disabled={isDisabled}
             >
               See dresses picked for my size
-              <img src={whiteArrow} className="search-whitearrow" />
+              {!isDisabled && <span className="search-whitearrow" />}
             </button>
           </div>
         </div>

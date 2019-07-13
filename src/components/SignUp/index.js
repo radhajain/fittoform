@@ -5,15 +5,7 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { Link, withRouter } from 'react-router-dom';
-import whiteArrow from '../../assets/images/white-arrow.png';
-import whiteTick from '../../assets/images/white-tick.png';
-import dress1 from '../../assets/images/howitworks-1.svg';
-import dress2 from '../../assets/images/howitworks-2.svg';
-import dress3 from '../../assets/images/howitworks-3.svg';
-import dress4 from '../../assets/images/howitworks-4.svg';
-import dress5 from '../../assets/images/howitworks-5.svg';
-import dress6 from '../../assets/images/howitworks-6.svg';
-import save from '../../assets/images/signup-save.svg';
+import whiteArrow from '../../assets/images/white-arrow.svg';
 
 const SignUpPage = () => (
   <div>

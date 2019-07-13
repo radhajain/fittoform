@@ -215,6 +215,10 @@ button:focus {
   color: white;
 }
 
+.search-results-btn:hover .search-whitearrow {
+  background-image: url('../../assets/images/white-arrow.svg');
+}
+
 .search-results-btn-disabled {
   background-color: #deeee8;
   color: #888282;
@@ -250,8 +254,12 @@ button:focus {
 }
 
 .search-whitearrow {
-  width: 25px;
-  padding-left: 15px;
+  margin-left: 12px;
+  padding-left: 25px;
+  background-image: url('../../assets/images/black-arrow.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 input[type='number'] {
@@ -294,7 +302,6 @@ input[type='number'] {
 
   .search-size-buttons-selected {
     text-align: center;
-    padding: 0px 20px;
   }
 
   .search-desc {

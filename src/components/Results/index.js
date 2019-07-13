@@ -647,9 +647,11 @@ class Results extends Component {
               </div>
               {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && (
                 <div className="results-loadMore-btn-div">
-                  <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>
-                    Show near perfect matches
-                  </button>
+                  <div className="results-loadMore-wrapper">
+                    <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>
+                      Show near perfect matches
+                    </button>
+                  </div>
                 </div>
               )}
               {this.state.showMoreDresses &&

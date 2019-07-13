@@ -77,17 +77,23 @@ input::placeholder {
   display: inline-block;
   float: right;
   font-family: 'Helvetiva Neue', sans-serif;
-  font: 1em sans-serif;
+  font-size: 1em;
   left: -19px;
   position: relative;
   text-decoration: none;
   top: 25px;
   transition: all 0.4s ease;
   margin: 0px 2px 25px 2px;
+  font-weight: bold;
 }
 
 .signin-form .pforgot:hover {
   text-decoration: underline;
+}
+.signin-error-msg {
+  color: black;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
 }
 
 @media (max-width: 795px) {

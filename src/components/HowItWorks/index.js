@@ -1,15 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import WhiteArrow from '../../assets/images/white-arrow.png';
 import { FooterLarge } from '../Footer';
 import './HowItWorks.css';
-import FullLady from '../../assets/images/howitworks-full.svg';
-import dress1 from '../../assets/images/howitworks-1.svg';
-import dress2 from '../../assets/images/howitworks-2.svg';
-import dress3 from '../../assets/images/howitworks-3.svg';
-import dress4 from '../../assets/images/howitworks-4.svg';
-import dress5 from '../../assets/images/howitworks-5.svg';
-import dress6 from '../../assets/images/howitworks-6.svg';
 
 class HowItWorks extends React.Component {
   constructor(props) {
