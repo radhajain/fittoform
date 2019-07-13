@@ -139,7 +139,7 @@ class SignInFormBase extends Component {
               </button>
               {error && (
                 <p className="signin-error-msg">
-                  We couldn't find an account with this username and password. Please try again
+                  We couldn't find an account with this username and password. Please try again.
                 </p>
               )}
               <SignUpLink />
