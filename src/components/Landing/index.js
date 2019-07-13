@@ -118,8 +118,7 @@ class Landing extends React.Component {
               <div className="landing-intro-footer-inner">
                 <p className="landing-desc">
                   It's hard to know what fits well while shopping online. We show you a curated set
-                  of dresses, recommended by real women with the same measurements as you. Buy with
-                  confidence, every time.
+                  of dresses, recommended by real women with the same measurements as you.
                 </p>
                 <div className="landing-callToAction-wrapper">
                   <Link to="/search">

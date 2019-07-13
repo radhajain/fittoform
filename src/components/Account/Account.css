@@ -2,17 +2,34 @@
   height: calc(100vh - 100px);
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+.account-inner {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.account-inner {
-  width: 80%;
-  height: 90%;
+.account-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.account-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .account-title {
+  margin-top: 50px;
   font-family: 'DM Serif Display', serif;
   font-size: 2em;
   color: black;
@@ -24,33 +41,38 @@
   color: black;
 }
 
-.account-edit-btn {
-  background-color: white;
-  border: none;
-  text-transform: uppercase;
-  font-size: 1.1em;
+.account-select-round {
+  background-color: black;
+  padding: 50px 20px;
+  border-radius: 50%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.account-select option {
+  width: min-content;
 }
 
 .account-section-wrapper {
+  flex-basis: 80%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: flex-start;
 }
 
 .account-wrapper-item {
-  flex-basis: 280px;
-  max-width: 280px;
+  text-align: center;
+  width: 125px;
   padding: 2px 20px 2px 0px;
   margin: 15px 0px 10px;
 }
 
 .account-item-label {
-  font-family: 'DM Serif Display', serif;
-  font-weight: lighter;
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 2px;
-  line-height: 18px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1em;
 }
 
 select::-ms-expand {
@@ -65,13 +87,17 @@ select {
 }
 
 .account-select {
-  background: white url(../../assets/images/dropdown-arrow.png) no-repeat right 12px center;
-  border: 1px solid #dddddd;
-  margin: 0;
-  font-size: 16px;
-  padding: 12px 10px;
-  width: 100%;
+  background-color: black;
+  color: white;
+  border: none;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  margin: 0px;
+  font-size: 20px;
+  padding: 0px;
+  text-align: center;
   border-radius: none;
+  text-align-last: center;
 }
 
 .account-select:focus {
@@ -83,17 +109,33 @@ select {
 }
 
 .account-section-title-wrapper {
+  flex-basis: 20%;
+  padding-right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.account-text {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.account-account-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .account-links {
   display: block;
-  margin-top: 20px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
   text-decoration: none;
   text-decoration: underline;
-  color: #34121f;
+  font-size: 0.8em;
+  color: black;
+  cursor: pointer;
 }
 
 .account-links:hover {
@@ -104,21 +146,58 @@ select {
 .account-save-btn {
   margin-top: 10px;
   background-color: #ffd2ba;
-  padding: 12px 30px;
-  font-size: 1em;
+  width: 15px;
+  border-radius: 50px;
+  padding: 0px 20px;
+  font-size: 1.2em;
   border: none;
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bolder;
   cursor: pointer;
   color: black;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
   min-height: 40px;
-  transition: #e86b6a 0.2s ease 0s, color 0.2s ease 0s, opacity 0.2s ease 0s;
+  transition: all 0.4s ease;
   outline: none;
+}
+
+.account-save-btn:hover {
+  width: 180px;
 }
 
 .account-saved-text {
   color: #e86b6a;
   font-size: 1em;
   font-family: 'Helvetiva Neue', sans-serif;
+}
+
+@media (max-width: 1030px) {
+  .account-row-top {
+    flex-wrap: wrap;
+  }
+
+  .account-title-wrapper-top {
+    flex-basis: 100%;
+  }
+
+  .account-section-wrapper-top {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 890px) {
+  .account-inner {
+    width: 90%;
+  }
+}
+
+@media (max-width: 800px) {
+  .account-section-wrapper-top {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 540px) {
+  .account-inner {
+    height: unset;
+  }
 }
