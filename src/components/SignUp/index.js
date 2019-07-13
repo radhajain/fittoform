@@ -549,28 +549,24 @@ class SignUpFormBase extends Component {
         <div className="signup-container-first signup-child">
           <div className="signup-signup-content">
             <form>
-              <label className="signup-signup-label">
-                My name is
-                <input
-                  name="name"
-                  type="text"
-                  ref="name"
-                  onBlur={this.handleBlur('name')}
-                  className={
-                    shouldMarkError('name')
-                      ? 'signup-input-error signup-name'
-                      : 'signup-input signup-name'
-                  }
-                  onKeyPress={this._handleKeyPressName}
-                  onChange={this.handleInputChange}
-                />
-                .
-                <p
-                  className={shouldMarkError('name') ? 'signup-error-msg' : 'hide-signup-error-msg'}
-                >
-                  <i>Please enter your full name.</i>
-                </p>
-              </label>
+              <label className="signup-signup-label">My name is</label>
+              <input
+                name="name"
+                type="text"
+                ref="name"
+                onBlur={this.handleBlur('name')}
+                className={
+                  shouldMarkError('name')
+                    ? 'signup-input-error signup-name '
+                    : 'signup-input signup-name '
+                }
+                onKeyPress={this._handleKeyPressName}
+                onChange={this.handleInputChange}
+              />
+              <label className="signup-signup-label">.</label>
+              <p className={shouldMarkError('name') ? 'signup-error-msg' : 'hide-signup-error-msg'}>
+                <i>Please enter your full name.</i>
+              </p>
               <div className={shouldShowNext('name') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToHeight}>
                   <div className="signup-ok-flexWrapper">OK</div>
@@ -587,38 +583,36 @@ class SignUpFormBase extends Component {
         <div className="signup-container-second signup-child" ref={this.heightRef}>
           <div className="signup-signup-content">
             <form>
-              <label className="signup-signup-label">
-                I am
-                <input
-                  name="heightft"
-                  type="number"
-                  ref="heightftinput"
-                  onBlur={this.handleBlur('heightft')}
-                  className={shouldMarkError('heightft') ? 'signup-input-error' : 'signup-input'}
-                  onKeyPress={this._handleKeyPressHeightFt}
-                  onChange={this.handleInputChange}
-                />
-                ft,
-                <input
-                  name="heightin"
-                  type="number"
-                  onBlur={this.handleBlur('heightin')}
-                  className={shouldMarkError('heightin') ? 'signup-input-error' : 'signup-input'}
-                  onKeyPress={this._handleKeyPressHeightIn}
-                  ref="heightininput"
-                  onChange={this.handleInputChange}
-                />
-                inches tall.
-                <p
-                  className={
-                    shouldMarkError('heightin') || shouldMarkError('heightft')
-                      ? 'signup-error-msg'
-                      : 'hide-signup-error-msg'
-                  }
-                >
-                  <i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i>
-                </p>
-              </label>
+              <label className="signup-signup-label">I am</label>
+              <input
+                name="heightft"
+                type="number"
+                ref="heightftinput"
+                onBlur={this.handleBlur('heightft')}
+                className={shouldMarkError('heightft') ? 'signup-input-error' : 'signup-input'}
+                onKeyPress={this._handleKeyPressHeightFt}
+                onChange={this.handleInputChange}
+              />
+              <label className="signup-signup-label">ft,</label>
+              <input
+                name="heightin"
+                type="number"
+                onBlur={this.handleBlur('heightin')}
+                className={shouldMarkError('heightin') ? 'signup-input-error' : 'signup-input'}
+                onKeyPress={this._handleKeyPressHeightIn}
+                ref="heightininput"
+                onChange={this.handleInputChange}
+              />
+              <label className="signup-signup-label">inches tall.</label>
+              <p
+                className={
+                  shouldMarkError('heightin') || shouldMarkError('heightft')
+                    ? 'signup-error-msg'
+                    : 'hide-signup-error-msg'
+                }
+              >
+                <i>Please enter a valid height, e.g. 5 ft, 4 in etc.</i>
+              </p>
               <div className={shouldShowNext('height') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToSize}>
                   <div className="signup-ok-flexWrapper">OK</div>
@@ -635,24 +629,20 @@ class SignUpFormBase extends Component {
         <div className="signup-container-third signup-child" ref={this.sizeRef}>
           <div className="signup-signup-content">
             <form>
-              <label className="signup-signup-label">
-                I normally wear US size
-                <input
-                  name="size"
-                  type="number"
-                  ref="sizeinput"
-                  onBlur={this.handleBlur('size')}
-                  className={shouldMarkError('size') ? 'signup-input-error' : 'signup-input'}
-                  onKeyPress={this._handleKeyPressSize}
-                  onChange={this.handleInputChange}
-                />
-                .
-                <p
-                  className={shouldMarkError('size') ? 'signup-error-msg' : 'hide-signup-error-msg'}
-                >
-                  <i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i>
-                </p>
-              </label>
+              <label className="signup-signup-label">I normally wear US size</label>
+              <input
+                name="size"
+                type="number"
+                ref="sizeinput"
+                onBlur={this.handleBlur('size')}
+                className={shouldMarkError('size') ? 'signup-input-error' : 'signup-input'}
+                onKeyPress={this._handleKeyPressSize}
+                onChange={this.handleInputChange}
+              />
+              <label className="signup-signup-label">.</label>
+              <p className={shouldMarkError('size') ? 'signup-error-msg' : 'hide-signup-error-msg'}>
+                <i>Please enter a numeric US size, e.g. 0, 2, 4, 6 etc.</i>
+              </p>
               <div className={shouldShowNext('size') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToBra}>
                   <div className="signup-ok-flexWrapper">OK</div>
@@ -669,29 +659,25 @@ class SignUpFormBase extends Component {
         <div className="signup-container-fourth signup-child" ref={this.braRef}>
           <div className="signup-signup-content">
             <form>
-              <label className="signup-signup-label">
-                My bra size is
-                <input
-                  name="bra"
-                  type="text"
-                  ref="brainput"
-                  onBlur={this.handleBlur('bra')}
-                  onKeyPress={this._handleKeyPressBra}
-                  className={
-                    shouldMarkError('bra')
-                      ? 'signup-input-error signup-bra'
-                      : 'signup-input signup-bra'
-                  }
-                  style={{ width: 150 }}
-                  onChange={this.handleInputChange}
-                />
-                .
-                <p
-                  className={shouldMarkError('bra') ? 'signup-error-msg' : 'hide-signup-error-msg'}
-                >
-                  <i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i>
-                </p>
-              </label>
+              <label className="signup-signup-label">My bra size is</label>
+              <input
+                name="bra"
+                type="text"
+                ref="brainput"
+                onBlur={this.handleBlur('bra')}
+                onKeyPress={this._handleKeyPressBra}
+                className={
+                  shouldMarkError('bra')
+                    ? 'signup-input-error signup-bra'
+                    : 'signup-input signup-bra'
+                }
+                style={{ width: 150 }}
+                onChange={this.handleInputChange}
+              />
+              <label className="signup-signup-label">.</label>
+              <p className={shouldMarkError('bra') ? 'signup-error-msg' : 'hide-signup-error-msg'}>
+                <i>Please enter a valid bra size, e.g. 32B, 34DD etc.</i>
+              </p>
               <div className={shouldShowNext('bra') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToSizing}>
                   <div className="signup-ok-flexWrapper">OK</div>
@@ -838,87 +824,81 @@ class SignUpFormBase extends Component {
           <div className="signup-signup-content">
             <form>
               <div className="signup-form-div">
-                <label className="signup-signup-label signup-label-long">
-                  My email is
-                  <input
-                    name="email"
-                    value={email}
-                    onBlur={this.handleBlur('email')}
-                    ref="emailinput"
-                    onChange={this.handleInputChange}
-                    onKeyPress={this._handleKeyPressEmail}
-                    type="text"
-                    className={
-                      shouldMarkError('email')
-                        ? 'signup-input-error signup-long-input'
-                        : 'signup-input signup-long-input'
-                    }
-                  />
-                  <p
-                    className={
-                      shouldMarkError('email') ? 'signup-error-msg' : 'hide-signup-error-msg'
-                    }
-                  >
-                    <i>Please enter a valid email address.</i>
-                  </p>
-                </label>
+                <input
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onBlur={this.handleBlur('email')}
+                  ref="emailinput"
+                  onChange={this.handleInputChange}
+                  onKeyPress={this._handleKeyPressEmail}
+                  type="text"
+                  className={
+                    shouldMarkError('email')
+                      ? 'signup-input-error signup-long-input signup-input-left'
+                      : 'signup-input signup-long-input signup-input-left'
+                  }
+                />
+                <p
+                  className={
+                    shouldMarkError('email') ? 'signup-error-msg' : 'hide-signup-error-msg'
+                  }
+                >
+                  <i>Please enter a valid email address.</i>
+                </p>
               </div>
               <div className="signup-form-div">
-                <label className="signup-signup-label signup-label-long">
-                  Password:
-                  <input
-                    name="passwordOne"
-                    value={passwordOne}
-                    onBlur={this.handleBlur('passwordOne')}
-                    onChange={this.handleInputChange}
-                    onKeyPress={this._handleKeyPressPw2}
-                    type="password"
-                    ref="passwordOneInput"
-                    className={
-                      shouldMarkError('passwordOne')
-                        ? 'signup-input-error signup-long-input'
-                        : 'signup-input signup-long-input'
-                    }
-                  />
-                  <p
-                    className={
-                      shouldMarkError('passwordOne') ? 'signup-error-msg' : 'hide-signup-error-msg'
-                    }
-                  >
-                    <i>Please enter a password.</i>
-                  </p>
-                </label>
+                <input
+                  name="passwordOne"
+                  placeholder="Password"
+                  value={passwordOne}
+                  onBlur={this.handleBlur('passwordOne')}
+                  onChange={this.handleInputChange}
+                  onKeyPress={this._handleKeyPressPw2}
+                  type="password"
+                  ref="passwordOneInput"
+                  className={
+                    shouldMarkError('passwordOne')
+                      ? 'signup-input-error signup-long-input signup-input-left'
+                      : 'signup-input signup-long-input signup-input-left'
+                  }
+                />
+                <p
+                  className={
+                    shouldMarkError('passwordOne') ? 'signup-error-msg' : 'hide-signup-error-msg'
+                  }
+                >
+                  <i>Please enter a password.</i>
+                </p>
               </div>
               <div className="signup-form-div">
-                <label className="signup-signup-label signup-label-long">
-                  Re-enter password:
-                  <input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.handleInputChange}
-                    onBlur={this.handleBlur('passwordTwo')}
-                    onKeyPress={this._handleKeyPressPw2}
-                    type="password"
-                    ref="passwordTwoInput"
-                    className={
-                      shouldMarkError('passwordTwo')
-                        ? 'signup-input-error signup-long-input'
-                        : 'signup-input signup-long-input'
-                    }
-                  />
-                  <p
-                    className={
-                      shouldMarkError('passwordTwo') ? 'signup-error-msg' : 'hide-signup-error-msg'
-                    }
-                  >
-                    <i>Oops, your passwords don't match. Try again.</i>
+                <input
+                  name="passwordTwo"
+                  placeholder="Re-enter password"
+                  value={passwordTwo}
+                  onChange={this.handleInputChange}
+                  onBlur={this.handleBlur('passwordTwo')}
+                  onKeyPress={this._handleKeyPressPw2}
+                  type="password"
+                  ref="passwordTwoInput"
+                  className={
+                    shouldMarkError('passwordTwo')
+                      ? 'signup-input-error signup-long-input signup-input-left'
+                      : 'signup-input signup-long-input signup-input-left'
+                  }
+                />
+                <p
+                  className={
+                    shouldMarkError('passwordTwo') ? 'signup-error-msg' : 'hide-signup-error-msg'
+                  }
+                >
+                  <i>Oops, your passwords don't match. Try again.</i>
+                </p>
+                {this.state.error && (
+                  <p className={'signup-error-msg'}>
+                    <i>{this.state.error.message}</i>
                   </p>
-                  {this.state.error && (
-                    <p className={'signup-error-msg'}>
-                      <i>{this.state.error.message}</i>
-                    </p>
-                  )}
-                </label>
+                )}
               </div>
             </form>
           </div>
@@ -945,7 +925,10 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p className="message">
-    Not registered? <Link to={ROUTES.SIGN_UP}>Create an account</Link>
+    Not registered?{' '}
+    <Link to={ROUTES.SIGN_UP} style={{ color: 'black' }}>
+      Create an account
+    </Link>
   </p>
 );
 

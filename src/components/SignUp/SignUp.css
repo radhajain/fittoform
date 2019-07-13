@@ -16,29 +16,29 @@
 }
 
 .signup-container-intro {
-  background: linear-gradient(#ffd2ba, #ffcbb8);
+  background: linear-gradient(#ffd2ba, #ffcdb8);
 }
 
 .signup-container-first {
-  background: linear-gradient(#ffcbb8, #f9c5b8);
+  background: linear-gradient(#ffcdb8, #ffc9b7);
 }
 
 .signup-container-second {
-  background: linear-gradient(#f9c5b8, #b6cfc4);
+  background: linear-gradient(#ffc9b7, #fec5b7);
 }
 
 .signup-container-third {
-  background: linear-gradient(#b6cfc4, #69dbd3);
+  background: linear-gradient(#fec5b7, #cbccc0);
 }
 
 .signup-container-fourth {
-  background: linear-gradient(#69dbd3, #69dbd3);
+  background: linear-gradient(#cbccc0, #a1d2c8);
   display: flex;
   flex-direction: column;
 }
 
 .signup-container-fifth {
-  background: linear-gradient(#69dbd3, #69dbd3);
+  background: linear-gradient(#a1d2c8, #69dbd3);
   display: flex;
   flex-direction: column;
 }
@@ -151,10 +151,11 @@ input[type='number']::-webkit-outer-spin-button {
   border: none;
   border-bottom: 2px solid white;
   color: white;
+  font-weight: bold;
   font-family: 'Helvetiva Neue', sans-serif;
   text-align: center;
   width: 80px;
-  font-size: 1.5em;
+  font-size: 3.3em;
 }
 
 .signup-input:focus {
@@ -165,20 +166,25 @@ input[type='number']::-webkit-outer-spin-button {
   background: none;
   border: none;
   border-bottom: 2px solid black;
+  font-weight: bold;
   font-family: 'Helvetiva Neue', sans-serif;
   text-align: center;
   width: 80px;
-  font-size: 1.5em;
+  font-size: 2.5em;
   color: black;
 }
 
-.signup-name {
-  width: 400px;
+.signup-long-input {
+  font-size: 1.75em;
+  width: 450px;
 }
 
-.signup-long-input {
-  width: 450px;
-  font-size: 0.85em;
+::placeholder {
+  font-size: 1.25em;
+  color: white;
+  opacity: 0.8;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
 }
 
 .signup-ok-btn {
@@ -298,7 +304,7 @@ button:focus {
 }
 
 .signup-error-msg {
-  font-size: 0.5em;
+  font-size: 1em;
   color: black;
 }
 
@@ -368,6 +374,15 @@ button:focus {
 
 .signup-bra {
   width: 150px;
+}
+
+.signup-name {
+  width: 400px;
+  font-size: 2.5em;
+}
+
+.signup-input-left {
+  text-align: left;
 }
 
 @media (max-width: 882px) {

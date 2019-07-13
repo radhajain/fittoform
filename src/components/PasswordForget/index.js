@@ -49,7 +49,7 @@ class PasswordForgetFormBase extends Component {
 
     return (
       <div className="pforgot-background">
-        <div className="signin-form">
+        <div className="signin-form" style={{ flexDirection: 'column' }}>
           <form className="login-form" onSubmit={this.onSubmit}>
             <input
               name="email"
@@ -58,7 +58,7 @@ class PasswordForgetFormBase extends Component {
               type="text"
               placeholder="Email Address"
             />
-            <button disabled={isInvalid} type="submit">
+            <button disabled={isInvalid} className="pforgot-btn" type="submit">
               Reset My Password
             </button>
             {error && <p>{error.message}</p>}
@@ -71,7 +71,6 @@ class PasswordForgetFormBase extends Component {
 
 const PasswordForgetLink = () => (
   <Link to={ROUTES.PASSWORD_FORGET} className="pforgot">
-    {' '}
     Forgot password?
   </Link>
 );

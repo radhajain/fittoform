@@ -11,11 +11,7 @@ import firebase from 'firebase';
 import './SignIn.css';
 import { AuthUserContext, withAuthorization } from '../Session';
 
-const SignInPage = () => (
-  <div className="signin-background">
-    <SignInForm />
-  </div>
-);
+const SignInPage = () => <SignInForm />;
 
 class SignInFormBase extends Component {
   constructor(props) {
@@ -110,35 +106,44 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      //<div style={{padding: '50px 30px 20px 30px'}}>
-
-      <div className="login-page">
-        <div className="signin-form">
-          <form className="login-form" onSubmit={this.onSubmit}>
-            <input
-              name="email"
-              value={email}
-              onChange={this.onChange}
-              type="text"
-              placeholder="email"
-            />
-            <input
-              name="password"
-              value={password}
-              onChange={this.onChange}
-              type="password"
-              placeholder="password"
-            />
+      <div className="signin-page">
+        <div className="signin-content">
+          <form className="signin-form" onSubmit={this.onSubmit}>
+            <div className="signin-form-div">
+              <input
+                name="email"
+                placeholder="Email"
+                value={email}
+                onChange={this.onChange}
+                type="text"
+                className="signin-input"
+              />
+            </div>
+            <div className="signin-form-div">
+              <input
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={this.onChange}
+                type="password"
+                className="signin-input"
+              />
+            </div>
             <PasswordForgetLink />
-            <button disabled={isInvalid} type="submit">
-              login
-            </button>
-            {error && <p>{error.message}</p>}
-            <SignUpLink />
+            <div style={{ marginTop: 100, textAlign: 'center' }}>
+              <button
+                className={isInvalid ? 'signin-btn-disabled' : 'signin-btn'}
+                disabled={isInvalid}
+                type="submit"
+              >
+                Sign in
+              </button>
+              {error && <p>{error.message}</p>}
+              <SignUpLink />
+            </div>
           </form>
         </div>
       </div>
-      //</div>
     );
   }
 }

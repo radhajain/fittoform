@@ -1,109 +1,90 @@
-@font-face {
-  font-family: 'Albertus';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Albertus-Medium'), local('Helvetiva Neue-Regular'),
-    url(../../assets/fonts/Albertus/Albertus-Medium.ttf) format('ttf'),
-    url(../../assets/fonts/Albertus/Albertus-Regular.ttf) format('ttf');
-}
-
-.signin-background {
-  width: 100%;
-  height: 100vh;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.signin-box {
-  width: 80%;
-  height: 60%;
-  max-width: 723px;
-  margin: auto;
-  background-color: #17080e;
-}
-
 @import url(https://fonts.googleapis.com/css?family=HelvetivaNeue:300);
 
-.login-page {
-  width: 360px;
-  margin: auto;
-}
-.signin-form {
-  position: relative;
-  z-index: 1;
-  background: #ffffff;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.signin-form input {
-  font-family: 'Helvetiva Neue', sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-  text-decoration: none;
-  color: #4b2431;
+.signin-page {
+  background-color: #69dbd3;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.signin-form input::placeholder {
+.signin-btn {
+  background-color: white;
+  color: black;
+  border-radius: 50px;
+  font-size: 1.25em;
+  margin-bottom: 20px;
+  border: none;
+  padding: 16px 30px;
+  font-weight: bold;
   font-family: 'Helvetiva Neue', sans-serif;
-  box-sizing: border-box;
-  font-size: 14px;
-  text-decoration: none;
-  color: #3c1d27;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
-.signin-form button {
+
+.signin-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.signin-btn-disabled {
+  background-color: white;
+  color: gray;
+  font-size: 1.25em;
+  margin-bottom: 20px;
+  border: none;
+  padding: 16px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-family: 'Helvetiva Neue', sans-serif;
+}
+
+.signin-form input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-weight: bold;
+  font-family: 'Helvetiva Neue', sans-serif;
+  text-align: left;
+  height: 50px;
+  font-size: 1.75em;
+  width: 450px;
+}
+
+.signin-form-div {
+  margin-top: 40px;
+}
+
+input::placeholder {
+  font-size: 1.25em;
+  color: white;
+  opacity: 0.8;
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
-  text-transform: capitalize;
-  outline: 0;
-  background: #ffd2ba;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #ffffff;
-  font-size: 1.2em;
-  -webkit-transition: all 0.4 ease;
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
-.signin-form button:hover,
-.form button:active,
-.form button:focus {
-  background: #69dbd3;
-}
-.signin-form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-.signin-form .message a {
-  color: #4b2431;
-  text-decoration: none;
 }
 
-.signin-form a {
-  color: #7f7f7f;
-  text-decoration: none;
+.signin-form .message {
+  color: black;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
 }
-.signin-form .forgot {
-  color: #7f7f7f;
+
+.signin-form .pforgot {
+  color: white;
   display: inline-block;
   float: right;
-  font: 12px/1 sans-serif;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font: 1em sans-serif;
   left: -19px;
   position: relative;
   text-decoration: none;
-  top: 5px;
-  transition: color 0.4s;
+  top: 25px;
+  transition: all 0.4s ease;
   margin: 0px 2px 25px 2px;
+}
+
+.signin-form .pforgot:hover {
+  text-decoration: underline;
 }
