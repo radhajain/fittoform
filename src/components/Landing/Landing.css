@@ -568,6 +568,10 @@
     width: 90%;
     margin-left: 0px;
   }
+
+  .landing-intro-footer {
+    padding-top: 25px;
+  }
 }
 
 @media (min-width: 375px) and (min-height: 812px) {
