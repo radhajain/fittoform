@@ -144,7 +144,7 @@ class Landing extends React.Component {
                   <div className="landing-howitworks-box">
                     <p className="landing-desc">Browse curations</p>
                     <p className="landing-howitworks-desc">
-                      Get personalized recommendations by women with the same measurements as you
+                      See personalized recommendations by women with the same measurements as you
                     </p>
                   </div>
                   <div className="landing-howitworks-box">
