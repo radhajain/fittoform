@@ -97,7 +97,7 @@ class Landing extends React.Component {
           <div className="landing-container-inner-85">
             <div className="landing-intro-hero">
               <div className="landing-title-wrapper">
-                <p className="landing-title">We try on dresses so you don't have to.</p>
+                <p className="landing-title">We try on dresses so you don't have to</p>
               </div>
               <div className="landing-img-wrapper">
                 <div>
@@ -175,7 +175,7 @@ class Landing extends React.Component {
           <div className="landing-container-inner-60 landing-4-container">
             <div className="landing-4-content">
               <div className="landing-4-leftCol">
-                <p className="landing-title landing-4-title">Clothes look best when they fit. </p>
+                <p className="landing-title landing-4-title">Clothes look best when they fit </p>
               </div>
               <div className="landing-4-rightCol">
                 <p className="landing-desc landing-desc-4">
@@ -192,7 +192,7 @@ class Landing extends React.Component {
             <div className="landing-intro-hero">
               <div className="landing-title-wrapper">
                 <p className="landing-title landing-5-title">
-                  Women with your body have tried on these dresses.
+                  Women with your body have tried on these dresses
                 </p>
               </div>
               <div className="landing-img-wrapper">
@@ -220,7 +220,7 @@ class Landing extends React.Component {
           <div className="landing-container-inner-85">
             <div className="landing-intro-hero">
               <div className="landing-title-wrapper">
-                <p className="landing-title">You're the stylist.</p>
+                <p className="landing-title">You're the stylist</p>
               </div>
               <div className="landing-img-wrapper">
                 <div>
