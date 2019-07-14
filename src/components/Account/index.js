@@ -227,6 +227,7 @@ class AccountPage extends React.Component {
                         name="size"
                         className="account-select"
                       >
+                        <option value="00">00</option>
                         <option value="0">0</option>
                         <option value="2">2</option>
                         <option value="4">4</option>
