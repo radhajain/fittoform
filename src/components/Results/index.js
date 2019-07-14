@@ -714,6 +714,13 @@ class Results extends Component {
           </div>
           <div className={rightColClass}>
             <div className="results-rightCol-inner">
+              <div className="results-menu-hide-div">
+                <img
+                  src={downArrow}
+                  className="results-menu-hide-arrow"
+                  onClick={this.dismissRecommendationPanel}
+                />
+              </div>
               <div className="results-name-div">
                 <p className="results-text">Curated for</p>
                 <form onSubmit={this.handleSubmit}>
@@ -729,13 +736,6 @@ class Results extends Component {
                 </form>
               </div>
               <div className="results-recommended-wrapper">
-                <div className="results-menu-hide-div">
-                  <img
-                    src={downArrow}
-                    className="results-menu-hide-arrow"
-                    onClick={this.dismissRecommendationPanel}
-                  />
-                </div>
                 {this.state.exactMatch && this.state.currDiv === 0 && (
                   <p className="results-match">Exact Match</p>
                 )}
