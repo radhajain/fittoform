@@ -166,7 +166,7 @@
 .itemView-backbtn {
   cursor: pointer;
   position: relative;
-  z-index: 100;
+  z-index: 1020;
   color: black;
   background-color: white;
   border: none;
@@ -222,6 +222,8 @@
 }
 
 .itemView-img {
+  max-height: calc(90vh - 50px);
+  object-fit: contain;
   width: 100%;
   position: relative;
   z-index: 5;

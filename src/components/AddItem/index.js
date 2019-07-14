@@ -281,7 +281,7 @@ class AddItem extends Component {
       <div className="container">
         <section className="add-item">
           <h1>Add Dress</h1>
-          <form onSubmit={this.handleSubmit}>
+          <form className="additem-form" onSubmit={this.handleSubmit}>
             <input
               className="add-input"
               type="text"
