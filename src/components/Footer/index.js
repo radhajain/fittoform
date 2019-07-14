@@ -14,8 +14,8 @@ const FooterLarge = () => (
           <p className="footer-abouttext">
             Based in San Francisco, Fit to Form is the only shopping experience that is focused on
             fit. We understand the uncertainties of online shopping and the frustrations that come
-            with returns. Our mission is to help every woman find their perfect dress that makes
-            them feel like a million bucks.
+            with returns. Our mission is to help every woman of all sizes find clothing that make
+            them look their best.
           </p>
         </div>
 

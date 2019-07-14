@@ -26,7 +26,7 @@
 .results-leftCol-inner {
   height: 90%;
   width: 100%;
-  padding-top: 75px;
+  padding-top: 100px;
   align-items: center;
   position: relative;
 }
@@ -64,6 +64,9 @@ input:focus {
 .results-rightCol-inner {
   width: 80%;
   height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .results-items {
@@ -79,7 +82,6 @@ input:focus {
 }
 
 .results-your-measurements-wrapper {
-  margin-top: 15vh;
 }
 
 .results-your-measurements {
@@ -196,7 +198,6 @@ input:focus {
 
 .results-recommended-wrapper {
   max-width: 450px;
-  margin-top: 10vh;
 }
 
 .results-measurement-label {
@@ -475,8 +476,6 @@ input:focus {
   }
 
   .results-rightCol-inner {
-    display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
   }
 
