@@ -1,12 +1,8 @@
 .add-input {
-    width: 80%;
+  width: 80%;
+  color: black;
 }
 
-
-.additem-form input::placeholder{
-    color: black;
-}
-
-.additem-form input{
-    color: black;
+.additem-form input::placeholder {
+  color: black;
 }

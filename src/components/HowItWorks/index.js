@@ -71,7 +71,7 @@ class HowItWorks extends React.Component {
                     <p className="howitworks-brands">ACQUA</p>
                     <p className="howitworks-brands">Aritzia</p>
                     <p className="howitworks-brands">All Saints</p>
-                    <p className="howitworks-brands">L'Academie</p>
+                    <p className="howitworks-brands">Bardot</p>
                   </div>
                 </div>
                 <div className="howitworks-child-c1-c">
