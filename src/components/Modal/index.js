@@ -104,7 +104,7 @@ class Modal extends Component {
                 type="submit"
                 className={isDisabled ? 'modal-btn-disabled' : 'modal-btn-createAccount'}
               >
-                {this.props.btnMsg}
+                <div style={{ position: 'relative' }}>{this.props.btnMsg}</div>
               </button>
               {/* {error && <p>{error.message}</p>} */}
               <p className="modal-signin-text">

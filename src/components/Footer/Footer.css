@@ -104,7 +104,7 @@
 
 .copyright-text {
   margin: 0;
-  color: #e8dcdc;
+  color: white;
   font-size: 0.8em;
   font-weight: bold;
   font-family: 'Helvetica Neue', sans-serif;
@@ -167,6 +167,21 @@
   .footer-sm-inner {
     width: 95%;
   }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .footer-about {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer-c2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 644px) {
@@ -221,6 +236,10 @@
 
   .footer-sm-c3 {
     width: calc(100% - 120px);
+  }
+
+  .footer-abouttext {
+    font-size: 0.9em;
   }
 }
 

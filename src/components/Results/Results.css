@@ -418,7 +418,7 @@ input:focus {
   }
 
   .results-leftCol-inner {
-    padding-top: 75px;
+    padding-top: 50px;
   }
 
   .results-container-outer {
@@ -527,6 +527,10 @@ input:focus {
 @media (max-width: 400px) {
   .results-grid {
     display: block;
+  }
+
+  .results-leftCol-inner {
+    padding-top: 10px;
   }
 }
 

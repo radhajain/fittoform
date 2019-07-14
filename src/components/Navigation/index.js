@@ -107,7 +107,9 @@ class NavigationAuth extends React.Component {
           </div>
           <div className="nav-c3">
             <div className="dropdown">
-              <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
+              <Link to={ROUTES.ACCOUNT}>
+                <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
+              </Link>
               <img src={WhiteArrow} className="nav-whitearrow" />
               <div className="dropdown-content">
                 <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">

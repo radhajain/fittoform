@@ -156,6 +156,7 @@ input[type='number']::-webkit-outer-spin-button {
   text-align: center;
   width: 80px;
   font-size: 3.3em;
+  border-radius: 0px;
 }
 
 .signup-input:focus {
@@ -437,6 +438,27 @@ button:focus {
   }
 }
 
+@media (max-width: 770px) {
+  .signup-name {
+    width: 300px;
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 650px) {
+  .signup-name {
+    width: 280px;
+    font-size: 1.75em;
+  }
+}
+
+@media (max-width: 630px) {
+  .signup-long-input {
+    width: 400px;
+    font-size: 1.6em;
+  }
+}
+
 @media (max-width: 588px) {
   .signup-signup-label {
     font-family: 'Helvetiva Neue', sans-serif;
@@ -444,18 +466,28 @@ button:focus {
     font-size: 2em;
   }
 
+  .signup-input-error {
+    font-size: 2.5em;
+    width: 55px;
+  }
+
   .signup-input {
     font-size: 2.5em;
     width: 55px;
   }
 
-  .signup-label-long {
-    font-size: 1.75em;
+  .signup-long-input {
+    width: 360px;
+    font-size: 1.5em;
   }
 
-  .signup-input-error {
-    font-size: 2.5em;
-    width: 55px;
+  .signup-name {
+    width: 250px;
+    font-size: 1.5em;
+  }
+
+  .signup-label-long {
+    font-size: 1.75em;
   }
 
   .signup-results-btn {
@@ -497,11 +529,13 @@ button:focus {
   }
 
   .signup-long-input {
-    width: 400px;
+    width: 300px;
+    font-size: 1.2em;
   }
 
   .signup-name {
-    width: 350px;
+    width: 230px;
+    font-size: 1.3em;
   }
 
   .signup-parent {
@@ -512,6 +546,14 @@ button:focus {
 
   .signup-child {
     scroll-snap-align: unset;
+  }
+}
+
+@media (max-width: 475px) {
+  .signup-name {
+    text-align: left;
+    width: 270px;
+    font-size: 1.75em;
   }
 }
 
@@ -528,14 +570,6 @@ button:focus {
     flex-direction: row;
     justify-content: space-between;
   }
-
-  .signup-long-input {
-    width: 300px;
-  }
-
-  .signup-name {
-    width: 300px;
-  }
 }
 
 @media (max-width: 440px) {
@@ -549,6 +583,16 @@ button:focus {
 
   .signup-input-error {
     width: 60px;
+  }
+
+  .signup-long-input {
+    width: 280px;
+    font-size: 1.15em;
+  }
+
+  .signup-name {
+    text-align: left;
+    width: 250px;
   }
 
   .signup-bra {
@@ -572,11 +616,13 @@ button:focus {
   }
 
   .signup-name {
-    width: 250px;
+    font-size: 1.55em;
+    width: 230px;
   }
 
   .signup-long-input {
-    width: 280px;
+    width: 220px;
+    font-size: 1em;
   }
 }
 

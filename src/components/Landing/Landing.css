@@ -46,9 +46,7 @@
   flex-basis: 50%;
 }
 
-/* REMOVE BACKGROUND COLOR */
 .landing-img-wrapper {
-  /* background-color: lightgray; */
   margin: 25px;
   flex-basis: 50%;
   height: 100%;
@@ -170,7 +168,7 @@
 .landing-2-header {
   background-color: black;
   background-image: url(https://fittoform-landing.s3.amazonaws.com/girl_glasses.jpg);
-  background-position: top center;
+  background-position: left center;
   background-size: cover;
 
   background-repeat: no-repeat;
@@ -297,7 +295,7 @@
 .landing-4-footer {
   background-color: black;
   background-image: url(https://fittoform-landing.s3.amazonaws.com/shadow_optimized.jpg);
-  background-position: top center;
+  background-position: top left;
   background-size: cover;
   height: 25vh;
   position: absolute;
@@ -416,11 +414,32 @@
   .landing-howitworks-desc {
     font-size: 1em;
   }
+
+  .landing-2-header {
+    height: 15vh;
+  }
+
+  .landing-2-container {
+    height: calc(85vh - 50px);
+    padding-top: 15vh;
+  }
+
+  .landing-4-footer {
+    height: 15vh;
+  }
+
+  .landing-4-container {
+    padding-bottom: 15vh;
+  }
+
+  .landing-fourth-page {
+    height: calc(80vh - 50px);
+  }
 }
 
 /* MOBILE VERSION */
 
-@media (max-width: 625px) {
+@media (max-width: 700px) {
   .landing-intro-hero {
     flex-wrap: wrap;
     display: block;
@@ -481,12 +500,8 @@
     margin-left: 30%;
   }
 
-  .landing-fourth-page {
-    height: calc(80vh - 50px);
-  }
-
   .landing-4-container {
-    height: calc(60vh - 50px);
+    height: 60vh;
   }
 
   .landing-4-content {
@@ -509,9 +524,20 @@
   .landing-fifth-page {
     margin-top: 10vh;
   }
+
+  .landing-sixth-page .landing-intro-hero {
+    height: 40%;
+  }
 }
 
 @media (max-width: 500px) {
+  .landing-intro-hero {
+    height: unset;
+  }
+
+  .landing-intro-hero .landing-sixth-page {
+    height: unset;
+  }
   .landing-desc {
     font-size: 1.05em;
     width: 100%;
@@ -534,5 +560,34 @@
 
   .landing-desc-4 {
     width: 80%;
+  }
+}
+
+@media (max-width: 375px) {
+  .landing-howitworks-steps {
+    width: 90%;
+    margin-left: 0px;
+  }
+
+  .landing-intro-footer {
+    padding-top: 25px;
+  }
+}
+
+@media (min-width: 375px) and (min-height: 812px) {
+  .landing-child {
+    height: 90vh;
+  }
+
+  .landing-third-page {
+    height: unset;
+  }
+
+  .landing-2-container {
+    height: 75vh;
+  }
+
+  .landing-fourth-page {
+    height: 60vh;
   }
 }

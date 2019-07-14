@@ -87,6 +87,7 @@ a:focus {
 .dropdown {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -108,6 +109,18 @@ a:focus {
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:active .dropdown-content {
+  display: block;
+}
+
+.dropdown:focus .dropdown-content {
+  display: block;
+}
+
+.dropdown-content:hover .dropdown-content {
   display: block;
 }
 
