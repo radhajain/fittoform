@@ -61,6 +61,10 @@
   font-weight: bold;
 }
 
+.nav-profile-btn:hover {
+  text-decoration: underline;
+}
+
 a:focus {
   outline: none;
 }
