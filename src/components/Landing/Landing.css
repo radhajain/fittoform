@@ -1,15 +1,3 @@
-/* @font-face {
-    font-family: 'DM Serif Display';
-    font-style: normal;
-    font-weight: 400;
-    src:
-      local('DM Serif Display-Medium'),
-      local('Roboto-Regular'),
-      url(../../assets/fonts/DM Serif Display/DM Serif Display-Medium.ttf) format('ttf'),
-      url(../../assets/fonts/DM Serif Display/DM Serif Display-Regular.ttf) format('ttf');
-  }
-   */
-
 .landing-parent {
   padding-top: 50px;
 }
@@ -56,6 +44,8 @@
 
 .landing-img {
   width: 100%;
+  object-fit: cover;
+  max-height: 375px;
   object-fit: cover;
 }
 
@@ -167,7 +157,7 @@
 
 .landing-2-header {
   background-color: black;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/girl_glasses.jpg);
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/lp_2.jpg);
   background-position: left center;
   background-size: cover;
 
@@ -294,7 +284,7 @@
 
 .landing-4-footer {
   background-color: black;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/shadow_optimized.jpg);
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/lp_3.jpg);
   background-position: top left;
   background-size: cover;
   height: 25vh;
