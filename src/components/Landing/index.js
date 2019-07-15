@@ -102,7 +102,7 @@ class Landing extends React.Component {
               <div className="landing-img-wrapper">
                 <div>
                   <img
-                    src="https://fittoform-landing.s3.amazonaws.com/orangedress_50p_progressive.jpg"
+                    src="https://fittoform-landing.s3.amazonaws.com/lp_1.jpg"
                     className="landing-img"
                   />
                 </div>
@@ -198,7 +198,7 @@ class Landing extends React.Component {
               <div className="landing-img-wrapper">
                 <div>
                   <img
-                    src="https://fittoform-landing.s3.amazonaws.com/dresses_45p_progressive.jpg"
+                    src="https://fittoform-landing.s3.amazonaws.com/lp_4.jpg"
                     className="landing-img"
                   />
                 </div>
@@ -225,7 +225,7 @@ class Landing extends React.Component {
               <div className="landing-img-wrapper">
                 <div>
                   <img
-                    src="https://fittoform-landing.s3.amazonaws.com/hatlady_60p_progressive.jpg"
+                    src="https://fittoform-landing.s3.amazonaws.com/lp_5.jpg"
                     className="landing-img"
                   />
                 </div>

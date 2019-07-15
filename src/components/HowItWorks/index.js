@@ -24,8 +24,8 @@ class HowItWorks extends React.Component {
                 </div>
                 <div className="howitworks-titleCol">
                   <p className="howitworks-title-desc">
-                    A personalized shopping experience where everything has been tried and tested by
-                    women with the same body as you.
+                    A personalized shopping experience where everything has been tried on and
+                    recommended by your body doubles: women with your body measurements.
                   </p>
                 </div>
               </div>
@@ -61,7 +61,7 @@ class HowItWorks extends React.Component {
                     <p className="howitworks-brands">Reformation</p>
                     <p className="howitworks-brands">superdown</p>
                     <p className="howitworks-brands">Lulus</p>
-                    <p className="howitworks-brands">H&M</p>
+                    <p className="howitworks-brands">BB Dakota</p>
                     <p className="howitworks-brands">Anthropologie</p>
                   </div>
                 </div>
@@ -128,8 +128,8 @@ class HowItWorks extends React.Component {
               <div className="howitworks-child-c2-content">
                 <p className="howitworks-subtitle">You see the best of the best</p>
                 <p className="howitworks-desc">
-                  We show you the dresses they loved. You pick the styles that you want, knowing
-                  that all the items will fit you.
+                  Enter your size and see dresses loved by women with your body. Pick the styles you
+                  like, knowing that all the items will fit you.
                 </p>
               </div>
             </div>
