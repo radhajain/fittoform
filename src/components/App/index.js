@@ -18,6 +18,7 @@ import HowItWorks from '../HowItWorks';
 import Contact from '../Contact';
 import Analytics from '../Analytics';
 import HttpsRedirect from 'react-https-redirect';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -32,25 +33,27 @@ class App extends React.Component {
     return (
       <HttpsRedirect>
         <Router>
-          <div>
-            <Navigation path={window.location.pathname} />
+          <ParallaxProvider>
+            <div>
+              <Navigation />
 
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-            <Route path={ROUTES.HOME} component={HomePage} />
-            <Route path={ROUTES.SEARCH} component={SearchPage} />
-            <Route path={ROUTES.RESULTS} component={ResultsPage} />
-            <Route path={ROUTES.ITEM} component={ItemPage} />
-            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-            <Route path={ROUTES.ADMIN} component={AdminPage} />
-            <Route path={ROUTES.ADDITEM} component={AddItem} />
-            <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
-            <Route path={ROUTES.CONTACT} component={Contact} />
-            <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
-            <Route path={ROUTES.ANALYTICS} component={Analytics} />
-          </div>
+              <Route exact path={ROUTES.LANDING} component={LandingPage} />
+              <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+              <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+              <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+              <Route path={ROUTES.HOME} component={HomePage} />
+              <Route path={ROUTES.SEARCH} component={SearchPage} />
+              <Route path={ROUTES.RESULTS} component={ResultsPage} />
+              <Route path={ROUTES.ITEM} component={ItemPage} />
+              <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+              <Route path={ROUTES.ADMIN} component={AdminPage} />
+              <Route path={ROUTES.ADDITEM} component={AddItem} />
+              <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChange} />
+              <Route path={ROUTES.CONTACT} component={Contact} />
+              <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
+              <Route path={ROUTES.ANALYTICS} component={Analytics} />
+            </div>
+          </ParallaxProvider>
         </Router>
       </HttpsRedirect>
     );
