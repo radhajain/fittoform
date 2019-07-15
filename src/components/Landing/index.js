@@ -225,7 +225,7 @@ class Landing extends React.Component {
               <div className="landing-img-wrapper">
                 <div>
                   <img
-                    src="https://fittoform-landing.s3.amazonaws.com/lp_5.jpg"
+                    src="https://fittoform-landing.s3.amazonaws.com/lp_6.jpg"
                     className="landing-img"
                   />
                 </div>

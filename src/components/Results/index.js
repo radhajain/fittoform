@@ -7,6 +7,7 @@ import downArrow from '../../assets/images/down triangle.svg';
 import ProgressiveImage from 'react-progressive-image';
 import Modal from '../Modal';
 import upArrow from '../../assets/images/up arrow.svg';
+// import { Parallax } from 'react-scroll-parallax';
 
 class Results extends Component {
   constructor(props) {
