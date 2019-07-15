@@ -19,11 +19,6 @@
     "react-scripts": "^3.0.1",
     "recompose": "^0.30.0"
   },
-  "rnpm": {
-    "assets": [
-      "assets/fonts/albertus"
-    ]
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

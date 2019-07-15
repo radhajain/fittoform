@@ -20,7 +20,7 @@ class HowItWorks extends React.Component {
             <div className="howitworks-content">
               <div className="howitworks-title-div">
                 <div className="howitworks-titleCol">
-                  <p className="howitworks-title">Shopping, as it should be.</p>
+                  <p className="howitworks-title">Shopping, based on your body.</p>
                 </div>
                 <div className="howitworks-titleCol">
                   <p className="howitworks-title-desc">
