@@ -41,15 +41,6 @@
   color: black;
 }
 
-.account-select-round {
-  background-color: black;
-  padding: 50px 20px;
-  border-radius: 50%;
-  text-align: center;
-  margin-bottom: 15px;
-  transition: all 0.4s ease;
-}
-
 .account-select option {
   width: min-content;
 }
@@ -89,19 +80,25 @@ select {
 .account-select {
   background-color: black;
   color: white;
+  margin-bottom: 15px;
   border: none;
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
-  margin: 0px;
   font-size: 20px;
-  padding: 0px;
+  padding: 50px 35px;
+  border-radius: 50%;
   text-align: center;
   border-radius: none;
   text-align-last: center;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-.account-select:hover .account-select-round {
+.account-select-sm {
+  padding: 50px 49px;
+}
+
+.account-select:hover {
   background-color: #ffd2ba;
 }
 
@@ -174,6 +171,13 @@ select {
   font-size: 1em;
   font-weight: bold;
   font-family: 'Helvetiva Neue', sans-serif;
+}
+
+.account-droparrow {
+  margin: auto;
+  display: block;
+  margin-top: 5px;
+  width: 10px;
 }
 
 @media (max-width: 1030px) {
