@@ -154,6 +154,8 @@ class SignUpFormBase extends Component {
     this.goToAccount = this.goToAccount.bind(this);
     this.getErrorObj = this.getErrorObj.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.goToName = this.goToName.bind(this);
+    this.nameRef = React.createRef();
     this.sizingRef = React.createRef();
     this.sizeRef = React.createRef();
     this.braRef = React.createRef();
@@ -167,6 +169,15 @@ class SignUpFormBase extends Component {
 
   modifyHips(val) {
     this.setState({ modifyHips: val });
+  }
+
+  goToName(e) {
+    e.preventDefault();
+    this.nameRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+    this.refs.nameinput.focus();
   }
 
   goToHeight(e) {
@@ -502,43 +513,28 @@ class SignUpFormBase extends Component {
     };
     return (
       <div className="signup-parent">
-        {/* <div className="signup-container-intro signup-child">
-                <div className="signup-benefits-inner">
-                    <p className="signup-benefits-title">Why join the Ftf fam?</p>
-                    <hr />
-                    <div className="signup-benefits-steps">
-                        <div className="signup-benefits-box">
-                        <div className="signup-benefits-graphic">
-                          <div className="howitworks-child-dressgrid">
-                            <img src={dress1} className="signup-dress-icon"/>
-                            <img src={dress2} className="signup-dress-icon"/>
-                            <img src={dress3} className="signup-dress-icon hiw-dress3"/>
-                            <img src={dress4} className="signup-dress-icon"/>
-                            <img src={dress5} className="signup-dress-icon"/>
-                            <img src={dress6} className="signup-dress-icon hiw-dress6"/>
-                          </div>
-                          </div>
-                            <p className="signup-benefits-desc">Be the first to hear about dresses recommended for your size</p>
-                        </div>
-                        <div className="signup-benefits-box">
-                            <div className="signup-benefits-graphic">
-                              <div className= "signup-benefits-waist-box">
-                                <p className="signup-benefits-waist-title">WAIST</p>
-                                <p className="signup-benefits-waist">27<span style={{fontWeight: 'lighter', fontSize: 40}}>I</span></p>
-                              </div>
-                            </div>
-                            <p className="signup-benefits-desc">Edit your measurements to find the perfect fit</p>
-                        </div>
-                        <div className="signup-benefits-box">
-                          <div className="signup-benefits-graphic">
-                              <img src={save} style={{maxHeight: '200px'}} />
-                          </div>
-                          <p className="signup-benefits-desc">Save items you love to come back to later</p>
-                        </div>
-                    </div>
-                  </div>
-              </div> */}
-        <div className="signup-container-first signup-child">
+        <div className="signup-child signup-benefits">
+          <div className="signup-benefits-content">
+            <div className="signup-benefits-inner">
+              <div className="signup-benefits-title-wrapper">
+                <p className="signup-benefits-title">Why join the FtF fam?</p>
+              </div>
+              <div className="signup-benefits-steps">
+                <p className="signup-benefits-desc" style={{ marginTop: 0 }}>
+                  Be the first to hear about dresses recommended for your size
+                </p>
+                <p className="signup-benefits-desc">
+                  Edit your measurements to find the perfect fit
+                </p>
+                <p className="signup-benefits-desc">Save items you love to come back to later</p>
+              </div>
+            </div>
+            <button className="signup-btn" onClick={this.goToName}>
+              <div className="signup-btn-flexWrapper">Join</div>
+            </button>
+          </div>
+        </div>
+        <div className="signup-container-first signup-child" ref={this.nameRef}>
           <div className="signup-signup-content">
             <form>
               <label className="signup-signup-label">My name is</label>
@@ -546,6 +542,7 @@ class SignUpFormBase extends Component {
                 name="name"
                 type="text"
                 ref="name"
+                ref="nameinput"
                 onBlur={this.handleBlur('name')}
                 className={
                   shouldMarkError('name')
