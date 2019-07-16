@@ -184,7 +184,6 @@ class Item extends Component {
     this.setState({
       isModalShowing: false
     });
-    window.open(this.state.item.dressLink, '_blank');
   }
 
   createAccount = (name, email, password) => {
