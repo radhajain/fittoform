@@ -269,6 +269,12 @@ input:focus {
   }
 }
 
+@media (max-height: 785px) {
+  .results-loadMore-btn-div {
+    margin-top: 0px;
+  }
+}
+
 @media (max-height: 760px) {
   .results-img-single {
     max-height: 520px;
