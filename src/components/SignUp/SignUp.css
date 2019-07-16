@@ -15,8 +15,8 @@
   position: relative;
 }
 
-.signup-container-intro {
-  background: linear-gradient(#ffd2ba, #ffcdb8);
+.signup-benefits {
+  background: linear-gradient(#fde4d8, #ffcdb8);
 }
 
 .signup-container-first {
@@ -49,73 +49,32 @@
 
 .signup-benefits-inner {
   width: 80%;
-  height: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.signup-benefits-title-wrapper {
+  flex-basis: 50%;
 }
 
 .signup-benefits-steps {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  width: 100%;
-}
-
-.signup-benefits-box {
-  flex-basis: 30%;
-  padding: 20px 20px;
-  min-width: 140px;
-  display: flex;
-  flex-direction: column;
-}
-
-.signup-benefits-graphic {
-  height: 250px;
-  width: 200px;
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-bottom: 30px;
+  flex-basis: 50%;
 }
 
 .signup-benefits-title {
-  color: white;
   font-family: 'DM Serif Display', serif;
-  text-align: center;
   font-size: 2.5em;
-}
-
-.signup-benefits-waist-title {
-  color: white;
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
-  font-size: 1.75em;
-  margin-bottom: 0px;
-}
-
-.signup-benefits-waist {
-  color: white;
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-size: 5em;
+  margin: 20px 0px;
+  color: black;
   text-align: center;
-  padding-top: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .signup-benefits-desc {
-  color: white;
-  font-weight: lighter;
-  line-height: 1.2em;
+  text-align: left;
+  font-weight: bold;
+  color: black;
   font-family: 'Helvetiva Neue', sans-serif;
-  text-align: center;
-}
-
-.signup-benfits-box {
-  flex-basis: 30%;
-  padding: 20px 20px;
-  min-width: 140px;
+  font-size: 1.25em;
 }
 
 .signup-child-dressgrid {
@@ -130,14 +89,6 @@
   flex-basis: 15%;
   padding: 10px;
   max-width: 45px;
-}
-
-.signup-benefits-waist-box {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -426,15 +377,6 @@ button:focus {
 
   .signup-desc {
     text-align: center;
-  }
-
-  .signup-benefits-steps {
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-
-  .signup-benefits-box {
-    flex-direction: row;
   }
 }
 
