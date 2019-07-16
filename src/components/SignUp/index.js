@@ -126,14 +126,14 @@ class SignUpFormBase extends Component {
       AA: 1,
       A: 1,
       B: 2,
-      C: 3,
-      D: 4,
-      DD: 5,
-      E: 5,
-      DDD: 6,
-      EE: 7,
-      F: 7,
-      G: 8
+      C: 4,
+      D: 6,
+      DD: 8,
+      DDD: 10,
+      E: 10,
+      EE: 12,
+      F: 14,
+      G: 16
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
