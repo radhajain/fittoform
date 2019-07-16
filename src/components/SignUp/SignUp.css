@@ -17,6 +17,7 @@
 
 .signup-benefits {
   background: linear-gradient(#fde4d8, #ffcdb8);
+  padding-top: 50px;
 }
 
 .signup-container-first {
@@ -47,24 +48,60 @@
   background: linear-gradient(#69dbd3, #69dbd3);
 }
 
-.signup-benefits-inner {
+.signup-benefits-content {
   width: 80%;
+  text-align: center;
+}
+
+.signup-benefits-inner {
+  width: 100%;
   display: flex;
   flex-direction: row;
 }
 
 .signup-benefits-title-wrapper {
   flex-basis: 50%;
+  padding: 25px;
+  padding-top: 0px;
 }
 
 .signup-benefits-steps {
   flex-basis: 50%;
 }
 
+.signup-btn {
+  border-radius: 50%;
+  background-color: white;
+  min-height: 50px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1.45em;
+  line-height: 1.5em;
+  color: black;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: all 0.4 ease;
+  transition: all 0.4s ease;
+  padding: 50px 44px;
+  margin-top: 5vh;
+}
+
+.signup-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.signup-btn-flexWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .signup-benefits-title {
   font-family: 'DM Serif Display', serif;
   font-size: 2.5em;
-  margin: 20px 0px;
+  margin: auto;
   color: black;
   text-align: center;
 }
@@ -75,6 +112,8 @@
   color: black;
   font-family: 'Helvetiva Neue', sans-serif;
   font-size: 1.25em;
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 
 .signup-child-dressgrid {
@@ -337,6 +376,16 @@ button:focus {
   text-align: left;
 }
 
+@media (max-width: 1040px) {
+  .signup-benefits-title {
+    font-size: 2em;
+  }
+
+  .signup-benefits-desc {
+    font-size: 1.15em;
+  }
+}
+
 @media (max-width: 882px) {
   .signup-signup-content {
     flex-wrap: wrap;
@@ -380,6 +429,33 @@ button:focus {
   }
 }
 
+@media (max-width: 860px) {
+  .signup-benefits-inner {
+    flex-direction: column;
+  }
+
+  .signup-benefits-title-wrapper {
+    width: 475px;
+    margin: auto;
+    padding: 0px;
+  }
+
+  .signup-benefits-title {
+    text-align: left;
+  }
+
+  .signup-benefits-steps {
+    width: 475px;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  .signup-benefits-desc {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
 @media (max-width: 770px) {
   .signup-name {
     width: 300px;
@@ -391,6 +467,14 @@ button:focus {
   .signup-name {
     width: 280px;
     font-size: 1.75em;
+  }
+
+  .signup-benefits-title-wrapper {
+    width: 425px;
+  }
+
+  .signup-benefits-steps {
+    width: 425px;
   }
 }
 
@@ -491,11 +575,41 @@ button:focus {
   }
 }
 
+@media (max-width: 545px) {
+  .signup-benefits-title {
+    font-size: 1.75em;
+  }
+
+  .signup-benefits-desc {
+    font-size: 1.05em;
+  }
+
+  .signup-benefits-title-wrapper {
+    width: 400px;
+  }
+
+  .signup-benefits-steps {
+    width: 400px;
+  }
+}
+
 @media (max-width: 475px) {
   .signup-name {
     text-align: left;
     width: 270px;
     font-size: 1.75em;
+  }
+
+  .signup-benefits-desc {
+    font-size: 1em;
+  }
+
+  .signup-benefits-title-wrapper {
+    width: 350px;
+  }
+
+  .signup-benefits-steps {
+    width: 350px;
   }
 }
 
@@ -511,6 +625,14 @@ button:focus {
     text-align: center;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .signup-benefits-title-wrapper {
+    width: 300px;
+  }
+
+  .signup-benefits-steps {
+    width: 300px;
   }
 }
 
@@ -546,6 +668,13 @@ button:focus {
   .signup-whitearrow {
     display: none;
   }
+  .signup-benefits-title-wrapper {
+    width: 280px;
+  }
+
+  .signup-benefits-steps {
+    width: 280px;
+  }
 }
 
 @media (max-width: 387px) {
@@ -575,5 +704,13 @@ button:focus {
 
   .signup-results-btn {
     font-size: 1.25em;
+  }
+
+  .signup-benefits-title-wrapper {
+    width: 260px;
+  }
+
+  .signup-benefits-steps {
+    width: 260px;
   }
 }
