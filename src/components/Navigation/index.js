@@ -116,6 +116,10 @@ class NavigationAuth extends React.Component {
                   Your Profile
                 </Link>
                 <hr></hr>
+                <Link to={ROUTES.FAVORITES} className="nav-profile-btn">
+                  Your Favorites
+                </Link>
+                <hr></hr>
                 <SignOutButton />
               </div>
             </div>

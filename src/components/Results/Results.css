@@ -178,7 +178,25 @@ input:focus {
   cursor: pointer;
 }
 
+.results-heartIcon {
+  width: 25px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 10;
+}
+
+.results-heart-selected {
+  width: 25px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 10;
+  display: none;
+}
+
 .results-item-div {
+  position: relative;
   text-align: center;
   height: 100%;
   width: 100%;

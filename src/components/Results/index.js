@@ -7,6 +7,8 @@ import downArrow from '../../assets/images/down triangle.svg';
 import ProgressiveImage from 'react-progressive-image';
 import Modal from '../Modal';
 import upArrow from '../../assets/images/up arrow.svg';
+import heartOutline from '../../assets/images/heart_outline.png';
+import heartFilled from '../../assets/images/heart_icon.png';
 // import { Parallax } from 'react-scroll-parallax';
 
 class Results extends Component {
@@ -625,6 +627,12 @@ class Results extends Component {
                           key={key}
                         >
                           <div className={itemDivClass}>
+                            <img
+                              src={heartOutline}
+                              // onClick={() => this.favoriteDress(dress)}
+                              className="results-heartIcon"
+                            />
+                            <img src={heartFilled} className="results-heart-selected" />
                             <ProgressiveImage src={dress.img}>
                               {(src, loading) => {
                                 return loading ? (
@@ -684,6 +692,8 @@ class Results extends Component {
                               >
                                 {dress && (
                                   <div className={itemDivClass} key={key}>
+                                    <img src={heartOutline} className="results-heartIcon" />
+                                    <img src={heartFilled} className="results-heart-selected" />
                                     <ProgressiveImage src={dress.img}>
                                       {(src, loading) => {
                                         return loading ? (

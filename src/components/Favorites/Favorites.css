@@ -1,0 +1,85 @@
+.favorites {
+  height: calc(100vh - 100px);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favorites-empty-msg {
+  font-family: 'Helvetica Neue', sans-serif;
+  color: black;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.favorites-item-div {
+  position: relative;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.favorites-item-div-multiple {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.favorites-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  cursor: pointer;
+}
+
+.favorites-heartIcon {
+  width: 25px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 10;
+}
+
+.favorites-heart-selected {
+  width: 25px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 10;
+  display: none;
+}
+
+.favorites-img {
+  width: 350px !important;
+  height: 500px !important;
+  object-fit: cover;
+  transition: all 0.2s ease-in-out;
+}
+
+.favorites-img:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.favorites-brand {
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+  margin-top: 40px;
+}
+
+.favorites-price {
+  bottom: 0;
+  left: 0;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
+  color: black;
+  font-size: 1.25em;
+  margin-top: 0;
+}

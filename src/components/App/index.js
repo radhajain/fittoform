@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../../assets/fonts/fonts.css';
+import FavoritesPage from '../Favorites';
 import PasswordChange from '../PasswordChange';
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
@@ -52,6 +53,7 @@ class App extends React.Component {
               <Route path={ROUTES.CONTACT} component={Contact} />
               <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
               <Route path={ROUTES.ANALYTICS} component={Analytics} />
+              <Route path={ROUTES.FAVORITES} component={FavoritesPage} />
             </div>
           </ParallaxProvider>
         </Router>
