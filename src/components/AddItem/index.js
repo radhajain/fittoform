@@ -68,8 +68,8 @@ class AddItem extends Component {
     const dressesRef = firebase.database().ref('dresses');
     //This is how to query a child property to see if it already exists in a collection
     dressesRef
-      .orderByChild('dressLink')
-      .equalTo(this.state.dressLink)
+      .orderByChild('name')
+      .equalTo(this.state.name)
       .once('value', snapshot => {
         if (snapshot.exists()) {
           var key = Object.keys(snapshot.val())[0];

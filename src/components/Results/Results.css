@@ -175,10 +175,38 @@ input:focus {
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+
+.results-heart-fill {
+  width: 15px;
+  position: absolute;
+  right: 0px;
+  top: 30px;
+  padding: 10px;
+  z-index: 10;
+  background-image: url('../../assets/images/heart_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.results-heart-outline {
+  width: 15px;
+  position: absolute;
+  right: 0px;
+  top: 30px;
+  padding: 10px;
+  z-index: 10;
+  background-image: url('../../assets/images/heart_outline.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .results-item-div {
+  position: relative;
   text-align: center;
   height: 100%;
   width: 100%;
@@ -245,13 +273,14 @@ input:focus {
   height: 500px !important;
   object-fit: cover;
   transition: all 0.2s ease-in-out;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .results-img:hover {
   -ms-transform: scale(1.05); /* IE 9 */
   -webkit-transform: scale(1.05); /* Safari 3-8 */
   transform: scale(1.05);
-  cursor: pointer;
 }
 
 .results-menu-show-div {
