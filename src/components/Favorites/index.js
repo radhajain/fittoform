@@ -143,7 +143,6 @@ class Favorites extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
     this._isMounted = false;
     this.listener && this.listener();
     this.authlistener = undefined;

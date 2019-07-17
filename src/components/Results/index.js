@@ -152,7 +152,8 @@ class Results extends Component {
 
   closeModalHandler = () => {
     this.setState({
-      isModalShowing: false
+      isModalShowing: false,
+      isHomeModalShowing: false
     });
   };
 
@@ -454,23 +455,31 @@ class Results extends Component {
   // GET NEXT BEST DRESSES
 
   getNextBestDressesID() {
-    var promises = [];
-    var nextBestDressesIDs = [];
-    for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
-      promises.push(
-        this.getNextBestDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
-          dresses => {
-            nextBestDressesIDs.push(dresses);
-          }
-        )
-      );
-    }
-    Promise.all(promises).then(dresses => {
+    if (!this.state.authUser) {
       this.setState({
-        nextBestDressesIDs: nextBestDressesIDs
+        modalMsg: 'Create an account to see more dresses picked for you',
+        isHomeModalShowing: true
       });
-      this.getNextBestDressesInfo(nextBestDressesIDs);
-    });
+    } else {
+      var promises = [];
+      var nextBestDressesIDs = [];
+      for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
+        promises.push(
+          this.getNextBestDressesIDHelper(
+            dressGroupRef.dressGroupID,
+            dressGroupRef.concatMtms
+          ).then(dresses => {
+            nextBestDressesIDs.push(dresses);
+          })
+        );
+      }
+      Promise.all(promises).then(dresses => {
+        this.setState({
+          nextBestDressesIDs: nextBestDressesIDs
+        });
+        this.getNextBestDressesInfo(nextBestDressesIDs);
+      });
+    }
   }
 
   //Returns the dressIDs in the best dress group
@@ -758,7 +767,9 @@ class Results extends Component {
                 <div className="results-loadMore-btn-div">
                   <div className="results-loadMore-wrapper">
                     <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>
-                      <div className="click-loadmore" style={{ position: 'relative' }}>Show near perfect matches</div>
+                      <div className="click-loadmore" style={{ position: 'relative' }}>
+                        Show near perfect matches
+                      </div>
                     </button>
                   </div>
                 </div>
