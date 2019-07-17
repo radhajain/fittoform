@@ -73,6 +73,7 @@ class Results extends Component {
       currMeasurements: '',
       seenDresses: [],
       isModalShowing: false,
+      isHomeModalShowing: false,
       currDiv: 0,
       modalMsg: ''
     };
@@ -100,31 +101,39 @@ class Results extends Component {
     this.createAccount = this.createAccount.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
     this.toggleFavoriteDress = this.toggleFavoriteDress.bind(this);
+    this.createAccountToAccount = this.createAccountToAccount.bind(this);
   }
 
   toggleFavoriteDress(selectedDressKey) {
-    var favorites = this.state.favorites;
-    var index = favorites.indexOf(selectedDressKey);
-    if (index !== -1) {
-      favorites.splice(index, 1);
+    if (!this.state.authUser) {
+      this.setState({
+        modalMsg: 'Create an account to save the dresses you love',
+        isHomeModalShowing: true
+      });
     } else {
-      favorites.push(selectedDressKey);
-    }
-    this.setState(
-      {
-        favorites: favorites
-      },
-      () => {
-        let UserRef = firebase
-          .database()
-          .ref('users')
-          .child(`${this.state.uid}`);
-        UserRef.update({
-          favorites: this.state.favorites
-        });
-        console.log(this.state);
+      var favorites = this.state.favorites;
+      var index = favorites.indexOf(selectedDressKey);
+      if (index !== -1) {
+        favorites.splice(index, 1);
+      } else {
+        favorites.push(selectedDressKey);
       }
-    );
+      this.setState(
+        {
+          favorites: favorites
+        },
+        () => {
+          let UserRef = firebase
+            .database()
+            .ref('users')
+            .child(`${this.state.uid}`);
+          UserRef.update({
+            favorites: this.state.favorites
+          });
+          console.log(this.state);
+        }
+      );
+    }
   }
 
   openModalHandler = msg => {
@@ -153,26 +162,8 @@ class Results extends Component {
     });
   };
 
-  createAccount = (name, email, password) => {
-    console.log('account being created!');
-    console.log(name + ', ' + email + ', ' + password);
-    this.closeModalHandler();
-    const { bust, height, size, waist, hips, bra } = this.state;
-    this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        return this.props.firebase.user(authUser.user.uid).set({
-          email: email,
-          name: name,
-          height: height,
-          waist: waist,
-          bust: bust,
-          hips: hips,
-          size: size,
-          bra: bra
-        });
-      })
+  createAccountToAccount = (name, email, password) => {
+    this.createAccount(name, email, password)
       .then(authUser => {
         this.props.history.push({
           pathname: '/account'
@@ -181,6 +172,24 @@ class Results extends Component {
       .catch(error => {
         console.log(error);
       });
+  };
+
+  createAccount = (name, email, password) => {
+    this.closeModalHandler();
+    const { bust, height, size, waist, hips, bra } = this.state;
+    this.props.firebase.doCreateUserWithEmailAndPassword(email, password).then(authUser => {
+      // Create a user in your Firebase realtime database
+      return this.props.firebase.user(authUser.user.uid).set({
+        email: email,
+        name: name,
+        height: height,
+        waist: waist,
+        bust: bust,
+        hips: hips,
+        size: size,
+        bra: bra
+      });
+    });
   };
 
   isElementInViewport(el) {
@@ -661,6 +670,16 @@ class Results extends Component {
               <Modal
                 className="modal"
                 show={this.state.isModalShowing}
+                close={this.closeModalHandler}
+                createAccount={this.createAccountToAccount}
+                goToSignIn={this.goToSignIn}
+                name={this.state.name}
+                btnMsg="Join the FtF Fam"
+                message={this.state.modalMsg}
+              ></Modal>
+              <Modal
+                className="modal"
+                show={this.state.isHomeModalShowing}
                 close={this.closeModalHandler}
                 createAccount={this.createAccount}
                 goToSignIn={this.goToSignIn}
