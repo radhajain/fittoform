@@ -175,47 +175,58 @@ class Favorites extends React.Component {
     const placeholder = <div style={{ backgroundColor: '#E2F8F6', height: 500, width: 350 }} />;
     return (
       <div className="favorites">
+        <div className="results-leftCol-fakeNav"></div>
         <div className="favorites-inner">
-          {!this.state.favorites && (
-            <p className="favorites-empty-msg">You have not favorited any dresses yet.</p>
-          )}
-          {this.state.favorites &&
-            this.state.dresses &&
-            this.state.dresses.map((dress, key) => {
-              return (
-                dress && (
-                  <div className="favorites-col" id={'0' + key} key={key}>
-                    <div className={itemDivClass}>
-                      <div
-                        onClick={() => this.toggleFavoriteDress(this.state.dressIDs[key])}
-                        className={
-                          !this.state.favorites ||
-                          this.state.favorites.indexOf(this.state.dressIDs[key]) === -1
-                            ? 'results-heart-outline'
-                            : 'results-heart-fill'
-                        }
-                      />
-                      <ProgressiveImage src={dress.img}>
-                        {(src, loading) => {
-                          return loading ? (
-                            placeholder
-                          ) : (
-                            <img src={src} alt="dress image" className="favorites-img" />
-                          );
-                        }}
-                      </ProgressiveImage>
-                      <div
-                        onClick={() => this.goToItemView(dress, this.state.dressIDs[key])}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <p className="favorites-brand">{dress.brand}</p>
-                        <p className="favorites-price">${dress.price}</p>
+          <div className="favorites-leftCol">
+            {!this.state.favorites && (
+              <p className="favorites-empty-msg">You have not favorited any dresses yet.</p>
+            )}
+            {this.state.favorites &&
+              this.state.dresses &&
+              this.state.dresses.map((dress, key) => {
+                return (
+                  dress && (
+                    <div className="favorites-col" id={'0' + key} key={key}>
+                      <div className={itemDivClass}>
+                        <div
+                          onClick={() => this.toggleFavoriteDress(this.state.dressIDs[key])}
+                          className={
+                            !this.state.favorites ||
+                            this.state.favorites.indexOf(this.state.dressIDs[key]) === -1
+                              ? 'results-heart-outline'
+                              : 'results-heart-fill'
+                          }
+                        />
+                        <ProgressiveImage src={dress.img}>
+                          {(src, loading) => {
+                            return loading ? (
+                              placeholder
+                            ) : (
+                              <img
+                                src={src}
+                                alt="dress image"
+                                className="favorites-img"
+                                onClick={() => this.goToItemView(dress, this.state.dressIDs[key])}
+                              />
+                            );
+                          }}
+                        </ProgressiveImage>
+                        <div
+                          onClick={() => this.goToItemView(dress, this.state.dressIDs[key])}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <p className="favorites-brand">{dress.brand}</p>
+                          <p className="favorites-price">${dress.price}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              );
-            })}
+                  )
+                );
+              })}
+          </div>
+          <div className="favorites-rightCol">
+            <p className="favorites-title">Your Favorites</p>
+          </div>
         </div>
         <FooterSmall />
       </div>

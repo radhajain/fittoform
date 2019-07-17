@@ -181,8 +181,8 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 0px;
-  padding: 15px;
+  top: 30px;
+  padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_icon.png');
   background-size: contain;
@@ -195,8 +195,8 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 0px;
-  padding: 15px;
+  top: 30px;
+  padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_outline.png');
   background-size: contain;
@@ -273,6 +273,8 @@ input:focus {
   height: 500px !important;
   object-fit: cover;
   transition: all 0.2s ease-in-out;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .results-img:hover {

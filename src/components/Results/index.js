@@ -693,7 +693,21 @@ class Results extends Component {
                                 return loading ? (
                                   placeholder
                                 ) : (
-                                  <img src={src} alt="dress image" className="results-img" />
+                                  <img
+                                    src={src}
+                                    alt="dress image"
+                                    className="results-img"
+                                    onClick={() =>
+                                      this.goToItemView(
+                                        dress,
+                                        '0' + key,
+                                        this.state.dressesIDObjs.dressIDs[key],
+                                        this.state.closestMeasurements,
+                                        this.state.dressesObjs.reviewIDs[key],
+                                        this.state.dressGroupID
+                                      )
+                                    }
+                                  />
                                 );
                               }}
                             </ProgressiveImage>
@@ -774,6 +788,21 @@ class Results extends Component {
                                             src={src}
                                             alt="dress image"
                                             className="results-img"
+                                            onClick={() =>
+                                              this.goToItemView(
+                                                dress,
+                                                (parseInt(keyDressObj, 10) + 1).toString() + key,
+                                                this.state.nextBestDressesIDs[keyDressObj].dressIDs[
+                                                  key
+                                                ],
+                                                this.getMeasurementsFromConcat(
+                                                  dressObj.measurement
+                                                ),
+                                                dressObj.reviewIDs[key],
+                                                this.state.nextBestDressGroupIDs[keyDressObj]
+                                                  .dressGroupID
+                                              )
+                                            }
                                           />
                                         );
                                       }}
