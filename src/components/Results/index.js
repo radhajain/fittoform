@@ -17,6 +17,7 @@ class Results extends Component {
     this._isMounted = false;
     var dressObj = {
       measurement: '',
+      dressIDs: '',
       ratings: [],
       dresses: [
         {
@@ -46,6 +47,7 @@ class Results extends Component {
       size: this.props.location.state.size,
       bra: this.props.location.state.bra,
       divID: this.props.location.state.divID ? this.props.location.state.divID : '00',
+      favorites: [],
       authUser: false,
       uid: null,
       name: this.props.location.state.name ? this.props.location.state.name : '', //TODO: Also for auth user
@@ -97,6 +99,32 @@ class Results extends Component {
     this.closeModalHandler = this.closeModalHandler.bind(this);
     this.createAccount = this.createAccount.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
+    this.toggleFavoriteDress = this.toggleFavoriteDress.bind(this);
+  }
+
+  toggleFavoriteDress(selectedDressKey) {
+    var favorites = this.state.favorites;
+    var index = favorites.indexOf(selectedDressKey);
+    if (index !== -1) {
+      favorites.splice(index, 1);
+    } else {
+      favorites.push(selectedDressKey);
+    }
+    this.setState(
+      {
+        favorites: favorites
+      },
+      () => {
+        let UserRef = firebase
+          .database()
+          .ref('users')
+          .child(`${this.state.uid}`);
+        UserRef.update({
+          favorites: this.state.favorites
+        });
+        console.log(this.state);
+      }
+    );
   }
 
   openModalHandler = msg => {
@@ -161,10 +189,45 @@ class Results extends Component {
     return rect.top < 100 && rect.bottom > 100;
   }
 
+  getUserData(uid) {
+    let UserRef = firebase
+      .database()
+      .ref('users')
+      .child(`${uid}`);
+    return UserRef.once('value').then(snapshot => {
+      let user = snapshot.val();
+      return user;
+    });
+  }
+
   authlistener() {
     this.listener = firebase.auth().onAuthStateChanged(authUser => {
-      authUser ? this.setState({ authUser: true }) : this.setState({ authUser: null });
-      authUser ? this.setState({ uid: authUser.uid }) : this.setState({ uid: null });
+      console.log(authUser);
+      if (authUser && authUser.uid) {
+        this.setState({
+          authUser: true,
+          uid: authUser.uid
+        });
+        this.getUserData(authUser.uid).then(user => {
+          console.log(user);
+          this.setState(
+            {
+              email: user.email,
+              name: user.name,
+              waist: user.waist,
+              hips: user.hips,
+              height: user.height,
+              bust: user.bust,
+              size: user.size,
+              bra: user.bra,
+              favorites: user.favorites ? user.favorites : []
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
+        });
+      }
     });
   }
 
@@ -248,9 +311,6 @@ class Results extends Component {
   }
 
   //TODO: order by what measurements are most important to you on your profile (create an account)
-  // TODO: when want to edit measurements -> profile page (create an account)
-  //TODO: maintain scroll position when come from item view
-  //TODO: show difference between current and future
   //TODO: horizontal scroll
 
   getBestDressGroupID() {
@@ -363,6 +423,7 @@ class Results extends Component {
       }
       Promise.all(promises).then(dresses => {
         var newDressObj = {};
+        newDressObj['dressIDs'] = dressIDs;
         newDressObj['dresses'] = dresses;
         newDressObj['ratings'] = ratings;
         newDressObj['reviewIDs'] = reviewIDs;
@@ -460,6 +521,7 @@ class Results extends Component {
             Promise.all(promises).then(dresses => {
               var newDressObj = {};
               newDressObj['measurement'] = measurement;
+              newDressObj['dressIDs'] = dressIDs;
               newDressObj['dresses'] = dresses;
               newDressObj['ratings'] = ratings;
               newDressObj['reviewIDs'] = reviewIDs;
@@ -611,28 +673,21 @@ class Results extends Component {
                   this.state.dressesObjs.dresses.map((dress, key) => {
                     return (
                       dress && (
-                        <div
-                          className="results-col"
-                          id={'0' + key}
-                          onClick={() =>
-                            this.goToItemView(
-                              dress,
-                              '0' + key,
-                              this.state.dressesIDObjs.dressIDs[key],
-                              this.state.closestMeasurements,
-                              this.state.dressesObjs.reviewIDs[key],
-                              this.state.dressGroupID
-                            )
-                          }
-                          key={key}
-                        >
+                        <div className="results-col" id={'0' + key} key={key}>
                           <div className={itemDivClass}>
-                            <img
-                              src={heartOutline}
-                              // onClick={() => this.favoriteDress(dress)}
-                              className="results-heartIcon"
+                            <div
+                              onClick={() =>
+                                this.toggleFavoriteDress(this.state.dressesObjs.dressIDs[key])
+                              }
+                              className={
+                                !this.state.favorites ||
+                                this.state.favorites.indexOf(
+                                  this.state.dressesObjs.dressIDs[key]
+                                ) === -1
+                                  ? 'results-heart-outline'
+                                  : 'results-heart-fill'
+                              }
                             />
-                            <img src={heartFilled} className="results-heart-selected" />
                             <ProgressiveImage src={dress.img}>
                               {(src, loading) => {
                                 return loading ? (
@@ -642,11 +697,24 @@ class Results extends Component {
                                 );
                               }}
                             </ProgressiveImage>
-                            <p className="results-rating">
-                              Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
-                              women like you
-                            </p>
-                            <p className="results-price">${dress.price}</p>
+                            <div
+                              onClick={() =>
+                                this.goToItemView(
+                                  dress,
+                                  '0' + key,
+                                  this.state.dressesIDObjs.dressIDs[key],
+                                  this.state.closestMeasurements,
+                                  this.state.dressesObjs.reviewIDs[key],
+                                  this.state.dressGroupID
+                                )
+                              }
+                            >
+                              <p className="results-rating">
+                                Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
+                                women like you
+                              </p>
+                              <p className="results-price">${dress.price}</p>
+                            </div>
                           </div>
                         </div>
                       )
@@ -678,22 +746,25 @@ class Results extends Component {
                               <div
                                 className="results-col"
                                 id={(parseInt(keyDressObj, 10) + 1).toString() + key}
-                                onClick={() =>
-                                  this.goToItemView(
-                                    dress,
-                                    (parseInt(keyDressObj, 10) + 1).toString() + key,
-                                    this.state.nextBestDressesIDs[keyDressObj].dressIDs[key],
-                                    this.getMeasurementsFromConcat(dressObj.measurement),
-                                    dressObj.reviewIDs[key],
-                                    this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID
-                                  )
-                                }
                                 key={key}
                               >
                                 {dress && (
                                   <div className={itemDivClass} key={key}>
-                                    <img src={heartOutline} className="results-heartIcon" />
-                                    <img src={heartFilled} className="results-heart-selected" />
+                                    <div
+                                      onClick={() =>
+                                        this.toggleFavoriteDress(
+                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
+                                        )
+                                      }
+                                      className={
+                                        !this.state.favorites ||
+                                        this.state.favorites.indexOf(
+                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
+                                        ) === -1
+                                          ? 'results-heart-outline'
+                                          : 'results-heart-fill'
+                                      }
+                                    />
                                     <ProgressiveImage src={dress.img}>
                                       {(src, loading) => {
                                         return loading ? (
@@ -707,11 +778,25 @@ class Results extends Component {
                                         );
                                       }}
                                     </ProgressiveImage>
-                                    <p className="results-rating">
-                                      Rated {this.getRating(dressObj.ratings[key])}/10 by women like
-                                      you
-                                    </p>
-                                    <p className="results-price">${dress.price}</p>
+                                    <div
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() =>
+                                        this.goToItemView(
+                                          dress,
+                                          (parseInt(keyDressObj, 10) + 1).toString() + key,
+                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key],
+                                          this.getMeasurementsFromConcat(dressObj.measurement),
+                                          dressObj.reviewIDs[key],
+                                          this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID
+                                        )
+                                      }
+                                    >
+                                      <p className="results-rating">
+                                        Rated {this.getRating(dressObj.ratings[key])}/10 by women
+                                        like you
+                                      </p>
+                                      <p className="results-price">${dress.price}</p>
+                                    </div>
                                   </div>
                                 )}
                               </div>

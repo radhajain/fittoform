@@ -175,24 +175,34 @@ input:focus {
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+
+.results-heart-fill {
+  width: 15px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 15px;
+  z-index: 10;
+  background-image: url('../../assets/images/heart_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-.results-heartIcon {
-  width: 25px;
+.results-heart-outline {
+  width: 15px;
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 0px;
+  top: 0px;
+  padding: 15px;
   z-index: 10;
-}
-
-.results-heart-selected {
-  width: 25px;
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  z-index: 10;
-  display: none;
+  background-image: url('../../assets/images/heart_outline.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .results-item-div {
@@ -269,7 +279,6 @@ input:focus {
   -ms-transform: scale(1.05); /* IE 9 */
   -webkit-transform: scale(1.05); /* Safari 3-8 */
   transform: scale(1.05);
-  cursor: pointer;
 }
 
 .results-menu-show-div {

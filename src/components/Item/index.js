@@ -38,6 +38,7 @@ class Item extends Component {
     this.shopItem = this.shopItem.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
+    this.getUserData = this.getUserData.bind(this);
   }
 
   getHeightStr(height) {
@@ -62,7 +63,26 @@ class Item extends Component {
       reviewQuery.once('value').then(snapshot => {
         snapshot.forEach(data => {
           var reviewerMmts = data.val().userInfo;
-          if (
+          //If coming through favorites:
+          if (!mmts) {
+            var diffSq =
+              Math.pow(reviewerMmts.height - this.state.height, 2) +
+              Math.pow(reviewerMmts.waist - this.state.waist, 2) +
+              Math.pow(reviewerMmts.bust - this.state.bust, 2) +
+              Math.pow(reviewerMmts.hips - this.state.hips, 2);
+            if (Math.sqrt(diffSq) < 3) {
+              var review = {
+                comment: data.val().comment,
+                size: data.val().size,
+                rating: data.val().rating,
+                dressID: this.state.dressID,
+                id: data.key,
+                userInfo: data.val().userInfo
+              };
+              reviews.push(review);
+            }
+          } else if (
+            mmts &&
             mmts.height == reviewerMmts.height &&
             mmts.bust == reviewerMmts.bust &&
             mmts.waist == reviewerMmts.waist &&
@@ -119,8 +139,51 @@ class Item extends Component {
       });
   }
 
+  getUserData(uid) {
+    let UserRef = firebase
+      .database()
+      .ref('users')
+      .child(`${uid}`);
+    return UserRef.once('value').then(snapshot => {
+      let user = snapshot.val();
+      return user;
+    });
+  }
+
+  authlistener() {
+    this.listener = firebase.auth().onAuthStateChanged(authUser => {
+      console.log(authUser);
+      if (authUser && authUser.uid) {
+        this.setState({
+          authUser: true,
+          uid: authUser.uid
+        });
+        this.getUserData(authUser.uid).then(user => {
+          console.log(user);
+          this.setState({
+            email: user.email,
+            name: user.name,
+            waist: user.waist,
+            hips: user.hips,
+            height: user.height,
+            bust: user.bust,
+            size: user.size,
+            bra: user.bra,
+            favorites: user.favorites
+          });
+        });
+      }
+    });
+  }
+
   componentDidMount() {
     console.log(this.props.location.state.cachedReviews);
+    this._isMounted = true;
+    this.authlistener = this.authlistener.bind(this);
+    if (this._isMounted) {
+      this.authlistener();
+    }
+
     if (this.props.location.state.cachedReviews) {
       //This is if the groupDressID had a reviews object linked to it (this is the case for recent reviews)
       this.getReviewsFromCache(this.props.location.state.cachedReviews);
@@ -220,10 +283,11 @@ class Item extends Component {
       });
   };
 
-  /* { isSaved(this.selectedItem.name)
-                            ? <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Removed from Saved</button>
-                            : <button className="itemView-save-btn" onClick={() => saveImage(this.selectedItem)} >Save for later</button>
-                            } */
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.listener && this.listener();
+    this.authlistener = undefined;
+  }
 
   render() {
     return (

@@ -12,10 +12,44 @@ class Favorites extends React.Component {
     super(props);
     this.state = {
       favorites: [],
-      dresses: []
+      dressIDs: [],
+      dresses: [],
+      authUser: false,
+      uid: ''
     };
-    this.getFavoritedDresses = this.getFavoritedDresses.bind(this);
     this.getUserData = this.getUserData.bind(this);
+    this.toggleFavoriteDress = this.toggleFavoriteDress.bind(this);
+  }
+
+  toggleFavoriteDress(selectedDressKey) {
+    var favorites = this.state.favorites;
+    var dresses = this.state.dresses;
+    var index = favorites.indexOf(selectedDressKey);
+    if (index !== -1) {
+      favorites.splice(index, 1);
+      dresses.splice(index, 1);
+    } else {
+      favorites.push(selectedDressKey);
+    }
+    if (!favorites) {
+      favorites = [];
+    }
+    this.setState(
+      {
+        favorites: favorites,
+        dresses: dresses
+      },
+      () => {
+        let UserRef = firebase
+          .database()
+          .ref('users')
+          .child(`${this.state.uid}`);
+        UserRef.update({
+          favorites: this.state.favorites
+        });
+        console.log(this.state);
+      }
+    );
   }
 
   //Using the dressesIDs, gets information about each dress
@@ -31,9 +65,15 @@ class Favorites extends React.Component {
         promises.push(this.getDressInfo(dressRef));
       }
       Promise.all(promises).then(dresses => {
-        this.setState({ dresses: dresses }, () => {
-          console.log(this.state);
-        });
+        this.setState(
+          {
+            dresses: dresses,
+            dressIDs: dressIDs
+          },
+          () => {
+            console.log(this.state);
+          }
+        );
       });
     });
   }
@@ -57,10 +97,14 @@ class Favorites extends React.Component {
     });
   }
 
-  authlistener() {
+  authlistener(first) {
     this.listener = firebase.auth().onAuthStateChanged(authUser => {
       console.log(authUser);
       if (authUser && authUser.uid) {
+        this.setState({
+          authUser: true,
+          uid: authUser.uid
+        });
         this.getUserData(authUser.uid).then(user => {
           console.log(user);
           this.setState(
@@ -77,8 +121,9 @@ class Favorites extends React.Component {
             },
             () => {
               console.log(this.state);
-              if (user.favorites && user.favorites.length !== 0) {
+              if (user.favorites && user.favorites.length !== 0 && first) {
                 this.getFavoritedDresses(user.favorites);
+                first = false;
               }
             }
           );
@@ -90,8 +135,10 @@ class Favorites extends React.Component {
   componentDidMount() {
     this._isMounted = true;
     this.authlistener = this.authlistener.bind(this);
+    this.getFavoritedDresses = this.getFavoritedDresses.bind(this);
     if (this._isMounted) {
-      this.authlistener();
+      var first = true;
+      this.authlistener(first);
     }
   }
 
@@ -100,6 +147,24 @@ class Favorites extends React.Component {
     this._isMounted = false;
     this.listener && this.listener();
     this.authlistener = undefined;
+  }
+
+  goToItemView(selectedItem, dressID) {
+    this.props.history.push({
+      pathname: '/item',
+      state: {
+        item: selectedItem,
+        height: this.state.height,
+        waist: this.state.waist,
+        hips: this.state.hips,
+        bust: this.state.bust,
+        bra: this.state.bra,
+        size: this.state.size,
+        authUser: this.state.authUser,
+        name: this.state.name,
+        dressID: dressID
+      }
+    });
   }
 
   render() {
@@ -119,28 +184,17 @@ class Favorites extends React.Component {
             this.state.dresses.map((dress, key) => {
               return (
                 dress && (
-                  <div
-                    className="favorites-col"
-                    id={'0' + key}
-                    onClick={() =>
-                      this.goToItemView(
-                        dress,
-                        '0' + key,
-                        this.state.dressesIDObjs.dressIDs[key],
-                        this.state.closestMeasurements,
-                        this.state.dressesObjs.reviewIDs[key],
-                        this.state.dressGroupID
-                      )
-                    }
-                    key={key}
-                  >
+                  <div className="favorites-col" id={'0' + key} key={key}>
                     <div className={itemDivClass}>
-                      <img
-                        src={heartOutline}
-                        // onClick={() => this.favoriteDress(dress)}
-                        className="favorites-heartIcon"
+                      <div
+                        onClick={() => this.toggleFavoriteDress(this.state.dressIDs[key])}
+                        className={
+                          !this.state.favorites ||
+                          this.state.favorites.indexOf(this.state.dressIDs[key]) === -1
+                            ? 'results-heart-outline'
+                            : 'results-heart-fill'
+                        }
                       />
-                      <img src={heartFilled} className="favorites-heart-selected" />
                       <ProgressiveImage src={dress.img}>
                         {(src, loading) => {
                           return loading ? (
@@ -150,8 +204,13 @@ class Favorites extends React.Component {
                           );
                         }}
                       </ProgressiveImage>
-                      <p className="favorites-brand">{dress.brand}</p>
-                      <p className="favorites-price">${dress.price}</p>
+                      <div
+                        onClick={() => this.goToItemView(dress, this.state.dressIDs[key])}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <p className="favorites-brand">{dress.brand}</p>
+                        <p className="favorites-price">${dress.price}</p>
+                      </div>
                     </div>
                   </div>
                 )

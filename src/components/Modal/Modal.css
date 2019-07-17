@@ -111,10 +111,11 @@
   cursor: pointer;
   margin-bottom: 20px;
   font-weight: bolder;
+  transition: all 0.4s ease;
 }
 
 .modal-btn-createAccount:hover {
-  width: 120px;
+  width: 240px;
 }
 
 .modal-btn-disabled {

@@ -1,11 +1,20 @@
 .favorites {
   height: calc(100vh - 100px);
-  padding-top: 50px;
-  padding-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.favorites-inner {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  max-height: 100%;
 }
 
 .favorites-empty-msg {
@@ -29,10 +38,10 @@
 
 .favorites-col {
   display: flex;
+  flex-basis: 50%;
   justify-content: center;
   align-items: center;
   margin: auto;
-  cursor: pointer;
 }
 
 .favorites-heartIcon {
@@ -41,6 +50,7 @@
   right: 15px;
   top: 15px;
   z-index: 10;
+  cursor: pointer;
 }
 
 .favorites-heart-selected {
@@ -50,6 +60,7 @@
   top: 15px;
   z-index: 10;
   display: none;
+  cursor: pointer;
 }
 
 .favorites-img {
@@ -63,7 +74,6 @@
   -ms-transform: scale(1.05); /* IE 9 */
   -webkit-transform: scale(1.05); /* Safari 3-8 */
   transform: scale(1.05);
-  cursor: pointer;
 }
 
 .favorites-brand {
