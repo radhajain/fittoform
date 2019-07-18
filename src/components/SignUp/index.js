@@ -13,16 +13,18 @@ const SignUpPage = () => (
   </div>
 );
 
-function validate(heightft, heightin, size, bra, name, email, passwordOne, passwordTwo) {
+function validate(heightft, heightin, size, bra, name, age, email, passwordOne, passwordTwo) {
   var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
   var emailRe = /^.+@.+\..+$/;
   heightft = parseInt(heightft, 10);
   heightin = parseInt(heightin, 10);
   size = parseInt(size, 10);
+  age = parseInt(age, 10);
   return {
     heightft: heightft.length === 0 || !Number.isInteger(heightft) || heightft < 4 || heightft > 6,
     heightin: heightin.length === 0 || !Number.isInteger(heightin) || heightin < 0 || heightin > 12,
     size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1 || size > 16,
+    age: age.length === 0 || !Number.isInteger(age),
     bra: bra.length === 0 || !bra.match(braRe),
     name: name.length === 0,
     email: email.length === 0 || !email.match(emailRe),
@@ -94,6 +96,7 @@ class SignUpFormBase extends Component {
       waist: '',
       bust: '',
       bra: '',
+      age: '',
       modifyWaist: '',
       modifyHips: '',
       name: '',
@@ -109,7 +112,8 @@ class SignUpFormBase extends Component {
         bra: false,
         email: false,
         passwordOne: false,
-        passwordTwo: false
+        passwordTwo: false,
+        age: false
       },
       focused: {
         name: false,
@@ -119,7 +123,8 @@ class SignUpFormBase extends Component {
         bra: false,
         email: false,
         passwordOne: false,
-        passwordTwo: false
+        passwordTwo: false,
+        age: false
       }
     };
     this.braToBust = {
@@ -144,10 +149,12 @@ class SignUpFormBase extends Component {
     this._handleKeyPressSize = this._handleKeyPressSize.bind(this);
     this._handleKeyPressName = this._handleKeyPressName.bind(this);
     this._handleKeyPressBra = this._handleKeyPressBra.bind(this);
+    this._handleKeyPressAge = this._handleKeyPressAge.bind(this);
     this._handleKeyPressEmail = this._handleKeyPressEmail.bind(this);
     this._handleKeyPressPw1 = this._handleKeyPressPw1.bind(this);
     this._handleKeyPressPw2 = this._handleKeyPressPw2.bind(this);
     this.goToSize = this.goToSize.bind(this);
+    this.goToAge = this.goToAge.bind(this);
     this.goToHeight = this.goToHeight.bind(this);
     this.goToBra = this.goToBra.bind(this);
     this.goToSizing = this.goToSizing.bind(this);
@@ -161,6 +168,7 @@ class SignUpFormBase extends Component {
     this.braRef = React.createRef();
     this.accountRef = React.createRef();
     this.heightRef = React.createRef();
+    this.ageRef = React.createRef();
   }
 
   modifyWaist(val) {
@@ -178,6 +186,15 @@ class SignUpFormBase extends Component {
       block: 'center'
     });
     this.refs.nameinput.focus();
+  }
+
+  goToAge(e) {
+    e.preventDefault();
+    this.ageRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+    this.refs.ageinput.focus();
   }
 
   goToHeight(e) {
@@ -319,6 +336,27 @@ class SignUpFormBase extends Component {
       e.preventDefault();
       var errors = this.getErrorObj();
       if (!errors['name']) {
+        this.ageRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+        this.refs.ageinput.focus();
+      } else {
+        this.setState({
+          focused: { ...this.state.focused, name: true }
+        });
+      }
+    }
+  }
+
+  _handleKeyPressAge(e) {
+    this.setState({
+      touched: { ...this.state.touched, age: true }
+    });
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var errors = this.getErrorObj();
+      if (!errors['age']) {
         this.heightRef.current.scrollIntoView({
           behavior: 'smooth',
           block: 'center'
@@ -326,7 +364,7 @@ class SignUpFormBase extends Component {
         this.refs.heightftinput.focus();
       } else {
         this.setState({
-          focused: { ...this.state.focused, name: true }
+          focused: { ...this.state.focused, age: true }
         });
       }
     }
@@ -396,7 +434,7 @@ class SignUpFormBase extends Component {
     }
     console.log(this.state);
     console.log(this.getErrorObj());
-    const { name, email, passwordOne } = this.state;
+    const { name, email, passwordOne, age } = this.state;
     var measurements = this.USsizeArray[this.state.size.toString()];
     var height = parseInt(this.state.heightft, 10) * 12 + parseInt(this.state.heightin, 10);
     var newBust =
@@ -411,6 +449,7 @@ class SignUpFormBase extends Component {
           email: email,
           name: name,
           height: height,
+          age: age,
           waist: newWaist,
           bust: newBust,
           hips: newHips,
@@ -457,6 +496,7 @@ class SignUpFormBase extends Component {
       this.state.size,
       this.state.bra,
       this.state.name,
+      this.state.age,
       this.state.email,
       this.state.passwordOne,
       this.state.passwordTwo
@@ -472,6 +512,7 @@ class SignUpFormBase extends Component {
       this.state.size,
       this.state.bra,
       this.state.name,
+      this.state.age,
       this.state.email,
       this.state.passwordOne,
       this.state.passwordTwo
@@ -492,6 +533,7 @@ class SignUpFormBase extends Component {
       this.state.size,
       this.state.bra,
       this.state.name,
+      this.state.age,
       this.state.email,
       this.state.passwordOne,
       this.state.passwordTwo
@@ -557,6 +599,37 @@ class SignUpFormBase extends Component {
                 <i>Please enter your full name.</i>
               </p>
               <div className={shouldShowNext('name') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
+                <button className="signup-ok-btn" onClick={this.goToAge}>
+                  <div className="signup-ok-flexWrapper">OK</div>
+                </button>
+                <p className="signup-pressEnter">
+                  <i>
+                    press <b>ENTER</b>
+                  </i>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="signup-container-first-part2 signup-child" ref={this.ageRef}>
+          <div className="signup-signup-content">
+            <form>
+              <label className="signup-signup-label">I am</label>
+              <input
+                name="age"
+                type="text"
+                ref="ageinput"
+                onBlur={this.handleBlur('age')}
+                onKeyPress={this._handleKeyPressAge}
+                className={shouldMarkError('age') ? 'signup-input-error' : 'signup-input'}
+                onChange={this.handleInputChange}
+                style={{ width: 120 }}
+              />
+              <label className="signup-signup-label">years old.</label>
+              <p className={shouldMarkError('age') ? 'signup-error-msg' : 'hide-signup-error-msg'}>
+                <i>Please enter a valid age.</i>
+              </p>
+              <div className={shouldShowNext('age') ? 'signup-nextDiv' : 'signup-nextDiv-hide'}>
                 <button className="signup-ok-btn" onClick={this.goToHeight}>
                   <div className="signup-ok-flexWrapper">OK</div>
                 </button>

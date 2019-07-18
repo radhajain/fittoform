@@ -20,6 +20,7 @@ import Contact from '../Contact';
 import Analytics from '../Analytics';
 import HttpsRedirect from 'react-https-redirect';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import Popup from '../Popup';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -54,6 +55,7 @@ class App extends React.Component {
               <Route path={ROUTES.HOWITWORKS} component={HowItWorks} />
               <Route path={ROUTES.ANALYTICS} component={Analytics} />
               <Route path={ROUTES.FAVORITES} component={FavoritesPage} />
+              <Route path={ROUTES.POPUP} component={Popup} />
             </div>
           </ParallaxProvider>
         </Router>

@@ -24,6 +24,10 @@
   background: linear-gradient(#ffcdb8, #ffc9b7);
 }
 
+.signup-container-first-part2 {
+  background: linear-gradient(#ffc9b7, #ffc9b7);
+}
+
 .signup-container-second {
   background: linear-gradient(#ffc9b7, #fec5b7);
 }
