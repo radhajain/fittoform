@@ -94,12 +94,26 @@ class AccountPage extends React.Component {
     });
   }
 
-  componentDidMount() {
+  authlistener() {
     this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser ? this.setState({ authUser }) : this.setState({ authUser: null });
       authUser ? this.setState({ uid: authUser.uid }) : this.setState({ uid: null });
       authUser ? this.getUserData(this.state.uid) : this.setState({ name: null });
     });
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    this.authlistener = this.authlistener.bind(this);
+    if (this._isMounted) {
+      this.authlistener();
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.listener && this.listener();
+    this.authlistener = undefined;
   }
 
   render() {
