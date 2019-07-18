@@ -94,9 +94,9 @@ class Landing extends React.Component {
       <div className="landing-parent">
         <div className="landing-fakeNav" />
         <div className="landing-notif">
-          <Link to="/popup">
+          <Link to="/popup" className="landing-popup-text">
             <p
-              className="landing-desc landing-popup-text"
+              className="landing-desc"
               style={{ color: 'white', padding: 15, fontSize: '0.9em', textAlign: 'center' }}
             >
               In SF? Checkout our FtF pop up, 07/21
