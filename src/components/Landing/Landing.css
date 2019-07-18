@@ -26,6 +26,7 @@
 }
 
 .landing-popup-text:hover {
+  color: white;
   text-decoration: underline;
 }
 
