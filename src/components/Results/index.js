@@ -899,8 +899,8 @@ class Results extends Component {
                 )}
                 <p className="results-text">Recommended by other women that are</p>
                 {this.state.closestMeasurements &&
-                  this.getRecommendedStr().map(line => (
-                    <div className="results-measurement-wrapper">
+                  this.getRecommendedStr().map((line, key) => (
+                    <div className="results-measurement-wrapper" key={key}>
                       <p className="results-measurement-label">{line.label}</p>
                       <p className="results-measurement">{line.mmt}</p>
                     </div>

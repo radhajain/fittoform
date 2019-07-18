@@ -268,7 +268,8 @@ class Search extends Component {
     var measurements = this.USsizeArray[this.state.size.toString()];
     var height = parseInt(this.state.heightft, 10) * 12 + parseInt(this.state.heightin, 10);
     var newBust =
-      parseInt(this.state.bra.slice(0, 2), 10) + this.braToBust[this.state.bra.substr(2)];
+      parseInt(this.state.bra.slice(0, 2), 10) +
+      this.braToBust[this.state.bra.substr(2).toUpperCase()];
     var newHips = measurements.hips + this.state.modifyHips;
     var newWaist = measurements.waist + this.state.modifyWaist;
     this.setState(
