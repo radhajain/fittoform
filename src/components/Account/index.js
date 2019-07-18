@@ -43,7 +43,8 @@ class AccountPage extends React.Component {
     let newVal = event.target.value;
     if (field === 'bra') {
       var newBra = newVal;
-      var newBust = parseInt(newBra.slice(0, 2), 10) + this.braToBust[newBra.substr(2)];
+      var newBust =
+        parseInt(newBra.slice(0, 2), 10) + this.braToBust[newBra.substr(2).toUpperCase()];
       this.setState(
         {
           [field]: newVal,

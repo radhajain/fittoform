@@ -234,13 +234,14 @@ class Item extends Component {
   }
 
   shopItem() {
-    if (this.state.authUser) {
-      window.open(this.state.item.dressLink, '_blank');
-    } else {
-      this.setState({
-        isModalShowing: true
-      });
-    }
+    // if (this.state.authUser) {
+    //   window.open(this.state.item.dressLink, '_blank');
+    // } else {
+    //   this.setState({
+    //     isModalShowing: true
+    //   });
+    // }
+    window.open(this.state.item.dressLink, '_blank');
   }
 
   closeModalHandler() {
@@ -319,7 +320,7 @@ class Item extends Component {
               Shop
             </button> */}
             <div className="itemView-c1-right">
-              <Modal
+              {/* <Modal
                 className="modal"
                 show={this.state.isModalShowing}
                 close={this.closeModalHandler}
@@ -329,7 +330,7 @@ class Item extends Component {
                 btnMsg="Shop item"
                 message="Before you go, create an account to save your results"
                 desc={this.state.modalDesc}
-              ></Modal>
+              ></Modal> */}
               <div className="itemView-c1-text">
                 <div className="itemView-title-div">
                   <p className="itemView-item-title">{this.state.item.name}</p>
