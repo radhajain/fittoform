@@ -2,7 +2,7 @@
   "name": "fittoform",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://thefittoform.com",
+  "homepage": "http://fittoform.com",
   "dependencies": {
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
