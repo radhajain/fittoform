@@ -9,17 +9,19 @@ class AccountPage extends React.Component {
   constructor(props) {
     super(props);
     this.braToBust = {
-      AA: 1,
-      A: 1,
-      B: 2,
-      C: 4,
-      D: 6,
-      DD: 8,
-      DDD: 10,
-      E: 10,
-      EE: 12,
-      F: 14,
-      G: 16
+      AA: 0,
+      A: 0,
+      B: 1,
+      C: 2,
+      D: 3,
+      DD: 4,
+      DDD: 5,
+      E: 5,
+      EE: 6,
+      F: 6,
+      G: 7,
+      GG: 8,
+      H: 8
     };
     this.state = {
       authUser: '',
@@ -178,9 +180,8 @@ class AccountPage extends React.Component {
                       <option value="30DDD/E">30E</option>
                       <option value="30F">30F</option>
                       <option value="30G">30G</option>
+                      <option value="30GG">30GG</option>
                       <option value="30H">30H</option>
-                      <option value="30I">30I</option>
-                      <option value="30J">30J</option>
                       <option value="32AA">32AA</option>
                       <option value="32A">32A</option>
                       <option value="32B">32B</option>
@@ -190,9 +191,8 @@ class AccountPage extends React.Component {
                       <option value="32DDD/E">32E</option>
                       <option value="32F">32F</option>
                       <option value="32G">32G</option>
+                      <option value="32GG">32GG</option>
                       <option value="32H">32H</option>
-                      <option value="32I">32I</option>
-                      <option value="32J">32J</option>
                       <option value="34AA">34AA</option>
                       <option value="34A">34A</option>
                       <option value="34B">34B</option>
@@ -202,9 +202,8 @@ class AccountPage extends React.Component {
                       <option value="34DDD/E">34E</option>
                       <option value="34F">34F</option>
                       <option value="34G">34G</option>
+                      <option value="34GG">34GG</option>
                       <option value="34H">34H</option>
-                      <option value="34I">34I</option>
-                      <option value="34J">34J</option>
                       <option value="36AA">36AA</option>
                       <option value="36A">36A</option>
                       <option value="36B">36B</option>
@@ -214,9 +213,8 @@ class AccountPage extends React.Component {
                       <option value="36DDD/E">36E</option>
                       <option value="36F">36F</option>
                       <option value="36G">36G</option>
+                      <option value="36GG">36GG</option>
                       <option value="36H">36H</option>
-                      <option value="36I">36I</option>
-                      <option value="36J">36J</option>
                       <option value="38AA">38AA</option>
                       <option value="38A">38A</option>
                       <option value="38B">38B</option>
@@ -226,9 +224,8 @@ class AccountPage extends React.Component {
                       <option value="38DDD/E">38E</option>
                       <option value="38F">38F</option>
                       <option value="38G">38G</option>
+                      <option value="38GG">38GG</option>
                       <option value="38H">38H</option>
-                      <option value="38I">38I</option>
-                      <option value="38J">38J</option>
                     </select>
                     <label className="account-item-label">Bra size </label>
                   </div>
