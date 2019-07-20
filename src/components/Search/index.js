@@ -9,7 +9,7 @@ function validate(heightft, heightin, size, bra) {
   return {
     heightft: heightft.length === 0 || !Number.isInteger(heightft) || heightft < 4 || heightft > 6,
     heightin: heightin.length === 0 || !Number.isInteger(heightin) || heightin < 0 || heightin > 12,
-    size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1 || size > 16,
+    size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1,
     bra: bra.length === 0 || !bra.match(braRe)
   };
 }
