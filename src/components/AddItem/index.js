@@ -35,7 +35,8 @@ class AddItem extends Component {
       dressID: '',
       items: [],
       uid: '',
-      name: ''
+      name: '',
+      reviewID: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -113,7 +114,7 @@ class AddItem extends Component {
 
   createReviewID() {
     //Create the review ref
-    var user = firebase.auth().currentUser;
+    // var user = firebase.auth().currentUser;
     const reviewsRef = firebase.database().ref('reviews');
     const newReviewRef = reviewsRef.push();
     newReviewRef.set({
@@ -136,7 +137,6 @@ class AddItem extends Component {
     var newReviewKey = newReviewRef.key;
     this.setState({ reviewID: newReviewKey }, () => {
       console.log('REVIEW CREATED');
-      console.log(this.state);
       this.getGroupIDIfExists();
     });
   }
@@ -281,7 +281,7 @@ class AddItem extends Component {
       <div className="container">
         <section className="add-item">
           <h1>Add Dress</h1>
-          <form className="additem-form" onSubmit={this.handleSubmit}>
+          <form className="additem-form">
             <input
               className="add-input"
               type="text"
@@ -474,7 +474,10 @@ class AddItem extends Component {
               onChange={this.handleChange}
               value={this.state.comment}
             />
-            <button>Add Item</button>
+            <button onClick={this.handleSubmit}>Add Item</button>
+            {this.state.dressID && <p>New dress created at: {this.state.dressID}</p>}
+            {this.state.reviewID && <p>New review created at: {this.state.reviewID}</p>}
+            {this.state.dressGroupID && <p>Added to dress group: {this.state.dressGroupID}</p>}
           </form>
         </section>
         <section className="display-item">
