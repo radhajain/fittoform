@@ -89,6 +89,7 @@ input:focus {
   font-size: 1.5em;
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .results-your-measurements:hover {
@@ -217,6 +218,18 @@ input:focus {
   color: black;
   font-family: 'Helvetiva Neue', sans-serif;
   text-align: left;
+}
+
+.results-edit {
+  font-weight: bold;
+  color: black;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.results-edit:hover {
+  text-decoration: underline;
 }
 
 .results-measurement-wrapper {
