@@ -455,31 +455,30 @@ class Results extends Component {
   // GET NEXT BEST DRESSES
 
   getNextBestDressesID() {
-    if (!this.state.authUser) {
-      this.setState({
-        modalMsg: 'Create an account to see more dresses picked for you',
-        isHomeModalShowing: true
-      });
-    } else {
-      var promises = [];
-      var nextBestDressesIDs = [];
-      for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
-        promises.push(
-          this.getNextBestDressesIDHelper(
-            dressGroupRef.dressGroupID,
-            dressGroupRef.concatMtms
-          ).then(dresses => {
+    // if (!this.state.authUser) {
+    //   this.setState({
+    //     modalMsg: 'Create an account to see more dresses picked for you',
+    //     isHomeModalShowing: true
+    //   });
+    // } else {
+    var promises = [];
+    var nextBestDressesIDs = [];
+    for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
+      promises.push(
+        this.getNextBestDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
+          dresses => {
             nextBestDressesIDs.push(dresses);
-          })
-        );
-      }
-      Promise.all(promises).then(dresses => {
-        this.setState({
-          nextBestDressesIDs: nextBestDressesIDs
-        });
-        this.getNextBestDressesInfo(nextBestDressesIDs);
-      });
+          }
+        )
+      );
     }
+    Promise.all(promises).then(dresses => {
+      this.setState({
+        nextBestDressesIDs: nextBestDressesIDs
+      });
+      this.getNextBestDressesInfo(nextBestDressesIDs);
+    });
+    // }
   }
 
   //Returns the dressIDs in the best dress group
