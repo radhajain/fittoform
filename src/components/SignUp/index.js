@@ -14,7 +14,7 @@ const SignUpPage = () => (
 );
 
 function validate(heightft, heightin, size, bra, name, age, email, passwordOne, passwordTwo) {
-  var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
+  var braRe = /[0-9][0-9][a-hA-H][a-hA-H]?[a-hA-H]?/;
   var emailRe = /^.+@.+\..+$/;
   heightft = parseInt(heightft, 10);
   heightin = parseInt(heightin, 10);
@@ -128,19 +128,20 @@ class SignUpFormBase extends Component {
       }
     };
     this.braToBust = {
-      AA: 1,
-      A: 1,
-      B: 2,
-      C: 4,
-      D: 6,
-      DD: 8,
-      DDD: 10,
-      E: 10,
-      EE: 12,
-      F: 14,
-      G: 16
+      AA: 0,
+      A: 0,
+      B: 1,
+      C: 2,
+      D: 3,
+      DD: 4,
+      DDD: 5,
+      E: 5,
+      EE: 6,
+      F: 6,
+      G: 7,
+      GG: 8,
+      H: 8
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.modifyWaist = this.modifyWaist.bind(this);
     this.modifyHips = this.modifyHips.bind(this);
