@@ -65,25 +65,32 @@
   margin: auto;
 }
 
-.favorites-heartIcon {
+.favorites-heart-outline {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 35px;
   padding: 10px;
   z-index: 10;
+  background-image: url('../../assets/images/heart_outline.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-.favorites-heart-selected {
+.favorites-heart-fill {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 35px;
   padding: 10px;
   z-index: 10;
-  display: none;
+  background-image: url('../../assets/images/heart_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .favorites-img {

@@ -147,6 +147,28 @@ input:focus {
   width: 250px;
 }
 
+.results-review-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.results-review {
+  font-size: 1.35em;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: #ffd2ba;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.results-review:hover {
+  text-decoration: underline;
+  color: #69dbd3;
+}
+
 .results-loadMore-btn-div {
   margin-top: 40px;
   padding-left: 40px;
@@ -182,7 +204,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 15px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_icon.png');
@@ -196,7 +218,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 15px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_outline.png');
@@ -464,6 +486,18 @@ input:focus {
 @media (max-width: 540px) {
   .results-leftCol-fakeNav {
     width: 100%;
+  }
+
+  .results-col {
+    width: fit-content;
+  }
+
+  .results-heart-fill {
+    top: 15px;
+  }
+
+  .results-heart-outline {
+    top: 15px;
   }
 
   .results-leftCol-inner {

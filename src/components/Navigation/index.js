@@ -120,6 +120,10 @@ class NavigationAuth extends React.Component {
                   Your Favorites
                 </Link>
                 <hr></hr>
+                <Link to={ROUTES.SUBMIT} className="nav-profile-btn">
+                  Review a dress
+                </Link>
+                <hr></hr>
                 <SignOutButton />
               </div>
             </div>

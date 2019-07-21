@@ -192,8 +192,8 @@ class Favorites extends React.Component {
                           className={
                             !this.state.favorites ||
                             this.state.favorites.indexOf(this.state.dressIDs[key]) === -1
-                              ? 'results-heart-outline'
-                              : 'results-heart-fill'
+                              ? 'favorites-heart-outline'
+                              : 'favorites-heart-fill'
                           }
                         />
                         <ProgressiveImage src={dress.img}>

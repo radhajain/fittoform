@@ -1,0 +1,240 @@
+.submit {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  background-color: #69dbd3;
+}
+
+.submit-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.submit-content {
+  max-width: 500px;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.submit-title {
+  font-size: 2.5em;
+  font-family: 'DM Serif Display', sans-serif;
+  color: white;
+  margin: 0;
+}
+
+.submit-subtitle {
+  font-size: 1.5em;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.submit-input {
+  background-color: #69dbd3;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  width: 100%;
+  font-size: 1.25em;
+  margin-top: 40px;
+}
+
+.submit-textarea {
+  background-color: #69dbd3;
+  border: 2px solid white;
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  width: calc(100% - 24px);
+  font-size: 1.15em;
+  margin-top: 40px;
+  padding: 10px;
+  height: 100px;
+}
+
+.submit-textarea::placeholder {
+  color: white;
+  font-size: 1.25em;
+}
+
+.submit-textarea:focus {
+  outline: none;
+}
+
+.submit-input::placeholder {
+  color: white;
+  font-size: 1.25em;
+}
+
+.submit-btn {
+  background-color: white;
+  color: black;
+  border-radius: 50px;
+  font-size: 1.25em;
+  margin-bottom: 20px;
+  margin-top: 60px;
+  border: none;
+  padding: 16px 30px;
+  font-weight: bold;
+  font-family: 'Helvetiva Neue', sans-serif;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.submit-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+@media (max-height: 900px) {
+  .submit-title {
+    font-size: 2em;
+  }
+
+  .submit-subtitle {
+    font-size: 1.25em;
+  }
+  .submit-input {
+    font-size: 1.1em;
+  }
+  .submit-input::placeholder {
+    font-size: 1.1em;
+  }
+
+  .submit-textarea::placeholder {
+    font-size: 1.1em;
+  }
+
+  .submit-btn {
+    margin-top: 30px;
+  }
+
+  .submit-btn {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 645px) {
+  .submit-title {
+    font-size: 2em;
+  }
+
+  .submit-subtitle {
+    font-size: 1.25em;
+  }
+
+  .submit-input {
+    font-size: 1.1em;
+  }
+  .submit-input::placeholder {
+    font-size: 1.1em;
+  }
+
+  .submit-textarea::placeholder {
+    font-size: 1.1em;
+  }
+
+  .submit-textarea {
+    font-size: 1em;
+  }
+
+  .submit-content {
+    width: 400px;
+  }
+
+  .submit-btn {
+    font-size: 1.1em;
+    padding: 12px 30px;
+  }
+}
+
+@media (max-width: 510px) {
+  .submit-content {
+    width: 360px;
+  }
+
+  .submit-title {
+    font-size: 1.75em;
+  }
+
+  .submit-subtitle {
+    font-size: 1.15em;
+  }
+
+  .submit-input {
+    margin-top: 30px;
+    font-size: 1em;
+  }
+  .submit-input::placeholder {
+    font-size: 1em;
+  }
+
+  .submit-textarea {
+    margin-top: 30px;
+  }
+
+  .submit-textarea::placeholder {
+    font-size: 1em;
+  }
+
+  .submit-btn {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 430px) {
+  .submit-title {
+    font-size: 1.5em;
+  }
+
+  .submit-inner {
+    padding-top: 30px;
+    height: calc(100% - 30px);
+  }
+
+  .submit-subtitle {
+    font-size: 1.1em;
+  }
+  .submit-content {
+    width: 300px;
+  }
+
+  .submit-textarea {
+    height: 60px;
+  }
+
+  .submit-subtitle {
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 350px) {
+  .submit-content {
+    width: 270px;
+  }
+
+  .submit-inner {
+    padding-top: 22px;
+    height: calc(100% - 22px);
+  }
+
+  .submit-input {
+    margin-top: 22px;
+  }
+
+  .submit-textarea {
+    margin-top: 22px;
+  }
+
+  .submit-btn {
+    margin-top: 22px;
+  }
+}
