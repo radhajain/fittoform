@@ -21,6 +21,15 @@
   justify-content: space-evenly;
 }
 
+.account-back {
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.account-back:hover {
+  text-decoration: underline;
+}
+
 .account-row {
   display: flex;
   flex-direction: row;
@@ -180,7 +189,7 @@ select {
   width: 10px;
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1312px) {
   .account-row-top {
     flex-wrap: wrap;
   }
@@ -194,13 +203,13 @@ select {
   }
 }
 
-@media (max-width: 890px) {
+@media (max-width: 1013px) {
   .account-inner {
     width: 90%;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 940px) {
   .account-section-wrapper-top {
     flex-wrap: wrap;
   }

@@ -289,6 +289,7 @@ class Results extends Component {
             },
             () => {
               console.log(this.state);
+              this.loadData();
             }
           );
         });
@@ -296,36 +297,43 @@ class Results extends Component {
     });
   }
 
+  loadData() {
+    this.getBestDressGroupID().then(result => {
+      result[3].sort((a, b) => (a.diff > b.diff ? 1 : -1));
+      let nextBestDresses = result[3].map(a => a.closestMeasurements);
+      var exactMatchIdx = nextBestDresses.indexOf(result[0]);
+      if (exactMatchIdx > -1) {
+        nextBestDresses.splice(exactMatchIdx, 1);
+      }
+      this.setState(
+        {
+          exactMatch: result[2] === 0 ? true : false,
+          dressGroupID: result[1],
+          closestMeasurements: result[0],
+          currMeasurements: result[0],
+          nextBestDressGroupIDs: nextBestDresses
+        },
+        () => {
+          this.getBestDressesID(result[1]);
+          if (this.state.showMoreDresses) {
+            this.getNextBestDressesID();
+          }
+        }
+      );
+    });
+    window.scrollTo(0, 0);
+  }
+
   componentDidMount() {
     this._isMounted = true;
     this.authlistener = this.authlistener.bind(this);
+    this.loadData = this.loadData.bind(this);
     if (this._isMounted) {
       this.authlistener();
       window.addEventListener('scroll', this.handleScroll);
-      this.getBestDressGroupID().then(result => {
-        result[3].sort((a, b) => (a.diff > b.diff ? 1 : -1));
-        let nextBestDresses = result[3].map(a => a.closestMeasurements);
-        var exactMatchIdx = nextBestDresses.indexOf(result[0]);
-        if (exactMatchIdx > -1) {
-          nextBestDresses.splice(exactMatchIdx, 1);
-        }
-        this.setState(
-          {
-            exactMatch: result[2] === 0 ? true : false,
-            dressGroupID: result[1],
-            closestMeasurements: result[0],
-            currMeasurements: result[0],
-            nextBestDressGroupIDs: nextBestDresses
-          },
-          () => {
-            this.getBestDressesID(result[1]);
-            if (this.state.showMoreDresses) {
-              this.getNextBestDressesID();
-            }
-          }
-        );
-      });
-      window.scrollTo(0, 0);
+      if (!this.state.authUser && this.props.location.state) {
+        this.loadData();
+      }
     }
   }
 
