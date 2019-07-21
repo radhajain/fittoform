@@ -7,8 +7,7 @@ import downArrow from '../../assets/images/down triangle.svg';
 import ProgressiveImage from 'react-progressive-image';
 import Modal from '../Modal';
 import upArrow from '../../assets/images/up arrow.svg';
-import heartOutline from '../../assets/images/heart_outline.png';
-import heartFilled from '../../assets/images/heart_icon.png';
+import { Link } from 'react-router-dom';
 // import { Parallax } from 'react-scroll-parallax';
 
 class Results extends Component {
@@ -929,6 +928,13 @@ class Results extends Component {
                       </div>
                     )
                 )}
+              {this.state.showMoreDresses && (
+                <div className="results-review-wrapper">
+                  <Link to="/submit" className="results-review">
+                    <p>Want to see more results? Review your dresses</p>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
           <div className={rightColClass}>

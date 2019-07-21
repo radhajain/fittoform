@@ -124,6 +124,7 @@ class AccountPage extends React.Component {
   render() {
     return (
       <div className="account-outer">
+        <div className="results-leftCol-fakeNav"></div>
         <div className="account-inner">
           <div className="account-content">
             <p className="account-title">Welcome back, {this.state.name}.</p>
@@ -348,20 +349,27 @@ class AccountPage extends React.Component {
                 </div>
               </form>
             </div>
-            <div style={{ marginTop: 50 }}>
-              <button className="account-save-btn" onClick={this.handleSubmit}>
-                <div style={{ position: 'relative' }}>Save</div>
-              </button>
-              {this.state.saved && (
-                <div>
-                  <p className="account-saved-text">
-                    <i>Changes saved!</i>
-                  </p>
-                  <Link to="/results" className="account-back">
-                    <p className="account-section-title"> {`<`} Back to results</p>
-                  </Link>
-                </div>
-              )}
+            <div className="account-row account-row-2">
+              <div className="account-section-title-wrapper account-section-title-wrapper-2">
+                <button className="account-save-btn" onClick={this.handleSubmit}>
+                  <div style={{ position: 'relative' }}>Save</div>
+                </button>
+                {this.state.saved && (
+                  <div>
+                    <p className="account-saved-text">
+                      <i>Changes saved!</i>
+                    </p>
+                    <Link to="/results" className="account-back">
+                      <p className="account-section-title"> {`<`} Back to results</p>
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <div className="account-section-wrapper account-section-wrapper-2">
+                <Link to="/submit" className="account-back">
+                  <button className="account-review-button"> Review a dress</button>
+                </Link>
+              </div>
             </div>
             <div style={{ marginTop: 50, marginBottom: 50 }} className="account-row">
               <div className="account-section-title-wrapper" style={{ alignItems: 'flex-start' }}>
