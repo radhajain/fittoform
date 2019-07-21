@@ -47,6 +47,8 @@ class AccountPage extends React.Component {
       var newBra = newVal;
       var newBust =
         parseInt(newBra.slice(0, 2), 10) + this.braToBust[newBra.substr(2).toUpperCase()];
+      console.log(newBust);
+      console.log(this.braToBust[newBra.substr(2).toUpperCase()]);
       this.setState(
         {
           [field]: newVal,
@@ -246,6 +248,13 @@ class AccountPage extends React.Component {
                       <option value="12">12</option>
                       <option value="14">14</option>
                       <option value="16">16</option>
+                      <option value="18">18</option>
+                      <option value="20">20</option>
+                      <option value="22">22</option>
+                      <option value="24">24</option>
+                      <option value="26">26</option>
+                      <option value="28">28</option>
+                      <option value="30">30</option>
                     </select>
                     <label className="account-item-label">Dress size </label>
                   </div>
@@ -270,6 +279,11 @@ class AccountPage extends React.Component {
                       <option value="34">34</option>
                       <option value="35">35</option>
                       <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
                     </select>
                     <label className="account-item-label">Waist (in.) </label>
                   </div>
@@ -284,19 +298,52 @@ class AccountPage extends React.Component {
                       <option value="33">33</option>
                       <option value="34">34</option>
                       <option value="35">35</option>
-                      <option value="37">36</option>
+                      <option value="36">36</option>
                       <option value="37">37</option>
                       <option value="38">38</option>
                       <option value="39">39</option>
                       <option value="40">40</option>
-                      <option value="40">41</option>
-                      <option value="40">42</option>
-                      <option value="40">43</option>
-                      <option value="40">44</option>
-                      <option value="40">45</option>
-                      <option value="40">46</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                      <option value="47">47</option>
+                      <option value="48">48</option>
+                      <option value="49">49</option>
+                      <option value="50">50</option>
+                      <option value="51">51</option>
+                      <option value="52">52</option>
                     </select>
                     <label className="account-item-label">Hips (in.) </label>
+                  </div>
+                  <div className="account-wrapper-item">
+                    <select
+                      value={this.state.bust}
+                      onChange={this.handleChange('bust')}
+                      name="bust"
+                      className="account-select account-select-sm"
+                    >
+                      <option value="30">30</option>
+                      <option value="32">31</option>
+                      <option value="32">32</option>
+                      <option value="33">33</option>
+                      <option value="34">34</option>
+                      <option value="35">35</option>
+                      <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                    </select>
+                    <label className="account-item-label">Bust (in.) </label>
                   </div>
                 </div>
               </form>
@@ -306,9 +353,14 @@ class AccountPage extends React.Component {
                 <div style={{ position: 'relative' }}>Save</div>
               </button>
               {this.state.saved && (
-                <p className="account-saved-text">
-                  <i>Changes saved!</i>
-                </p>
+                <div>
+                  <p className="account-saved-text">
+                    <i>Changes saved!</i>
+                  </p>
+                  <Link to="/results" className="account-back">
+                    <p className="account-section-title"> {`<`} Back to results</p>
+                  </Link>
+                </div>
               )}
             </div>
             <div style={{ marginTop: 50, marginBottom: 50 }} className="account-row">
