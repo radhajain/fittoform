@@ -106,7 +106,7 @@ class Modal extends Component {
                   className={isDisabled ? 'modal-btn-disabled' : 'modal-btn-createAccount'}
                   id="modal-signup-action"
                 >
-                  <div style={{ position: 'relative' }}>{this.props.btnMsg}</div>
+                  <div id="modal-signup-btn" style={{ position: 'relative' }}>{this.props.btnMsg}</div>
                 </button>
                 {this.props.dismiss && <p className="modal-signin-text">Remind me later</p>}
               </div>
