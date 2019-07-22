@@ -24,77 +24,77 @@ class Search extends Component {
         bust: 32
       },
       '0': {
-        waist: 24,
-        hips: 35,
-        bust: 33
+        waist: 25,
+        hips: 37,
+        bust: 32
       },
       '2': {
         waist: 26,
-        hips: 37,
-        bust: 34
+        hips: 38,
+        bust: 33
       },
       '4': {
         waist: 27,
-        hips: 38,
-        bust: 35
+        hips: 39,
+        bust: 34
       },
       '6': {
         waist: 28,
-        hips: 39,
-        bust: 36
+        hips: 40,
+        bust: 35
       },
       '8': {
-        waist: 29,
-        hips: 40,
+        waist: 30,
+        hips: 42,
         bust: 37
       },
       '10': {
-        waist: 30,
-        hips: 41,
-        bust: 38.5
+        waist: 32,
+        hips: 44,
+        bust: 39
       },
       '12': {
-        waist: 31,
-        hips: 42,
-        bust: 40
+        waist: 34,
+        hips: 46,
+        bust: 41
       },
       '14': {
-        waist: 33,
-        hips: 44,
-        bust: 42
-      },
-      '16': {
-        waist: 34,
-        hips: 45,
+        waist: 38,
+        hips: 48,
         bust: 44
       },
+      '16': {
+        waist: 40,
+        hips: 50,
+        bust: 46
+      },
       '18': {
-        waist: 35,
-        hips: 45
+        waist: 42,
+        hips: 52
       },
       '20': {
-        waist: 37,
-        hips: 47
+        waist: 44,
+        hips: 54
       },
       '22': {
-        waist: 39,
-        hips: 48
+        waist: 46,
+        hips: 56
       },
       '24': {
-        waist: 40,
-        hips: 49
+        waist: 48,
+        hips: 58
       },
       '26': {
-        waist: 41,
-        hips: 50
+        waist: 50,
+        hips: 60
       },
       '28': {
-        waist: 42,
-        hips: 51
+        waist: 52,
+        hips: 63
       },
       '30': {
-        waist: 43,
-        hips: 52
+        waist: 54,
+        hips: 65
       }
     };
     this.state = {

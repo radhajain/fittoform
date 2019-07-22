@@ -130,9 +130,12 @@ class Submit extends React.Component {
       <div className="submit">
         <div className="submit-inner">
           <div className="submit-content">
-            <p className="submit-title">
-              {this.getFirstName(this.state.name)}, help women with your body.
-            </p>
+            {this.state.name && (
+              <p className="submit-title">
+                {this.getFirstName(this.state.name)}, help women with your body.
+              </p>
+            )}
+            {!this.state.name && <p className="submit-title">Help women with your body.</p>}
             <p className="submit-subtitle">
               Let's make something great together. Leave a review of a dress.
             </p>

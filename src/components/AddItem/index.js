@@ -466,7 +466,7 @@ class AddItem extends Component {
               onChange={this.handleChange}
               value={this.state.rating}
             />
-            <input
+            <textarea
               className="add-input"
               type="text"
               name="comment"

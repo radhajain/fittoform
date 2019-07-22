@@ -1000,6 +1000,7 @@ class SignUpFormBase extends Component {
               className={isDisabled ? 'signup-results-btn-disabled' : 'signup-results-btn'}
               onClick={this.handleSubmit}
               disabled={isDisabled}
+              id="signup-flow-action"
             >
               Join the fam
               <img

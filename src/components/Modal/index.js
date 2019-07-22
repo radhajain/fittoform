@@ -99,13 +99,17 @@ class Modal extends Component {
                 className="modal-input"
                 placeholder="Password"
               />
-              <button
-                disabled={isDisabled}
-                type="submit"
-                className={isDisabled ? 'modal-btn-disabled' : 'modal-btn-createAccount'}
-              >
-                <div style={{ position: 'relative' }}>{this.props.btnMsg}</div>
-              </button>
+              <div className="modal-submit-wrapper">
+                <button
+                  disabled={isDisabled}
+                  type="submit"
+                  className={isDisabled ? 'modal-btn-disabled' : 'modal-btn-createAccount'}
+                  id="modal-signup-action"
+                >
+                  <div style={{ position: 'relative' }}>{this.props.btnMsg}</div>
+                </button>
+                {this.props.dismiss && <p className="modal-signin-text">Remind me later</p>}
+              </div>
               {/* {error && <p>{error.message}</p>} */}
               <p className="modal-signin-text">
                 Already have an account?{' '}
