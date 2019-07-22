@@ -3,7 +3,9 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthorization } from '../Session';
 import { Link } from 'react-router-dom';
 import './Account.css';
+import firebase from 'firebase';
 import { FooterSmall } from '../Footer';
+import MakeRequest from '../MakeRequest';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -34,10 +36,15 @@ class AccountPage extends React.Component {
       size: '',
       bra: '',
       email: '',
-      saved: false
+      saved: false,
+      showMakeRequest: true,
+      requestedLinks: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.showMakeRequestModal = this.showMakeRequestModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.makeReviewRequest = this.makeReviewRequest.bind(this);
   }
 
   handleChange = field => event => {
@@ -94,7 +101,8 @@ class AccountPage extends React.Component {
         height: user.height,
         bust: user.bust,
         size: user.size,
-        bra: user.bra
+        bra: user.bra,
+        requestedLinks: user.requestedLinks ? user.requestedLinks : []
       });
     });
   }
@@ -121,11 +129,65 @@ class AccountPage extends React.Component {
     this.authlistener = undefined;
   }
 
+  showMakeRequestModal() {
+    this.setState({
+      showMakeRequest: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      showMakeRequest: false
+    });
+  }
+
+  makeReviewRequest(link) {
+    if (this.state.authUser) {
+      console.log(link);
+      this.closeModal();
+      let requestedRef = firebase.database().ref('requested');
+      var newRequest = requestedRef.push();
+      newRequest.set({
+        uid: this.state.uid,
+        height: this.state.height,
+        waist: this.state.waist,
+        bust: this.state.bust,
+        hips: this.state.hips,
+        name: this.state.name,
+        bra: this.state.bra,
+        dressLink: link
+      });
+      //Since this is an array, will only add it if it is unique
+      this.setState({
+        requestedLinks: [...this.state.requestedLinks, link]
+      });
+      let UserRef = firebase
+        .database()
+        .ref('users')
+        .child(`${this.state.uid}`);
+      UserRef.update({
+        requestedLinks: this.state.requestedLinks
+      });
+      console.log(this.state);
+    }
+  }
+
   render() {
     return (
       <div className="account-outer">
         <div className="results-leftCol-fakeNav"></div>
+        <div className="results-getReview-wrapper">
+          <p className="results-getReview-text" onClick={this.showMakeRequestModal}>
+            Have a particular dress in mind? Request a review
+          </p>
+        </div>
         <div className="account-inner">
+          <MakeRequest
+            show={this.state.showMakeRequest}
+            close={this.closeModal}
+            makeReviewRequest={this.makeReviewRequest}
+            name={this.state.name}
+          ></MakeRequest>
           <div className="account-content">
             <p className="account-title">Welcome back, {this.state.name}.</p>
             <div className="account-row account-row-top">
