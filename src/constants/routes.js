@@ -15,3 +15,4 @@ export const CONTACT = '/contact';
 export const ANALYTICS = '/analytics';
 export const FAVORITES = '/favorites';
 export const POPUP = '/popup';
+export const SUBMIT = '/submit';

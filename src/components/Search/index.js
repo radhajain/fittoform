@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './Search.css';
 
 function validate(heightft, heightin, size, bra) {
-  var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
+  var braRe = /[0-9][0-9][a-hA-H][a-hA-H]?[a-hA-H]?/;
   heightft = parseInt(heightft, 10);
   heightin = parseInt(heightin, 10);
   size = parseInt(size, 10);
   return {
     heightft: heightft.length === 0 || !Number.isInteger(heightft) || heightft < 4 || heightft > 6,
     heightin: heightin.length === 0 || !Number.isInteger(heightin) || heightin < 0 || heightin > 12,
-    size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1 || size > 16,
+    size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1 || size > 30,
     bra: bra.length === 0 || !bra.match(braRe)
   };
 }
@@ -24,49 +24,77 @@ class Search extends Component {
         bust: 32
       },
       '0': {
-        waist: 24,
-        hips: 35,
-        bust: 33
+        waist: 25,
+        hips: 37,
+        bust: 32
       },
       '2': {
         waist: 26,
-        hips: 37,
-        bust: 34
+        hips: 38,
+        bust: 33
       },
       '4': {
         waist: 27,
-        hips: 38,
-        bust: 35
+        hips: 39,
+        bust: 34
       },
       '6': {
         waist: 28,
-        hips: 39,
-        bust: 36
+        hips: 40,
+        bust: 35
       },
       '8': {
-        waist: 29,
-        hips: 40,
+        waist: 30,
+        hips: 42,
         bust: 37
       },
       '10': {
-        waist: 30,
-        hips: 41,
-        bust: 38.5
+        waist: 32,
+        hips: 44,
+        bust: 39
       },
       '12': {
-        waist: 31,
-        hips: 42,
-        bust: 40
+        waist: 34,
+        hips: 46,
+        bust: 41
       },
       '14': {
-        waist: 33,
-        hips: 44,
-        bust: 42
+        waist: 38,
+        hips: 48,
+        bust: 44
       },
       '16': {
-        waist: 34,
-        hips: 45,
-        bust: 44
+        waist: 40,
+        hips: 50,
+        bust: 46
+      },
+      '18': {
+        waist: 42,
+        hips: 52
+      },
+      '20': {
+        waist: 44,
+        hips: 54
+      },
+      '22': {
+        waist: 46,
+        hips: 56
+      },
+      '24': {
+        waist: 48,
+        hips: 58
+      },
+      '26': {
+        waist: 50,
+        hips: 60
+      },
+      '28': {
+        waist: 52,
+        hips: 63
+      },
+      '30': {
+        waist: 54,
+        hips: 65
       }
     };
     this.state = {
@@ -93,17 +121,19 @@ class Search extends Component {
       }
     };
     this.braToBust = {
-      AA: 1,
-      A: 1,
-      B: 2,
-      C: 4,
-      D: 6,
-      DD: 8,
-      DDD: 10,
-      E: 10,
-      EE: 12,
-      F: 14,
-      G: 16
+      AA: 0,
+      A: 0,
+      B: 1,
+      C: 2,
+      D: 3,
+      DD: 4,
+      DDD: 5,
+      E: 5,
+      EE: 6,
+      F: 6,
+      G: 7,
+      GG: 8,
+      H: 8
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);

@@ -21,6 +21,26 @@
   justify-content: space-evenly;
 }
 
+.account-back {
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.account-review-button {
+  background-color: #69dbd3;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 50px;
+}
+
+.account-back:hover {
+  text-decoration: underline;
+}
+
 .account-row {
   display: flex;
   flex-direction: row;
@@ -77,6 +97,10 @@ select {
   /*border: none; - if you want the border removed*/
 }
 
+.account-section-wrapper-2 {
+  justify-content: flex-end;
+}
+
 .account-select {
   background-color: black;
   color: white;
@@ -115,7 +139,7 @@ select {
   padding-right: 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .account-text {
@@ -146,7 +170,6 @@ select {
 }
 
 .account-save-btn {
-  margin-top: 10px;
   background-color: #ffd2ba;
   width: 15px;
   border-radius: 50px;
@@ -180,9 +203,22 @@ select {
   width: 10px;
 }
 
-@media (max-width: 1030px) {
+.account-section-title-wrapper-2 {
+  flex-direction: column;
+}
+
+.account-row-2 {
+  max-width: 1136px;
+}
+
+@media (max-width: 1312px) {
   .account-row-top {
     flex-wrap: wrap;
+  }
+
+  .account-row-2 {
+    margin-top: 20px;
+    width: 870px;
   }
 
   .account-title-wrapper-top {
@@ -194,20 +230,43 @@ select {
   }
 }
 
-@media (max-width: 890px) {
+@media (max-width: 1013px) {
   .account-inner {
     width: 90%;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 940px) {
   .account-section-wrapper-top {
     flex-wrap: wrap;
+  }
+
+  .account-row-2 {
+    width: 90%;
+  }
+
+  .account-section-title-wrapper-2 {
+    flex-basis: 50%;
+  }
+
+  .account-section-wrapper-2 {
+    flex-basis: 50%;
   }
 }
 
 @media (max-width: 540px) {
   .account-inner {
     height: unset;
+  }
+}
+
+@media (max-width: 485px) {
+  .account-row-2 {
+    flex-wrap: wrap;
+  }
+
+  .account-section-wrapper-2 {
+    justify-content: flex-start;
+    margin-top: 30px;
   }
 }

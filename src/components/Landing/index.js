@@ -97,9 +97,15 @@ class Landing extends React.Component {
           <Link to="/popup" className="landing-popup-text">
             <p
               className="landing-desc"
-              style={{ color: 'white', padding: 15, fontSize: '0.9em', textAlign: 'center' }}
+              style={{
+                color: 'white',
+                paddingTop: 15,
+                paddingBottom: 15,
+                fontSize: '0.9em',
+                textAlign: 'center'
+              }}
             >
-              In SF? Checkout our FtF pop up, 07/21
+              In SF? Checkout our FtF pop up, 07/21 - 07/29
             </p>
           </Link>
         </div>

@@ -267,14 +267,14 @@ input[type='number']::-webkit-outer-spin-button {
   margin-top: 15px;
   text-align: left;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: normal;
 }
 
 .signup-size-buttons-selected {
   background: none;
   border: none;
   font-family: 'Helvetiva Neue', sans-serif;
-  color: white;
+  color: black;
   font-size: 1em;
   margin-top: 15px;
   text-align: left;

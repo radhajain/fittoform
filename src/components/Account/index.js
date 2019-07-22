@@ -9,17 +9,19 @@ class AccountPage extends React.Component {
   constructor(props) {
     super(props);
     this.braToBust = {
-      AA: 1,
-      A: 1,
-      B: 2,
-      C: 4,
-      D: 6,
-      DD: 8,
-      DDD: 10,
-      E: 10,
-      EE: 12,
-      F: 14,
-      G: 16
+      AA: 0,
+      A: 0,
+      B: 1,
+      C: 2,
+      D: 3,
+      DD: 4,
+      DDD: 5,
+      E: 5,
+      EE: 6,
+      F: 6,
+      G: 7,
+      GG: 8,
+      H: 8
     };
     this.state = {
       authUser: '',
@@ -45,6 +47,8 @@ class AccountPage extends React.Component {
       var newBra = newVal;
       var newBust =
         parseInt(newBra.slice(0, 2), 10) + this.braToBust[newBra.substr(2).toUpperCase()];
+      console.log(newBust);
+      console.log(this.braToBust[newBra.substr(2).toUpperCase()]);
       this.setState(
         {
           [field]: newVal,
@@ -120,6 +124,7 @@ class AccountPage extends React.Component {
   render() {
     return (
       <div className="account-outer">
+        <div className="results-leftCol-fakeNav"></div>
         <div className="account-inner">
           <div className="account-content">
             <p className="account-title">Welcome back, {this.state.name}.</p>
@@ -178,9 +183,8 @@ class AccountPage extends React.Component {
                       <option value="30DDD/E">30E</option>
                       <option value="30F">30F</option>
                       <option value="30G">30G</option>
+                      <option value="30GG">30GG</option>
                       <option value="30H">30H</option>
-                      <option value="30I">30I</option>
-                      <option value="30J">30J</option>
                       <option value="32AA">32AA</option>
                       <option value="32A">32A</option>
                       <option value="32B">32B</option>
@@ -190,9 +194,8 @@ class AccountPage extends React.Component {
                       <option value="32DDD/E">32E</option>
                       <option value="32F">32F</option>
                       <option value="32G">32G</option>
+                      <option value="32GG">32GG</option>
                       <option value="32H">32H</option>
-                      <option value="32I">32I</option>
-                      <option value="32J">32J</option>
                       <option value="34AA">34AA</option>
                       <option value="34A">34A</option>
                       <option value="34B">34B</option>
@@ -202,9 +205,8 @@ class AccountPage extends React.Component {
                       <option value="34DDD/E">34E</option>
                       <option value="34F">34F</option>
                       <option value="34G">34G</option>
+                      <option value="34GG">34GG</option>
                       <option value="34H">34H</option>
-                      <option value="34I">34I</option>
-                      <option value="34J">34J</option>
                       <option value="36AA">36AA</option>
                       <option value="36A">36A</option>
                       <option value="36B">36B</option>
@@ -214,9 +216,8 @@ class AccountPage extends React.Component {
                       <option value="36DDD/E">36E</option>
                       <option value="36F">36F</option>
                       <option value="36G">36G</option>
+                      <option value="36GG">36GG</option>
                       <option value="36H">36H</option>
-                      <option value="36I">36I</option>
-                      <option value="36J">36J</option>
                       <option value="38AA">38AA</option>
                       <option value="38A">38A</option>
                       <option value="38B">38B</option>
@@ -226,9 +227,8 @@ class AccountPage extends React.Component {
                       <option value="38DDD/E">38E</option>
                       <option value="38F">38F</option>
                       <option value="38G">38G</option>
+                      <option value="38GG">38GG</option>
                       <option value="38H">38H</option>
-                      <option value="38I">38I</option>
-                      <option value="38J">38J</option>
                     </select>
                     <label className="account-item-label">Bra size </label>
                   </div>
@@ -249,6 +249,13 @@ class AccountPage extends React.Component {
                       <option value="12">12</option>
                       <option value="14">14</option>
                       <option value="16">16</option>
+                      <option value="18">18</option>
+                      <option value="20">20</option>
+                      <option value="22">22</option>
+                      <option value="24">24</option>
+                      <option value="26">26</option>
+                      <option value="28">28</option>
+                      <option value="30">30</option>
                     </select>
                     <label className="account-item-label">Dress size </label>
                   </div>
@@ -273,6 +280,11 @@ class AccountPage extends React.Component {
                       <option value="34">34</option>
                       <option value="35">35</option>
                       <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
                     </select>
                     <label className="account-item-label">Waist (in.) </label>
                   </div>
@@ -287,32 +299,77 @@ class AccountPage extends React.Component {
                       <option value="33">33</option>
                       <option value="34">34</option>
                       <option value="35">35</option>
-                      <option value="37">36</option>
+                      <option value="36">36</option>
                       <option value="37">37</option>
                       <option value="38">38</option>
                       <option value="39">39</option>
                       <option value="40">40</option>
-                      <option value="40">41</option>
-                      <option value="40">42</option>
-                      <option value="40">43</option>
-                      <option value="40">44</option>
-                      <option value="40">45</option>
-                      <option value="40">46</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                      <option value="47">47</option>
+                      <option value="48">48</option>
+                      <option value="49">49</option>
+                      <option value="50">50</option>
+                      <option value="51">51</option>
+                      <option value="52">52</option>
                     </select>
                     <label className="account-item-label">Hips (in.) </label>
+                  </div>
+                  <div className="account-wrapper-item">
+                    <select
+                      value={this.state.bust}
+                      onChange={this.handleChange('bust')}
+                      name="bust"
+                      className="account-select account-select-sm"
+                    >
+                      <option value="30">30</option>
+                      <option value="32">31</option>
+                      <option value="32">32</option>
+                      <option value="33">33</option>
+                      <option value="34">34</option>
+                      <option value="35">35</option>
+                      <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                    </select>
+                    <label className="account-item-label">Bust (in.) </label>
                   </div>
                 </div>
               </form>
             </div>
-            <div style={{ marginTop: 50 }}>
-              <button className="account-save-btn" onClick={this.handleSubmit}>
-                <div style={{ position: 'relative' }}>Save</div>
-              </button>
-              {this.state.saved && (
-                <p className="account-saved-text">
-                  <i>Changes saved!</i>
-                </p>
-              )}
+            <div className="account-row account-row-2">
+              <div className="account-section-title-wrapper account-section-title-wrapper-2">
+                <button className="account-save-btn" onClick={this.handleSubmit}>
+                  <div style={{ position: 'relative' }}>Save</div>
+                </button>
+                {this.state.saved && (
+                  <div>
+                    <p className="account-saved-text">
+                      <i>Changes saved!</i>
+                    </p>
+                    <Link to="/results" className="account-back">
+                      <p className="account-section-title"> {`<`} Back to results</p>
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <div className="account-section-wrapper account-section-wrapper-2">
+                <Link to="/submit" className="account-back">
+                  <button className="account-review-button"> Review a dress</button>
+                </Link>
+              </div>
             </div>
             <div style={{ marginTop: 50, marginBottom: 50 }} className="account-row">
               <div className="account-section-title-wrapper" style={{ alignItems: 'flex-start' }}>

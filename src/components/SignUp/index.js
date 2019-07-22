@@ -14,7 +14,7 @@ const SignUpPage = () => (
 );
 
 function validate(heightft, heightin, size, bra, name, age, email, passwordOne, passwordTwo) {
-  var braRe = /[0-9][0-9][a-gA-G][a-gA-G]?[a-gA-G]?/;
+  var braRe = /[0-9][0-9][a-hA-H][a-hA-H]?[a-hA-H]?/;
   var emailRe = /^.+@.+\..+$/;
   heightft = parseInt(heightft, 10);
   heightin = parseInt(heightin, 10);
@@ -23,7 +23,7 @@ function validate(heightft, heightin, size, bra, name, age, email, passwordOne, 
   return {
     heightft: heightft.length === 0 || !Number.isInteger(heightft) || heightft < 4 || heightft > 6,
     heightin: heightin.length === 0 || !Number.isInteger(heightin) || heightin < 0 || heightin > 12,
-    size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1 || size > 16,
+    size: size.length === 0 || !Number.isInteger(size) || size % 2 === 1 || size > 30,
     age: age.length === 0 || !Number.isInteger(age),
     bra: bra.length === 0 || !bra.match(braRe),
     name: name.length === 0,
@@ -86,6 +86,34 @@ class SignUpFormBase extends Component {
         waist: 34,
         hips: 45,
         bust: 44
+      },
+      '18': {
+        waist: 35,
+        hips: 45
+      },
+      '20': {
+        waist: 37,
+        hips: 47
+      },
+      '22': {
+        waist: 39,
+        hips: 48
+      },
+      '24': {
+        waist: 40,
+        hips: 49
+      },
+      '26': {
+        waist: 41,
+        hips: 50
+      },
+      '28': {
+        waist: 42,
+        hips: 51
+      },
+      '30': {
+        waist: 43,
+        hips: 52
       }
     };
     this.state = {
@@ -128,19 +156,20 @@ class SignUpFormBase extends Component {
       }
     };
     this.braToBust = {
-      AA: 1,
-      A: 1,
-      B: 2,
-      C: 4,
-      D: 6,
-      DD: 8,
-      DDD: 10,
-      E: 10,
-      EE: 12,
-      F: 14,
-      G: 16
+      AA: 0,
+      A: 0,
+      B: 1,
+      C: 2,
+      D: 3,
+      DD: 4,
+      DDD: 5,
+      E: 5,
+      EE: 6,
+      F: 6,
+      G: 7,
+      GG: 8,
+      H: 8
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.modifyWaist = this.modifyWaist.bind(this);
     this.modifyHips = this.modifyHips.bind(this);
@@ -971,6 +1000,7 @@ class SignUpFormBase extends Component {
               className={isDisabled ? 'signup-results-btn-disabled' : 'signup-results-btn'}
               onClick={this.handleSubmit}
               disabled={isDisabled}
+              id="signup-flow-action"
             >
               Join the fam
               <img

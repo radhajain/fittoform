@@ -1,6 +1,7 @@
 .results-container-outer {
   width: 100vw;
   display: flex;
+  padding-top: 100px;
   padding-bottom: 50px;
   position: relative;
   scroll-behavior: smooth;
@@ -13,20 +14,34 @@
   position: relative;
 }
 
-.results-leftCol-fakeNav {
-  width: 60%;
+.results-fakeNav {
   height: 50px;
-  background-color: white;
+  display: flex;
+  flex-direction: row;
   position: fixed;
   top: 0px;
   left: 0px;
   z-index: 100;
+  width: 100%;
+}
+
+.results-fakeNav-rightCol {
+  flex-basis: 40%;
+  /* background-color: #ffd2ba; */
+  background-color: white;
+  height: 100%;
+}
+
+.results-fakeNav-leftCol {
+  flex-basis: 60%;
+  background-color: white;
+  height: 100%;
 }
 
 .results-leftCol-inner {
   height: 90%;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 50px;
   align-items: center;
   position: relative;
 }
@@ -49,10 +64,8 @@ input:focus {
 }
 
 .results-rightCol {
-  padding-top: 50px;
-  padding-bottom: 50px;
   width: 40%;
-  height: calc(100vh - 100px);
+  height: calc(100% - 150px);
   background-color: #ffd2ba;
   display: flex;
   justify-content: center;
@@ -89,6 +102,7 @@ input:focus {
   font-size: 1.5em;
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .results-your-measurements:hover {
@@ -146,6 +160,28 @@ input:focus {
   width: 250px;
 }
 
+.results-review-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.results-review {
+  font-size: 1.35em;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  color: #ffd2ba;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.results-review:hover {
+  text-decoration: underline;
+  color: #69dbd3;
+}
+
 .results-loadMore-btn-div {
   margin-top: 40px;
   padding-left: 40px;
@@ -181,7 +217,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 15px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_icon.png');
@@ -195,7 +231,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 15px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_outline.png');
@@ -203,6 +239,38 @@ input:focus {
   background-repeat: no-repeat;
   cursor: pointer;
   transition: all 0.4s ease;
+}
+
+.results-getReview-wrapper {
+  background-color: black;
+  display: flex;
+  width: calc(100% - 40px);
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  z-index: 99;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+}
+
+.results-getReview-text {
+  text-decoration: none;
+  transition: all 0.4s ease;
+  color: white;
+  font-weight: bold;
+  font-family: 'Helvetica Neue', sans-serif;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  font-size: 0.9em;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.results-getReview-text:hover {
+  text-decoration: underline;
 }
 
 .results-item-div {
@@ -217,6 +285,18 @@ input:focus {
   color: black;
   font-family: 'Helvetiva Neue', sans-serif;
   text-align: left;
+}
+
+.results-edit {
+  font-weight: bold;
+  color: black;
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.results-edit:hover {
+  text-decoration: underline;
 }
 
 .results-measurement-wrapper {
@@ -289,6 +369,16 @@ input:focus {
 
 .bold {
   font-weight: bolder;
+}
+
+@media (max-height: 880px) {
+  .results-loadMore-btn-div {
+    margin-top: 5px;
+  }
+
+  .results-leftCol-inner {
+    padding-top: 0px;
+  }
 }
 
 @media (max-height: 815px) {
@@ -440,17 +530,25 @@ input:focus {
   .results-leftCol {
     width: 55%;
   }
-
-  .results-leftCol-fakeNav {
-    width: 55%;
-  }
 }
 
 /* WRAP FOR MOBILE */
 
 @media (max-width: 540px) {
-  .results-leftCol-fakeNav {
-    width: 100%;
+  .results-col {
+    width: fit-content;
+  }
+
+  .results-getReview-wrapper {
+    position: relative;
+  }
+
+  .results-heart-fill {
+    top: 15px;
+  }
+
+  .results-heart-outline {
+    top: 15px;
   }
 
   .results-leftCol-inner {

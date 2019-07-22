@@ -7,8 +7,8 @@ import downArrow from '../../assets/images/down triangle.svg';
 import ProgressiveImage from 'react-progressive-image';
 import Modal from '../Modal';
 import upArrow from '../../assets/images/up arrow.svg';
-import heartOutline from '../../assets/images/heart_outline.png';
-import heartFilled from '../../assets/images/heart_icon.png';
+import { Link } from 'react-router-dom';
+import MakeRequest from '../MakeRequest';
 // import { Parallax } from 'react-scroll-parallax';
 
 class Results extends Component {
@@ -39,19 +39,20 @@ class Results extends Component {
     };
     //TODO: should be getting from authuser
     console.log(this.props.location.state);
+
     this.state = {
-      bust: this.props.location.state.bust,
-      height: this.props.location.state.height,
-      hips: this.props.location.state.hips,
-      waist: this.props.location.state.waist,
-      size: this.props.location.state.size,
-      bra: this.props.location.state.bra,
-      divID: this.props.location.state.divID ? this.props.location.state.divID : '00',
+      bust: '',
+      height: '',
+      hips: '',
+      waist: '',
+      size: '',
+      bra: '',
+      divID: '00',
       favorites: [],
       authUser: false,
       uid: null,
-      name: this.props.location.state.name ? this.props.location.state.name : '', //TODO: Also for auth user
-      fromItem: this.props.location.state.fromItem ? this.props.location.state.fromItem : false,
+      name: '', //TODO: Also for auth user
+      fromItem: false,
       closestMeasurements: '',
       dressGroupID: null,
       //DressIDObjs: {dressIDs: [dressID, dressID ...], ratings [10, 9 ...], reviewsIDs: [reviewID, reviewID ...]}
@@ -66,17 +67,33 @@ class Results extends Component {
       nextBestDressesIDs: [],
       //NextBestDresses: [{ measurement: "64, 27, 24, 38 ,dresses: [dressID, dressID...], ratings: [10, 9...], reviewIDs: [firebaseKey: {reviewID: "reviewID"}]}]
       nextBestDresses: [dressObj],
-      showMoreDresses: this.props.location.state.showMoreDresses
-        ? this.props.location.state.showMoreDresses
-        : false,
+      showMoreDresses: false,
       showRecInfo: true,
       currMeasurements: '',
       seenDresses: [],
       isModalShowing: false,
       isHomeModalShowing: false,
+      showMakeRequest: false,
       currDiv: 0,
-      modalMsg: ''
+      modalMsg: '',
+      requestedLinks: []
     };
+    if (this.props.location.state) {
+      this.state.bust = this.props.location.state.bust ? this.props.location.state.bust : '';
+      this.state.height = this.props.location.state.height ? this.props.location.state.height : '';
+      this.state.hips = this.props.location.state.hips ? this.props.location.state.hips : '';
+      this.state.waist = this.props.location.state.waist ? this.props.location.state.waist : '';
+      this.state.size = this.props.location.state.size ? this.props.location.state.size : '';
+      this.state.bra = this.props.location.state.bra ? this.props.location.state.bra : '';
+      this.state.divID = this.props.location.state.divID ? this.props.location.state.divID : '00';
+      this.state.name = this.props.location.state.name ? this.props.location.state.name : '';
+      this.state.fromItem = this.props.location.state.fromItem
+        ? this.props.location.state.fromItem
+        : false;
+      this.state.showMoreDresses = this.props.location.state.showMoreDresses
+        ? this.props.location.state.showMoreDresses
+        : false;
+    }
     console.log(this.state);
     this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
     this.getBestDressesID = this.getBestDressesID.bind(this);
@@ -97,11 +114,16 @@ class Results extends Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.getRecommendedStr = this.getRecommendedStr.bind(this);
     this.openModalHandler = this.openModalHandler.bind(this);
+    this.openHomeModalHandler = this.openHomeModalHandler.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
-    this.createAccount = this.createAccount.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
     this.toggleFavoriteDress = this.toggleFavoriteDress.bind(this);
     this.createAccountToAccount = this.createAccountToAccount.bind(this);
+    this.createAccountAndRefresh = this.createAccountAndRefresh.bind(this);
+    this.makeReviewRequest = this.makeReviewRequest.bind(this);
+    this.showMakeRequestModal = this.showMakeRequestModal.bind(this);
+    this.showMoreDresses = this.showMoreDresses.bind(this);
+    this.goToSubmitDress = this.goToSubmitDress.bind(this);
   }
 
   toggleFavoriteDress(selectedDressKey) {
@@ -136,6 +158,38 @@ class Results extends Component {
     }
   }
 
+  makeReviewRequest(link) {
+    if (this.state.authUser) {
+      console.log(link);
+      this.closeModalHandler();
+      let requestedRef = firebase.database().ref('requested');
+      var newRequest = requestedRef.push();
+      newRequest.set({
+        uid: this.state.uid,
+        height: this.state.height,
+        waist: this.state.waist,
+        bust: this.state.bust,
+        hips: this.state.hips,
+        name: this.state.name,
+        bra: this.state.bra,
+        dressLink: link
+      });
+      //Since this is an array, will only add it if it is unique
+      this.setState({
+        requestedLinks: [...this.state.requestedLinks, link]
+      });
+      let UserRef = firebase
+        .database()
+        .ref('users')
+        .child(`${this.state.uid}`);
+      UserRef.update({
+        requestedLinks: this.state.requestedLinks
+      });
+      console.log(this.state);
+      //If already exists then don't add
+    }
+  }
+
   openModalHandler = msg => {
     //if auth user then go to account
     if (this.state.authUser) {
@@ -150,10 +204,24 @@ class Results extends Component {
     }
   };
 
+  openHomeModalHandler = msg => {
+    if (this.state.authUser) {
+      this.props.history.push({
+        pathname: '/results'
+      });
+    } else {
+      this.setState({
+        modalMsg: msg,
+        isHomeModalShowing: true
+      });
+    }
+  };
+
   closeModalHandler = () => {
     this.setState({
       isModalShowing: false,
-      isHomeModalShowing: false
+      isHomeModalShowing: false,
+      showMakeRequest: false
     });
   };
 
@@ -164,7 +232,23 @@ class Results extends Component {
   };
 
   createAccountToAccount = (name, email, password) => {
-    this.createAccount(name, email, password)
+    this.closeModalHandler();
+    const { bust, height, size, waist, hips, bra } = this.state;
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, password)
+      .then(authUser => {
+        // Create a user in your Firebase realtime database
+        return this.props.firebase.user(authUser.user.uid).set({
+          email: email,
+          name: name,
+          height: height,
+          waist: waist,
+          bust: bust,
+          hips: hips,
+          size: size,
+          bra: bra
+        });
+      })
       .then(authUser => {
         this.props.history.push({
           pathname: '/account'
@@ -175,22 +259,36 @@ class Results extends Component {
       });
   };
 
-  createAccount = (name, email, password) => {
+  createAccountAndRefresh = (name, email, password) => {
     this.closeModalHandler();
     const { bust, height, size, waist, hips, bra } = this.state;
-    this.props.firebase.doCreateUserWithEmailAndPassword(email, password).then(authUser => {
-      // Create a user in your Firebase realtime database
-      return this.props.firebase.user(authUser.user.uid).set({
-        email: email,
-        name: name,
-        height: height,
-        waist: waist,
-        bust: bust,
-        hips: hips,
-        size: size,
-        bra: bra
+    if (this.state.requestLink) {
+      console.log(this.requestLink);
+      //TODO: Then add it to the user object?
+    }
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, password)
+      .then(authUser => {
+        // Create a user in your Firebase realtime database
+        return this.props.firebase.user(authUser.user.uid).set({
+          email: email,
+          name: name,
+          height: height,
+          waist: waist,
+          bust: bust,
+          hips: hips,
+          size: size,
+          bra: bra
+        });
+      })
+      .then(authUser => {
+        this.props.history.push({
+          pathname: '/results'
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
-    });
   };
 
   isElementInViewport(el) {
@@ -230,10 +328,12 @@ class Results extends Component {
               bust: user.bust,
               size: user.size,
               bra: user.bra,
-              favorites: user.favorites ? user.favorites : []
+              favorites: user.favorites ? user.favorites : [],
+              requestedLinks: user.requestedLinks ? user.requestedLinks : []
             },
             () => {
               console.log(this.state);
+              this.loadData();
             }
           );
         });
@@ -241,36 +341,43 @@ class Results extends Component {
     });
   }
 
+  loadData() {
+    this.getBestDressGroupID().then(result => {
+      result[3].sort((a, b) => (a.diff > b.diff ? 1 : -1));
+      let nextBestDresses = result[3].map(a => a.closestMeasurements);
+      var exactMatchIdx = nextBestDresses.indexOf(result[0]);
+      if (exactMatchIdx > -1) {
+        nextBestDresses.splice(exactMatchIdx, 1);
+      }
+      this.setState(
+        {
+          exactMatch: result[2] === 0 ? true : false,
+          dressGroupID: result[1],
+          closestMeasurements: result[0],
+          currMeasurements: result[0],
+          nextBestDressGroupIDs: nextBestDresses
+        },
+        () => {
+          this.getBestDressesID(result[1]);
+          if (this.state.showMoreDresses) {
+            this.getNextBestDressesID();
+          }
+        }
+      );
+    });
+    window.scrollTo(0, 0);
+  }
+
   componentDidMount() {
     this._isMounted = true;
     this.authlistener = this.authlistener.bind(this);
+    this.loadData = this.loadData.bind(this);
     if (this._isMounted) {
       this.authlistener();
       window.addEventListener('scroll', this.handleScroll);
-      this.getBestDressGroupID().then(result => {
-        result[3].sort((a, b) => (a.diff > b.diff ? 1 : -1));
-        let nextBestDresses = result[3].map(a => a.closestMeasurements);
-        var exactMatchIdx = nextBestDresses.indexOf(result[0]);
-        if (exactMatchIdx > -1) {
-          nextBestDresses.splice(exactMatchIdx, 1);
-        }
-        this.setState(
-          {
-            exactMatch: result[2] === 0 ? true : false,
-            dressGroupID: result[1],
-            closestMeasurements: result[0],
-            currMeasurements: result[0],
-            nextBestDressGroupIDs: nextBestDresses
-          },
-          () => {
-            this.getBestDressesID(result[1]);
-            if (this.state.showMoreDresses) {
-              this.getNextBestDressesID();
-            }
-          }
-        );
-      });
-      window.scrollTo(0, 0);
+      if (!this.state.authUser && this.props.location.state) {
+        this.loadData();
+      }
     }
   }
 
@@ -298,7 +405,6 @@ class Results extends Component {
               currDiv: i
             });
           }
-          console.log(this.state);
         }
       }
     }
@@ -316,7 +422,7 @@ class Results extends Component {
     this.refs.resultsName.blur();
     if (this.state.name.length !== 0) {
       var capitalizedName = this.state.name.charAt(0).toUpperCase() + this.state.name.slice(1);
-      this.openModalHandler('Hey ' + capitalizedName + ', sign up to save your results.');
+      this.openHomeModalHandler('Hey ' + capitalizedName + ', sign up to save your results.');
     }
   }
 
@@ -330,44 +436,46 @@ class Results extends Component {
     var closestMeasurements, dressGroupID;
     var nextBestDressGroupIDs = [];
     var nextBestDressesOpenSpaces = 9;
-    var minimumNextBestDiff = 3;
+    var maxNextBestDiff = 3;
     var measurementsRef = firebase.database().ref('measurements');
     return new Promise((resolve, reject) => {
       measurementsRef.once('value').then(snapshot => {
         snapshot.forEach(measurement => {
           var values = measurement.val();
-          var diffSq =
-            Math.pow(values.height - this.state.height, 2) +
-            Math.pow(values.waist - this.state.waist, 2) +
-            Math.pow(values.bust - this.state.bust, 2) +
-            Math.pow(values.hips - this.state.hips, 2);
-          if (nextBestDressesOpenSpaces > 0 && Math.sqrt(diffSq) < 3) {
-            var dressIDObj = { diff: Math.sqrt(diffSq), closestMeasurements: values };
+          var diffAbs =
+            Math.abs(values.height - this.state.height) +
+            Math.abs(values.waist - this.state.waist) +
+            Math.abs(values.bust - this.state.bust) +
+            Math.abs(values.hips - this.state.hips);
+          if (nextBestDressesOpenSpaces > 0 && diffAbs < maxNextBestDiff) {
+            var dressIDObj = { diff: diffAbs, closestMeasurements: values };
             nextBestDressGroupIDs.push(dressIDObj);
             nextBestDressesOpenSpaces = nextBestDressesOpenSpaces - 1;
           } else {
-            if (Math.sqrt(diffSq) < minimumNextBestDiff) {
-              var dressIDObj = { diff: Math.sqrt(diffSq), closestMeasurements: values };
+            if (diffAbs < maxNextBestDiff) {
+              var dressIDObj = { diff: diffAbs, closestMeasurements: values };
               nextBestDressGroupIDs.push(dressIDObj);
-              var newMin = Number.MAX_VALUE;
-              var lowestIndex = 8;
+              var newMax = Number.MIN_VALUE;
+              var highestIdx = 8;
+              for (var i = 0; i < nextBestDressGroupIDs.length; i++) {
+                var dressIDObj = nextBestDressGroupIDs[i];
+                if (dressIDObj.diff > newMax) {
+                  newMax = dressIDObj.diff;
+                  highestIdx = i;
+                }
+              }
+              nextBestDressGroupIDs.splice(highestIdx, 1);
+              newMax = Number.MIN_VALUE;
               nextBestDressGroupIDs.forEach((dressIDObj, idx) => {
-                if (dressIDObj.diff < newMin) {
-                  newMin = dressIDObj.diff;
-                  lowestIndex = idx;
+                if (dressIDObj.diff > newMax) {
+                  newMax = dressIDObj.diff;
                 }
               });
-              nextBestDressGroupIDs.splice(lowestIndex, 1);
-              nextBestDressGroupIDs.forEach((dressIDObj, idx) => {
-                if (dressIDObj.diff < newMin) {
-                  newMin = dressIDObj.diff;
-                }
-              });
-              minimumNextBestDiff = newMin;
+              maxNextBestDiff = newMax;
             }
           }
-          if (Math.sqrt(diffSq) < lowestDiff) {
-            lowestDiff = Math.sqrt(diffSq);
+          if (diffAbs < lowestDiff) {
+            lowestDiff = diffAbs;
             closestMeasurements = values;
             dressGroupID = values.dressGroupID;
           }
@@ -454,32 +562,35 @@ class Results extends Component {
 
   // GET NEXT BEST DRESSES
 
-  getNextBestDressesID() {
+  showMoreDresses() {
     if (!this.state.authUser) {
       this.setState({
         modalMsg: 'Create an account to see more dresses picked for you',
-        isHomeModalShowing: true
-      });
-    } else {
-      var promises = [];
-      var nextBestDressesIDs = [];
-      for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
-        promises.push(
-          this.getNextBestDressesIDHelper(
-            dressGroupRef.dressGroupID,
-            dressGroupRef.concatMtms
-          ).then(dresses => {
-            nextBestDressesIDs.push(dresses);
-          })
-        );
-      }
-      Promise.all(promises).then(dresses => {
-        this.setState({
-          nextBestDressesIDs: nextBestDressesIDs
-        });
-        this.getNextBestDressesInfo(nextBestDressesIDs);
+        isHomeModalShowing: true,
+        modalDismiss: true
       });
     }
+    this.getNextBestDressesID();
+  }
+
+  getNextBestDressesID() {
+    var promises = [];
+    var nextBestDressesIDs = [];
+    for (const dressGroupRef of this.state.nextBestDressGroupIDs) {
+      promises.push(
+        this.getNextBestDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
+          dresses => {
+            nextBestDressesIDs.push(dresses);
+          }
+        )
+      );
+    }
+    Promise.all(promises).then(dresses => {
+      this.setState({
+        nextBestDressesIDs: nextBestDressesIDs
+      });
+      this.getNextBestDressesInfo(nextBestDressesIDs);
+    });
   }
 
   //Returns the dressIDs in the best dress group
@@ -560,7 +671,9 @@ class Results extends Component {
           console.log(this.state);
           if (!this.state.fromItem) {
             var firstPage = document.getElementById(1);
-            firstPage.scrollIntoView({ behavior: 'smooth' });
+            if (firstPage) {
+              firstPage.scrollIntoView({ behavior: 'smooth' });
+            }
           } else if (this.state.divID) {
             var currPage = document.getElementById(this.state.divID);
             const yCoordinate = currPage.getBoundingClientRect().top - 200;
@@ -659,6 +772,30 @@ class Results extends Component {
     return recommmendedArr;
   }
 
+  showMakeRequestModal() {
+    if (!this.state.authUser) {
+      this.setState({
+        modalMsg: 'Create an account to request a dress review',
+        isHomeModalShowing: true
+      });
+    } else {
+      this.setState({
+        showMakeRequest: true
+      });
+    }
+  }
+
+  goToSubmitDress() {
+    if (this.state.authUser) {
+      this.props.history.push('/submit');
+    } else {
+      this.setState({
+        modalMsg: 'First, create an account to save your measurements.',
+        isHomeModalShowing: true
+      });
+    }
+  }
+
   render() {
     const itemDivClass =
       this.state.dressesObjs.dresses.length === 1
@@ -672,9 +809,18 @@ class Results extends Component {
     const placeholder = <div style={{ backgroundColor: '#E2F8F6', height: 500, width: 350 }} />;
     return (
       <div>
+        <div className="results-fakeNav">
+          <div className="results-fakeNav-leftCol"></div>
+          <div className="results-fakeNav-rightCol"></div>
+        </div>
+        <div className="results-getReview-wrapper">
+          <p className="results-getReview-text" onClick={this.showMakeRequestModal}>
+            Have a particular dress in mind? Request a review
+          </p>
+        </div>
         <div className="results-container-outer">
           <div className="results-leftCol">
-            <div className="results-leftCol-fakeNav"></div>
+            {/* <div className="results-leftCol-fakeNav"></div> */}
             <div className="results-leftCol-inner">
               <Modal
                 className="modal"
@@ -690,12 +836,19 @@ class Results extends Component {
                 className="modal"
                 show={this.state.isHomeModalShowing}
                 close={this.closeModalHandler}
-                createAccount={this.createAccount}
+                createAccount={this.createAccountAndRefresh}
                 goToSignIn={this.goToSignIn}
                 name={this.state.name}
                 btnMsg="Join the FtF Fam"
                 message={this.state.modalMsg}
               ></Modal>
+              <MakeRequest
+                show={this.state.showMakeRequest}
+                close={this.closeModalHandler}
+                makeReviewRequest={this.makeReviewRequest}
+                name={this.state.name}
+              ></MakeRequest>
+
               <div className="results-grid" id="0">
                 {this.state.dressesObjs.dresses &&
                   this.state.dressesObjs.dresses.map((dress, key) => {
@@ -766,7 +919,7 @@ class Results extends Component {
               {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && (
                 <div className="results-loadMore-btn-div">
                   <div className="results-loadMore-wrapper">
-                    <button className="results-loadMore-btn" onClick={this.getNextBestDressesID}>
+                    <button className="results-loadMore-btn" onClick={this.showMoreDresses}>
                       <div className="click-loadmore" style={{ position: 'relative' }}>
                         Show near perfect matches
                       </div>
@@ -865,6 +1018,13 @@ class Results extends Component {
                       </div>
                     )
                 )}
+              {this.state.showMoreDresses && (
+                <div className="results-review-wrapper">
+                  <p className="results-review" onClick={this.goToSubmitDress}>
+                    Want to see more results? Review one of your dresses
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <div className={rightColClass}>
@@ -917,6 +1077,15 @@ class Results extends Component {
                 >
                   {this.getHeightStr(this.state.height)}, Bust: {this.state.bust}, Waist:{' '}
                   {this.state.waist}, Hips: {this.state.hips}
+                </p>
+                <p
+                  className="results-edit"
+                  onClick={() =>
+                    this.openModalHandler('Know your exact measurements? Create an account to edit')
+                  }
+                  style={{ cursor: 'pointer' }}
+                >
+                  Edit
                 </p>
               </div>
             </div>
