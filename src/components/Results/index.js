@@ -442,11 +442,20 @@ class Results extends Component {
       measurementsRef.once('value').then(snapshot => {
         snapshot.forEach(measurement => {
           var values = measurement.val();
+          var heightDiff =
+            Math.abs(values.height - this.state.height) <= 1 &&
+            Math.abs(values.height - this.state.height) > 0
+              ? 0.1
+              : Math.abs(values.height - this.state.height);
+          var hipsDiff = Math.abs(values.hips - this.state.hips);
+          if (values.hips >= this.state.hips && values.hips - this.state.hips <= 1.5) {
+            hipsDiff = 0.1;
+          }
           var diffAbs =
-            Math.abs(values.height - this.state.height) +
+            heightDiff +
             Math.abs(values.waist - this.state.waist) +
             Math.abs(values.bust - this.state.bust) +
-            Math.abs(values.hips - this.state.hips);
+            hipsDiff;
           if (nextBestDressesOpenSpaces > 0 && diffAbs < maxNextBestDiff) {
             var dressIDObj = { diff: diffAbs, closestMeasurements: values };
             nextBestDressGroupIDs.push(dressIDObj);

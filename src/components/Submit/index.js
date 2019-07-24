@@ -3,6 +3,8 @@ import './Submit.css';
 import firebase from 'firebase';
 import { FooterSmall } from '../Footer';
 
+//TODO: slider for quality, discrete button select for length of dress, tightness around the bust/waist/butt, comfort level, [tight, fitted, loose, large]
+
 class Submit extends React.Component {
   constructor(props) {
     super(props);
