@@ -217,7 +217,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 15px;
+  top: 30px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_icon.png');
@@ -231,7 +231,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 15px;
+  top: 35px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_outline.png');
@@ -377,7 +377,7 @@ input:focus {
   }
 
   .results-leftCol-inner {
-    padding-top: 0px;
+    padding-top: 20px;
   }
 }
 
@@ -388,9 +388,34 @@ input:focus {
   }
 }
 
-@media (max-height: 785px) {
+@media (max-height: 800px) {
   .results-loadMore-btn-div {
     margin-top: 0px;
+  }
+
+  .results-measurement-label {
+    font-size: 1.75em;
+  }
+
+  .results-measurement {
+    font-size: 1.75em;
+  }
+
+  .results-your-measurements {
+    margin-top: 5px;
+  }
+
+  .results-match {
+    margin-bottom: 0px;
+  }
+
+  .results-input {
+    font-size: 1.75em;
+  }
+
+  .results-text {
+    margin-bottom: 10px;
+    font-size: 1em;
   }
 }
 

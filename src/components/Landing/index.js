@@ -105,7 +105,7 @@ class Landing extends React.Component {
                 textAlign: 'center'
               }}
             >
-              In SF? Checkout our FtF pop up, 07/21 - 07/29
+              In SF? Check out our FtF Pop Up, 07/25 - 07/28
             </p>
           </Link>
         </div>

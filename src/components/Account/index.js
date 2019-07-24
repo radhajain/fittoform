@@ -37,7 +37,7 @@ class AccountPage extends React.Component {
       bra: '',
       email: '',
       saved: false,
-      showMakeRequest: true,
+      showMakeRequest: false,
       requestedLinks: []
     };
     this.handleChange = this.handleChange.bind(this);

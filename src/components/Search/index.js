@@ -25,42 +25,42 @@ class Search extends Component {
       },
       '0': {
         waist: 25,
-        hips: 37,
+        hips: 35,
         bust: 32
       },
       '2': {
         waist: 26,
-        hips: 38,
+        hips: 36,
         bust: 33
       },
       '4': {
         waist: 27,
-        hips: 39,
+        hips: 37,
         bust: 34
       },
       '6': {
         waist: 28,
-        hips: 40,
+        hips: 39,
         bust: 35
       },
       '8': {
         waist: 30,
-        hips: 42,
+        hips: 41,
         bust: 37
       },
       '10': {
         waist: 32,
-        hips: 44,
+        hips: 43,
         bust: 39
       },
       '12': {
         waist: 34,
-        hips: 46,
+        hips: 45,
         bust: 41
       },
       '14': {
         waist: 38,
-        hips: 48,
+        hips: 47,
         bust: 44
       },
       '16': {
