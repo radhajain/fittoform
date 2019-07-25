@@ -22,7 +22,8 @@ class Submit extends React.Component {
       height: '',
       bust: '',
       bra: '',
-      userSize: ''
+      userSize: '',
+      submitted: false
     };
     this.onChange = this.onChange.bind(this);
     this.getUserData = this.getUserData.bind(this);
@@ -52,7 +53,8 @@ class Submit extends React.Component {
       dressLink: this.state.link,
       sizeBought: this.state.size,
       review: this.state.review,
-      rating: this.state.rating
+      rating: this.state.rating,
+      submitted: true
     });
     this.setState({
       link: '',
@@ -185,6 +187,11 @@ class Submit extends React.Component {
               <button className="submit-btn" disabled={isInvalid} type="submit">
                 Submit
               </button>
+              {this.state.submitted && (
+                <p className="submit-thankyou">
+                  Thank you for your dress review! Other women your size appreciate it.
+                </p>
+              )}
             </form>
           </div>
         </div>

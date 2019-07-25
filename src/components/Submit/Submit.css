@@ -35,6 +35,13 @@
   color: white;
 }
 
+.submit-thankyou {
+  color: black;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  margin-top: 0px;
+}
+
 .submit-input {
   background-color: #69dbd3;
   border: none;
