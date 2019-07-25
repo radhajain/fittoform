@@ -814,6 +814,10 @@ class Results extends Component {
     }
   }
 
+  getWholePrice(price) {
+    return Math.round(price);
+  }
+
   render() {
     const itemDivClass =
       this.state.dressesObjs.dresses.length === 1
@@ -928,7 +932,7 @@ class Results extends Component {
                                 women like you
                               </p>
                               <p className="results-brand">
-                                {dress.brand} ${dress.price}
+                                {dress.brand} ${this.getWholePrice(dress.price)}
                               </p>
                               <p className="results-color">{this.getNumColors(dress.color)}</p>
                             </div>
@@ -1030,7 +1034,7 @@ class Results extends Component {
                                         like you
                                       </p>
                                       <p className="results-brand">
-                                        {dress.brand} ${dress.price}
+                                        {dress.brand} ${this.getWholePrice(dress.price)}
                                       </p>
                                       <p className="results-color">
                                         {this.getNumColors(dress.color)}
