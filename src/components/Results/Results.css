@@ -202,7 +202,7 @@ input:focus {
 }
 
 .results-margin-top {
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .results-col {
@@ -217,7 +217,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 30px;
+  top: 15px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_icon.png');
@@ -231,7 +231,7 @@ input:focus {
   width: 15px;
   position: absolute;
   right: 0px;
-  top: 35px;
+  top: 15px;
   padding: 10px;
   z-index: 10;
   background-image: url('../../assets/images/heart_outline.png');
@@ -278,6 +278,7 @@ input:focus {
   text-align: center;
   height: 100%;
   width: 100%;
+  padding-bottom: 70px;
 }
 
 .results-text {
@@ -336,7 +337,7 @@ input:focus {
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
   color: black;
-  font-size: 1.25em;
+  font-size: 1.15em;
   margin-top: 0;
 }
 
@@ -345,7 +346,25 @@ input:focus {
   font-weight: bold;
   color: black;
   margin-bottom: 5px;
-  margin-top: 40px;
+  margin-top: 20px;
+  font-size: 0.85em;
+}
+
+.results-color {
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 0.85em;
+}
+
+.results-brand {
+  font-family: 'Helvetiva Neue', sans-serif;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .results-img {
@@ -497,7 +516,11 @@ input:focus {
   }
 
   .results-rating {
-    font-size: 0.9em;
+    font-size: 0.75em;
+  }
+
+  .results-brand {
+    font-size: 0.85em;
   }
 
   .results-input {
