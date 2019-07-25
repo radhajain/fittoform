@@ -436,7 +436,7 @@ class Results extends Component {
     var closestMeasurements, dressGroupID;
     var nextBestDressGroupIDs = [];
     var nextBestDressesOpenSpaces = 9;
-    var maxNextBestDiff = 3;
+    var maxNextBestDiff = 5;
     var measurementsRef = firebase.database().ref('measurements');
     return new Promise((resolve, reject) => {
       measurementsRef.once('value').then(snapshot => {
@@ -805,6 +805,15 @@ class Results extends Component {
     }
   }
 
+  getNumColors(colors) {
+    if (colors.indexOf(',') > -1) {
+      var colorsArr = colors.split(',');
+      return colorsArr.length + ' colors';
+    } else {
+      return '';
+    }
+  }
+
   render() {
     const itemDivClass =
       this.state.dressesObjs.dresses.length === 1
@@ -912,12 +921,16 @@ class Results extends Component {
                                   this.state.dressGroupID
                                 )
                               }
+                              style={{ textAlign: 'left', cursor: 'pointer' }}
                             >
                               <p className="results-rating">
                                 Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
                                 women like you
                               </p>
-                              <p className="results-price">${dress.price}</p>
+                              <p className="results-brand">
+                                {dress.brand} ${dress.price}
+                              </p>
+                              <p className="results-color">{this.getNumColors(dress.color)}</p>
                             </div>
                           </div>
                         </div>
@@ -1000,7 +1013,7 @@ class Results extends Component {
                                       }}
                                     </ProgressiveImage>
                                     <div
-                                      style={{ cursor: 'pointer' }}
+                                      style={{ cursor: 'pointer', textAlign: 'left' }}
                                       onClick={() =>
                                         this.goToItemView(
                                           dress,
@@ -1016,7 +1029,12 @@ class Results extends Component {
                                         Rated {this.getRating(dressObj.ratings[key])}/10 by women
                                         like you
                                       </p>
-                                      <p className="results-price">${dress.price}</p>
+                                      <p className="results-brand">
+                                        {dress.brand} ${dress.price}
+                                      </p>
+                                      <p className="results-color">
+                                        {this.getNumColors(dress.color)}
+                                      </p>
                                     </div>
                                   </div>
                                 )}
@@ -1029,7 +1047,11 @@ class Results extends Component {
                 )}
               {this.state.showMoreDresses && (
                 <div className="results-review-wrapper">
-                  <p className="results-review" onClick={this.goToSubmitDress}>
+                  <p
+                    className="results-review"
+                    onClick={this.goToSubmitDress}
+                    style={{ cursor: 'pointer' }}
+                  >
                     Want to see more results? Review one of your dresses
                   </p>
                 </div>
