@@ -6,7 +6,7 @@ import * as ROUTES from '../../constants/routes';
 import { AuthUserContext, withAuthorization } from '../Session';
 import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
-import WhiteArrow from '../../assets/images/down triangle.svg';
+import blackArrow from '../../assets/images/down-triangle-black.svg';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class NavigationAuth extends React.Component {
               <Link to={ROUTES.ACCOUNT}>
                 <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
               </Link>
-              <img src={WhiteArrow} className="nav-whitearrow" />
+              <img src={blackArrow} className="nav-whitearrow" />
               <div className="dropdown-content">
                 <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">
                   Your Profile
@@ -122,6 +122,10 @@ class NavigationAuth extends React.Component {
                 <hr></hr>
                 <Link to={ROUTES.SUBMIT} className="nav-profile-btn">
                   Review a dress
+                </Link>
+                <hr></hr>
+                <Link to={ROUTES.PROMO} className="nav-profile-btn">
+                  Redeem Promo
                 </Link>
                 <hr></hr>
                 <SignOutButton />

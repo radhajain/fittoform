@@ -1,0 +1,73 @@
+.promo {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffd2ba;
+}
+
+.promo-inner {
+  height: calc(100vh - 100px);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4em;
+  margin-bottom: 20px;
+}
+
+.promo-content {
+  max-width: 500px;
+}
+
+.promo-subtitle {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  margin: 12px 0px;
+}
+
+.promo-input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  font-weight: bold;
+  font-family: 'Helvetiva Neue', sans-serif;
+  text-align: left;
+  width: 300px;
+  font-size: 1.5em;
+  border-radius: 0px;
+  height: 40px;
+}
+
+.promo-form ::placeholder {
+  font-size: 1.5em;
+}
+
+.promo-form-div {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.promo-btn {
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.4em;
+  border: none;
+  padding: 12px 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.promo-btn:hover {
+  background-color: black;
+  color: white;
+}

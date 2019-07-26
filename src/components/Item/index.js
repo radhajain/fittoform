@@ -278,9 +278,11 @@ class Item extends Component {
         .database()
         .ref('users')
         .child(`${this.state.uid}`);
-      UserRef.update({
-        shoppedLinks: shoppedLinks
-      });
+      if (UserRef) {
+        UserRef.update({
+          shoppedLinks: shoppedLinks
+        });
+      }
     }
     window.open(this.state.item.dressLink, '_blank');
   }

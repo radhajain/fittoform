@@ -22,6 +22,7 @@ import HttpsRedirect from 'react-https-redirect';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import Popup from '../Popup';
 import SubmitPage from '../Submit';
+import PromoPage from '../Promo';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -58,6 +59,7 @@ class App extends React.Component {
               <Route path={ROUTES.FAVORITES} component={FavoritesPage} />
               <Route path={ROUTES.POPUP} component={Popup} />
               <Route path={ROUTES.SUBMIT} component={SubmitPage} />
+              <Route path={ROUTES.PROMO} component={PromoPage} />
             </div>
           </ParallaxProvider>
         </Router>
