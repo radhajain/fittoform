@@ -16,6 +16,7 @@
   flex-direction: row;
   width: 90%;
   height: 100%;
+  max-width: 1440px;
 }
 
 .results-leftCol {
@@ -316,6 +317,8 @@ input:focus {
   font-size: 1em;
   margin-top: 5px;
   text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .results-edit:hover {

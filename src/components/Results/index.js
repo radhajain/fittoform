@@ -458,8 +458,8 @@ class Results extends Component {
     var lowestDiff = Number.MAX_VALUE;
     var closestMeasurements, dressGroupID;
     var nextBestDressGroupIDs = [];
-    var nextBestDressesOpenSpaces = 9;
-    var maxNextBestDiff = 5;
+    var nextBestDressesOpenSpaces = 40;
+    var maxNextBestDiff = 4;
     var measurementsRef = firebase.database().ref('measurements');
     return new Promise((resolve, reject) => {
       measurementsRef.once('value').then(snapshot => {
@@ -1096,7 +1096,7 @@ class Results extends Component {
                     onClick={this.dismissRecommendationPanel}
                   />
                 </div>
-                {this.state.showCurrMeasurement && (
+                {this.state.showCurrMeasurement && this.state.currMeasurements && (
                   <div className="results-recommended-div">
                     <p className="results-text">Recommended by women that are</p>
                     <p className="results-text-large">
@@ -1127,8 +1127,8 @@ class Results extends Component {
                     }
                     style={{ cursor: 'pointer' }}
                   >
-                    {this.getHeightStr(this.state.height)}, Bust: {this.state.bust}, Waist:{' '}
-                    {this.state.waist}, Hips: {this.state.hips}
+                    {this.getHeightStr(this.state.height)}, Bust {this.state.bust}, Waist{' '}
+                    {this.state.waist}, Hips {this.state.hips}
                   </p>
                   <p
                     className="results-edit"
@@ -1137,7 +1137,6 @@ class Results extends Component {
                         'Know your exact measurements? Create an account to edit'
                       )
                     }
-                    style={{ cursor: 'pointer' }}
                   >
                     Edit
                   </p>
