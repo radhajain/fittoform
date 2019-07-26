@@ -841,300 +841,302 @@ class Results extends Component {
           </p>
         </div>
         <div className="results-container-outer">
-          <div className="results-leftCol">
-            {/* <div className="results-leftCol-fakeNav"></div> */}
-            <div className="results-leftCol-inner">
-              <Modal
-                className="modal"
-                show={this.state.isModalShowing}
-                close={this.closeModalHandler}
-                createAccount={this.createAccountToAccount}
-                goToSignIn={this.goToSignIn}
-                name={this.state.name}
-                btnMsg="Join the FtF Fam"
-                message={this.state.modalMsg}
-              ></Modal>
-              <Modal
-                className="modal"
-                show={this.state.isHomeModalShowing}
-                close={this.closeModalHandler}
-                createAccount={this.createAccountAndRefresh}
-                goToSignIn={this.goToSignIn}
-                name={this.state.name}
-                btnMsg="Join the FtF Fam"
-                message={this.state.modalMsg}
-              ></Modal>
-              <MakeRequest
-                show={this.state.showMakeRequest}
-                close={this.closeModalHandler}
-                makeReviewRequest={this.makeReviewRequest}
-                name={this.state.name}
-              ></MakeRequest>
+          <div className="results-container-inner">
+            <div className="results-leftCol">
+              {/* <div className="results-leftCol-fakeNav"></div> */}
+              <div className="results-leftCol-inner">
+                <Modal
+                  className="modal"
+                  show={this.state.isModalShowing}
+                  close={this.closeModalHandler}
+                  createAccount={this.createAccountToAccount}
+                  goToSignIn={this.goToSignIn}
+                  name={this.state.name}
+                  btnMsg="Join the FtF Fam"
+                  message={this.state.modalMsg}
+                ></Modal>
+                <Modal
+                  className="modal"
+                  show={this.state.isHomeModalShowing}
+                  close={this.closeModalHandler}
+                  createAccount={this.createAccountAndRefresh}
+                  goToSignIn={this.goToSignIn}
+                  name={this.state.name}
+                  btnMsg="Join the FtF Fam"
+                  message={this.state.modalMsg}
+                ></Modal>
+                <MakeRequest
+                  show={this.state.showMakeRequest}
+                  close={this.closeModalHandler}
+                  makeReviewRequest={this.makeReviewRequest}
+                  name={this.state.name}
+                ></MakeRequest>
 
-              <div className="results-grid" id="0">
-                {this.state.dressesObjs.dresses &&
-                  this.state.dressesObjs.dresses.map((dress, key) => {
-                    return (
-                      dress && (
-                        <div className="results-col" id={'0' + key} key={key}>
-                          <div className={itemDivClass}>
-                            <div
-                              onClick={() =>
-                                this.toggleFavoriteDress(this.state.dressesObjs.dressIDs[key])
-                              }
-                              className={
-                                !this.state.favorites ||
-                                this.state.favorites.indexOf(
-                                  this.state.dressesObjs.dressIDs[key]
-                                ) === -1
-                                  ? 'results-heart-outline'
-                                  : 'results-heart-fill'
-                              }
-                            />
-                            <ProgressiveImage src={dress.img}>
-                              {(src, loading) => {
-                                return loading ? (
-                                  placeholder
-                                ) : (
-                                  <img
-                                    src={src}
-                                    alt="dress image"
-                                    className="results-img"
-                                    onClick={() =>
-                                      this.goToItemView(
-                                        dress,
-                                        '0' + key,
-                                        this.state.dressesIDObjs.dressIDs[key],
-                                        this.state.closestMeasurements,
-                                        this.state.dressesObjs.reviewIDs[key],
-                                        this.state.dressGroupID
-                                      )
-                                    }
-                                  />
-                                );
-                              }}
-                            </ProgressiveImage>
-                            <div
-                              onClick={() =>
-                                this.goToItemView(
-                                  dress,
-                                  '0' + key,
-                                  this.state.dressesIDObjs.dressIDs[key],
-                                  this.state.closestMeasurements,
-                                  this.state.dressesObjs.reviewIDs[key],
-                                  this.state.dressGroupID
-                                )
-                              }
-                              style={{ textAlign: 'left', cursor: 'pointer' }}
-                            >
-                              <p className="results-rating">
-                                Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
-                                women like you
-                              </p>
-                              <p className="results-brand">
-                                {dress.brand} ${this.getWholePrice(dress.price)}
-                              </p>
-                              <p className="results-color">{this.getNumColors(dress.color)}</p>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    );
-                  })}
-              </div>
-              {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && (
-                <div className="results-loadMore-btn-div">
-                  <div className="results-loadMore-wrapper">
-                    <button className="results-loadMore-btn" onClick={this.showMoreDresses}>
-                      <div className="click-loadmore" style={{ position: 'relative' }}>
-                        Show near perfect matches
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              )}
-              {this.state.showMoreDresses &&
-                this.state.nextBestDressesLoaded &&
-                Object.entries(this.state.nextBestDresses).map(
-                  ([keyDressObj, dressObj]) =>
-                    dressObj.dresses.length > 0 && (
-                      <div
-                        className="results-grid results-margin-top"
-                        key={keyDressObj}
-                        id={parseInt(keyDressObj, 10) + 1}
-                      >
-                        {dressObj.dresses.map((dress, key) => {
-                          return (
-                            dress && (
+                <div className="results-grid" id="0">
+                  {this.state.dressesObjs.dresses &&
+                    this.state.dressesObjs.dresses.map((dress, key) => {
+                      return (
+                        dress && (
+                          <div className="results-col" id={'0' + key} key={key}>
+                            <div className={itemDivClass}>
                               <div
-                                className="results-col"
-                                id={(parseInt(keyDressObj, 10) + 1).toString() + key}
-                                key={key}
-                              >
-                                {dress && (
-                                  <div className={itemDivClass} key={key}>
-                                    <div
-                                      onClick={() =>
-                                        this.toggleFavoriteDress(
-                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
-                                        )
-                                      }
-                                      className={
-                                        !this.state.favorites ||
-                                        this.state.favorites.indexOf(
-                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
-                                        ) === -1
-                                          ? 'results-heart-outline'
-                                          : 'results-heart-fill'
-                                      }
-                                    />
-                                    <ProgressiveImage src={dress.img}>
-                                      {(src, loading) => {
-                                        return loading ? (
-                                          placeholder
-                                        ) : (
-                                          <img
-                                            src={src}
-                                            alt="dress image"
-                                            className="results-img"
-                                            onClick={() =>
-                                              this.goToItemView(
-                                                dress,
-                                                (parseInt(keyDressObj, 10) + 1).toString() + key,
-                                                this.state.nextBestDressesIDs[keyDressObj].dressIDs[
-                                                  key
-                                                ],
-                                                this.getMeasurementsFromConcat(
-                                                  dressObj.measurement
-                                                ),
-                                                dressObj.reviewIDs[key],
-                                                this.state.nextBestDressGroupIDs[keyDressObj]
-                                                  .dressGroupID
-                                              )
-                                            }
-                                          />
-                                        );
-                                      }}
-                                    </ProgressiveImage>
-                                    <div
-                                      style={{ cursor: 'pointer', textAlign: 'left' }}
+                                onClick={() =>
+                                  this.toggleFavoriteDress(this.state.dressesObjs.dressIDs[key])
+                                }
+                                className={
+                                  !this.state.favorites ||
+                                  this.state.favorites.indexOf(
+                                    this.state.dressesObjs.dressIDs[key]
+                                  ) === -1
+                                    ? 'results-heart-outline'
+                                    : 'results-heart-fill'
+                                }
+                              />
+                              <ProgressiveImage src={dress.img}>
+                                {(src, loading) => {
+                                  return loading ? (
+                                    placeholder
+                                  ) : (
+                                    <img
+                                      src={src}
+                                      alt="dress image"
+                                      className="results-img"
                                       onClick={() =>
                                         this.goToItemView(
                                           dress,
-                                          (parseInt(keyDressObj, 10) + 1).toString() + key,
-                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key],
-                                          this.getMeasurementsFromConcat(dressObj.measurement),
-                                          dressObj.reviewIDs[key],
-                                          this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID
+                                          '0' + key,
+                                          this.state.dressesIDObjs.dressIDs[key],
+                                          this.state.closestMeasurements,
+                                          this.state.dressesObjs.reviewIDs[key],
+                                          this.state.dressGroupID
                                         )
                                       }
-                                    >
-                                      <p className="results-rating">
-                                        Rated {this.getRating(dressObj.ratings[key])}/10 by women
-                                        like you
-                                      </p>
-                                      <p className="results-brand">
-                                        {dress.brand} ${this.getWholePrice(dress.price)}
-                                      </p>
-                                      <p className="results-color">
-                                        {this.getNumColors(dress.color)}
-                                      </p>
-                                    </div>
-                                  </div>
-                                )}
+                                    />
+                                  );
+                                }}
+                              </ProgressiveImage>
+                              <div
+                                onClick={() =>
+                                  this.goToItemView(
+                                    dress,
+                                    '0' + key,
+                                    this.state.dressesIDObjs.dressIDs[key],
+                                    this.state.closestMeasurements,
+                                    this.state.dressesObjs.reviewIDs[key],
+                                    this.state.dressGroupID
+                                  )
+                                }
+                                style={{ textAlign: 'left', cursor: 'pointer' }}
+                              >
+                                <p className="results-rating">
+                                  Rated {this.getRating(this.state.dressesObjs.ratings[key])}/10 by
+                                  women like you
+                                </p>
+                                <p className="results-brand">
+                                  {dress.brand} ${this.getWholePrice(dress.price)}
+                                </p>
+                                <p className="results-color">{this.getNumColors(dress.color)}</p>
                               </div>
-                            )
-                          );
-                        })}
-                      </div>
-                    )
+                            </div>
+                          </div>
+                        )
+                      );
+                    })}
+                </div>
+                {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && (
+                  <div className="results-loadMore-btn-div">
+                    <div className="results-loadMore-wrapper">
+                      <button className="results-loadMore-btn" onClick={this.showMoreDresses}>
+                        <div className="click-loadmore" style={{ position: 'relative' }}>
+                          Show near perfect matches
+                        </div>
+                      </button>
+                    </div>
+                  </div>
                 )}
-              {this.state.showMoreDresses && (
-                <div className="results-review-wrapper">
-                  <p
-                    className="results-review"
-                    onClick={this.goToSubmitDress}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Want to see more results? Review one of your dresses
+                {this.state.showMoreDresses &&
+                  this.state.nextBestDressesLoaded &&
+                  Object.entries(this.state.nextBestDresses).map(
+                    ([keyDressObj, dressObj]) =>
+                      dressObj.dresses.length > 0 && (
+                        <div
+                          className="results-grid results-margin-top"
+                          key={keyDressObj}
+                          id={parseInt(keyDressObj, 10) + 1}
+                        >
+                          {dressObj.dresses.map((dress, key) => {
+                            return (
+                              dress && (
+                                <div
+                                  className="results-col"
+                                  id={(parseInt(keyDressObj, 10) + 1).toString() + key}
+                                  key={key}
+                                >
+                                  {dress && (
+                                    <div className={itemDivClass} key={key}>
+                                      <div
+                                        onClick={() =>
+                                          this.toggleFavoriteDress(
+                                            this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
+                                          )
+                                        }
+                                        className={
+                                          !this.state.favorites ||
+                                          this.state.favorites.indexOf(
+                                            this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
+                                          ) === -1
+                                            ? 'results-heart-outline'
+                                            : 'results-heart-fill'
+                                        }
+                                      />
+                                      <ProgressiveImage src={dress.img}>
+                                        {(src, loading) => {
+                                          return loading ? (
+                                            placeholder
+                                          ) : (
+                                            <img
+                                              src={src}
+                                              alt="dress image"
+                                              className="results-img"
+                                              onClick={() =>
+                                                this.goToItemView(
+                                                  dress,
+                                                  (parseInt(keyDressObj, 10) + 1).toString() + key,
+                                                  this.state.nextBestDressesIDs[keyDressObj]
+                                                    .dressIDs[key],
+                                                  this.getMeasurementsFromConcat(
+                                                    dressObj.measurement
+                                                  ),
+                                                  dressObj.reviewIDs[key],
+                                                  this.state.nextBestDressGroupIDs[keyDressObj]
+                                                    .dressGroupID
+                                                )
+                                              }
+                                            />
+                                          );
+                                        }}
+                                      </ProgressiveImage>
+                                      <div
+                                        style={{ cursor: 'pointer', textAlign: 'left' }}
+                                        onClick={() =>
+                                          this.goToItemView(
+                                            dress,
+                                            (parseInt(keyDressObj, 10) + 1).toString() + key,
+                                            this.state.nextBestDressesIDs[keyDressObj].dressIDs[
+                                              key
+                                            ],
+                                            this.getMeasurementsFromConcat(dressObj.measurement),
+                                            dressObj.reviewIDs[key],
+                                            this.state.nextBestDressGroupIDs[keyDressObj]
+                                              .dressGroupID
+                                          )
+                                        }
+                                      >
+                                        <p className="results-rating">
+                                          Rated {this.getRating(dressObj.ratings[key])}/10 by women
+                                          like you
+                                        </p>
+                                        <p className="results-brand">
+                                          {dress.brand} ${this.getWholePrice(dress.price)}
+                                        </p>
+                                        <p className="results-color">
+                                          {this.getNumColors(dress.color)}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              )
+                            );
+                          })}
+                        </div>
+                      )
+                  )}
+                {this.state.showMoreDresses && (
+                  <div className="results-review-wrapper">
+                    <p
+                      className="results-review"
+                      onClick={this.goToSubmitDress}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Want to see more results? Review one of your dresses
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={rightColClass}>
+              <div className="results-rightCol-inner">
+                <div className="results-menu-hide-div">
+                  <img
+                    src={downArrow}
+                    className="results-menu-hide-arrow"
+                    onClick={this.dismissRecommendationPanel}
+                  />
+                </div>
+                <div className="results-recommended-div">
+                  <p className="results-text">Recommended by women that are</p>
+                  <p className="results-text-large">
+                    {this.getHeightStr(this.state.currMeasurements.height)}, Bust{' '}
+                    {this.state.currMeasurements.bust}, Waist {this.state.currMeasurements.waist},
+                    Hips {this.state.currMeasurements.hips}{' '}
                   </p>
                 </div>
-              )}
-            </div>
-          </div>
-          <div className={rightColClass}>
-            <div className="results-rightCol-inner">
-              <div className="results-menu-hide-div">
-                <img
-                  src={downArrow}
-                  className="results-menu-hide-arrow"
-                  onClick={this.dismissRecommendationPanel}
-                />
-              </div>
-              <div className="results-name-div">
-                <p className="results-text">Curated for</p>
-                <form onSubmit={this.handleSubmit}>
-                  <input
-                    name="name"
-                    type="text"
-                    ref="resultsName"
-                    value={this.getFirstName(this.state.name)}
-                    className="results-input"
-                    onChange={this.handleInput}
-                    placeholder="Add Your Name"
-                  />
-                </form>
-              </div>
-              <div className="results-recommended-wrapper">
-                {this.state.exactMatch && this.state.currDiv === 0 && (
+                <div className="results-measurements-wrapper">
+                  {/* {this.state.exactMatch && this.state.currDiv === 0 && (
                   <p className="results-match">Exact Match</p>
                 )}
                 {!this.state.exactMatch && this.state.currDiv === 0 && (
                   <p className="results-match">Closest Match</p>
-                )}
-                <p className="results-text">Recommended by other women that are</p>
-                {this.state.closestMeasurements &&
-                  this.getRecommendedStr().map((line, key) => (
-                    <div className="results-measurement-wrapper" key={key}>
-                      <p className="results-measurement-label">{line.label}</p>
-                      <p className="results-measurement">{line.mmt}</p>
-                    </div>
-                  ))}
-              </div>
-              <div className="results-your-measurements-wrapper">
-                <p className="results-text">Your measurements are</p>
-                <p
-                  className="results-your-measurements"
-                  onClick={() =>
-                    this.openModalHandler('Know your exact measurements? Create an account to edit')
-                  }
-                  style={{ cursor: 'pointer' }}
-                >
-                  {this.getHeightStr(this.state.height)}, Bust: {this.state.bust}, Waist:{' '}
-                  {this.state.waist}, Hips: {this.state.hips}
-                </p>
-                <p
-                  className="results-edit"
-                  onClick={() =>
-                    this.openModalHandler('Know your exact measurements? Create an account to edit')
-                  }
-                  style={{ cursor: 'pointer' }}
-                >
-                  Edit
-                </p>
+                )} */}
+                  <form onSubmit={this.handleSubmit}>
+                    <input
+                      name="name"
+                      type="text"
+                      ref="resultsName"
+                      value={this.getFirstName(this.state.name)}
+                      className="results-input"
+                      onChange={this.handleInput}
+                      placeholder="Add Your Name"
+                    />
+                  </form>
+                  <p
+                    className="results-your-measurements"
+                    onClick={() =>
+                      this.openModalHandler(
+                        'Know your exact measurements? Create an account to edit'
+                      )
+                    }
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {this.getHeightStr(this.state.height)}, Bust: {this.state.bust}, Waist:{' '}
+                    {this.state.waist}, Hips: {this.state.hips}
+                  </p>
+                  <p
+                    className="results-edit"
+                    onClick={() =>
+                      this.openModalHandler(
+                        'Know your exact measurements? Create an account to edit'
+                      )
+                    }
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Edit
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            className={
-              this.state.showRecInfo ? 'results-menu-show-div-hidden' : 'results-menu-show-div'
-            }
-          >
-            <img
-              src={upArrow}
-              className="results-menu-hide-arrow"
-              onClick={this.showRecommendationPanel}
-            />
+            <div
+              className={
+                this.state.showRecInfo ? 'results-menu-show-div-hidden' : 'results-menu-show-div'
+              }
+            >
+              <img
+                src={upArrow}
+                className="results-menu-hide-arrow"
+                onClick={this.showRecommendationPanel}
+              />
+            </div>
           </div>
         </div>
         <FooterSmall />
