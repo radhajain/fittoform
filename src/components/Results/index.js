@@ -335,7 +335,6 @@ class Results extends Component {
           uid: authUser.uid
         });
         this.getUserData(authUser.uid).then(user => {
-          console.log(user);
           this.setState(
             {
               email: user.email,
@@ -417,6 +416,7 @@ class Results extends Component {
           nextBestDressGroupIDs: nextBestDressesArr
         },
         () => {
+          console.log(this.state);
           this.getBestDressesID(bestDressGroupIDs);
           if (this.state.showMoreDresses) {
             this.getNextBestDressesID(nextBestDressesArr);
@@ -487,6 +487,7 @@ class Results extends Component {
       this.setState({
         bestDressesIDs: bestDressesIDs
       });
+      console.log(this.state);
       this.getBestDressesInfo(bestDressesIDs);
     });
   }
@@ -505,7 +506,7 @@ class Results extends Component {
         var dressRatings = [];
         var dressReviews = [];
         snapshot.forEach(dress => {
-          if (!this.state.seenDresses.includes(dress.val().dress)) {
+          if (this.state.seenDresses.indexOf(dress.val().dress === -1)) {
             dressIDs.push(dress.val().dress);
             dressRatings.push(dress.val().rating);
             if (dress.val().reviews) {
@@ -514,6 +515,8 @@ class Results extends Component {
             this.setState({
               seenDresses: [...this.state.seenDresses, dress.val().dress]
             });
+          } else {
+            console.log('dress already exists');
           }
         });
         return {
@@ -563,20 +566,6 @@ class Results extends Component {
         bestDresses: bestDresses,
         bestDressesLoaded: true
       });
-      if (this.state.fromItem && this.state.divID) {
-        var currPage = document.getElementById(this.state.divID);
-        if (currPage) {
-          console.log('scrolling to....' + currPage);
-          const yCoordinate = currPage.getBoundingClientRect().top - 80;
-          window.scrollTo({
-            top: yCoordinate
-          });
-        }
-      } else {
-        window.scrollTo({
-          top: 0
-        });
-      }
     });
   }
 
@@ -602,7 +591,6 @@ class Results extends Component {
   }
 
   getNextBestDressesID(nextBestDressGroupIDs) {
-    console.log(nextBestDressGroupIDs);
     var promises = [];
     var nextBestDressesIDs = [];
     for (const dressGroupRef of nextBestDressGroupIDs) {
@@ -663,7 +651,6 @@ class Results extends Component {
           showMoreDresses: true
         },
         () => {
-          console.log(this.state);
           if (!this.state.fromItem) {
             var firstPage = document.getElementById(1);
             if (firstPage) {
@@ -689,7 +676,6 @@ class Results extends Component {
   }
 
   goToItemView(selectedItem, key, dressID, dressMeasurements, reviewIDs, dressGroupID) {
-    console.log('div id is: ' + key);
     this.props.history.push({
       pathname: '/item',
       state: {
