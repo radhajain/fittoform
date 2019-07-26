@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import MakeRequest from '../MakeRequest';
 // import { Parallax } from 'react-scroll-parallax';
 
+//TODO: maintain scroll position
+
 class Results extends Component {
   constructor(props) {
     super(props);
@@ -392,6 +394,7 @@ class Results extends Component {
 
   // FIREBASE DATA BACKEND ---------------------------------------------------------------
 
+  //TODO: need to account for case when you don't have near matches within 3 inches
   loadData() {
     this.getBestDressGroupID().then(result => {
       result[3].sort((a, b) => (a.diff > b.diff ? 1 : -1));
@@ -502,10 +505,15 @@ class Results extends Component {
         var dressRatings = [];
         var dressReviews = [];
         snapshot.forEach(dress => {
-          dressIDs.push(dress.val().dress);
-          dressRatings.push(dress.val().rating);
-          if (dress.val().reviews) {
-            dressReviews.push(dress.val().reviews);
+          if (!this.state.seenDresses.includes(dress.val().dress)) {
+            dressIDs.push(dress.val().dress);
+            dressRatings.push(dress.val().rating);
+            if (dress.val().reviews) {
+              dressReviews.push(dress.val().reviews);
+            }
+            this.setState({
+              seenDresses: [...this.state.seenDresses, dress.val().dress]
+            });
           }
         });
         return {
@@ -555,6 +563,20 @@ class Results extends Component {
         bestDresses: bestDresses,
         bestDressesLoaded: true
       });
+      if (this.state.fromItem && this.state.divID) {
+        var currPage = document.getElementById(this.state.divID);
+        if (currPage) {
+          console.log('scrolling to....' + currPage);
+          const yCoordinate = currPage.getBoundingClientRect().top - 80;
+          window.scrollTo({
+            top: yCoordinate
+          });
+        }
+      } else {
+        window.scrollTo({
+          top: 0
+        });
+      }
     });
   }
 
@@ -576,10 +598,11 @@ class Results extends Component {
         modalDismiss: true
       });
     }
-    this.getNextBestDressesID();
+    this.getNextBestDressesID(this.state.nextBestDressGroupIDs);
   }
 
   getNextBestDressesID(nextBestDressGroupIDs) {
+    console.log(nextBestDressGroupIDs);
     var promises = [];
     var nextBestDressesIDs = [];
     for (const dressGroupRef of nextBestDressGroupIDs) {
@@ -646,14 +669,16 @@ class Results extends Component {
             if (firstPage) {
               firstPage.scrollIntoView({ behavior: 'smooth' });
             }
-          }
-          // else if (this.state.divID) {
-          //   var currPage = document.getElementById(this.state.divID);
-          //   const yCoordinate = currPage.getBoundingClientRect().top - 200;
-          //   window.scrollTo({
-          //     top: yCoordinate
-          //   });
-          else {
+          } else if (this.state.fromItem && this.state.divID) {
+            var currPage = document.getElementById(this.state.divID);
+            if (currPage) {
+              console.log('scrolling to....' + currPage);
+              const yCoordinate = currPage.getBoundingClientRect().top - 80;
+              window.scrollTo({
+                top: yCoordinate
+              });
+            }
+          } else {
             window.scrollTo({
               top: 0
             });
@@ -664,6 +689,7 @@ class Results extends Component {
   }
 
   goToItemView(selectedItem, key, dressID, dressMeasurements, reviewIDs, dressGroupID) {
+    console.log('div id is: ' + key);
     this.props.history.push({
       pathname: '/item',
       state: {
@@ -790,21 +816,21 @@ class Results extends Component {
         : 'results-rightCol'
       : 'hide';
     const placeholder = <div style={{ backgroundColor: '#E2F8F6', height: 500, width: 350 }} />;
+    var name = this.state.name;
     return (
       <div>
         <div className="results-fakeNav">
           <div className="results-fakeNav-leftCol"></div>
           <div className="results-fakeNav-rightCol"></div>
         </div>
-        <div className="results-getReview-wrapper">
+        {/* <div className="results-getReview-wrapper">
           <p className="results-getReview-text" onClick={this.showMakeRequestModal}>
             Have a particular dress in mind? Request a review
           </p>
-        </div>
+        </div> */}
         <div className="results-container-outer">
           <div className="results-container-inner">
             <div className="results-leftCol">
-              {/* <div className="results-leftCol-fakeNav"></div> */}
               <div className="results-leftCol-inner">
                 <Modal
                   className="modal"
@@ -924,19 +950,8 @@ class Results extends Component {
                           );
                         })
                     )}
-                </div>
-                {this.state.nextBestDressGroupIDs.length !== 0 && !this.state.showMoreDresses && (
-                  <div className="results-loadMore-btn-div">
-                    <div className="results-loadMore-wrapper">
-                      <button className="results-loadMore-btn" onClick={this.showMoreDresses}>
-                        <div className="click-loadmore" style={{ position: 'relative' }}>
-                          Show near perfect matches
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                )}
-                <div className="results-grid">
+                  {/* </div>
+                <div className="results-grid"> */}
                   {this.state.showMoreDresses &&
                     this.state.nextBestDressesLoaded &&
                     Object.entries(this.state.nextBestDresses).map(
@@ -1029,14 +1044,42 @@ class Results extends Component {
                         })
                     )}
                 </div>
-                {this.state.showMoreDresses && (
+                {this.state.nextBestDressGroupIDs.length !== 0 &&
+                  !this.state.showMoreDresses &&
+                  this.state.bestDressesLoaded && (
+                    <div className="results-loadMore-btn-div">
+                      <div className="results-loadMore-wrapper">
+                        <button className="results-loadMore-btn" onClick={this.showMoreDresses}>
+                          <div className="click-loadmore" style={{ position: 'relative' }}>
+                            Show near perfect matches
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                {this.state.showMoreDresses && this.state.bestDressesLoaded && (
                   <div className="results-review-wrapper">
+                    <p className="results-review-text">Want to see more results?</p>
                     <p
                       className="results-review"
                       onClick={this.goToSubmitDress}
                       style={{ cursor: 'pointer' }}
                     >
-                      Want to see more results? Review one of your dresses
+                      Review a dress you own
+                    </p>
+                  </div>
+                )}
+                {this.state.bestDressGroupIDs.length === 0 && this.state.bestDressesLoaded && (
+                  <div className="results-review-wrapper">
+                    <p className="results-review-text">
+                      There are no reviews for your exact measurements right now.
+                    </p>
+                    <p
+                      className="results-review"
+                      onClick={this.goToSubmitDress}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Review a dress to help other women like you.
                     </p>
                   </div>
                 )}
@@ -1051,8 +1094,14 @@ class Results extends Component {
                     onClick={this.dismissRecommendationPanel}
                   />
                 </div>
-                {this.state.showCurrMeasurement && this.state.currMeasurements && (
-                  <div className="results-recommended-div">
+                {this.state.currMeasurements && (
+                  <div
+                    className={
+                      this.state.showCurrMeasurement
+                        ? 'results-recommended-div'
+                        : 'results-recommended-div-hide'
+                    }
+                  >
                     <p className="results-text">Recommended by women that are</p>
                     <p className="results-text-large">
                       {this.getHeightStr(this.state.currMeasurements.height)}, Bust{' '}
@@ -1067,7 +1116,7 @@ class Results extends Component {
                       name="name"
                       type="text"
                       ref="resultsName"
-                      value={this.getFirstName(this.state.name)}
+                      value={name}
                       className="results-input"
                       onChange={this.handleInput}
                       placeholder="Add Your Name"
@@ -1098,6 +1147,7 @@ class Results extends Component {
                 </div>
               </div>
             </div>
+
             <div
               className={
                 this.state.showRecInfo ? 'results-menu-show-div-hidden' : 'results-menu-show-div'
