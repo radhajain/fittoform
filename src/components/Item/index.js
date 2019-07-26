@@ -28,6 +28,7 @@ class Item extends Component {
     this.state.cachedReviewIDs = [];
     this.state.reviewsFound = false;
     this.state.isModalShowing = false;
+    this.state.shoppedLinks = [];
     this.state.modalDesc =
       'You will be redirected to ' + this.state.item.brand + ' to buy the dress.';
     this.getHeightStr = this.getHeightStr.bind(this);
@@ -169,7 +170,8 @@ class Item extends Component {
             bust: user.bust,
             size: user.size,
             bra: user.bra,
-            favorites: user.favorites
+            favorites: user.favorites ? user.favorites : [],
+            shoppedLinks: user.shoppedLinks ? user.shoppedLinks : []
           });
         });
       }
@@ -233,14 +235,53 @@ class Item extends Component {
     });
   }
 
+  toggleFavoriteDress(selectedDressKey) {
+    if (!this.state.authUser) {
+      this.setState({
+        modalMsg: 'Create an account to save the dresses you love',
+        isHomeModalShowing: true
+      });
+    } else {
+      var favorites = this.state.favorites;
+      var index = favorites.indexOf(selectedDressKey);
+      if (index !== -1) {
+        favorites.splice(index, 1);
+      } else {
+        favorites.push(selectedDressKey);
+      }
+      this.setState(
+        {
+          favorites: favorites
+        },
+        () => {
+          let UserRef = firebase
+            .database()
+            .ref('users')
+            .child(`${this.state.uid}`);
+          UserRef.update({
+            favorites: this.state.favorites
+          });
+          console.log(this.state);
+        }
+      );
+    }
+  }
+
   shopItem() {
-    // if (this.state.authUser) {
-    //   window.open(this.state.item.dressLink, '_blank');
-    // } else {
-    //   this.setState({
-    //     isModalShowing: true
-    //   });
-    // }
+    if (this.state.authUser) {
+      var shoppedLinks = this.state.shoppedLinks;
+      shoppedLinks.push(this.state.dressID);
+      this.setState({
+        shoppedLinks: shoppedLinks
+      });
+      let UserRef = firebase
+        .database()
+        .ref('users')
+        .child(`${this.state.uid}`);
+      UserRef.update({
+        shoppedLinks: shoppedLinks
+      });
+    }
     window.open(this.state.item.dressLink, '_blank');
   }
 
