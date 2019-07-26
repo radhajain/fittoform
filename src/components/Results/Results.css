@@ -20,9 +20,9 @@
 
 .results-leftCol {
   padding-bottom: 25px;
-  flex-basis: 66%;
   height: calc(100% - 100px);
   position: relative;
+  width: calc(100% - 330px);
 }
 
 .results-fakeNav {
@@ -74,22 +74,20 @@ input:focus {
 }
 
 .results-rightCol {
-  flex-basis: 33%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  right: 67px;
   height: calc(100vh - 150px);
+  width: 330px;
 }
 
 .results-rightCol-inner {
-  width: 100%;
-  height: 90%;
+  height: calc(100% - 150px);
+  top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
+  position: fixed;
 }
 
 .results-items {
@@ -206,11 +204,10 @@ input:focus {
 .results-grid {
   display: flex;
   flex-wrap: wrap;
-  /* min-height: calc(100vh - 250px); */
+  flex-direction: row;
   padding-left: 15px;
   padding-right: 15px;
   justify-content: space-evenly;
-  /* margin-bottom: 300px; */
 }
 
 .results-margin-top {
@@ -218,8 +215,9 @@ input:focus {
 }
 
 .results-col {
-  /* width: 32%; */
+  max-width: 350px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -288,9 +286,9 @@ input:focus {
 .results-item-div {
   position: relative;
   text-align: center;
-  height: 100%;
   width: 100%;
   padding-bottom: 70px;
+  max-width: 350px;
 }
 
 .results-text {
@@ -331,8 +329,9 @@ input:focus {
 
 .results-recommended-div {
   position: absolute;
-  top: 0px;
+  top: 50px;
   right: 0px;
+  transition: 0.3s all ease;
 }
 
 .results-recommended-wrapper {
@@ -381,12 +380,11 @@ input:focus {
 }
 
 .results-color {
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
+  font-family: 'DM Serif Display', serif;
   color: black;
   margin-bottom: 5px;
   margin-top: 5px;
-  font-size: 0.85em;
+  font-size: 1em;
 }
 
 .results-brand {
@@ -398,8 +396,8 @@ input:focus {
 }
 
 .results-img {
-  width: 350px !important;
-  height: 500px !important;
+  width: 310px !important;
+  height: 460px !important;
   object-fit: cover;
   transition: all 0.2s ease-in-out;
   z-index: 1;

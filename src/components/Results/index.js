@@ -76,7 +76,8 @@ class Results extends Component {
       showMakeRequest: false,
       currDiv: 0,
       modalMsg: '',
-      requestedLinks: []
+      requestedLinks: [],
+      showCurrMeasurement: false
     };
     if (this.props.location.state) {
       this.state.bust = this.props.location.state.bust ? this.props.location.state.bust : '';
@@ -124,6 +125,28 @@ class Results extends Component {
     this.showMakeRequestModal = this.showMakeRequestModal.bind(this);
     this.showMoreDresses = this.showMoreDresses.bind(this);
     this.goToSubmitDress = this.goToSubmitDress.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
+
+  handleMouseEnter(currBucketID, showingNextBest) {
+    if (showingNextBest) {
+      this.setState({
+        currMeasurements: this.state.nextBestDressGroupIDs[currBucketID],
+        showCurrMeasurement: true
+      });
+    } else {
+      this.setState({
+        currMeasurements: this.state.closestMeasurements,
+        showCurrMeasurement: true
+      });
+    }
+  }
+
+  handleMouseLeave() {
+    this.setState({
+      showCurrMeasurement: false
+    });
   }
 
   toggleFavoriteDress(selectedDressKey) {
@@ -878,7 +901,11 @@ class Results extends Component {
                       return (
                         dress && (
                           <div className="results-col" id={'0' + key} key={key}>
-                            <div className={itemDivClass}>
+                            <div
+                              className={itemDivClass}
+                              onMouseEnter={() => this.handleMouseEnter(0, false)}
+                              onMouseLeave={() => this.handleMouseLeave()}
+                            >
                               <div
                                 onClick={() =>
                                   this.toggleFavoriteDress(this.state.dressesObjs.dressIDs[key])
@@ -954,104 +981,99 @@ class Results extends Component {
                     </div>
                   </div>
                 )}
-                {this.state.showMoreDresses &&
-                  this.state.nextBestDressesLoaded &&
-                  Object.entries(this.state.nextBestDresses).map(
-                    ([keyDressObj, dressObj]) =>
-                      dressObj.dresses.length > 0 && (
-                        <div
-                          className="results-grid results-margin-top"
-                          key={keyDressObj}
-                          id={parseInt(keyDressObj, 10) + 1}
-                        >
-                          {dressObj.dresses.map((dress, key) => {
-                            return (
-                              dress && (
-                                <div
-                                  className="results-col"
-                                  id={(parseInt(keyDressObj, 10) + 1).toString() + key}
-                                  key={key}
-                                >
-                                  {dress && (
-                                    <div className={itemDivClass} key={key}>
-                                      <div
-                                        onClick={() =>
-                                          this.toggleFavoriteDress(
-                                            this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
-                                          )
-                                        }
-                                        className={
-                                          !this.state.favorites ||
-                                          this.state.favorites.indexOf(
-                                            this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
-                                          ) === -1
-                                            ? 'results-heart-outline'
-                                            : 'results-heart-fill'
-                                        }
-                                      />
-                                      <ProgressiveImage src={dress.img}>
-                                        {(src, loading) => {
-                                          return loading ? (
-                                            placeholder
-                                          ) : (
-                                            <img
-                                              src={src}
-                                              alt="dress image"
-                                              className="results-img"
-                                              onClick={() =>
-                                                this.goToItemView(
-                                                  dress,
-                                                  (parseInt(keyDressObj, 10) + 1).toString() + key,
-                                                  this.state.nextBestDressesIDs[keyDressObj]
-                                                    .dressIDs[key],
-                                                  this.getMeasurementsFromConcat(
-                                                    dressObj.measurement
-                                                  ),
-                                                  dressObj.reviewIDs[key],
-                                                  this.state.nextBestDressGroupIDs[keyDressObj]
-                                                    .dressGroupID
-                                                )
-                                              }
-                                            />
-                                          );
-                                        }}
-                                      </ProgressiveImage>
-                                      <div
-                                        style={{ cursor: 'pointer', textAlign: 'left' }}
-                                        onClick={() =>
-                                          this.goToItemView(
-                                            dress,
-                                            (parseInt(keyDressObj, 10) + 1).toString() + key,
-                                            this.state.nextBestDressesIDs[keyDressObj].dressIDs[
-                                              key
-                                            ],
-                                            this.getMeasurementsFromConcat(dressObj.measurement),
-                                            dressObj.reviewIDs[key],
-                                            this.state.nextBestDressGroupIDs[keyDressObj]
-                                              .dressGroupID
-                                          )
-                                        }
-                                      >
-                                        <p className="results-rating">
-                                          Rated {this.getRating(dressObj.ratings[key])}/10 by women
-                                          like you
-                                        </p>
-                                        <p className="results-brand">
-                                          {dress.brand} ${this.getWholePrice(dress.price)}
-                                        </p>
-                                        <p className="results-color">
-                                          {this.getNumColors(dress.color)}
-                                        </p>
-                                      </div>
+                <div className="results-grid">
+                  {this.state.showMoreDresses &&
+                    this.state.nextBestDressesLoaded &&
+                    Object.entries(this.state.nextBestDresses).map(
+                      ([keyDressObj, dressObj]) =>
+                        dressObj.dresses.length > 0 &&
+                        dressObj.dresses.map((dress, key) => {
+                          return (
+                            dress && (
+                              <div key={key} id={parseInt(keyDressObj, 10) + 1}>
+                                {dress && (
+                                  <div
+                                    className={itemDivClass}
+                                    key={key}
+                                    id={(parseInt(keyDressObj, 10) + 1).toString() + key}
+                                    onMouseEnter={() => this.handleMouseEnter(keyDressObj, true)}
+                                    onMouseLeave={() => this.handleMouseLeave()}
+                                  >
+                                    <div
+                                      onClick={() =>
+                                        this.toggleFavoriteDress(
+                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
+                                        )
+                                      }
+                                      className={
+                                        !this.state.favorites ||
+                                        this.state.favorites.indexOf(
+                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key]
+                                        ) === -1
+                                          ? 'results-heart-outline'
+                                          : 'results-heart-fill'
+                                      }
+                                    />
+                                    <ProgressiveImage src={dress.img}>
+                                      {(src, loading) => {
+                                        return loading ? (
+                                          placeholder
+                                        ) : (
+                                          <img
+                                            src={src}
+                                            alt="dress image"
+                                            className="results-img"
+                                            onClick={() =>
+                                              this.goToItemView(
+                                                dress,
+                                                (parseInt(keyDressObj, 10) + 1).toString() + key,
+                                                this.state.nextBestDressesIDs[keyDressObj].dressIDs[
+                                                  key
+                                                ],
+                                                this.getMeasurementsFromConcat(
+                                                  dressObj.measurement
+                                                ),
+                                                dressObj.reviewIDs[key],
+                                                this.state.nextBestDressGroupIDs[keyDressObj]
+                                                  .dressGroupID
+                                              )
+                                            }
+                                          />
+                                        );
+                                      }}
+                                    </ProgressiveImage>
+                                    <div
+                                      style={{ cursor: 'pointer', textAlign: 'left' }}
+                                      onClick={() =>
+                                        this.goToItemView(
+                                          dress,
+                                          (parseInt(keyDressObj, 10) + 1).toString() + key,
+                                          this.state.nextBestDressesIDs[keyDressObj].dressIDs[key],
+                                          this.getMeasurementsFromConcat(dressObj.measurement),
+                                          dressObj.reviewIDs[key],
+                                          this.state.nextBestDressGroupIDs[keyDressObj].dressGroupID
+                                        )
+                                      }
+                                    >
+                                      <p className="results-rating">
+                                        Rated {this.getRating(dressObj.ratings[key])}/10 by women
+                                        like you
+                                      </p>
+                                      <p className="results-brand">
+                                        {dress.brand} ${this.getWholePrice(dress.price)}
+                                      </p>
+                                      <p className="results-color">
+                                        {this.getNumColors(dress.color)}
+                                      </p>
                                     </div>
-                                  )}
-                                </div>
-                              )
-                            );
-                          })}
-                        </div>
-                      )
-                  )}
+                                  </div>
+                                )}
+                              </div>
+                            )
+                          );
+                        })
+                    )}
+                </div>
                 {this.state.showMoreDresses && (
                   <div className="results-review-wrapper">
                     <p
@@ -1074,21 +1096,17 @@ class Results extends Component {
                     onClick={this.dismissRecommendationPanel}
                   />
                 </div>
-                <div className="results-recommended-div">
-                  <p className="results-text">Recommended by women that are</p>
-                  <p className="results-text-large">
-                    {this.getHeightStr(this.state.currMeasurements.height)}, Bust{' '}
-                    {this.state.currMeasurements.bust}, Waist {this.state.currMeasurements.waist},
-                    Hips {this.state.currMeasurements.hips}{' '}
-                  </p>
-                </div>
-                <div className="results-measurements-wrapper">
-                  {/* {this.state.exactMatch && this.state.currDiv === 0 && (
-                  <p className="results-match">Exact Match</p>
+                {this.state.showCurrMeasurement && (
+                  <div className="results-recommended-div">
+                    <p className="results-text">Recommended by women that are</p>
+                    <p className="results-text-large">
+                      {this.getHeightStr(this.state.currMeasurements.height)}, Bust{' '}
+                      {this.state.currMeasurements.bust}, Waist {this.state.currMeasurements.waist},
+                      Hips {this.state.currMeasurements.hips}{' '}
+                    </p>
+                  </div>
                 )}
-                {!this.state.exactMatch && this.state.currDiv === 0 && (
-                  <p className="results-match">Closest Match</p>
-                )} */}
+                <div className="results-measurements-wrapper">
                   <form onSubmit={this.handleSubmit}>
                     <input
                       name="name"
