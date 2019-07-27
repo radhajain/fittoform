@@ -109,6 +109,7 @@ class Results extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDressesIDHelper = this.getDressesIDHelper.bind(this);
+    this.getNextBestDressesIDHelper = this.getNextBestDressesIDHelper.bind(this);
     this.getRating = this.getRating.bind(this);
     this.getNextBestDressesID = this.getNextBestDressesID.bind(this);
     this.getNextBestDressesInfo = this.getNextBestDressesInfo.bind(this);
@@ -349,10 +350,13 @@ class Results extends Component {
               requestedLinks: user.requestedLinks ? user.requestedLinks : []
             },
             () => {
+              console.log('auth user loaded');
               this.loadData();
             }
           );
         });
+      } else if (this.props.location.state) {
+        this.loadData();
       }
     });
   }
@@ -363,9 +367,6 @@ class Results extends Component {
     this.loadData = this.loadData.bind(this);
     if (this._isMounted) {
       this.authlistener();
-      if (!this.state.authUser && this.props.location.state) {
-        this.loadData();
-      }
     }
   }
 
@@ -416,7 +417,6 @@ class Results extends Component {
           nextBestDressGroupIDs: nextBestDressesArr
         },
         () => {
-          console.log(this.state);
           this.getBestDressesID(bestDressGroupIDs);
           if (this.state.showMoreDresses) {
             this.getNextBestDressesID(nextBestDressesArr);
@@ -487,7 +487,6 @@ class Results extends Component {
       this.setState({
         bestDressesIDs: bestDressesIDs
       });
-      console.log(this.state);
       this.getBestDressesInfo(bestDressesIDs);
     });
   }
@@ -506,7 +505,7 @@ class Results extends Component {
         var dressRatings = [];
         var dressReviews = [];
         snapshot.forEach(dress => {
-          if (this.state.seenDresses.indexOf(dress.val().dress === -1)) {
+          if (!this.state.seenDresses.includes(dress.val().dress)) {
             dressIDs.push(dress.val().dress);
             dressRatings.push(dress.val().rating);
             if (dress.val().reviews) {
@@ -517,6 +516,42 @@ class Results extends Component {
             });
           } else {
             console.log('dress already exists');
+          }
+        });
+        return {
+          dressIDs: dressIDs,
+          ratings: dressRatings,
+          reviewIDs: dressReviews,
+          measurement: concatMtms
+        };
+      });
+  }
+
+  //Returns the dressIDs in the best dress group
+  getNextBestDressesIDHelper(dressGroupID, concatMtms) {
+    var dressGroupIDRef = firebase
+      .database()
+      .ref('dressGroup')
+      .child(dressGroupID);
+    return dressGroupIDRef
+      .orderByChild('rating')
+      .once('value')
+      .then(snapshot => {
+        var dressIDs = [];
+        var dressRatings = [];
+        var dressReviews = [];
+        snapshot.forEach(dress => {
+          if (!this.state.seenDresses.includes(dress.val().dress)) {
+            dressIDs.push(dress.val().dress);
+            dressRatings.push(dress.val().rating);
+            if (dress.val().reviews) {
+              dressReviews.push(dress.val().reviews);
+            }
+            this.setState({
+              seenDresses: [...this.state.seenDresses, dress.val().dress]
+            });
+          } else {
+            console.log('dress already exists in next best');
           }
         });
         return {
@@ -595,7 +630,7 @@ class Results extends Component {
     var nextBestDressesIDs = [];
     for (const dressGroupRef of nextBestDressGroupIDs) {
       promises.push(
-        this.getDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
+        this.getNextBestDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
           dresses => {
             nextBestDressesIDs.push(dresses);
           }
