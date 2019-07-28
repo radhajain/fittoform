@@ -26,11 +26,13 @@
   position: relative;
   height: 95%;
   flex-wrap: nowrap;
+  max-width: 1086px;
 }
 
 .itemView-c1-left {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex: 1 1 40%;
 }
 
@@ -71,24 +73,24 @@
 
 .itemView-item-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 2em;
+  font-size: 1.75em;
   text-transform: capitalize;
   color: black;
   margin: 0;
 }
 
 .itemView-item-brand {
-  font-size: 1.25em;
+  font-size: 1.15em;
   color: black;
   font-weight: bold;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-transform: capitalize;
   font-family: 'Helvetiva Neue', sans-serif;
 }
 
 .itemView-item-price {
-  font-size: 1.75em;
+  font-size: 1.5em;
   color: black;
   font-weight: bold;
   margin-top: 12px;
@@ -97,9 +99,9 @@
 }
 
 .itemView-item-size {
-  font-size: 1.25em;
+  font-size: 1.15em;
   margin-top: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-weight: bold;
   color: black;
   font-family: 'Helvetiva Neue', sans-serif;
@@ -119,7 +121,7 @@
 .itemView-item-measurements {
   width: 100%;
   margin-top: 0px;
-  font-size: 1.2em;
+  font-size: 1.15em;
   color: black;
   font-family: 'Helvetiva Neue', sans-serif;
   font-weight: bold;
@@ -194,7 +196,7 @@
   flex-basis: 80%;
   margin-top: 5px;
   margin-bottom: 10px;
-  font-size: 1.1em;
+  font-size: 1em;
   line-height: 1.28em;
   color: black;
   font-weight: 500;
@@ -212,7 +214,7 @@
   font-weight: bold;
   margin-top: 0px;
   margin-bottom: 5px;
-  font-size: 1.2em;
+  font-size: 1.15em;
   text-transform: capitalize;
   font-family: 'Helvetiva Neue', sans-serif;
 }
@@ -268,6 +270,11 @@
   .itemView-c1-left {
     flex-basis: 45%;
     padding: 25px;
+    justify-content: flex-start;
+  }
+
+  .itemView-back-arrow {
+    width: 35px;
   }
 
   .itemView-c1-right {
@@ -339,7 +346,7 @@
     display: block;
     border-radius: 50px;
     background-color: #ffd2ba;
-    padding: 7px 80px;
+    padding: 7px 30px;
     font-family: 'DM Serif Display', sans-serif;
     font-size: 1.15em;
     margin-top: 40px;
@@ -351,6 +358,10 @@
 
   .itemView-c1-inner {
     padding-top: 20px;
+  }
+
+  .itemView-c1-text {
+    max-height: unset;
   }
 
   .itemView-c1-left {
@@ -375,8 +386,11 @@
 
   .itemView-img-wrapper .itemView-c1-left {
     display: flex;
-    justify-content: center;
     align-items: center;
+  }
+
+  .itemView-c1-left {
+    justify-content: center;
   }
 
   .itemView {
