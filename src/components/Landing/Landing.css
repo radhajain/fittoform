@@ -148,14 +148,7 @@
   cursor: pointer;
   -webkit-transition: all 0.4 ease;
   transition: all 0.4s ease;
-}
-
-.landing-btn-top {
-  padding: 69px 24px;
-}
-
-.landing-btn-bottom {
-  padding: 60px 30px;
+  padding: 60px 20px;
 }
 
 .landing-btn-flexWrapper {

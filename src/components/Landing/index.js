@@ -113,7 +113,9 @@ class Landing extends React.Component {
           <div className="landing-container-inner-85">
             <div className="landing-intro-hero">
               <div className="landing-title-wrapper">
-                <p className="landing-title">We try on dresses so you don't have to</p>
+                <p className="landing-title">
+                  Shop for dresses knowing they'll fit. Recommended by women with your measurements.
+                </p>
               </div>
               <div className="landing-img-wrapper">
                 <div>
@@ -132,8 +134,8 @@ class Landing extends React.Component {
                 </p>
                 <div className="landing-callToAction-wrapper">
                   <Link to="/search">
-                    <button className="landing-callToAction landing-btn-top">
-                      <div className="landing-btn-flexWrapper">Get Started</div>
+                    <button className="landing-callToAction">
+                      <div className="landing-btn-flexWrapper">Shop Now</div>
                     </button>
                   </Link>
                 </div>
@@ -255,8 +257,8 @@ class Landing extends React.Component {
                 </p>
                 <div className="landing-callToAction-wrapper">
                   <Link to="/search">
-                    <button className="landing-callToAction landing-btn-bottom">
-                      <div className="landing-btn-flexWrapper">Try it out</div>
+                    <button className="landing-callToAction">
+                      <div className="landing-btn-flexWrapper">Shop Now</div>
                     </button>
                   </Link>
                 </div>

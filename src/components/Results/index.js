@@ -597,10 +597,15 @@ class Results extends Component {
       );
     }
     Promise.all(allDressPromises).then(bestDresses => {
-      this.setState({
-        bestDresses: bestDresses,
-        bestDressesLoaded: true
-      });
+      this.setState(
+        {
+          bestDresses: bestDresses,
+          bestDressesLoaded: true
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
     });
   }
 
@@ -686,6 +691,7 @@ class Results extends Component {
           showMoreDresses: true
         },
         () => {
+          console.log(this.state);
           if (!this.state.fromItem) {
             var firstPage = document.getElementById(1);
             if (firstPage) {
@@ -918,6 +924,16 @@ class Results extends Component {
                                         ) : (
                                           <img
                                             src={src}
+                                            onMouseOver={e =>
+                                              dress.img2
+                                                ? (e.currentTarget.src = dress.img2)
+                                                : console.log("don't have rollover")
+                                            }
+                                            onMouseOut={e =>
+                                              dress.img2
+                                                ? (e.currentTarget.src = dress.img)
+                                                : console.log('no return')
+                                            }
                                             alt="dress image"
                                             className="results-img"
                                             onClick={() =>
@@ -1014,6 +1030,16 @@ class Results extends Component {
                                             src={src}
                                             alt="dress image"
                                             className="results-img"
+                                            onMouseOver={e =>
+                                              dress.img2
+                                                ? (e.currentTarget.src = dress.img2)
+                                                : console.log("don't have rollover")
+                                            }
+                                            onMouseOut={e =>
+                                              dress.img2
+                                                ? (e.currentTarget.src = dress.img)
+                                                : console.log('no return')
+                                            }
                                             onClick={() =>
                                               this.goToItemView(
                                                 dress,

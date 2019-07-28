@@ -390,10 +390,10 @@ class Item extends Component {
                     <span style={{ textTransform: 'lowercase' }}> in {this.state.item.color}</span>
                   </p>
                   <p className="itemView-item-brand" style={{ marginTop: 0 }}>
-                    Brand: {this.state.item.brand}
+                    {this.state.item.brand}
                   </p>
                   <button className="itemView-shop-btn-mobile" onClick={this.shopItem}>
-                    Shop
+                    Shop on {this.state.item.brand}
                   </button>
                 </div>
 
