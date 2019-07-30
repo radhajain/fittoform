@@ -210,19 +210,20 @@ class Search extends Component {
       touched: { ...this.state.touched, heightft: true }
     });
     console.log(e.key);
-    if (e.key === '5' || e.key === '4' || e.key === '6') {
-      var heightFtVal = parseInt(e.key, 10);
-      this.setState(
-        {
-          heightft: heightFtVal,
-          focused: { ...this.state.focused, heightft: true }
-        },
-        () => {
-          this.refs.heightininput.focus();
-          console.log(this.state);
-        }
-      );
-    } else if (e.key === 'Enter') {
+    // if (e.key === '5' || e.key === '4' || e.key === '6') {
+    //   var heightFtVal = parseInt(e.key, 10);
+    //   this.setState(
+    //     {
+    //       heightft: heightFtVal,
+    //       focused: { ...this.state.focused, heightft: true }
+    //     },
+    //     () => {
+    //       this.refs.heightininput.focus();
+    //       console.log(this.state);
+    //     }
+    //   );
+    // } else if (e.key === 'Enter') {
+    if (e.key === 'Enter') {
       e.preventDefault();
       var errors = this.getErrorObj();
       if (!errors['heightft']) {

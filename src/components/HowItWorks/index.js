@@ -144,10 +144,10 @@ class HowItWorks extends React.Component {
               flexDirection: 'column'
             }}
           >
-            <div className="landing-callToAction-wrapper hiw-btn-bottom">
+            <div className="howitworks-callToAction-wrapper howitworks-callToAction-bottom">
               <Link to="/search">
-                <button className="landing-callToAction landing-btn-bottom">
-                  <div className="landing-btn-flexWrapper">Try it out</div>
+                <button className="howitworks-callToAction">
+                  <div className="howitworks-btn-flexWrapper">Try it out</div>
                 </button>
               </Link>
             </div>

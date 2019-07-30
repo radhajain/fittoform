@@ -23,6 +23,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import Popup from '../Popup';
 import SubmitPage from '../Submit';
 import PromoPage from '../Promo';
+import PurchasesPage from '../Purchases';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -60,6 +61,7 @@ class App extends React.Component {
               <Route path={ROUTES.POPUP} component={Popup} />
               <Route path={ROUTES.SUBMIT} component={SubmitPage} />
               <Route path={ROUTES.PROMO} component={PromoPage} />
+              <Route path={ROUTES.PURCHASES} component={PurchasesPage} />
             </div>
           </ParallaxProvider>
         </Router>
