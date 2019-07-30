@@ -451,3 +451,9 @@ input[type='number'] {
     margin-top: 45px;
   }
 }
+
+@media (max-width: 350px) {
+  .search-bra {
+    width: 100px;
+  }
+}

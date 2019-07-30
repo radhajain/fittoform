@@ -166,7 +166,7 @@
 }
 
 .landing-howitworks-box {
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .landing-howitworks-box-1 {
@@ -370,6 +370,10 @@
 @media (max-width: 460px) {
   .landing-howitworks-img1 {
     display: none;
+  }
+
+  .landing-howitworks-firstRow {
+    padding-top: 50px;
   }
 
   .landing-howitworks-content {
