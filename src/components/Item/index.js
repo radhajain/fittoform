@@ -348,20 +348,19 @@ class Item extends Component {
                   alt={this.state.item.name}
                   src={this.state.item.img}
                   className="itemView-img"
+                  onMouseOver={e =>
+                    this.state.item.img2
+                      ? (e.currentTarget.src = this.state.item.img2)
+                      : console.log("don't have rollover")
+                  }
+                  onMouseOut={e =>
+                    this.state.item.img2
+                      ? (e.currentTarget.src = this.state.item.img)
+                      : console.log('no return')
+                  }
                 />
-                <button className="itemView-shop-btn-alt" onClick={this.shopItem}>
-                  Shop
-                </button>
               </div>
             </div>
-            <div className="itemView-c1-center">
-              <button className="itemView-shop-btn" onClick={this.shopItem}>
-                Shop
-              </button>
-            </div>
-            {/* <button className="itemView-shop-btn-alt" onClick={this.shopItem}>
-              Shop
-            </button> */}
             <div className="itemView-c1-right">
               {/* <Modal
                 className="modal"
@@ -392,9 +391,21 @@ class Item extends Component {
                   <p className="itemView-item-brand" style={{ marginTop: 0 }}>
                     {this.state.item.brand}
                   </p>
-                  <button className="itemView-shop-btn-mobile" onClick={this.shopItem}>
-                    Shop on {this.state.item.brand}
+                  {!this.state.inStock && (
+                    <p className="itemView-comingback">Coming back in stock soon</p>
+                  )}
+
+                  <button className="itemView-shop-btn" onClick={this.shopItem}>
+                    Shop on {this.state.item.distributor}
                   </button>
+
+                  <p className="itemView-shipping">
+                    {this.state.item.distributor} has free shipping{' '}
+                    {this.state.item.freeShippingAmount !== 0 && (
+                      <span>on orders over ${this.state.item.freeShippingAmount}</span>
+                    )}{' '}
+                    {this.state.item.freeReturns && <span>& free returns</span>}{' '}
+                  </p>
                 </div>
 
                 <hr />
