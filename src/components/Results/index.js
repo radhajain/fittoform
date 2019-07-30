@@ -629,13 +629,13 @@ class Results extends Component {
   // GET NEXT BEST DRESSES
 
   showMoreDresses() {
-    if (!this.state.authUser) {
-      this.setState({
-        modalMsg: 'Create an account to see more dresses picked for you',
-        isHomeModalShowing: true,
-        modalDismiss: true
-      });
-    }
+    // if (!this.state.authUser) {
+    //   this.setState({
+    //     modalMsg: 'Create an account to see more dresses picked for you',
+    //     isHomeModalShowing: true,
+    //     modalDismiss: true
+    //   });
+    // }
     this.getNextBestDressesID(this.state.nextBestDressGroupIDs);
   }
 

@@ -391,9 +391,21 @@ class Item extends Component {
                   <p className="itemView-item-brand" style={{ marginTop: 0 }}>
                     {this.state.item.brand}
                   </p>
+                  {!this.state.inStock && (
+                    <p className="itemView-comingback">Coming back in stock soon</p>
+                  )}
+
                   <button className="itemView-shop-btn" onClick={this.shopItem}>
-                    Shop on {this.state.item.brand}
+                    Shop on {this.state.item.distributor}
                   </button>
+
+                  <p className="itemView-shipping">
+                    {this.state.item.distributor} has free shipping{' '}
+                    {this.state.item.freeShippingAmount !== 0 && (
+                      <span>on orders over ${this.state.item.freeShippingAmount}</span>
+                    )}{' '}
+                    {this.state.item.freeReturns && <span>& free returns</span>}{' '}
+                  </p>
                 </div>
 
                 <hr />
