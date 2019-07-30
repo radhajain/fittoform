@@ -3,6 +3,8 @@ import './Landing.css';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { FooterLarge } from '../Footer';
+import InstagramEmbed from 'react-instagram-embed';
+import InstagramModal from '../InstagramModal';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -20,8 +22,64 @@ class Landing extends React.Component {
         bust: '',
         size: '',
         bra: ''
-      }
+      },
+      showInstaModal: false,
+      currInstaIndex: null
     };
+    this.showInstaModal = this.showInstaModal.bind(this);
+    this.hideInstaModal = this.hideInstaModal.bind(this);
+    this.instaPosts = [
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_rox_optimized.jpg',
+        dressLink: 'https://www.princesspolly.com/gracie-mini-dress',
+        dressImg:
+          'https://cdn.shopify.com/s/files/1/0061/8627/0804/products/4_106_31_1800x.jpg?v=1555644833',
+        dressName: 'Gracie Mini Dress',
+        dressBrand: 'Princess Polly',
+        comment: 'Roxanna in Gracie Mini Dress by Princess Polly, Size 4'
+      },
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_logan_optimized.jpg',
+        dressLink: 'https://fave.co/2KcKhuz',
+        dressImg:
+          'https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/10362037_fpx.tif?op_sharpen=1&wid=700&fit=fit,1&$filtersm$&fmt=webp',
+        dressName: 'Whisper Ruffle-Trim Sweetheart Dress',
+        dressBrand: 'French Connection',
+        comment: 'Logan in Ruffle-Trim Sweetheart Dress by French Connection, Size 4'
+      },
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_marri_optimized.jpg',
+        dressLink: 'https://www.zara.com/us/en/textured-dress-with-belt-p01165702.html',
+        dressImg:
+          'https://static.zara.net/photos///2019/I/0/1/p/1165/702/614/2/w/560/1165702614_1_1_1.jpg?ts=1562761407624',
+        dressName: 'Textured Dress with Belt',
+        dressBrand: 'Zara',
+        comment: 'Marri in Textured Dress with Belt by Zara, Size L'
+      },
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_emily_optimized.jpg',
+        dressLink: 'https://realisationpar.com/the-alexandra-red-star/',
+        dressImg:
+          'https://cdn11.bigcommerce.com/s-233ct/images/stencil/759x1000/products/59/2059/ALEXANDRA_RedStar_web___50429__10528.1549336994.jpg?c=2',
+        dressName: 'The Alexandra',
+        dressBrand: 'Realisation Par',
+        comment: 'Emily in The Alexandra by Realisation Par, Size 4'
+      }
+    ];
+  }
+
+  showInstaModal(idx) {
+    console.log('showing insta modal...');
+    this.setState({
+      currInstaIndex: idx,
+      showInstaModal: true
+    });
+  }
+
+  hideInstaModal() {
+    this.setState({
+      showInstaModal: false
+    });
   }
 
   // Sets the user values
@@ -93,176 +151,87 @@ class Landing extends React.Component {
     return (
       <div className="landing-parent">
         <div className="landing-fakeNav" />
-        <div className="landing-notif">
-          <Link to="/popup" className="landing-popup-text">
-            <p
-              className="landing-desc"
-              style={{
-                color: 'white',
-                paddingTop: 15,
-                paddingBottom: 15,
-                fontSize: '0.9em',
-                textAlign: 'center'
-              }}
-            >
-              In SF? Check out our FtF Pop Up, 07/25 - 07/28
-            </p>
-          </Link>
-        </div>
-        <div className="landing-child">
-          <div className="landing-container-inner-85">
-            <div className="landing-intro-hero">
-              <div className="landing-title-wrapper">
-                <p className="landing-title">
-                  Shop for dresses knowing they'll fit. Recommended by women with your measurements.
-                </p>
-              </div>
-              <div className="landing-img-wrapper">
-                <div>
-                  <img
-                    src="https://fittoform-landing.s3.amazonaws.com/lp_1.jpg"
-                    className="landing-img"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="landing-intro-footer landing-intro-footer-btn-top">
-              <div className="landing-intro-footer-inner">
-                <p className="landing-desc">
-                  It's hard to know what fits well while shopping online. We show you a curated set
-                  of dresses, recommended by real women with the same measurements as you.
-                </p>
-                <div className="landing-callToAction-wrapper">
-                  <Link to="/search">
-                    <button className="landing-callToAction">
-                      <div className="landing-btn-flexWrapper">Shop Now</div>
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* PAGE 2 */}
-        <div className="landing-child landing-child-1" style={{ display: 'block' }}>
-          <div className="landing-2-header"></div>
-          <div className="landing-container-inner-60 landing-2-container">
-            <div className="landing-2-col-container">
-              <div className="landing-2-leftCol">
-                <p className="landing-title landing-2-title">How it works</p>
-              </div>
-              <div className="landing-2-rightCol">
-                <div className="landing-howitworks-steps">
-                  <div className="landing-howitworks-box landing-howitworks-box-1">
-                    <p className="landing-desc">Tell us your size</p>
-                    <p className="landing-howitworks-desc">
-                      Tell us what sizes you wear and how they normally fit
-                    </p>
-                  </div>
-                  <div className="landing-howitworks-box">
-                    <p className="landing-desc">Browse curations</p>
-                    <p className="landing-howitworks-desc">
-                      See personalized recommendations by women with the same measurements as you
-                    </p>
-                  </div>
-                  <div className="landing-howitworks-box">
-                    <p className="landing-desc">Buy with confidence</p>
-                    <p className="landing-howitworks-desc">
-                      Read reviews from women with your measurements who have tried each dress on
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* PAGE 3 */}
-        <div className="landing-child landing-third-page">
-          <div className="landing-container-inner-60 landing-3-container">
-            <img
-              src="https://fittoform-landing.s3.amazonaws.com/grid_40p_progressive.jpg"
-              className="landing-3-img"
+        <div className="landing-title-container">
+          {this.state.showInstaModal && (
+            <InstagramModal
+              show={this.state.showInstaModal}
+              close={this.hideInstaModal}
+              info={this.instaPosts[this.state.currInstaIndex]}
             />
-            {/* <img src='https://fittoform-landing.s3.amazonaws.com/grid_3x3_40p_progressive.jpg'
-              className="landing-3-mobile-img"
-              /> */}
-          </div>
-        </div>
-        {/* PAGE 4 */}
-        <div className="landing-child landing-fourth-page">
-          <div className="landing-container-inner-60 landing-4-container">
-            <div className="landing-4-content">
-              <div className="landing-4-leftCol">
-                <p className="landing-title landing-4-title">Clothes look best when they fit </p>
-              </div>
-              <div className="landing-4-rightCol">
-                <p className="landing-desc landing-desc-4">
-                  There's a perfect dress for everyone, and we're here to help you find it.
-                </p>
-              </div>
+          )}
+          <div className="landing-intro-img" />
+          <div className="landing-content">
+            <div>
+              <p className="landing-title">Shop dresses knowing they'll fit.</p>
+              <p className="landing-subtitle">Recommended by women with your measurements.</p>
             </div>
           </div>
-          <div className="landing-4-footer"></div>
+          <div className="landing-callToAction-wrapper">
+            <Link to="/search">
+              <button className="landing-callToAction">
+                <div className="landing-btn-flexWrapper">Shop Now</div>
+              </button>
+            </Link>
+          </div>
         </div>
-        {/* PAGE 5 */}
-        <div className="landing-child landing-fifth-page">
-          <div className="landing-container-inner-85">
-            <div className="landing-intro-hero">
-              <div className="landing-title-wrapper">
-                <p className="landing-title landing-5-title">
-                  Women with your body have tried on these dresses
-                </p>
+        <div className="landing-howitworks-container">
+          <div className="landing-howitworks-firstRow">
+            <div className="landing-howitworks-content">
+              <div className="landing-2-col-container">
+                <div className="landing-2-leftCol">
+                  <p className="landing-title landing-2-title">How it works</p>
+                </div>
+                <div className="landing-2-rightCol">
+                  <div className="landing-howitworks-steps">
+                    <div className="landing-howitworks-box landing-howitworks-box-1">
+                      <p className="landing-desc">1 Tell us your size</p>
+                      <p className="landing-howitworks-desc">
+                        We estimate your measurements based on how the sizes you wear fit
+                      </p>
+                    </div>
+                    <div className="landing-howitworks-box">
+                      <p className="landing-desc">2 Browse curations</p>
+                      <p className="landing-howitworks-desc">
+                        See what looked best on women with the same measurements as you
+                      </p>
+                    </div>
+                    <div className="landing-howitworks-box">
+                      <p className="landing-desc">3 Buy with confidence</p>
+                      <p className="landing-howitworks-desc">
+                        Read reviews from women like you who have tried on each dress
+                      </p>
+                    </div>
+                    <div className="landing-howitworks-box">
+                      <Link to="/search" className="landing-shopnow">
+                        Shop Now -->
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="landing-img-wrapper">
-                <div>
+            </div>
+            <div className="landing-howitworks-img1" />
+          </div>
+          <div className="landing-howitworks-secondRow">
+            <img
+              src="https://fittoform-landing.s3.amazonaws.com/landing_image_3.jpg"
+              className="landing-howitworks-img2"
+            />
+          </div>
+        </div>
+        <div className="landing-instagram-container">
+          <p className="landing-instagram-title">Join us on Instagram @fit.to.form</p>
+          <div className="landing-instagram-content">
+            <div className="landing-instagram-posts">
+              {this.instaPosts.map((info, idx) => {
+                return (
                   <img
-                    src="https://fittoform-landing.s3.amazonaws.com/lp_4.jpg"
-                    className="landing-img"
+                    className="landing-insta-img"
+                    src={info.imgLink}
+                    onClick={() => this.showInstaModal(idx)}
                   />
-                </div>
-              </div>
-            </div>
-            <div className="landing-intro-footer">
-              <div className="landing-intro-footer-inner">
-                <p className="landing-desc">
-                  Brands and even items can have inconsistent sizing. Every piece on our site has
-                  been tried on by women with your measurements. Then, we show you a curated set of
-                  the dresses that fit them perfectly.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* PAGE 6 */}
-        <div className="landing-child landing-sixth-page">
-          <div className="landing-container-inner-85">
-            <div className="landing-intro-hero">
-              <div className="landing-title-wrapper">
-                <p className="landing-title">You're the stylist</p>
-              </div>
-              <div className="landing-img-wrapper">
-                <div>
-                  <img
-                    src="https://fittoform-landing.s3.amazonaws.com/lp_6.jpg"
-                    className="landing-img"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="landing-intro-footer landing-intro-footer-btn">
-              <div className="landing-intro-footer-inner">
-                <p className="landing-desc">
-                  No commitments, no subscriptions, no fees. We give you the tools to find the
-                  pieces you want - and the peace of mind that they will flatter you.
-                </p>
-                <div className="landing-callToAction-wrapper">
-                  <Link to="/search">
-                    <button className="landing-callToAction">
-                      <div className="landing-btn-flexWrapper">Shop Now</div>
-                    </button>
-                  </Link>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>

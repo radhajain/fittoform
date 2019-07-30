@@ -474,23 +474,32 @@ class Results extends Component {
   getBestDressesID(bestDressGroupIDs) {
     var promises = [];
     var bestDressesIDs = [];
-    for (const dressGroupRef of bestDressGroupIDs) {
-      promises.push(
-        this.getDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
-          dresses => {
-            bestDressesIDs.push(dresses);
-          }
-        )
-      );
-    }
-    Promise.all(promises).then(dresses => {
-      this.setState({
-        bestDressesIDs: bestDressesIDs
-      });
-      this.getBestDressesInfo(bestDressesIDs);
-    });
+    console.log('getBest dresses being called');
+    this.setState(
+      {
+        seenDresses: []
+      },
+      () => {
+        for (const dressGroupRef of bestDressGroupIDs) {
+          promises.push(
+            this.getDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
+              dresses => {
+                bestDressesIDs.push(dresses);
+              }
+            )
+          );
+        }
+        Promise.all(promises).then(dresses => {
+          this.setState({
+            bestDressesIDs: bestDressesIDs
+          });
+          this.getBestDressesInfo(bestDressesIDs);
+        });
+      }
+    );
   }
 
+  //TODO: add set of all duplicates
   //Returns the dressIDs in the best dress group
   getDressesIDHelper(dressGroupID, concatMtms) {
     var dressGroupIDRef = firebase
@@ -620,13 +629,13 @@ class Results extends Component {
   // GET NEXT BEST DRESSES
 
   showMoreDresses() {
-    if (!this.state.authUser) {
-      this.setState({
-        modalMsg: 'Create an account to see more dresses picked for you',
-        isHomeModalShowing: true,
-        modalDismiss: true
-      });
-    }
+    // if (!this.state.authUser) {
+    //   this.setState({
+    //     modalMsg: 'Create an account to see more dresses picked for you',
+    //     isHomeModalShowing: true,
+    //     modalDismiss: true
+    //   });
+    // }
     this.getNextBestDressesID(this.state.nextBestDressGroupIDs);
   }
 

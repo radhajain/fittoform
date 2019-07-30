@@ -211,14 +211,15 @@ class Search extends Component {
     });
     console.log(e.key);
     if (e.key === '5' || e.key === '4' || e.key === '6') {
-      console.log(this.state);
       var heightFtVal = parseInt(e.key, 10);
       this.setState(
         {
-          heightft: heightFtVal
+          heightft: heightFtVal,
+          focused: { ...this.state.focused, heightft: true }
         },
         () => {
           this.refs.heightininput.focus();
+          console.log(this.state);
         }
       );
     } else if (e.key === 'Enter') {
