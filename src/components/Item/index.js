@@ -348,6 +348,16 @@ class Item extends Component {
                   alt={this.state.item.name}
                   src={this.state.item.img}
                   className="itemView-img"
+                  onMouseOver={e =>
+                    this.state.item.img2
+                      ? (e.currentTarget.src = this.state.item.img2)
+                      : console.log("don't have rollover")
+                  }
+                  onMouseOut={e =>
+                    this.state.item.img2
+                      ? (e.currentTarget.src = this.state.item.img)
+                      : console.log('no return')
+                  }
                 />
                 <button className="itemView-shop-btn-alt" onClick={this.shopItem}>
                   Shop

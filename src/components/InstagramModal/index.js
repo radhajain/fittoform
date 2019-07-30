@@ -25,14 +25,16 @@ class InstagramModal extends React.Component {
                   <div className="instaModal-shop-img-wrapper">
                     <img src={this.props.info.dressImg} className="instaModal-shop-img" />
                   </div>
-                  <div className="instaModal-shop-info">
-                    <p className="instaModal-shop-name">{this.props.info.dressName}</p>
-                    <p className="instaModal-shop-brand">{this.props.info.dressBrand}</p>
-                  </div>
-                  <div className="instaModal-shopbtn-wrapper">
-                    <a href={this.props.info.dressLink}>
-                      <button className="instaModal-shop-btn">Shop Now</button>
-                    </a>
+                  <div className="instaModal-shop-action">
+                    <div className="instaModal-shop-info">
+                      <p className="instaModal-shop-name">{this.props.info.dressName}</p>
+                      <p className="instaModal-shop-brand">{this.props.info.dressBrand}</p>
+                    </div>
+                    <div className="instaModal-shopbtn-wrapper">
+                      <a href={this.props.info.dressLink}>
+                        <button className="instaModal-shop-btn">Shop Now</button>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <div>

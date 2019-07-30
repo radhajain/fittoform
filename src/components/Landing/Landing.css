@@ -41,7 +41,7 @@
   position: absolute;
   width: 70%;
   height: 100%;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/lp_1.jpg);
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
@@ -51,21 +51,30 @@
 }
 
 .landing-content {
-  width: 50%;
-  margin-left: 50%;
-  padding-top: 30%;
+  width: 45%;
+  margin-left: 45%;
+  padding-top: 200px;
 }
 
 .landing-title {
   font-family: 'DM Serif Display', serif;
   color: black;
-  font-size: 2.5em;
+  font-size: 3.8em;
+  line-height: 68px;
+  margin-bottom: 0px;
+}
+
+.landing-subtitle {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1.75em;
+  margin-top: 20px;
 }
 
 .landing-callToAction-wrapper {
-  width: 100%;
   text-align: left;
   margin-top: 5vh;
+  margin-left: calc(70% - 77px);
   margin-bottom: 0px;
 }
 
@@ -117,7 +126,7 @@
 
 .landing-howitworks-img1 {
   flex-basis: 40%;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/lp_1.jpg);
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_2.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -191,6 +200,8 @@
   color: black;
   font-weight: bolder;
   font-size: 1.05em;
+  margin-top: 0px;
+  margin-bottom: 0px;
   line-height: 1.15em;
   font-family: 'Helvetiva Neue', sans-serif;
 }
@@ -199,8 +210,8 @@
 /* INSTAGRAM */
 
 .landing-instagram-container {
-  padding-top: 160px;
-  padding-bottom: 30px;
+  margin-top: 160px;
+  margin-bottom: 120px;
 }
 
 .landing-instagram-title {
@@ -230,4 +241,142 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.landing-shopnow {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: #69dbd3;
+  font-size: 1.2em;
+}
+
+.landing-shopnow:hover {
+  text-decoration: underline;
+}
+
+.landing-howitworks-img2 {
+  width: 60%;
+  height: 45vh;
+  object-fit: cover;
+}
+
+@media (min-width: 1559px) {
+  .landing-subtitle {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 1170px) {
+  .landing-2-col-container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1125px) {
+  .landing-title {
+    font-size: 3.3em;
+  }
+}
+
+@media (max-width: 976px) {
+  .landing-title {
+    font-size: 3em;
+    line-height: 55px;
+  }
+
+  .landing-subtitle {
+    font-size: 1.5em;
+  }
+
+  .landing-howitworks-desc {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 890px) {
+  .landing-title {
+    font-size: 2.5em;
+    line-height: 45px;
+  }
+}
+
+@media (max-width: 800px) {
+  .landing-instagram-posts {
+    flex-wrap: wrap;
+  }
+
+  .landing-insta-img {
+    width: 40%;
+  }
+}
+
+/* MOBILE WRAP */
+@media (max-width: 745px) {
+  .landing-intro-img {
+    width: 100%;
+    height: 400px;
+  }
+
+  .landing-content {
+    padding-top: 400px;
+    width: 55%;
+    margin-left: 15%;
+  }
+
+  .landing-callToAction-wrapper {
+    margin-left: 15%;
+    margin-top: 30px;
+  }
+
+  .landing-howitworks-firstRow {
+    margin-top: 50px;
+  }
+
+  .landing-title {
+    font-size: 2.5em;
+    line-height: 45px;
+  }
+
+  .landing-subtitle {
+    font-size: 1.35em;
+  }
+
+  .landing-callToAction {
+    font-size: 1.35em;
+    padding: 50px 13px;
+  }
+  .landing-howitworks-img1 {
+    flex-basis: 20%;
+  }
+
+  .landing-howitworks-content {
+    flex-basis: 80%;
+  }
+}
+
+@media (max-width: 610px) {
+  .landing-title {
+    font-size: 2.3em;
+  }
+
+  .landing-subtitle {
+    font-size: 1.25em;
+  }
+}
+
+@media (max-width: 560px) {
+  .landing-content {
+    width: 70%;
+  }
+}
+
+@media (max-width: 460px) {
+  .landing-howitworks-img1 {
+    display: none;
+  }
+
+  .landing-howitworks-content {
+    flex-basis: 100%;
+  }
 }

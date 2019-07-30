@@ -92,10 +92,17 @@
   flex-basis: 20%;
 }
 
+.instaModal-shop-action {
+  flex-basis: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
 .instaModal-shop-info {
-  flex-basis: 50%;
+  flex-basis: 70%;
   text-align: left;
   padding-left: 15px;
+  padding-right: 15px;
 }
 
 .instaModal-shopbtn-wrapper {
@@ -144,4 +151,24 @@
   background-color: white;
   color: black;
   border: 1px solid black;
+}
+
+@media (max-width: 1115px) {
+  .instaModal-shop-name {
+    font-size: 1.05em;
+  }
+
+  .instaModal-shop-btn {
+    padding: 15px 15px;
+  }
+}
+
+@media (max-width: 950px) {
+  .instaModal-shop-name {
+    font-size: 1em;
+  }
+
+  .instaModal-shop-btn {
+    padding: 12px 12px;
+  }
 }

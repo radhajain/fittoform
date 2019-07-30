@@ -161,16 +161,17 @@ class Landing extends React.Component {
           )}
           <div className="landing-intro-img" />
           <div className="landing-content">
-            <div className="landing-title">
-              Shop dresses knowing they'll fit. Recommended by women with your measurements.
+            <div>
+              <p className="landing-title">Shop dresses knowing they'll fit.</p>
+              <p className="landing-subtitle">Recommended by women with your measurements.</p>
             </div>
-            <div className="landing-callToAction-wrapper">
-              <Link to="/search">
-                <button className="landing-callToAction">
-                  <div className="landing-btn-flexWrapper">Shop Now</div>
-                </button>
-              </Link>
-            </div>
+          </div>
+          <div className="landing-callToAction-wrapper">
+            <Link to="/search">
+              <button className="landing-callToAction">
+                <div className="landing-btn-flexWrapper">Shop Now</div>
+              </button>
+            </Link>
           </div>
         </div>
         <div className="landing-howitworks-container">
@@ -185,21 +186,25 @@ class Landing extends React.Component {
                     <div className="landing-howitworks-box landing-howitworks-box-1">
                       <p className="landing-desc">1 Tell us your size</p>
                       <p className="landing-howitworks-desc">
-                        We estimate your measurements based on the sizes you wear and how they fit
-                        you
+                        We estimate your measurements based on how the sizes you wear fit
                       </p>
                     </div>
                     <div className="landing-howitworks-box">
                       <p className="landing-desc">2 Browse curations</p>
                       <p className="landing-howitworks-desc">
-                        See personalized recommendations by women with the same measurements as you
+                        See what looked best on women with the same measurements as you
                       </p>
                     </div>
                     <div className="landing-howitworks-box">
                       <p className="landing-desc">3 Buy with confidence</p>
                       <p className="landing-howitworks-desc">
-                        Read reviews from women with your measurements who have tried each dress on
+                        Read reviews from women like you who have tried on each dress
                       </p>
+                    </div>
+                    <div className="landing-howitworks-box">
+                      <Link to="/search" className="landing-shopnow">
+                        Shop Now -->
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -209,7 +214,7 @@ class Landing extends React.Component {
           </div>
           <div className="landing-howitworks-secondRow">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/lp_1.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/landing_image_3.jpg"
               className="landing-howitworks-img2"
             />
           </div>

@@ -474,23 +474,32 @@ class Results extends Component {
   getBestDressesID(bestDressGroupIDs) {
     var promises = [];
     var bestDressesIDs = [];
-    for (const dressGroupRef of bestDressGroupIDs) {
-      promises.push(
-        this.getDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
-          dresses => {
-            bestDressesIDs.push(dresses);
-          }
-        )
-      );
-    }
-    Promise.all(promises).then(dresses => {
-      this.setState({
-        bestDressesIDs: bestDressesIDs
-      });
-      this.getBestDressesInfo(bestDressesIDs);
-    });
+    console.log('getBest dresses being called');
+    this.setState(
+      {
+        seenDresses: []
+      },
+      () => {
+        for (const dressGroupRef of bestDressGroupIDs) {
+          promises.push(
+            this.getDressesIDHelper(dressGroupRef.dressGroupID, dressGroupRef.concatMtms).then(
+              dresses => {
+                bestDressesIDs.push(dresses);
+              }
+            )
+          );
+        }
+        Promise.all(promises).then(dresses => {
+          this.setState({
+            bestDressesIDs: bestDressesIDs
+          });
+          this.getBestDressesInfo(bestDressesIDs);
+        });
+      }
+    );
   }
 
+  //TODO: add set of all duplicates
   //Returns the dressIDs in the best dress group
   getDressesIDHelper(dressGroupID, concatMtms) {
     var dressGroupIDRef = firebase
