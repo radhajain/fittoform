@@ -215,7 +215,19 @@
 
 .landing-instagram-content {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-insta-img {
+  width: 25%;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.landing-instagram-posts {
+  max-width: 1300px;
+  display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-wrap: wrap;
 }

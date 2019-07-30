@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { FooterLarge } from '../Footer';
 import InstagramEmbed from 'react-instagram-embed';
+import InstagramModal from '../InstagramModal';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -21,8 +22,64 @@ class Landing extends React.Component {
         bust: '',
         size: '',
         bra: ''
-      }
+      },
+      showInstaModal: false,
+      currInstaIndex: null
     };
+    this.showInstaModal = this.showInstaModal.bind(this);
+    this.hideInstaModal = this.hideInstaModal.bind(this);
+    this.instaPosts = [
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_rox_optimized.jpg',
+        dressLink: 'https://www.princesspolly.com/gracie-mini-dress',
+        dressImg:
+          'https://cdn.shopify.com/s/files/1/0061/8627/0804/products/4_106_31_1800x.jpg?v=1555644833',
+        dressName: 'Gracie Mini Dress',
+        dressBrand: 'Princess Polly',
+        comment: 'Roxanna in Gracie Mini Dress by Princess Polly, Size 4'
+      },
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_logan_optimized.jpg',
+        dressLink: 'https://fave.co/2KcKhuz',
+        dressImg:
+          'https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/10362037_fpx.tif?op_sharpen=1&wid=700&fit=fit,1&$filtersm$&fmt=webp',
+        dressName: 'Whisper Ruffle-Trim Sweetheart Dress',
+        dressBrand: 'French Connection',
+        comment: 'Logan in Ruffle-Trim Sweetheart Dress by French Connection, Size 4'
+      },
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_marri_optimized.jpg',
+        dressLink: 'https://www.zara.com/us/en/textured-dress-with-belt-p01165702.html',
+        dressImg:
+          'https://static.zara.net/photos///2019/I/0/1/p/1165/702/614/2/w/560/1165702614_1_1_1.jpg?ts=1562761407624',
+        dressName: 'Textured Dress with Belt',
+        dressBrand: 'Zara',
+        comment: 'Marri in Textured Dress with Belt by Zara, Size L'
+      },
+      {
+        imgLink: 'https://fittoform-landing.s3.amazonaws.com/ig_emily_optimized.jpg',
+        dressLink: 'https://realisationpar.com/the-alexandra-red-star/',
+        dressImg:
+          'https://cdn11.bigcommerce.com/s-233ct/images/stencil/759x1000/products/59/2059/ALEXANDRA_RedStar_web___50429__10528.1549336994.jpg?c=2',
+        dressName: 'The Alexandra',
+        dressBrand: 'Realisation Par',
+        comment: 'Emily in The Alexandra by Realisation Par, Size 4'
+      }
+    ];
+  }
+
+  showInstaModal(idx) {
+    console.log('showing insta modal...');
+    this.setState({
+      currInstaIndex: idx,
+      showInstaModal: true
+    });
+  }
+
+  hideInstaModal() {
+    this.setState({
+      showInstaModal: false
+    });
   }
 
   // Sets the user values
@@ -95,6 +152,13 @@ class Landing extends React.Component {
       <div className="landing-parent">
         <div className="landing-fakeNav" />
         <div className="landing-title-container">
+          {this.state.showInstaModal && (
+            <InstagramModal
+              show={this.state.showInstaModal}
+              close={this.hideInstaModal}
+              info={this.instaPosts[this.state.currInstaIndex]}
+            />
+          )}
           <div className="landing-intro-img" />
           <div className="landing-content">
             <div className="landing-title">
@@ -153,54 +217,17 @@ class Landing extends React.Component {
         <div className="landing-instagram-container">
           <p className="landing-instagram-title">Join us on Instagram @fit.to.form</p>
           <div className="landing-instagram-content">
-            <InstagramEmbed
-              url="https://www.instagram.com/p/B0gyUu4AdKm/"
-              maxWidth={320}
-              hideCaption={true}
-              containerTagName="div"
-              protocol=""
-              injectScript
-              onLoading={() => {}}
-              onSuccess={() => {}}
-              onAfterRender={() => {}}
-              onFailure={() => {}}
-            />
-            <InstagramEmbed
-              url="https://www.instagram.com/p/B0ZuakAhPTn/"
-              maxWidth={320}
-              hideCaption={true}
-              containerTagName="div"
-              protocol=""
-              injectScript
-              onLoading={() => {}}
-              onSuccess={() => {}}
-              onAfterRender={() => {}}
-              onFailure={() => {}}
-            />
-            <InstagramEmbed
-              url="https://www.instagram.com/p/B0ZTljQhJuD/"
-              maxWidth={320}
-              hideCaption={true}
-              containerTagName="div"
-              protocol=""
-              injectScript
-              onLoading={() => {}}
-              onSuccess={() => {}}
-              onAfterRender={() => {}}
-              onFailure={() => {}}
-            />
-            <InstagramEmbed
-              url="https://www.instagram.com/p/B0ZNGSAhXHW/"
-              maxWidth={320}
-              hideCaption={true}
-              containerTagName="div"
-              protocol=""
-              injectScript
-              onLoading={() => {}}
-              onSuccess={() => {}}
-              onAfterRender={() => {}}
-              onFailure={() => {}}
-            />
+            <div className="landing-instagram-posts">
+              {this.instaPosts.map((info, idx) => {
+                return (
+                  <img
+                    className="landing-insta-img"
+                    src={info.imgLink}
+                    onClick={() => this.showInstaModal(idx)}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
         <FooterLarge />
