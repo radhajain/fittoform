@@ -120,6 +120,10 @@ class NavigationAuth extends React.Component {
                   Your Favorites
                 </Link>
                 <hr></hr>
+                <Link to={ROUTES.PURCHASES} className="nav-profile-btn">
+                  Your Purchases
+                </Link>
+                <hr></hr>
                 <Link to={ROUTES.SUBMIT} className="nav-profile-btn">
                   Review a dress
                 </Link>
@@ -162,7 +166,10 @@ class NavigationNonAuth extends React.Component {
             </Link>
           </div>
           <div className="nav-c3">
-            <Link to={ROUTES.SIGN_IN} className="nav-href">
+            <Link to={ROUTES.HOWITWORKS} className="nav-href">
+              How it works
+            </Link>
+            <Link to={ROUTES.SIGN_IN} className="nav-href nav-margin-left">
               Sign In
             </Link>
             <Link to={ROUTES.SIGN_UP} className="nav-href nav-margin-left">

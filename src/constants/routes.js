@@ -17,3 +17,4 @@ export const FAVORITES = '/favorites';
 export const POPUP = '/popup';
 export const SUBMIT = '/submit';
 export const PROMO = '/promo';
+export const PURCHASES = '/purchases';
