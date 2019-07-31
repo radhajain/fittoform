@@ -18,6 +18,11 @@ class AddItem extends Component {
       brand: '',
       price: '',
       img: '',
+      img2: '',
+      distributor: '',
+      freeShippingAmount: '',
+      freeReturns: true,
+      inStock: true,
       userName: '',
       size: '',
       color: '',
@@ -88,6 +93,8 @@ class AddItem extends Component {
   createDressID() {
     const dressesRef = firebase.database().ref('dresses');
     const newDressRef = dressesRef.push();
+    var freeReturns = this.state.freeReturns == 'true';
+    var inStock = this.state.inStock == 'true';
     newDressRef.set({
       dressLink: this.state.dressLink,
       color: this.state.color,
@@ -101,7 +108,12 @@ class AddItem extends Component {
       style: this.state.style,
       neckline: this.state.neckline,
       straps: this.state.straps,
-      material: this.state.material
+      material: this.state.material,
+      distributor: this.state.distributor,
+      img2: this.state.img2,
+      freeReturns: freeReturns,
+      freeShippingAmount: this.state.freeShippingAmount.freeReturns,
+      inStock: inStock
     });
     var newDressKey = newDressRef.key;
     this.setState({ dressID: newDressKey }, () => {
@@ -392,6 +404,46 @@ class AddItem extends Component {
               placeholder="What's the link to the image?"
               onChange={this.handleChange}
               value={this.state.img}
+            />
+            <input
+              className="add-input"
+              type="text"
+              name="img2"
+              placeholder="Link to the back of the dress"
+              onChange={this.handleChange}
+              value={this.state.img2}
+            />
+            <input
+              className="add-input"
+              type="text"
+              name="freeShippingAmount"
+              placeholder="Free shipping amount"
+              onChange={this.handleChange}
+              value={this.state.freeShippingAmount}
+            />
+            <input
+              className="add-input"
+              type="text"
+              name="freeReturns"
+              placeholder="Free returns?"
+              onChange={this.handleChange}
+              value={this.state.freeReturns}
+            />
+            <input
+              className="add-input"
+              type="text"
+              name="distributor"
+              placeholder="Distributor"
+              onChange={this.handleChange}
+              value={this.state.distributor}
+            />
+            <input
+              className="add-input"
+              type="text"
+              name="inStock"
+              placeholder="In Stock?"
+              onChange={this.handleChange}
+              value={this.state.inStock}
             />
             <input
               className="add-input"
