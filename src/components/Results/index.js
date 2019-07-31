@@ -702,10 +702,10 @@ class Results extends Component {
         () => {
           console.log(this.state);
           if (!this.state.fromItem) {
-            var firstPage = document.getElementById(1);
-            if (firstPage) {
-              firstPage.scrollIntoView({ behavior: 'smooth' });
-            }
+            // var firstPage = document.getElementById(4);
+            // if (firstPage) {
+            //   firstPage.scrollIntoView({ behavior: 'smooth' });
+            // }
           } else if (this.state.fromItem && this.state.divID) {
             var currPage = document.getElementById(this.state.divID);
             if (currPage) {

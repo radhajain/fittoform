@@ -15,6 +15,71 @@
   position: relative;
 }
 
+@keyframes shrink-logo {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    /* transform: scale(0.125); */
+    width: 111.34px;
+    background-image: url('../../assets/images/ftf-one-line-logo-black.png');
+  }
+}
+
+.search-title-logo {
+  width: 80%;
+  transition: 0.4s all linear;
+  -webkit-transition: 0.4s all linear;
+  -moz-transition: 0.4s all linear;
+  -ms-transition: 0.4s all linear;
+  background-image: url('../../assets/images/white-logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 200px;
+  margin: 0 auto;
+  margin-bottom: 10vh;
+  animation: shrink-logo 1s linear 11s forwards;
+  -ms-animation: shrink-logo 1s linear 11s forwards;
+  -moz-animation: shrink-logo 1s linear 11s forwards;
+  -webkit-animation: shrink-logo 1s linear 11s forwards;
+}
+
+.search-title-logo:hover {
+  transform: scale(0.75);
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  background-image: url('../../assets/images/ftf-one-line-logo-black.png');
+}
+
+.search-title-div {
+  width: 90%;
+  text-align: center;
+}
+
+.search-cursor {
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.search-subtitle {
+  color: white;
+  font-weight: bold;
+  font-size: 2.1em;
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 5px 0px;
+  text-align: left;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.search-container-zero {
+  background-color: #ffd2ba;
+}
+
 .search-container-first {
   background: linear-gradient(#ffd2ba, #ffcbb8);
 }
@@ -266,6 +331,27 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+@media (max-width: 1183px) {
+  .search-subtitle {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 988px) {
+  .search-subtitle {
+    font-size: 1.6em;
+  }
+  .search-title-logo {
+    margin-bottom: 5vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .search-subtitle {
+    font-size: 1.5em;
+  }
+}
+
 @media (max-width: 882px) {
   .search-search-content {
     flex-wrap: wrap;
@@ -306,6 +392,18 @@ input[type='number'] {
 
   .search-desc {
     text-align: center;
+  }
+}
+
+@media (max-width: 790px) {
+  .search-title-logo {
+    margin-bottom: 0vh;
+  }
+}
+
+@media (max-width: 730px) {
+  .search-subtitle {
+    font-size: 1.3em;
   }
 }
 

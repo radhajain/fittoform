@@ -19,6 +19,7 @@
     "react-scripts": "^3.0.1",
     "react-scroll-parallax": "^2.1.2",
     "react-typeform-embed": "^0.2.0",
+    "react-typing-animation": "^1.6.2",
     "recompose": "^0.30.0"
   },
   "scripts": {
