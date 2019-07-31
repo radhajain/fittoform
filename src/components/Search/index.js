@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Search.css';
+import Typing from 'react-typing-animation';
+import whiteLogo from '../../assets/images/white-logo.svg';
 
 function validate(heightft, heightin, size, bra) {
   var braRe = /[0-9][0-9][a-hA-H][a-hA-H]?[a-hA-H]?/;
@@ -149,9 +151,25 @@ class Search extends Component {
     this.goToBra = this.goToBra.bind(this);
     this.goToSizing = this.goToSizing.bind(this);
     this.getErrorObj = this.getErrorObj.bind(this);
+
     this.sizingRef = React.createRef();
     this.sizeRef = React.createRef();
     this.braRef = React.createRef();
+  }
+
+  componentWillMount() {
+    this.scrollToFirst = this.scrollToFirst.bind(this);
+    this.heightRef = React.createRef();
+    setTimeout(this.scrollToFirst, 12000);
+  }
+
+  scrollToFirst() {
+    if (this.heightRef) {
+      this.heightRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
   }
 
   modifyWaist(val) {
@@ -384,7 +402,18 @@ class Search extends Component {
     };
     return (
       <div className="search-parent">
-        <div className="search-container-first search-child">
+        <div className="search-container-zero search-child">
+          <div className="search-title-div">
+            <div className="search-title-logo" />
+            <Typing startDelay={1000} speed={25} cursorClassName={'search-cursor'}>
+              <p className="search-subtitle">
+                Answer 5 questions and see dresses that will fit you perfectly. Tried on and
+                recommended by women with your measurements.
+              </p>
+            </Typing>
+          </div>
+        </div>
+        <div className="search-container-first search-child" ref={this.heightRef}>
           <div className="search-search-content">
             <form className="search-form">
               <label className="search-search-label">I am</label>

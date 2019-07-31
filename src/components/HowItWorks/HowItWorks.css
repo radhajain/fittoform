@@ -92,7 +92,7 @@
 .howitworks-img {
   position: absolute;
   width: 85%;
-  max-height: 330px;
+  max-height: 400px;
   object-fit: cover;
   top: 0px;
   right: 0px;
@@ -156,7 +156,7 @@
   width: 100%;
   position: relative;
   z-index: 5;
-  padding-top: 330px;
+  padding-top: 400px;
   padding-left: 10px;
 }
 
