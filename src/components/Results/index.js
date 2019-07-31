@@ -851,7 +851,7 @@ class Results extends Component {
         ? 'results-rightCol results-rightCol-adjust'
         : 'results-rightCol'
       : 'hide';
-    const placeholder = <div style={{ backgroundColor: '#E2F8F6', height: 500, width: 350 }} />;
+    const placeholder = <div style={{ backgroundColor: '#E2F8F6' }} className="results-img" />;
     var name = this.state.name;
     return (
       <div>

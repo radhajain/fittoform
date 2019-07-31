@@ -239,7 +239,12 @@
   }
 
   .footer-abouttext {
-    font-size: 0.9em;
+    font-size: 11px;
+    line-height: 17px;
+  }
+
+  .footer-headers {
+    font-size: 1em;
   }
 }
 
