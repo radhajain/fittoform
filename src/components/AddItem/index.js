@@ -93,7 +93,6 @@ class AddItem extends Component {
       color: this.state.color,
       brand: this.state.brand,
       name: this.state.name,
-      age: this.state.age,
       price: this.state.price,
       img: this.state.img,
       length: this.state.length,

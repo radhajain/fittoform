@@ -7,6 +7,7 @@ import { AuthUserContext, withAuthorization } from '../Session';
 import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
 import blackArrow from '../../assets/images/down-triangle-black.svg';
+import menuIcon from '../../assets/images/menu_icon.svg';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -96,16 +97,16 @@ class NavigationAuth extends React.Component {
       <div className="nav-outer">
         <div className="nav-inner">
           <div className="nav-c1">
-            <Link to={ROUTES.LANDING} className="nav-logo-right">
+            <Link to={ROUTES.LANDING} className="nav-logo-right nav-logo-right-auth">
               <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c2">
-            <Link to={ROUTES.LANDING} className="nav-logo-center">
+            <Link to={ROUTES.LANDING} className="nav-logo-center nav-logo-center-auth">
               <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
-          <div className="nav-c3">
+          <div className="nav-c3 nav-c3-auth">
             <div className="dropdown">
               <Link to={ROUTES.ACCOUNT}>
                 <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
@@ -149,6 +150,18 @@ class NavigationAuth extends React.Component {
 class NavigationNonAuth extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showMenu: false
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu() {
+    var currVal = this.state.showMenu;
+    console.log('toggling menu...');
+    this.setState({
+      showMenu: !currVal
+    });
   }
 
   render() {
@@ -166,15 +179,35 @@ class NavigationNonAuth extends React.Component {
             </Link>
           </div>
           <div className="nav-c3">
-            <Link to={ROUTES.HOWITWORKS} className="nav-href">
-              How it works
-            </Link>
-            <Link to={ROUTES.SIGN_IN} className="nav-href nav-margin-left">
-              Sign In
-            </Link>
-            <Link to={ROUTES.SIGN_UP} className="nav-href nav-margin-left">
-              Sign Up
-            </Link>
+            <div className="nav-c3-mobile dropdown">
+              <div onClick={this.toggleMenu} className="nav-menuIcon">
+                <img src={menuIcon} className="nav-menu-icon-img" />
+              </div>
+              <div className="dropdown-content dropdown-nonauth">
+                <Link to={ROUTES.HOWITWORKS} className="nav-profile-btn">
+                  How it works
+                </Link>
+                <hr></hr>
+                <Link to={ROUTES.SIGN_IN} className="nav-profile-btn">
+                  Sign In
+                </Link>
+                <hr></hr>
+                <Link to={ROUTES.SIGN_UP} className="nav-profile-btn">
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+            <div className="nav-c3-desktop">
+              <Link to={ROUTES.HOWITWORKS} className="nav-href">
+                How it works
+              </Link>
+              <Link to={ROUTES.SIGN_IN} className="nav-href nav-margin-left">
+                Sign In
+              </Link>
+              <Link to={ROUTES.SIGN_UP} className="nav-href nav-margin-left">
+                Sign Up
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -1018,7 +1018,7 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p className="message">
-    Not registered?{' '}
+    New here?{' '}
     <Link to={ROUTES.SIGN_UP} style={{ color: 'black' }}>
       Create an account
     </Link>

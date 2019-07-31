@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { FooterLarge } from '../Footer';
 import InstagramEmbed from 'react-instagram-embed';
 import InstagramModal from '../InstagramModal';
+import blueArrow from '../../assets/images/blue_arrow.svg';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -184,26 +185,17 @@ class Landing extends React.Component {
                 <div className="landing-2-rightCol">
                   <div className="landing-howitworks-steps">
                     <div className="landing-howitworks-box landing-howitworks-box-1">
-                      <p className="landing-desc">1 Tell us your size</p>
-                      <p className="landing-howitworks-desc">
-                        We estimate your measurements based on how the sizes you wear fit
-                      </p>
+                      <p className="landing-desc">1. Input your measurements</p>
                     </div>
                     <div className="landing-howitworks-box">
-                      <p className="landing-desc">2 Browse curations</p>
-                      <p className="landing-howitworks-desc">
-                        See what looked best on women with the same measurements as you
-                      </p>
+                      <p className="landing-desc">2. See dresses that fit</p>
                     </div>
                     <div className="landing-howitworks-box">
-                      <p className="landing-desc">3 Buy with confidence</p>
-                      <p className="landing-howitworks-desc">
-                        Read reviews from women like you who have tried on each dress
-                      </p>
+                      <p className="landing-desc">3. Shop from your favorite brands</p>
                     </div>
                     <div className="landing-howitworks-box">
                       <Link to="/search" className="landing-shopnow">
-                        Shop Now -->
+                        Shop Now <img src={blueArrow} style={{ width: 25, marginLeft: 5 }} />
                       </Link>
                     </div>
                   </div>

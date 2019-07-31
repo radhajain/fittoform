@@ -365,8 +365,8 @@ input[type='number'] {
   }
 
   .search-parent {
-    scroll-behavior: unset;
-    scroll-snap-type: none;
+    scroll-behavior: initial;
+    scroll-snap-type: initial;
   }
   .search-child {
     scroll-snap-align: none;
@@ -449,5 +449,11 @@ input[type='number'] {
 
   .search-results-btn-div {
     margin-top: 45px;
+  }
+}
+
+@media (max-width: 350px) {
+  .search-bra {
+    width: 100px;
   }
 }
