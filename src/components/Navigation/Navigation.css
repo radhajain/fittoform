@@ -144,6 +144,25 @@ a:focus {
   margin-left: 40px;
 }
 
+.nav-c3-mobile {
+  display: none;
+}
+
+.nav-menuIcon {
+  margin-top: 16px;
+}
+
+.nav-c3-desktop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-nonauth {
+  top: 50px;
+  right: 0px;
+}
+
 @media (max-width: 1080px) {
   .nav-c1 {
     flex-basis: 30%;
@@ -159,14 +178,6 @@ a:focus {
 }
 
 @media (max-width: 975px) {
-  .nav-logo-center {
-    display: none;
-  }
-
-  .nav-logo-right {
-    display: block;
-  }
-
   .nav-c1 {
     flex-basis: 40%;
   }
@@ -179,14 +190,18 @@ a:focus {
     flex-basis: 40%;
   }
 
+  .nav-c3-auth {
+    justify-content: flex-end;
+  }
+
   .nav-signup-btn {
     padding: 7px 17px;
   }
 }
 
 @media (max-width: 900px) {
-  .nav-signin-btn {
-    margin-right: 30px;
+  .nav-margin-left {
+    margin-left: 20px;
   }
 
   .nav-inner {
@@ -194,7 +209,7 @@ a:focus {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 715px) {
   .nav-signin-btn {
     margin-right: 20px;
   }
@@ -202,20 +217,21 @@ a:focus {
   .nav-inner {
     padding: 0px 20px;
   }
-  .nav-c1 {
-    flex-basis: 40%;
-  }
 
-  .nav-c2 {
-    flex-basis: 0%;
+  .nav-c3-mobile {
+    display: block;
   }
 
   .nav-c3 {
-    flex-basis: 60%;
+    justify-content: flex-end;
   }
-}
 
-@media (max-width: px) {
+  .nav-c3-desktop {
+    display: none;
+  }
+  .dropbtn {
+    font-size: 0.85em;
+  }
 }
 
 @media (max-width: 527px) {
@@ -225,6 +241,14 @@ a:focus {
 
   .nav-href {
     font-size: 0.9em;
+  }
+
+  .nav-logo-center-auth {
+    display: none;
+  }
+
+  .nav-logo-right-auth {
+    display: block;
   }
 }
 

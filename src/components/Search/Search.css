@@ -365,8 +365,8 @@ input[type='number'] {
   }
 
   .search-parent {
-    scroll-behavior: unset;
-    scroll-snap-type: none;
+    scroll-behavior: initial;
+    scroll-snap-type: initial;
   }
   .search-child {
     scroll-snap-align: none;
