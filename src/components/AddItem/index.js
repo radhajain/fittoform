@@ -112,7 +112,7 @@ class AddItem extends Component {
       distributor: this.state.distributor,
       img2: this.state.img2,
       freeReturns: freeReturns,
-      freeShippingAmount: this.state.freeShippingAmount.freeReturns,
+      freeShippingAmount: this.state.freeShippingAmount,
       inStock: inStock
     });
     var newDressKey = newDressRef.key;
