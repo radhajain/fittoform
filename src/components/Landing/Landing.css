@@ -389,8 +389,17 @@
     line-height: 35px;
   }
 
+  .landing-2-title {
+    margin-bottom: 20px;
+  }
+
   .landing-subtitle {
     font-size: 1.15em;
+  }
+
+  .landing-desc {
+    font-size: 0.85em;
+    margin-bottom: 10px;
   }
 
   .landing-callToAction {
@@ -428,10 +437,6 @@
 
 @media (max-width: 375px) {
   .landing-desc {
-    font-size: 1em;
-  }
-
-  .landing-howitworks-desc {
     font-size: 0.85em;
   }
 }

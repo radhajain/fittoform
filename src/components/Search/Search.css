@@ -392,6 +392,10 @@ input[type='number'] {
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .search-results-btn-div {
+    margin-top: 50px;
+  }
 }
 
 @media (max-width: 440px) {
@@ -408,7 +412,7 @@ input[type='number'] {
   }
 
   .search-bra {
-    width: 110px;
+    width: 100px;
   }
 }
 
