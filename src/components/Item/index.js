@@ -429,8 +429,8 @@ class Item extends Component {
                     <p className="itemView-review-title">Reviews by women like you</p>
                     <p className="itemView-text-small">
                       <i>
-                        Your measurements: {this.getHeightStr(this.state.height)}, bust:{' '}
-                        {this.state.bust}, waist: {this.state.waist}, hips: {this.state.hips}
+                        You are: {this.getHeightStr(this.state.height)}, bust: {this.state.bust},
+                        waist: {this.state.waist}, hips: {this.state.hips}
                       </i>
                     </p>
                   </div>
@@ -445,8 +445,8 @@ class Item extends Component {
                           <p className="itemView-review-name">{review.userInfo.name}</p>
                           <p className="itemView-item-measurements">
                             {review.userInfo.age}, {this.getHeightStr(review.userInfo.height)},
-                            bust: {review.userInfo.bust}", waist: {review.userInfo.waist}", hips:{' '}
-                            {review.userInfo.hips}"{' '}
+                            bust: {review.userInfo.bust}, waist: {review.userInfo.waist}, hips:{' '}
+                            {review.userInfo.hips}
                           </p>
                         </div>
                       </div>
