@@ -424,12 +424,9 @@ class Item extends Component {
                   </p>
                 </div>
 
-                <hr />
                 {this.state.reviewsFound && (
                   <div className="itemView-reviews-header">
-                    <p className="itemView-review-title">
-                      See what other people with your measurements have to say
-                    </p>
+                    <p className="itemView-review-title">Reviews by women like you</p>
                     <p className="itemView-text-small">
                       <i>
                         Your measurements: {this.getHeightStr(this.state.height)}, bust:{' '}
