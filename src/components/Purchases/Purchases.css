@@ -1,0 +1,55 @@
+.purchases-outer {
+  padding-top: 50px;
+  height: calc(100vh - 50px);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.purchases-inner {
+  width: 60%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: calc(100% - 100px);
+}
+
+.purchases-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2em;
+  color: black;
+}
+
+.purchases-item-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+  max-height: 150px;
+  margin: 30px 0px;
+}
+
+.purchases-item-imgWrapper {
+  flex-basis: 15%;
+}
+
+.purchases-dressImg {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.purchases-item-infoWrapper {
+  flex-basis: 65%;
+  padding-left: 25px;
+}
+
+.purchases-item-buyWrapper {
+  flex-basis: 20%;
+}
+
+.purchases-text {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+}
