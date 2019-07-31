@@ -1,7 +1,7 @@
 .promo {
   width: 100vw;
   height: 100vh;
-  background-color: #ffd2ba;
+  background-color: white;
 }
 
 .promo-inner {
@@ -11,41 +11,77 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.promo-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.4em;
-  margin-bottom: 20px;
+  position: relative;
 }
 
 .promo-content {
-  max-width: 500px;
+  max-width: 900px;
+  width: 80%;
+  background-color: #ffd2ba;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.promo-info-wrapper {
+  flex-basis: 50%;
+  padding-right: 45px;
+  padding: 50px 15px 50px 50px;
+}
+
+.promo-img-wrapper {
+  flex-basis: 50%;
+  height: 650px;
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_3.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.promo-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 .promo-subtitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.9em;
+  margin: 0px 0px;
+}
+
+.promo-box {
+  margin: 20px 0px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.promo-text {
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
-  font-size: 1.25em;
-  margin: 12px 0px;
+  font-size: 1.1em;
+  margin-bottom: 10px;
 }
 
-.promo-input {
-  background: none;
-  border: none;
-  border-bottom: 2px solid white;
-  color: white;
-  font-weight: bold;
-  font-family: 'Helvetiva Neue', sans-serif;
-  text-align: left;
-  width: 300px;
-  font-size: 1.5em;
-  border-radius: 0px;
-  height: 40px;
+.promo-brands {
+  font-size: 1.05em;
 }
 
-.promo-form ::placeholder {
-  font-size: 1.5em;
+.promo-tc {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 0.8em;
+  margin: 3px 0px;
+}
+
+.promo-img {
+  max-width: 100%;
+  object-fit: cover;
+  height: 100%;
 }
 
 .promo-form-div {
@@ -60,14 +96,151 @@
   background-color: white;
   color: black;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 1.4em;
+  font-size: 1.15em;
   border: none;
   padding: 12px 30px;
   font-weight: bold;
   cursor: pointer;
+  margin: 20px 0px 30px;
 }
 
 .promo-btn:hover {
   background-color: black;
   color: white;
+}
+
+@media (max-width: 980px) {
+  .promo-text {
+    font-size: 1.1em;
+  }
+
+  .promo-brands {
+    font-size: 1em;
+  }
+
+  .promo-title {
+    font-size: 1em;
+  }
+
+  .promo-subtitle {
+    font-size: 1.7em;
+  }
+
+  .promo-box {
+    margin: 15px 0px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .promo-content {
+    flex-wrap: wrap-reverse;
+    max-width: 520px;
+  }
+
+  .promo-img-wrapper {
+    flex-basis: 100%;
+    height: 250px;
+  }
+
+  .promo-info-wrapper {
+    flex-basis: 100%;
+    padding: 0px;
+    padding: 25px 35px 35px 35px;
+  }
+
+  .promo-subtitle {
+    display: inline-block;
+    font-size: 1.75em;
+  }
+
+  .promo-box {
+    margin: 12px 0px;
+  }
+
+  .promo-btn {
+    font-size: 1.25em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 540px) {
+  .promo-subtitle {
+    display: block;
+    font-size: 1.5em;
+  }
+
+  .promo-img-wrapper {
+    height: 150px;
+  }
+
+  .promo-inner {
+    height: calc(100% - 100px);
+    padding-bottom: 0px;
+  }
+
+  .promo-title {
+    font-size: 0.9em;
+  }
+
+  .promo-btn {
+    font-size: 1em;
+  }
+
+  .promo-text {
+    font-size: 0.9em;
+  }
+
+  .promo-brands {
+    font-size: 0.8em;
+  }
+
+  .promo-tc {
+    font-size: 0.55em;
+  }
+}
+
+@media (max-width: 470px) {
+  .promo-info-wrapper {
+    flex-basis: 100%;
+    padding: 0px;
+    padding: 15px 25px 25px 25px;
+  }
+}
+
+@media (max-width: 440px) {
+  .promo-info-wrapper {
+    padding: 15px;
+  }
+  .promo-subtitle {
+    font-size: 1.3em;
+  }
+
+  .promo-text {
+    font-size: 0.8em;
+  }
+
+  .promo-brands {
+    font-size: 0.7em;
+  }
+
+  .promo-btn {
+    font-size: 0.8em;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 350px) {
+  .promo-img-wrapper {
+    height: 100px;
+  }
+  .promo-title {
+    font-size: 0.8em;
+    margin-bottom: 10px;
+  }
+  .promo-subtitle {
+    font-size: 1.2em;
+  }
 }

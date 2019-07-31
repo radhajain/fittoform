@@ -1,6 +1,8 @@
 import React from 'react';
 import './Promo.css';
 import firebase from 'firebase';
+import { FooterSmall } from '../Footer';
+import { Link } from 'react-router-dom';
 
 class Promo extends React.Component {
   constructor(props) {
@@ -87,37 +89,61 @@ class Promo extends React.Component {
     var promoCode = this.state.promoCode;
     return (
       <div className="promo">
+        <div className="landing-fakeNav" />
         <div className="promo-inner">
           <div className="promo-content">
-            <div className="promo-title-wrapper">
-              <p className="promo-title">Tell us what you bought and get $$$</p>
-              <p className="promo-subtitle">$5 off purchases under $50</p>
-              <p className="promo-subtitle">$10 off for purchases under $100</p>
-              <p className="promo-subtitle">$15 off for purchases over $100</p>
-            </div>
-            <form className="promo-form" onSubmit={this.handleSubmit}>
-              <div className="promo-form-div">
-                <input
-                  name="promoCode"
-                  placeholder="Promo code"
-                  value={promoCode}
-                  onChange={this.onChange}
-                  type="text"
-                  className="promo-input"
-                />
-                <button className="promo-btn" type="submit">
-                  Add
-                </button>
+            <div className="promo-info-wrapper">
+              <div className="promo-title-wrapper">
+                <p className="promo-title">Buy through Fit to Form and get $$$</p>
+                <div className="promo-box">
+                  <p className="promo-subtitle">
+                    Spend <span className="underline">$50</span> or more,{'  '}
+                  </p>
+                  <p className="promo-subtitle">
+                    Get <span className="underline">$10</span>
+                  </p>
+                </div>
+                <div className="promo-box">
+                  <p className="promo-subtitle">
+                    Spend <span className="underline">$100</span> or more,{'  '}
+                  </p>
+                  <p className="promo-subtitle">
+                    Get <span className="underline">$25</span>
+                  </p>
+                </div>
+                {/* <div className="promo-box">
+                  <p className="promo-subtitle">
+                    Spend <span className="underline">$200</span> or more,
+                  </p>
+                  <p className="promo-subtitle">
+                    Get <span className="underline">$25</span>
+                  </p>
+                </div> */}
+                <p className="promo-text promo-brands">
+                  Giftcards from Revolve, Reformation, Nordstrom or Bloomingdale's.
+                </p>
+                <p className="promo-text">
+                  To redeem, email your order confirmation to{' '}
+                  <span className="underline">promo@thefittoform.com</span>.
+                </p>
+                <Link to="/results">
+                  <button className="promo-btn">Shop now</button>
+                </Link>
+                <p className="promo-tc">Valid once per user, until August 10th</p>
+                <p className="promo-tc">
+                  Giftcards for Revolve and Reformation only redeemable with $200 purchase
+                </p>
               </div>
-            </form>
-            {this.state.validPromoCode && (
-              <p>
-                Promo code accepted! Upload a screenshot below of your confirmation and you will be
-                emailed a giftcard.
-              </p>
-            )}
+            </div>
+            <div className="promo-img-wrapper">
+              {/* <img
+                src="https://fittoform-landing.s3.amazonaws.com/landing_image_3.jpg"
+                className="promo-img"
+              /> */}
+            </div>
           </div>
         </div>
+        <FooterSmall />
       </div>
     );
   }
