@@ -38,7 +38,8 @@
 }
 
 .itemView-c1-desc {
-  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .itemView-c1-text {
@@ -284,14 +285,6 @@
     font-size: 0.9em;
   }
 
-  .itemView-c1-desc {
-    margin-bottom: 50px;
-  }
-
-  .itemView-reviews-header {
-    margin-top: 50px;
-  }
-
   .itemView-item-title {
     font-size: 1.75em;
   }
@@ -321,7 +314,7 @@
 
 @media (max-height: 970px) {
   .itemView-c1-desc {
-    margin-bottom: 10px;
+    padding-bottom: 10px;
   }
 
   .itemView-reviews-header {
@@ -332,11 +325,7 @@
 
 @media (max-height: 760px) {
   .itemView-c1-desc {
-    margin-bottom: 10px;
-  }
-
-  .itemView-reviews-header {
-    margin-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
@@ -388,10 +377,6 @@
 
   .itemView-c1-desc {
     margin-bottom: 20px;
-  }
-
-  .itemView-reviews-header {
-    margin-top: 20px;
   }
 
   .itemView-c1-text {
