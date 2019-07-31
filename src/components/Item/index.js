@@ -384,6 +384,11 @@ class Item extends Component {
               ></Modal> */}
               <div className="itemView-c1-text">
                 <div className="itemView-title-div">
+                  {this.state.item.brand !== this.state.item.distributor && (
+                    <p className="itemView-item-brand" style={{ marginTop: 0 }}>
+                      <i>{this.state.item.brand}</i>
+                    </p>
+                  )}
                   <p className="itemView-item-title">{this.state.item.name}</p>
                   <p className="itemView-item-price">${this.state.item.price}</p>
                 </div>
@@ -402,11 +407,7 @@ class Item extends Component {
                       </span>
                     </p>
                   )}
-                  {this.state.item.brand !== this.state.item.distributor && (
-                    <p className="itemView-item-brand" style={{ marginTop: 0 }}>
-                      {this.state.item.brand}
-                    </p>
-                  )}
+
                   {!this.state.item.inStock && (
                     <p className="itemView-comingback">Coming back in stock soon</p>
                   )}
