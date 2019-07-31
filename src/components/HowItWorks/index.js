@@ -20,12 +20,12 @@ class HowItWorks extends React.Component {
             <div className="howitworks-content">
               <div className="howitworks-title-div">
                 <div className="howitworks-titleCol">
-                  <p className="howitworks-title">Shopping, based on your body.</p>
+                  <p className="howitworks-title">Shop dresses knowing they'll fit.</p>
                 </div>
                 <div className="howitworks-titleCol">
                   <p className="howitworks-title-desc">
                     A personalized shopping experience where everything has been tried on and
-                    recommended by your body doubles: women with your body measurements.
+                    recommended by women with your measurements.
                   </p>
                 </div>
               </div>
@@ -42,7 +42,7 @@ class HowItWorks extends React.Component {
         <div className="howitworks-child  howitworks-first">
           <div className="howitworks-child-inner">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/weddingdress_50p_progressive.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/rebecca-3.jpg"
               className="howitworks-img"
             />
             <div className="howitworks-child-c1">
@@ -100,7 +100,7 @@ class HowItWorks extends React.Component {
         <div className="howitworks-child howitworks-dark">
           <div className="howitworks-child-inner">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/tapemeasure_60p_progressive.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/rebecca-4.jpg"
               className="howitworks-img"
             />
             <div className="howitworks-child-c1"></div>
@@ -119,8 +119,9 @@ class HowItWorks extends React.Component {
         <div className="howitworks-child">
           <div className="howitworks-child-inner">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/shopping_30p_progressive.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/rebecca-5.jpg"
               className="howitworks-img"
+              style={{ objectPosition: 'top' }}
             />
             <div className="howitworks-child-c1"></div>
             <div className="howitworks-child-c2">
