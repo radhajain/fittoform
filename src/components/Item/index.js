@@ -40,6 +40,7 @@ class Item extends Component {
     this.closeModalHandler = this.closeModalHandler.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
     this.getUserData = this.getUserData.bind(this);
+    this.getNumColors = this.getNumColors.bind(this);
   }
 
   getHeightStr(height) {
@@ -332,6 +333,14 @@ class Item extends Component {
     this.listener && this.listener();
     this.authlistener = undefined;
   }
+  getNumColors(colors) {
+    if (colors.indexOf(',') > -1) {
+      var colorsArr = colors.split(',');
+      return colorsArr.length;
+    } else {
+      return 1;
+    }
+  }
 
   render() {
     return (
@@ -384,14 +393,21 @@ class Item extends Component {
                       Recommended size: {this.state.reviews[0].size}
                     </p>
                   )}
-                  <p className="itemView-item-brand">
-                    Available
-                    <span style={{ textTransform: 'lowercase' }}> in {this.state.item.color}</span>
-                  </p>
-                  <p className="itemView-item-brand" style={{ marginTop: 0 }}>
-                    {this.state.item.brand}
-                  </p>
-                  {!this.state.inStock && (
+                  {this.getNumColors(this.state.item.color) !== 1 && (
+                    <p className="itemView-item-brand">
+                      Available
+                      <span style={{ textTransform: 'lowercase' }}>
+                        {' '}
+                        in {this.state.item.color}
+                      </span>
+                    </p>
+                  )}
+                  {this.state.item.brand !== this.state.item.distributor && (
+                    <p className="itemView-item-brand" style={{ marginTop: 0 }}>
+                      {this.state.item.brand}
+                    </p>
+                  )}
+                  {!this.state.item.inStock && (
                     <p className="itemView-comingback">Coming back in stock soon</p>
                   )}
 
