@@ -164,10 +164,12 @@ class Search extends Component {
   }
 
   scrollToFirst() {
-    this.heightRef.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
+    if (this.heightRef) {
+      this.heightRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
   }
 
   modifyWaist(val) {
