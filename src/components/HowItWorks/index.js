@@ -42,7 +42,7 @@ class HowItWorks extends React.Component {
         <div className="howitworks-child  howitworks-first">
           <div className="howitworks-child-inner">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/rebecca-3.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/how1.jpg"
               className="howitworks-img"
             />
             <div className="howitworks-child-c1">
@@ -100,7 +100,7 @@ class HowItWorks extends React.Component {
         <div className="howitworks-child howitworks-dark">
           <div className="howitworks-child-inner">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/rebecca-4.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/how2.jpg"
               className="howitworks-img"
             />
             <div className="howitworks-child-c1"></div>
@@ -119,7 +119,7 @@ class HowItWorks extends React.Component {
         <div className="howitworks-child">
           <div className="howitworks-child-inner">
             <img
-              src="https://fittoform-landing.s3.amazonaws.com/rebecca-5.jpg"
+              src="https://fittoform-landing.s3.amazonaws.com/how3.jpg"
               className="howitworks-img"
               style={{ objectPosition: 'top' }}
             />
