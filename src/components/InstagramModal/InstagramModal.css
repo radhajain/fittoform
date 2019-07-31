@@ -65,6 +65,7 @@
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
   color: #262626;
+  font-size: 1em;
 }
 
 .instaModal-img {
@@ -133,6 +134,7 @@
 }
 
 .instaModal-comment {
+  font-size: 1em;
 }
 
 .instaModal-shop-btn {
@@ -153,6 +155,10 @@
   border: 1px solid black;
 }
 
+.instaModal-insta-logo {
+  width: 28px;
+}
+
 @media (max-width: 1115px) {
   .instaModal-shop-name {
     font-size: 1.05em;
@@ -163,12 +169,93 @@
   }
 }
 
+@media (max-width: 990px) {
+  .instaModal-shop-action {
+    flex-wrap: wrap;
+  }
+
+  .instaModal-shopbtn-wrapper {
+    flex-basis: 100%;
+    height: unset;
+    justify-content: flex-start;
+    padding-left: 15px;
+  }
+
+  .instaModal-shop-btn {
+    padding: 7px 15px;
+  }
+
+  .instaModal-shop-info {
+    flex-basis: 100%;
+  }
+
+  .instaModal-shop-img {
+    height: 120px;
+  }
+}
+
 @media (max-width: 950px) {
   .instaModal-shop-name {
     font-size: 1em;
   }
+}
 
-  .instaModal-shop-btn {
-    padding: 12px 12px;
+@media (max-width: 900px) {
+  .instaModal-comment {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 800px) {
+  .instaModal-instagram-link {
+    font-size: 0.9em;
+  }
+  .instaModal-insta-logo {
+    width: 25px;
+  }
+
+  .instaModal-info-wrapper {
+    padding-top: 24px;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 710px) {
+  .instaModal-inner {
+    flex-wrap: wrap;
+  }
+
+  .instaModal-wrapper {
+    width: 284px;
+    left: calc(50% - 142px);
+    margin: 50px auto 0;
+  }
+
+  .instaModal-img-wrapper {
+    flex-basis: 100%;
+  }
+
+  .instaModal-info-wrapper {
+    flex-basis: 100%;
+    padding: 15px;
+  }
+
+  .instaModal-img {
+    object-fit: contain;
+    max-height: 300px;
+  }
+
+  .instaModal-shop-name {
+    margin-top: 10px;
+    font-size: 0.95em;
+  }
+
+  .instaModal-shop-brand {
+    margin-bottom: 5px;
+    font-size: 0.8em;
+  }
+
+  .instaModal-shopbtn-wrapper {
+    margin-top: 12px;
   }
 }
