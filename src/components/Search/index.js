@@ -164,7 +164,7 @@ class Search extends Component {
   }
 
   scrollToFirst() {
-    if (this.heightRef) {
+    if (this.heightRef && this.heightRef.current) {
       this.heightRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
