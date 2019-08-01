@@ -111,6 +111,10 @@ a:focus {
   padding-right: 10px;
 }
 
+.dropdown-content-show {
+  display: block;
+}
+
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;

@@ -39,9 +39,31 @@ class NavigationAuth extends React.Component {
       hips: '',
       bust: '',
       size: '',
-      bra: ''
+      bra: '',
+      showMenu: false
     };
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  toggleMenu() {
+    var currVal = this.state.showMenu;
+    console.log('toggling menu...');
+    this.setState({
+      showMenu: !currVal
+    });
+  }
+
+  handleClick = e => {
+    this.setState({
+      showMenu: false
+    });
+    // if (this.node.contains(e.target)) {
+    //   return;
+    // } else {
+
+    // }
+  };
 
   // Sets the user values
   getUserData(uid) {
@@ -76,6 +98,7 @@ class NavigationAuth extends React.Component {
     this.authlistener = this.authlistener.bind(this);
     if (this._isMounted) {
       this.authlistener();
+      document.addEventListener('mousedown', this.handleClick, false);
     }
   }
 
@@ -83,6 +106,7 @@ class NavigationAuth extends React.Component {
     this._isMounted = false;
     this.listener && this.listener();
     this.authlistener = undefined;
+    document.removeEventListener('mousedown', this.handleClick, false);
   }
 
   getFirstName(name) {
@@ -108,11 +132,18 @@ class NavigationAuth extends React.Component {
           </div>
           <div className="nav-c3 nav-c3-auth">
             <div className="dropdown">
-              <Link to={ROUTES.ACCOUNT}>
-                <button className="dropbtn">Hey, {this.getFirstName(this.state.name)}</button>
-              </Link>
-              <img src={blackArrow} className="nav-whitearrow" />
-              <div className="dropdown-content">
+              <button className="dropbtn" onClick={this.toggleMenu}>
+                Hey, {this.getFirstName(this.state.name)}
+                <img src={blackArrow} style={{ marginLeft: 5 }} className="nav-whitearrow" />
+              </button>
+
+              <div
+                className={
+                  this.state.showMenu
+                    ? 'dropdown-content dropdown-content-show'
+                    : 'dropdown-content'
+                }
+              >
                 <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">
                   Your Profile
                 </Link>
