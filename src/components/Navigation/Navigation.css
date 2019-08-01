@@ -111,6 +111,44 @@ a:focus {
   padding-right: 10px;
 }
 
+.nav-favorites {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.nav-favorites-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.nav-favorites-label {
+  font-size: 1em;
+  color: #69dbd3;
+  font-family: 'Helveticam Neue', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0px 0px 0px 5px;
+}
+
+.nav-favorites-inner:hover .nav-favorites-label {
+  color: #ffd2ba;
+}
+
+.nav-favorites-menu {
+  display: none;
+}
+
+.nav-heart-icon {
+  width: 20px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
 .dropdown-content-show {
   display: block;
 }
@@ -236,6 +274,14 @@ a:focus {
   .dropbtn {
     font-size: 0.85em;
   }
+
+  .nav-favorites {
+    margin-right: 10px;
+  }
+
+  .nav-heart-icon {
+    width: 15px;
+  }
 }
 
 @media (max-width: 527px) {
@@ -271,5 +317,13 @@ a:focus {
 
   .nav-c3 {
     flex-basis: 50%;
+  }
+
+  .nav-favorites-inner {
+    display: none;
+  }
+
+  .nav-favorites-menu {
+    display: block;
   }
 }
