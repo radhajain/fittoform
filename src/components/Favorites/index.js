@@ -3,7 +3,7 @@ import './Favorites.css';
 import firebase from 'firebase';
 import { FooterSmall } from '../Footer';
 import ProgressiveImage from 'react-progressive-image';
-
+import { Link } from 'react-router-dom';
 import heartOutline from '../../assets/images/heart_outline.png';
 import heartFilled from '../../assets/images/heart_icon.png';
 
@@ -224,7 +224,14 @@ class Favorites extends React.Component {
               })}
           </div>
           <div className="favorites-rightCol">
-            <p className="favorites-title">Your Favorites</p>
+            <div>
+              <Link to="/results" style={{ textDecoration: 'none' }}>
+                <p className="favorites-back">
+                  <i> {'< '} Back to results</i>
+                </p>
+              </Link>
+              <p className="favorites-title">Your Favorites</p>
+            </div>
           </div>
         </div>
         <FooterSmall />

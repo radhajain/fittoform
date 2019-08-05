@@ -131,7 +131,7 @@ class Promo extends React.Component {
                 </Link>
                 <p className="promo-tc">Valid once per user, until August 10th</p>
                 <p className="promo-tc">
-                  Giftcards for Revolve and Reformation only redeemable with $200 purchase
+                  Giftcards for Revolve and Reformation only redeemable with $100+ purchase
                 </p>
               </div>
             </div>

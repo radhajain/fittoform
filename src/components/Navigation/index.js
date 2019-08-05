@@ -97,11 +97,32 @@ class NavigationAuth extends React.Component {
     });
   }
 
+  firebaseFavoritesListener() {
+    if (this.state.uid) {
+      let UserRef = firebase
+        .database()
+        .ref('users')
+        .child(`${this.state.uid}`)
+        .child('favorites');
+      if (UserRef) {
+        UserRef.onUpdate(e => {
+          console.log('userRef updating');
+          var favorites = e.data.val();
+          this.setState({
+            favorites: favorites
+          });
+        });
+      }
+    }
+  }
+
   componentDidMount() {
     this._isMounted = true;
     this.authlistener = this.authlistener.bind(this);
+    this.firebaseFavoritesListener = this.firebaseFavoritesListener.bind(this);
     if (this._isMounted) {
       this.authlistener();
+      this.firebaseFavoritesListener();
       document.addEventListener('mousedown', this.handleClick, false);
     }
   }
@@ -110,6 +131,7 @@ class NavigationAuth extends React.Component {
     this._isMounted = false;
     this.listener && this.listener();
     this.authlistener = undefined;
+    this.firebaseFavoritesListener = undefined;
     document.removeEventListener('mousedown', this.handleClick, false);
   }
 
