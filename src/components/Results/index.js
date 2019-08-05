@@ -1169,7 +1169,7 @@ class Results extends Component {
                   </div>
                 )}
                 <div className="results-measurements-wrapper">
-                  <form onSubmit={this.handleSubmit}>
+                  {/* <form onSubmit={this.handleSubmit}>
                     <input
                       name="name"
                       type="text"
@@ -1179,7 +1179,8 @@ class Results extends Component {
                       onChange={this.handleInput}
                       placeholder="Add Your Name"
                     />
-                  </form>
+                  </form> */}
+                  <p className="results-your-measurements-label">Your Measurements</p>
                   <p
                     className="results-your-measurements"
                     onClick={() =>
