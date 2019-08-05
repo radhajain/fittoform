@@ -178,7 +178,12 @@ class Favorites extends React.Component {
         <div className="favorites-inner">
           <div className="favorites-leftCol">
             {!this.state.favorites && (
-              <p className="favorites-empty-msg">You have not favorited any dresses yet.</p>
+              <div style={{ margin: '0 auto', textAlign: 'center' }}>
+                <p className="favorites-empty-msg">You have not favorited any dresses yet.</p>
+                <Link to="/results">
+                  <p className="favorites-empty-msg">View all dresses picked for you</p>
+                </Link>
+              </div>
             )}
             {this.state.favorites &&
               this.state.dresses &&
