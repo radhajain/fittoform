@@ -182,6 +182,7 @@ class Item extends Component {
   componentDidMount() {
     console.log(this.props.location.state.cachedReviews);
     this._isMounted = true;
+    window.scrollTo(0, 0);
     this.authlistener = this.authlistener.bind(this);
     if (this._isMounted) {
       this.authlistener();
@@ -357,16 +358,11 @@ class Item extends Component {
                   alt={this.state.item.name}
                   src={this.state.item.img}
                   className="itemView-img"
-                  onMouseOver={e =>
-                    this.state.item.img2
-                      ? (e.currentTarget.src = this.state.item.img2)
-                      : console.log("don't have rollover")
-                  }
-                  onMouseOut={e =>
-                    this.state.item.img2
-                      ? (e.currentTarget.src = this.state.item.img)
-                      : console.log('no return')
-                  }
+                />
+                <img
+                  alt={this.state.item.name}
+                  src={this.state.item.img2}
+                  className="itemView-img itemView-img-2"
                 />
               </div>
             </div>
