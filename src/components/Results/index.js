@@ -71,7 +71,7 @@ class Results extends Component {
       nextBestDressesIDs: [],
       //NextBestDresses: [{ measurement: "64, 27, 24, 38 ,dresses: [dressID, dressID...], ratings: [10, 9...], reviewIDs: [firebaseKey: {reviewID: "reviewID"}]}]
       nextBestDresses: [dressObj],
-      showMoreDresses: false,
+      showMoreDresses: true,
       showRecInfo: true,
       currMeasurements: '',
       seenDresses: [],
@@ -95,9 +95,9 @@ class Results extends Component {
       this.state.fromItem = this.props.location.state.fromItem
         ? this.props.location.state.fromItem
         : false;
-      this.state.showMoreDresses = this.props.location.state.showMoreDresses
-        ? this.props.location.state.showMoreDresses
-        : false;
+      // this.state.showMoreDresses = this.props.location.state.showMoreDresses
+      //   ? this.props.location.state.showMoreDresses
+      //   : true;
     }
     console.log(this.state);
     this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
