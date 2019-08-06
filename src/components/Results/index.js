@@ -129,6 +129,7 @@ class Results extends Component {
     this.goToSubmitDress = this.goToSubmitDress.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.getPercentageMatch = this.getPercentageMatch.bind(this);
   }
 
   handleMouseEnter(currBucketID, showingNextBest) {
@@ -149,6 +150,32 @@ class Results extends Component {
     this.setState({
       showCurrMeasurement: false
     });
+  }
+
+  getPercentageMatch(values) {
+    var heightDiff =
+      Math.abs(values.height - this.state.height) <= 1 &&
+      Math.abs(values.height - this.state.height) > 0
+        ? 0.1
+        : Math.abs(values.height - this.state.height);
+    var hipsDiff = Math.abs(values.hips - this.state.hips);
+    if (values.hips >= this.state.hips && values.hips - this.state.hips <= 1.5) {
+      hipsDiff = 0.1;
+    }
+    var diffAbs =
+      heightDiff +
+      Math.abs(values.waist - this.state.waist) +
+      Math.abs(values.bust - this.state.bust) +
+      hipsDiff;
+    // var diffAbs =
+    //   Math.abs(values.height - this.state.height) +
+    //   Math.abs(values.waist - this.state.waist) +
+    //   Math.abs(values.bust - this.state.bust) +
+    //   Math.abs(values.hips - this.state.hips);
+    // var total = this.state.height + this.state.waist + this.state.bust + this.state.hips;
+    // var percentageDiff = Math.round(((total - diffAbs) / total) * 100);
+    // return percentageDiff;
+    return Math.round(100 - diffAbs * 2.4);
   }
 
   toggleFavoriteDress(selectedDressKey) {
@@ -435,7 +462,7 @@ class Results extends Component {
     var lowestDiff = Number.MAX_VALUE;
     var closestMeasurements, dressGroupID;
     var bestDressGroupIDs = [];
-    var maxNextBestDiff = 3;
+    var maxNextBestDiff = 4;
     var measurementsRef = firebase.database().ref('measurements');
     return new Promise((resolve, reject) => {
       measurementsRef.once('value').then(snapshot => {
@@ -990,6 +1017,12 @@ class Results extends Component {
                                       <p className="results-color">
                                         {this.getNumColors(dress.color)}
                                       </p>
+                                      {/* <p className="results-percentageMatch">
+                                        {this.getPercentageMatch(
+                                          this.state.bestDressGroupIDs[keyDressObj]
+                                        )}
+                                        % match
+                                      </p> */}
                                     </div>
                                   </div>
                                 )}
@@ -1093,6 +1126,12 @@ class Results extends Component {
                                       <p className="results-color">
                                         {this.getNumColors(dress.color)}
                                       </p>
+                                      {/* <p className="results-percentageMatch">
+                                        {this.getPercentageMatch(
+                                          this.state.nextBestDressGroupIDs[keyDressObj]
+                                        )}
+                                        % match
+                                      </p> */}
                                     </div>
                                   </div>
                                 )}
