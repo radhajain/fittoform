@@ -38,10 +38,10 @@
   height: 200px;
   margin: 0 auto;
   margin-bottom: 10vh;
-  animation: shrink-logo 1s linear 11s forwards;
-  -ms-animation: shrink-logo 1s linear 11s forwards;
-  -moz-animation: shrink-logo 1s linear 11s forwards;
-  -webkit-animation: shrink-logo 1s linear 11s forwards;
+  animation: shrink-logo 1s linear 8s forwards;
+  -ms-animation: shrink-logo 1s linear 8s forwards;
+  -moz-animation: shrink-logo 1s linear 8s forwards;
+  -webkit-animation: shrink-logo 1s linear 8s forwards;
 }
 
 /* .search-title-logo:hover {

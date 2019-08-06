@@ -399,11 +399,14 @@ class Item extends Component {
                     </p>
                   )}
                   {this.getNumColors(this.state.item.color) !== 1 && (
-                    <p className="itemView-item-brand">
-                      Available
-                      <span style={{ textTransform: 'lowercase' }}>
+                    <p className="itemView-item-brand" style={{ textTransform: 'none' }}>
+                      Available in
+                      <span
+                        onClick={this.shopItem}
+                        style={{ textTransform: 'lowercase', cursor: 'pointer' }}
+                      >
                         {' '}
-                        in {this.state.item.color}
+                        {this.state.item.color}
                       </span>
                     </p>
                   )}

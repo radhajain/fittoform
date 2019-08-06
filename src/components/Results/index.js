@@ -71,7 +71,7 @@ class Results extends Component {
       nextBestDressesIDs: [],
       //NextBestDresses: [{ measurement: "64, 27, 24, 38 ,dresses: [dressID, dressID...], ratings: [10, 9...], reviewIDs: [firebaseKey: {reviewID: "reviewID"}]}]
       nextBestDresses: [dressObj],
-      showMoreDresses: false,
+      showMoreDresses: true,
       showRecInfo: true,
       currMeasurements: '',
       seenDresses: [],
@@ -95,9 +95,9 @@ class Results extends Component {
       this.state.fromItem = this.props.location.state.fromItem
         ? this.props.location.state.fromItem
         : false;
-      this.state.showMoreDresses = this.props.location.state.showMoreDresses
-        ? this.props.location.state.showMoreDresses
-        : false;
+      // this.state.showMoreDresses = this.props.location.state.showMoreDresses
+      //   ? this.props.location.state.showMoreDresses
+      //   : true;
     }
     console.log(this.state);
     this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
@@ -851,7 +851,9 @@ class Results extends Component {
         ? 'results-rightCol results-rightCol-adjust'
         : 'results-rightCol'
       : 'hide';
-    const placeholder = <div style={{ backgroundColor: '#E2F8F6' }} className="results-img" />;
+    const placeholder = (
+      <div style={{ backgroundColor: '#E2F8F6', cursor: 'wait' }} className="results-img" />
+    );
     var name = this.state.name;
     return (
       <div>
@@ -1167,7 +1169,7 @@ class Results extends Component {
                   </div>
                 )}
                 <div className="results-measurements-wrapper">
-                  <form onSubmit={this.handleSubmit}>
+                  {/* <form onSubmit={this.handleSubmit}>
                     <input
                       name="name"
                       type="text"
@@ -1177,7 +1179,8 @@ class Results extends Component {
                       onChange={this.handleInput}
                       placeholder="Add Your Name"
                     />
-                  </form>
+                  </form> */}
+                  <p className="results-your-measurements-label">Your Measurements</p>
                   <p
                     className="results-your-measurements"
                     onClick={() =>

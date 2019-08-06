@@ -160,7 +160,7 @@ class Search extends Component {
   componentWillMount() {
     this.scrollToFirst = this.scrollToFirst.bind(this);
     this.heightRef = React.createRef();
-    setTimeout(this.scrollToFirst, 12000);
+    setTimeout(this.scrollToFirst, 9000);
   }
 
   scrollToFirst() {
@@ -405,7 +405,7 @@ class Search extends Component {
         <div className="search-container-zero search-child">
           <div className="search-title-div">
             <div className="search-title-logo" />
-            <Typing startDelay={1000} speed={25} cursorClassName={'search-cursor'}>
+            <Typing startDelay={1000} speed={10} cursorClassName={'search-cursor'}>
               <p className="search-subtitle">
                 Answer 5 questions and see dresses that will fit you perfectly. Tried on and
                 recommended by women with your measurements.

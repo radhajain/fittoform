@@ -8,6 +8,7 @@ import BlackLogo from '../../assets/images/ftf-one-line-logo-black.png';
 import firebase from 'firebase';
 import blackArrow from '../../assets/images/down-triangle-black.svg';
 import menuIcon from '../../assets/images/menu_icon.svg';
+import heartIcon from '../../assets/images/heart_outline.png';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -40,6 +41,8 @@ class NavigationAuth extends React.Component {
       bust: '',
       size: '',
       bra: '',
+      favorites: [],
+      shoppedLinks: [],
       showMenu: false
     };
     this.toggleMenu = this.toggleMenu.bind(this);
@@ -61,7 +64,6 @@ class NavigationAuth extends React.Component {
     // if (this.node.contains(e.target)) {
     //   return;
     // } else {
-
     // }
   };
 
@@ -80,7 +82,9 @@ class NavigationAuth extends React.Component {
         hips: user.hips,
         bust: user.bust,
         size: user.size,
-        bra: user.bra
+        bra: user.bra,
+        favorites: user.favorites ? user.favorites : [],
+        shoppedLinks: user.shoppedLinks ? user.shoppedLinks : []
       });
     });
   }
@@ -93,11 +97,32 @@ class NavigationAuth extends React.Component {
     });
   }
 
+  firebaseFavoritesListener() {
+    if (this.state.uid) {
+      let UserRef = firebase
+        .database()
+        .ref('users')
+        .child(`${this.state.uid}`)
+        .child('favorites');
+      if (UserRef) {
+        UserRef.onUpdate(e => {
+          console.log('userRef updating');
+          var favorites = e.data.val();
+          this.setState({
+            favorites: favorites
+          });
+        });
+      }
+    }
+  }
+
   componentDidMount() {
     this._isMounted = true;
     this.authlistener = this.authlistener.bind(this);
+    this.firebaseFavoritesListener = this.firebaseFavoritesListener.bind(this);
     if (this._isMounted) {
       this.authlistener();
+      this.firebaseFavoritesListener();
       document.addEventListener('mousedown', this.handleClick, false);
     }
   }
@@ -106,6 +131,7 @@ class NavigationAuth extends React.Component {
     this._isMounted = false;
     this.listener && this.listener();
     this.authlistener = undefined;
+    this.firebaseFavoritesListener = undefined;
     document.removeEventListener('mousedown', this.handleClick, false);
   }
 
@@ -131,6 +157,14 @@ class NavigationAuth extends React.Component {
             </Link>
           </div>
           <div className="nav-c3 nav-c3-auth">
+            <Link to={ROUTES.FAVORITES} className="nav-favorites">
+              <div className="nav-favorites-inner">
+                <img src={heartIcon} className="nav-heart-icon" alt="your-favorites" />
+                {this.state.favorites.length > 0 && (
+                  <p className="nav-favorites-label">{this.state.favorites.length}</p>
+                )}
+              </div>
+            </Link>
             <div className="dropdown">
               <button className="dropbtn" onClick={this.toggleMenu}>
                 Hey, {this.getFirstName(this.state.name)}
@@ -147,13 +181,19 @@ class NavigationAuth extends React.Component {
                 <Link to={ROUTES.ACCOUNT} className="nav-profile-btn">
                   Your Profile
                 </Link>
-                <hr></hr>
-                <Link to={ROUTES.FAVORITES} className="nav-profile-btn">
-                  Your Favorites
-                </Link>
+                <div className="nav-favorites-menu">
+                  <hr></hr>
+                  <Link to={ROUTES.FAVORITES} className="nav-profile-btn">
+                    Your Favorites{' '}
+                    <span className="nav-favorites-label">{this.state.favorites.length}</span>
+                  </Link>
+                </div>
                 <hr></hr>
                 <Link to={ROUTES.PURCHASES} className="nav-profile-btn">
-                  Your Purchases
+                  Your Purchases{' '}
+                  {this.state.shoppedLinks.length > 0 && (
+                    <span>({this.state.shoppedLinks.length})</span>
+                  )}
                 </Link>
                 <hr></hr>
                 <Link to={ROUTES.SUBMIT} className="nav-profile-btn">

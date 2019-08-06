@@ -38,7 +38,7 @@ class MakeRequest extends Component {
               link: ''
             });
           }.bind(this),
-          3000
+          2000
         );
       }
     );
