@@ -1017,12 +1017,12 @@ class Results extends Component {
                                       <p className="results-color">
                                         {this.getNumColors(dress.color)}
                                       </p>
-                                      <p className="results-percentageMatch">
+                                      {/* <p className="results-percentageMatch">
                                         {this.getPercentageMatch(
                                           this.state.bestDressGroupIDs[keyDressObj]
                                         )}
                                         % match
-                                      </p>
+                                      </p> */}
                                     </div>
                                   </div>
                                 )}
@@ -1126,12 +1126,12 @@ class Results extends Component {
                                       <p className="results-color">
                                         {this.getNumColors(dress.color)}
                                       </p>
-                                      <p className="results-percentageMatch">
+                                      {/* <p className="results-percentageMatch">
                                         {this.getPercentageMatch(
                                           this.state.nextBestDressGroupIDs[keyDressObj]
                                         )}
                                         % match
-                                      </p>
+                                      </p> */}
                                     </div>
                                   </div>
                                 )}

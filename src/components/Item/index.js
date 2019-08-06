@@ -406,6 +406,8 @@ class Item extends Component {
                       </span>
                     </p>
                   )}
+                  {/* <p>{this.state.item.bra}</p>
+                  <p>{this.state.item.occassion}</p> */}
 
                   {!this.state.item.inStock && (
                     <p className="itemView-comingback">Coming back in stock soon</p>
