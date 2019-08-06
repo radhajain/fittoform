@@ -418,6 +418,10 @@ input:focus {
   display: none;
 }
 
+.results-percentageMatch {
+  margin: 2px 0px;
+}
+
 .bold {
   font-weight: bolder;
 }
