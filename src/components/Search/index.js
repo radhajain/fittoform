@@ -169,6 +169,7 @@ class Search extends Component {
         behavior: 'smooth',
         block: 'center'
       });
+      this.refs.heightftinput.focus();
     }
   }
 
