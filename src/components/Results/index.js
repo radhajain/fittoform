@@ -9,6 +9,7 @@ import Modal from '../Modal';
 import upArrow from '../../assets/images/up arrow.svg';
 import { Link } from 'react-router-dom';
 import MakeRequest from '../MakeRequest';
+import * as ROUTES from '../../constants/routes.js';
 // import { Parallax } from 'react-scroll-parallax';
 
 //TODO: maintain scroll position
@@ -98,6 +99,8 @@ class Results extends Component {
       // this.state.showMoreDresses = this.props.location.state.showMoreDresses
       //   ? this.props.location.state.showMoreDresses
       //   : true;
+    } else {
+      this.props.history.push(ROUTES.LANDING);
     }
     console.log(this.state);
     this.getBestDressGroupID = this.getBestDressGroupID.bind(this);
