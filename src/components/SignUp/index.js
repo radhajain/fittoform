@@ -672,6 +672,125 @@ class SignUpFormBase extends Component {
             </form>
           </div>
         </div>
+        <div className="signup-container-first-part2 signup-child" ref={this.brandsRef}>
+          <div className="signup-signup-content">
+            <form>
+              <label className="signup-signup-label">My favorite brands are:</label>
+              <div className="signup-brand-cols">
+                <div className="signup-brand-col1">
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="free people"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Free People</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="aritzia"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Aritzia</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="Lulus"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Lulus</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="Reformation"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Reformation</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="Nordstrom"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Nordstrom</label>
+                  </div>
+                </div>
+                <div className="signup-brand-col2">
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="Bloomingdale's"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Bloomingdale's</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="UO"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">UO</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="Zara"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Zara</label>
+                  </div>
+
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="Revolve"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">Revolve</label>
+                  </div>
+                  <div className="signup-brand-option">
+                    <input
+                      type="checkbox"
+                      name="brand"
+                      value="H&M"
+                      className="signup-radio-input"
+                    ></input>
+                    <span className="checkmark"></span>
+                    <label className="signup-radio-label">H&M</label>
+                  </div>
+                </div>
+              </div>
+              <div className="signup-nextDiv" style={{ marginTop: 50, textAlign: 'center' }}>
+                <button className="signup-ok-btn" onClick={this.goToHeight}>
+                  <div className="signup-ok-flexWrapper">OK</div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
         <div className="signup-container-second signup-child" ref={this.heightRef}>
           <div className="signup-signup-content">
             <form>

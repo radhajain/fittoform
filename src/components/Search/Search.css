@@ -225,9 +225,9 @@ button:focus {
 
 .search-ok-btn {
   background-color: white;
-  padding: 20px 20px;
+  padding: 7px 20px;
   border: none;
-  border-radius: 50%;
+  border-radius: 5px;
   font-family: 'Helvetiva Neue', sans-serif;
   cursor: pointer;
   min-height: 40px;
