@@ -240,12 +240,12 @@ class NavigationNonAuth extends React.Component {
       <div className="nav-outer">
         <div className="nav-inner">
           <div className="nav-c1">
-            <Link to={ROUTES.SEARCH} className="nav-logo-right">
+            <Link to={ROUTES.LANDING} className="nav-logo-right">
               <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>
           <div className="nav-c2">
-            <Link to={ROUTES.SEARCH} className="nav-logo-center">
+            <Link to={ROUTES.LANDING} className="nav-logo-center">
               <img src={BlackLogo} style={{ height: 20 }} />
             </Link>
           </div>

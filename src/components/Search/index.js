@@ -403,7 +403,7 @@ class Search extends Component {
     };
     return (
       <div className="search-parent">
-        <div className="search-container-zero search-child">
+        {/* <div className="search-container-zero search-child">
           <div className="search-title-div">
             <div className="search-title-logo" />
             <Typing startDelay={1000} speed={25} cursorClassName={'search-cursor'}>
@@ -413,7 +413,7 @@ class Search extends Component {
               </p>
             </Typing>
           </div>
-        </div>
+        </div> */}
         <div className="search-container-first search-child" ref={this.heightRef}>
           <div className="search-search-content">
             <form className="search-form">
