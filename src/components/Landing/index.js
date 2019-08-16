@@ -193,11 +193,13 @@ class Landing extends React.Component {
                     <div className="landing-howitworks-box">
                       <p className="landing-desc">3. Shop from your favorite brands</p>
                     </div>
+
                     <div className="landing-howitworks-box">
                       <Link to="/search" className="landing-shopnow">
                         Shop Now <img src={blueArrow} style={{ width: 25, marginLeft: 5 }} />
                       </Link>
                     </div>
+                    <p style={{ color: 'white' }}>PEPPERJAM VERIFICATION</p>
                   </div>
                 </div>
               </div>
