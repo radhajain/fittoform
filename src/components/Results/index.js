@@ -75,6 +75,7 @@ class Results extends Component {
       showMoreDresses: true,
       showRecInfo: true,
       currMeasurements: '',
+      occassions: [],
       seenDresses: [],
       isModalShowing: false,
       isHomeModalShowing: false,
@@ -613,6 +614,7 @@ class Results extends Component {
           var ratings = bestDressesIDs[dressIDObjKey].ratings;
           var reviewIDs = bestDressesIDs[dressIDObjKey].reviewIDs;
           var measurement = bestDressesIDs[dressIDObjKey].measurement;
+          var occassions = bestDressesIDs[dressIDObjKey].occassion;
           return Promise.all(
             dressIDs.map(dressID => {
               return dressesRef.child(`${dressID}`);
@@ -629,6 +631,7 @@ class Results extends Component {
               newDressObj['dresses'] = dresses;
               newDressObj['ratings'] = ratings;
               newDressObj['reviewIDs'] = reviewIDs;
+              newDressObj['occassions'] = occassions;
               resolve(newDressObj);
             });
           });
@@ -700,6 +703,7 @@ class Results extends Component {
           var ratings = nextBestDressesIDs[dressIDObjKey].ratings;
           var reviewIDs = nextBestDressesIDs[dressIDObjKey].reviewIDs;
           var measurement = nextBestDressesIDs[dressIDObjKey].measurement;
+          var occassions = nextBestDressesIDs[dressIDObjKey].occassion;
           return Promise.all(
             dressIDs.map(dressID => {
               return dressesRef.child(`${dressID}`);
@@ -716,6 +720,7 @@ class Results extends Component {
               newDressObj['dresses'] = dresses;
               newDressObj['ratings'] = ratings;
               newDressObj['reviewIDs'] = reviewIDs;
+              newDressObj['occassions'] = occassions;
               resolve(newDressObj);
             });
           });
