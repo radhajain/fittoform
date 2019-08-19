@@ -166,16 +166,80 @@ class Landing extends React.Component {
               <p className="landing-title">Shop dresses knowing they'll fit.</p>
               <p className="landing-subtitle">Recommended by women with your measurements.</p>
             </div>
-          </div>
-          <div className="landing-callToAction-wrapper">
             <Link to="/search">
-              <button className="landing-callToAction">
-                <div className="landing-btn-flexWrapper">Shop Now</div>
-              </button>
+              <button className="landing-fitquiz">TAKE THE FIT QUIZ</button>
             </Link>
           </div>
         </div>
-        <div className="landing-howitworks-container">
+        <div className="landing-shop-container">
+          <div className="landing-shop-content">
+            <div className="landing-items-container">
+              <div className="landing-item-div"></div>
+              <div className="landing-item-div"></div>
+              <div className="landing-item-div"></div>
+              <div className="landing-item-div"></div>
+            </div>
+            <div className="landing-items-container">
+              <div className="landing-item-div"></div>
+              <div className="landing-item-div"></div>
+              <div className="landing-item-div"></div>
+              <div className="landing-item-div"></div>
+            </div>
+          </div>
+          <Link to="/search" style={{ textDecoration: 'none', color: 'black' }}>
+            <div className="landing-link-box">
+              <p className="landing-link">SHOP ALL</p>
+            </div>
+          </Link>
+        </div>
+        <div className="landing-philosophy-container">
+          <div className="landing-philosophy-content">
+            <p className="landing-typewriter">OUR PHILOSOPHY</p>
+            <p className="landing-philosophy-text">
+              All bodies are made unique, and we want to help you find the clothes that will make
+              yours look best. Too many of us feel sizing is hit or miss, and it's not surprising -
+              there are over 900 unique bodies per size! We show you something fits in the most
+              trustworthy way we know how, by only showing you items that look great on someone else
+              with the exact same body as you.
+            </p>
+          </div>
+        </div>
+        <div className="landing-info-row">
+          <div className="landing-info-pic landing-pic1" />
+          <div className="landing-info-container">
+            <div className="landing-info-content">
+              <p className="landing-info-title">
+                Women with your measurements have tried these dresses on
+              </p>
+              <p className="landing-info-subtitle">
+                Brands and even items can have inconsistent sizing. Every piece on our site has been
+                tried on by real women who are the same size as you.
+              </p>
+              <Link to="/howitworks" style={{ textDecoration: 'none', color: 'black' }}>
+                <div className="landing-link-box">
+                  <p className="landing-link">READ MORE</p>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="landing-info-row">
+          <div className="landing-info-container">
+            <div className="landing-info-content">
+              <p className="landing-info-title">One place to shop all of your favorite brands</p>
+              <p className="landing-info-subtitle">
+                Brands and even items can have inconsistent sizing. Every piece on our site has been
+                tried on by real women who are the same size as you.
+              </p>
+              <Link to="/search" style={{ marginTop: 150 }}>
+                <button className="landing-fitquiz">TAKE THE FIT QUIZ</button>
+              </Link>
+            </div>
+          </div>
+          <div className="landing-info-pic landing-pic2" />
+        </div>
+        {/* <div className="landing-howitworks-container">
           <div className="landing-howitworks-firstRow">
             <div className="landing-howitworks-content">
               <div className="landing-2-col-container">
@@ -185,10 +249,10 @@ class Landing extends React.Component {
                 <div className="landing-2-rightCol">
                   <div className="landing-howitworks-steps">
                     <div className="landing-howitworks-box landing-howitworks-box-1">
-                      <p className="landing-desc">1. Input your measurements</p>
+                      <p className="landing-desc">1. Enter your measurements</p>
                     </div>
                     <div className="landing-howitworks-box">
-                      <p className="landing-desc">2. See dresses that fit</p>
+                      <p className="landing-desc">2. See dresses that fit you perfectly</p>
                     </div>
                     <div className="landing-howitworks-box">
                       <p className="landing-desc">3. Shop from your favorite brands</p>
@@ -199,7 +263,6 @@ class Landing extends React.Component {
                         Shop Now <img src={blueArrow} style={{ width: 25, marginLeft: 5 }} />
                       </Link>
                     </div>
-                    <p style={{ color: 'white' }}>PEPPERJAM VERIFICATION</p>
                   </div>
                 </div>
               </div>
@@ -212,9 +275,14 @@ class Landing extends React.Component {
               className="landing-howitworks-img2"
             />
           </div>
-        </div>
+        </div> */}
         <div className="landing-instagram-container">
-          <p className="landing-instagram-title">Join us on Instagram @fit.to.form</p>
+          <p className="landing-instagram-title">
+            Join the movement{' '}
+            <a href="https://www.instagram.com/fit.to.form/" style={{ color: 'black' }}>
+              @fit.to.form
+            </a>
+          </p>
           <div className="landing-instagram-content">
             <div className="landing-instagram-posts">
               {this.instaPosts.map((info, idx) => {

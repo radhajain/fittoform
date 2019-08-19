@@ -39,25 +39,26 @@
 
 .landing-intro-img {
   position: absolute;
-  width: 70%;
+  width: 100%;
   height: 100%;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_1.jpg);
+  background-image: url('../../assets/images/landing-img@2x.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: top left;
   top: 0px;
   left: 0px;
   z-index: -100;
 }
 
 .landing-content {
+  position: absolute;
+  bottom: 150px;
+  right: 50px;
   width: 45%;
-  margin-left: 45%;
-  padding-top: 200px;
 }
 
 .landing-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
   color: black;
   font-size: 3.8em;
   line-height: 68px;
@@ -69,6 +70,24 @@
   font-weight: bold;
   font-size: 1.75em;
   margin-top: 20px;
+}
+
+.landing-fitquiz {
+  font-family: 'Monaco', monospace;
+  background-color: transparent;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition-duration: 300ms;
+  border: 1px solid black;
+  padding: 18px 21px;
+  font-size: 0.8em;
+  color: black;
+  cursor: pointer;
+}
+
+.landing-fitquiz:hover {
+  background-color: black;
+  color: white;
 }
 
 .landing-callToAction-wrapper {
@@ -103,6 +122,107 @@
 
 .landing-callToAction:hover {
   background-color: #69dbd3;
+}
+
+.landing-shop-container {
+  text-align: center;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.landing-shop-content {
+  width: 80%;
+  max-width: 930px;
+}
+
+.landing-items-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.landing-item-div {
+  width: 160px;
+  height: 200px;
+  background-color: lightpink;
+}
+
+.landing-philosophy-container {
+  background-color: #fbf9fb;
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-philosophy-content {
+  width: 60%;
+  text-align: center;
+}
+
+.landing-typewriter {
+  font-family: 'Monaco', monospace;
+  font-size: 0.8em;
+}
+
+.landing-philosophy-text {
+  font-size: 1.2em;
+}
+
+.landing-info-row {
+  height: 45vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.landing-info-pic {
+  flex-basis: 50%;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.landing-pic1 {
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_2.jpg);
+}
+
+.landing-pic2 {
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_3.jpg);
+}
+
+.landing-info-container {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-info-content {
+  width: 75%;
+}
+
+.landing-info-title {
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 2em;
+}
+
+.landing-link-box {
+  border-bottom: 3px solid #e8b2a0;
+  width: max-content;
+}
+
+.landing-link {
+  font-family: 'Monaco', monospace;
+  text-decoration: none;
+  margin-bottom: 0px;
 }
 
 /* --------------------------------- */
@@ -210,12 +330,12 @@
 /* INSTAGRAM */
 
 .landing-instagram-container {
-  margin-top: 160px;
+  margin-top: 120px;
   margin-bottom: 120px;
 }
 
 .landing-instagram-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
   /* font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold; */
   font-size: 1.75em;
