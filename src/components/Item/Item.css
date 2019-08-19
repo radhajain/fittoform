@@ -47,6 +47,8 @@
   padding-bottom: 20px;
   position: fixed;
   top: 100px;
+  bottom: 75px;
+  overflow-y: scroll;
   max-width: 450px;
 }
 
@@ -177,6 +179,7 @@
 .itemView-review {
   font-family: 'Helvetiva Neue', sans-serif;
   color: #707070;
+  padding-top: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid #e4e4e4;
 }

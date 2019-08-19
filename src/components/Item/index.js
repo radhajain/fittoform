@@ -39,6 +39,7 @@ class Item extends Component {
     this.shopItem = this.shopItem.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
+    this.goToShopAll = this.goToShopAll.bind(this);
     this.getUserData = this.getUserData.bind(this);
     this.getNumColors = this.getNumColors.bind(this);
   }
@@ -55,6 +56,15 @@ class Item extends Component {
     });
   };
 
+  goToShopAll = () => {
+    this.props.history.push({
+      pathname: '/shop',
+      state: {
+        currDiv: this.state.divID
+      }
+    });
+  };
+
   //TODO: data cleanup: add all reviewIDs to the dressGroup where the dressGroupObj dressID matches dressID
   getReviewData() {
     const reviewsRef = firebase.database().ref('reviews');
@@ -67,12 +77,26 @@ class Item extends Component {
           var reviewerMmts = data.val().userInfo;
           //If coming through favorites:
           if (!mmts) {
-            var diffSq =
-              Math.pow(reviewerMmts.height - this.state.height, 2) +
-              Math.pow(reviewerMmts.waist - this.state.waist, 2) +
-              Math.pow(reviewerMmts.bust - this.state.bust, 2) +
-              Math.pow(reviewerMmts.hips - this.state.hips, 2);
-            if (Math.sqrt(diffSq) < 3) {
+            //Favorites:
+            if (this.state.height) {
+              var diffSq =
+                Math.pow(reviewerMmts.height - this.state.height, 2) +
+                Math.pow(reviewerMmts.waist - this.state.waist, 2) +
+                Math.pow(reviewerMmts.bust - this.state.bust, 2) +
+                Math.pow(reviewerMmts.hips - this.state.hips, 2);
+              if (Math.sqrt(diffSq) < 3) {
+                var review = {
+                  comment: data.val().comment,
+                  size: data.val().size,
+                  rating: data.val().rating,
+                  dressID: this.state.dressID,
+                  id: data.key,
+                  userInfo: data.val().userInfo
+                };
+                reviews.push(review);
+              }
+            } else {
+              //From shop all
               var review = {
                 comment: data.val().comment,
                 size: data.val().size,
@@ -351,9 +375,16 @@ class Item extends Component {
           <div className="itemView-c1-inner">
             <div className="itemView-c1-left">
               <div className="itemView-img-wrapper">
-                <button className="itemView-backbtn" onClick={() => this.goToResultsView()}>
-                  <img src={backBtn} className="itemView-back-arrow" />
-                </button>
+                {!this.state.fromShopAll && (
+                  <button className="itemView-backbtn" onClick={() => this.goToResultsView()}>
+                    <img src={backBtn} className="itemView-back-arrow" />
+                  </button>
+                )}
+                {this.state.fromShopAll && (
+                  <button className="itemView-backbtn" onClick={() => this.goToShopAll()}>
+                    <img src={backBtn} className="itemView-back-arrow" />
+                  </button>
+                )}
                 <img
                   alt={this.state.item.name}
                   src={this.state.item.img}
@@ -426,7 +457,7 @@ class Item extends Component {
                   </p>
                 </div>
 
-                {this.state.reviewsFound && (
+                {this.state.reviewsFound && !this.state.fromShopAll && (
                   <div className="itemView-reviews-header">
                     <p className="itemView-review-title">Reviews by women like you</p>
                     <p className="itemView-text-small">

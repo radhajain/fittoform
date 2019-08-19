@@ -197,10 +197,9 @@ class Landing extends React.Component {
             <p className="landing-typewriter">OUR PHILOSOPHY</p>
             <p className="landing-philosophy-text">
               All bodies are made unique, and we want to help you find the clothes that will make
-              yours look best. Too many of us feel sizing is hit or miss, and it's not surprising -
-              there are over 900 unique bodies per size! We show you something fits in the most
-              trustworthy way we know how, by only showing you items that look great on someone else
-              with the exact same body as you.
+              yours look best. Too many of us feel sizing is hit or miss. We show you something fits
+              in the most trustworthy way we know how, by only showing you items that look great on
+              someone else with the exact same body as you.
             </p>
           </div>
         </div>

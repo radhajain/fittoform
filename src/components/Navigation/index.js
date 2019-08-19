@@ -255,6 +255,9 @@ class NavigationNonAuth extends React.Component {
                 <img src={menuIcon} className="nav-menu-icon-img" />
               </div>
               <div className="dropdown-content dropdown-nonauth">
+                <Link to={ROUTES.SHOP} className="nav-profile-btn">
+                  Shop
+                </Link>
                 <Link to={ROUTES.HOWITWORKS} className="nav-profile-btn">
                   How it works
                 </Link>
@@ -269,7 +272,10 @@ class NavigationNonAuth extends React.Component {
               </div>
             </div>
             <div className="nav-c3-desktop">
-              <Link to={ROUTES.HOWITWORKS} className="nav-href">
+              <Link to={ROUTES.SHOP} className="nav-href ">
+                Shop
+              </Link>
+              <Link to={ROUTES.HOWITWORKS} className="nav-href nav-margin-left">
                 How it works
               </Link>
               <Link to={ROUTES.SIGN_IN} className="nav-href nav-margin-left">

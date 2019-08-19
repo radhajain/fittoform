@@ -18,3 +18,4 @@ export const POPUP = '/popup';
 export const SUBMIT = '/submit';
 export const PROMO = '/promo';
 export const PURCHASES = '/purchases';
+export const SHOP = '/shop';

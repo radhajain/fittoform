@@ -152,12 +152,12 @@
 .landing-item-div {
   width: 160px;
   height: 200px;
-  background-color: lightpink;
+  background-color: peachpuff;
 }
 
 .landing-philosophy-container {
   background-color: #fbf9fb;
-  min-height: 30vh;
+  min-height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -174,11 +174,11 @@
 }
 
 .landing-philosophy-text {
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .landing-info-row {
-  height: 45vh;
+  height: 65vh;
   display: flex;
   flex-direction: row;
 }
