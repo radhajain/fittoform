@@ -1,6 +1,7 @@
 import React from 'react';
 import { FooterSmall } from '../Footer';
 import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 import ProgressiveImage from 'react-progressive-image';
 import './Shop.css';
 
@@ -151,6 +152,25 @@ class Shop extends React.Component {
                 )
               );
             })}
+        </div>
+        <div className="shop-popup">
+          <div className="shop-popup-inner">
+            <div className="shop-popup-leftCol">
+              <p className="shop-popup-title">
+                Answer 5 questions and see which dresses are going to look best on your body.{' '}
+              </p>
+              <p className="shop-popup-subtitle">
+                Tried on and recommended by women with your measurements.
+              </p>
+            </div>
+            <div className="shop-popup-rightCol">
+              <Link to="/search">
+                <button className="shop-fitquiz" style={{ marginTop: 0 }}>
+                  TAKE THE FIT QUIZ
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
         <FooterSmall />
       </div>

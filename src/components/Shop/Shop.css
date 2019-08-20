@@ -29,6 +29,60 @@
   font-size: 1.1em;
 }
 
+.shop-popup {
+  position: fixed;
+  background-color: peachpuff;
+  min-height: 50px;
+  bottom: 50px;
+  padding: 15px;
+  width: 100%;
+  z-index: 1000000;
+}
+
+.shop-fitquiz {
+  font-family: 'Monaco', monospace;
+  background-color: transparent;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition-duration: 300ms;
+  border: 1px solid black;
+  padding: 18px 21px;
+  font-size: 0.8em;
+  color: black;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.shop-popup-inner {
+  width: 85%;
+  margin-left: 7.5%;
+  display: flex;
+}
+
+.shop-popup-leftCol {
+  padding: 0px 15px;
+  flex-basis: 80%;
+}
+
+.shop-popup-rightCol {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-popup-title {
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 2em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.shop-popup-subtitle {
+  font-size: 1.2em;
+  margin-top: 2px;
+}
+
 .shop-img {
   width: 310px !important;
   height: 420px !important;
@@ -60,6 +114,12 @@
   }
 }
 
+@media (max-width: 1385px) {
+  .shop-popup-title {
+    font-size: 1.85em;
+  }
+}
+
 @media (max-width: 1320px) {
   .shop-img {
     width: 230px !important;
@@ -68,6 +128,10 @@
 
   .shop-item-info {
     width: 230px;
+  }
+
+  .shop-popup-title {
+    font-size: 1.5em;
   }
 }
 
@@ -79,6 +143,49 @@
 
   .shop-item-info {
     width: 200px;
+  }
+
+  .shop-fitquiz {
+    padding: 15px 18px;
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 1070px) {
+  .shop-popup-inner {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .shop-popup-title {
+    font-size: 1.3em;
+  }
+
+  .shop-popup-subtitle {
+    font-size: 0.9em;
+  }
+
+  .shop-fitquiz {
+    padding: 12px 15px;
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width: 870px) {
+  .shop-popup-title {
+    font-size: 1.2em;
+  }
+
+  .shop-popup-subtitle {
+    font-size: 0.8em;
+  }
+
+  .shop-popup-leftCol {
+    flex-basis: 70%;
+  }
+
+  .shop-popup-rightCol {
+    flex-basis: 30%;
   }
 }
 
@@ -121,6 +228,31 @@
   .shop-item-div {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .shop-popup-subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .shop-popup {
+    bottom: 0px;
+  }
+
+  .shop-popup-inner {
+    flex-direction: column;
+    width: 85%;
+    margin-left: 7.5%;
+  }
+
+  .shop-popup-leftCol {
+    padding: 0px;
+    margin-bottom: 12px;
+  }
+
+  .shop-popup-rightCol {
+    justify-content: flex-start;
   }
 }
 
