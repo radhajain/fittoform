@@ -202,7 +202,7 @@ class Landing extends React.Component {
         inStock: true,
         length: 'midi',
         material: 'polyester',
-        name: 'Isabel Sheath Dress',
+        name: 'Isabel Dress',
         neckline: 'normal',
         occassion: 'daytime-cute, day-to-night, going-out',
         price: '198',
