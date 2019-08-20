@@ -1,0 +1,291 @@
+.shop {
+  height: calc(100vh - 100px);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.shop-inner {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 50px 15px;
+  justify-content: space-evenly;
+}
+
+.shop-item-div {
+  position: relative;
+  padding-bottom: 50px;
+  max-width: 350px;
+  padding-left: 30px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+
+.shop-brand {
+  font-family: 'Arial Narrow', sans-serif;
+  color: black;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  font-size: 1.1em;
+}
+
+.shop-popup {
+  position: fixed;
+  background-color: peachpuff;
+  min-height: 50px;
+  bottom: 50px;
+  padding: 15px;
+  width: 100%;
+  z-index: 1000000;
+}
+
+.shop-fitquiz {
+  font-family: 'Monaco', monospace;
+  background-color: transparent;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition-duration: 300ms;
+  border: 1px solid black;
+  padding: 18px 21px;
+  font-size: 0.8em;
+  color: black;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.shop-popup-inner {
+  width: 85%;
+  margin-left: 7.5%;
+  display: flex;
+}
+
+.shop-popup-leftCol {
+  padding: 0px 15px;
+  flex-basis: 80%;
+}
+
+.shop-popup-rightCol {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-popup-title {
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 2em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.shop-popup-subtitle {
+  font-size: 1.2em;
+  margin-top: 2px;
+}
+
+.shop-img {
+  width: 310px !important;
+  height: 420px !important;
+  object-fit: cover;
+  transition: all 0.4s ease-in-out;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.shop-item-info {
+  width: 310px;
+  text-align: left;
+}
+
+.shop-color {
+  margin-bottom: 5px;
+  margin-top: 0px;
+  font-size: 0.9em;
+}
+
+@media (max-width: 1520px) {
+  .shop-img {
+    width: 260px !important;
+    height: 370px !important;
+  }
+
+  .shop-item-info {
+    width: 260px;
+  }
+}
+
+@media (max-width: 1385px) {
+  .shop-popup-title {
+    font-size: 1.85em;
+  }
+}
+
+@media (max-width: 1320px) {
+  .shop-img {
+    width: 230px !important;
+    height: 340px !important;
+  }
+
+  .shop-item-info {
+    width: 230px;
+  }
+
+  .shop-popup-title {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 1200px) {
+  .shop-img {
+    width: 200px !important;
+    height: 310px !important;
+  }
+
+  .shop-item-info {
+    width: 200px;
+  }
+
+  .shop-fitquiz {
+    padding: 15px 18px;
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 1070px) {
+  .shop-popup-inner {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  .shop-popup-title {
+    font-size: 1.3em;
+  }
+
+  .shop-popup-subtitle {
+    font-size: 0.9em;
+  }
+
+  .shop-fitquiz {
+    padding: 12px 15px;
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width: 870px) {
+  .shop-popup-title {
+    font-size: 1.2em;
+  }
+
+  .shop-popup-subtitle {
+    font-size: 0.8em;
+  }
+
+  .shop-popup-leftCol {
+    flex-basis: 70%;
+  }
+
+  .shop-popup-rightCol {
+    flex-basis: 30%;
+  }
+}
+
+@media (max-width: 820px) {
+  .shop-img {
+    width: 170px !important;
+    height: 280px !important;
+  }
+
+  .shop-item-info {
+    width: 170px;
+  }
+
+  .shop-item-div {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 740px) {
+  .shop-img {
+    width: 150px !important;
+    height: 260px !important;
+  }
+
+  .shop-brand {
+    font-size: 0.8em;
+  }
+
+  .shop-color {
+    margin-top: 2px;
+    font-size: 0.75em;
+  }
+
+  .shop-item-info {
+    width: 150px;
+  }
+
+  .shop-item-div {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .shop-popup-subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .shop-popup {
+    bottom: 0px;
+  }
+
+  .shop-popup-inner {
+    flex-direction: column;
+    width: 85%;
+    margin-left: 7.5%;
+  }
+
+  .shop-popup-leftCol {
+    padding: 0px;
+    margin-bottom: 12px;
+  }
+
+  .shop-popup-rightCol {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 410px) {
+  .shop-img {
+    width: 120px !important;
+    height: 230px !important;
+  }
+
+  .shop-item-info {
+    width: 120px;
+  }
+
+  .shop-item-div {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .shop-img {
+    width: 100px !important;
+    height: 210px !important;
+  }
+
+  .shop-item-info {
+    width: 100px;
+  }
+
+  .shop-item-div {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+  }
+}

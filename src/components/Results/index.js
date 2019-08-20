@@ -875,7 +875,6 @@ class Results extends Component {
   }
 
   render() {
-    const itemDivClass = 'results-item-div';
     var rightColClass = this.state.showRecInfo
       ? this.state.exactMatch
         ? 'results-rightCol results-rightCol-adjust'
@@ -933,11 +932,12 @@ class Results extends Component {
                         dressObj.dresses.length > 0 &&
                         dressObj.dresses.map((dress, key) => {
                           return (
-                            dress && (
+                            dress &&
+                            dress.inStock && (
                               <div key={key} id={parseInt(keyDressObj, 10) + 1}>
                                 {dress && (
                                   <div
-                                    className={itemDivClass}
+                                    className="results-item-div"
                                     key={key}
                                     id={(parseInt(keyDressObj, 10) + 1).toString() + key}
                                     onMouseEnter={() => this.handleMouseEnter(keyDressObj, false)}
@@ -975,7 +975,7 @@ class Results extends Component {
                                                 ? (e.currentTarget.src = dress.img)
                                                 : console.log('no return')
                                             }
-                                            alt="dress image"
+                                            alt={dress.name}
                                             className="results-img"
                                             onClick={() =>
                                               // goToItemView(selectedItem, key, dressID, dressMeasurements, reviewIDs, dressGroupID) {
@@ -1043,11 +1043,12 @@ class Results extends Component {
                         dressObj.dresses.length > 0 &&
                         dressObj.dresses.map((dress, key) => {
                           return (
-                            dress && (
+                            dress &&
+                            dress.inStock && (
                               <div key={key} id={parseInt(keyDressObj, 10) + 1}>
                                 {dress && (
                                   <div
-                                    className={itemDivClass}
+                                    className="results-item-div"
                                     key={key}
                                     id={(parseInt(keyDressObj, 10) + 1).toString() + key}
                                     onMouseEnter={() => this.handleMouseEnter(keyDressObj, true)}
@@ -1075,7 +1076,7 @@ class Results extends Component {
                                         ) : (
                                           <img
                                             src={src}
-                                            alt="dress image"
+                                            alt={dress.name}
                                             className="results-img"
                                             onMouseOver={e =>
                                               dress.img2
@@ -1190,6 +1191,7 @@ class Results extends Component {
                 <div className="results-menu-hide-div">
                   <img
                     src={downArrow}
+                    alt="down arrow"
                     className="results-menu-hide-arrow"
                     onClick={this.dismissRecommendationPanel}
                   />

@@ -39,25 +39,26 @@
 
 .landing-intro-img {
   position: absolute;
-  width: 70%;
+  width: 100%;
   height: 100%;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_1.jpg);
+  background-image: url('../../assets/images/landing-img@2x.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: top left;
   top: 0px;
   left: 0px;
   z-index: -100;
 }
 
 .landing-content {
+  position: absolute;
+  bottom: 150px;
+  right: 50px;
   width: 45%;
-  margin-left: 45%;
-  padding-top: 200px;
 }
 
 .landing-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
   color: black;
   font-size: 3.8em;
   line-height: 68px;
@@ -71,151 +72,164 @@
   margin-top: 20px;
 }
 
-.landing-callToAction-wrapper {
-  text-align: left;
-  margin-top: 5vh;
-  margin-left: calc(70% - 77px);
-  margin-bottom: 0px;
-}
-
-.landing-callToAction {
-  border-radius: 50%;
-  background-color: #ffd2ba;
-  min-height: 50px;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-  font-size: 1.45em;
-  line-height: 1.5em;
+.landing-fitquiz {
+  font-family: 'Monaco', monospace;
+  background-color: transparent;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition-duration: 300ms;
+  border: 1px solid black;
+  padding: 18px 21px;
+  font-size: 0.8em;
   color: black;
-  border: none;
   cursor: pointer;
-  -webkit-transition: all 0.4 ease;
-  transition: all 0.4s ease;
-  padding: 60px 20px;
+  margin-top: 30px;
 }
 
-.landing-btn-flexWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.landing-fitquiz:hover {
+  background-color: black;
+  color: white;
 }
 
-.landing-callToAction:hover {
-  background-color: #69dbd3;
-}
-
-/* --------------------------------- */
-
-/* PAGE 2 */
-
-.landing-howitworks-firstRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  padding-top: 30px;
-}
-
-.landing-howitworks-content {
-  flex-basis: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.landing-howitworks-img1 {
-  flex-basis: 40%;
-  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_2.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 600px;
-}
-
-.landing-2-title {
-  margin-bottom: 30px;
-  margin-top: 0px;
-}
-
-.landing-howitworks-secondRow {
-  padding-top: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.landing-2-col-container {
+.landing-shop-container {
+  text-align: center;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
-  width: 50%;
-  flex-wrap: nowrap;
-}
-
-.landing-2-leftCol {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
+  margin-bottom: 50px;
 }
 
-.landing-2-rightCol {
+.landing-shop-content {
+  width: 80%;
+  max-width: 930px;
+}
+
+.landing-items-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.landing-item-img {
+  width: 190px;
+  height: 270px;
+  background-color: peachpuff;
+}
+
+.landing-item-info {
+  width: 160px;
+  text-align: left;
+}
+
+.landing-shop-title {
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 1.5em;
+  margin-top: 50px;
+}
+
+.landing-item-name {
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 1em;
+  margin: 0px;
+}
+
+.landing-item-brand {
+  font-size: 0.8em;
+  margin: 0px;
+  margin-top: 2px;
+}
+
+.landing-philosophy-container {
+  background-color: #fef6f2;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+}
+
+.landing-philosophy-content {
+  width: 60%;
+  text-align: center;
+}
+
+.landing-typewriter {
+  font-family: 'Monaco', monospace;
+  font-size: 0.8em;
+}
+
+.landing-philosophy-text {
+  font-size: 1.5em;
+}
+
+.landing-info-row {
+  height: 65vh;
+  display: flex;
+  flex-direction: row;
+  min-height: 390px;
+}
+
+.landing-info-pic {
   flex-basis: 50%;
-  display: flex;
-  align-items: center;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
   min-width: 300px;
 }
 
-.landing-howitworks-box {
-  margin-top: 10px;
+.landing-pic1 {
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_2.jpg);
 }
 
-.landing-howitworks-box-1 {
-  margin-top: 0px;
+.landing-pic2 {
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing_image_3.jpg);
 }
 
-.landing-howitworks-steps {
+.landing-info-container {
+  flex-basis: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing-howitworks-title {
-  color: black;
-  font-weight: bold;
-  font-size: 1.35em;
+.landing-info-content {
+  width: 75%;
+}
+
+.landing-info-title {
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 2em;
+}
+
+.landing-link-box {
+  border-bottom: 3px solid #e8b2a0;
+  width: max-content;
+}
+
+.landing-link {
+  font-family: 'Monaco', monospace;
+  text-decoration: none;
   margin: 0px;
-  font-family: 'Helvetiva Neue', sans-serif;
 }
 
-.landing-desc {
-  color: black;
-  font-weight: bolder;
-  font-size: 1.25em;
-  line-height: 1.15em;
-  margin-top: 0px;
-  font-family: 'Helvetiva Neue', sans-serif;
-}
-
-.landing-howitworks-desc {
-  color: black;
-  font-weight: bolder;
-  font-size: 1.05em;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  line-height: 1.15em;
-  font-family: 'Helvetiva Neue', sans-serif;
-}
+/* --------------------------------- */
 
 /* ------------------------------------------------- */
 /* INSTAGRAM */
 
 .landing-instagram-container {
-  margin-top: 160px;
+  margin-top: 120px;
   margin-bottom: 120px;
 }
 
 .landing-instagram-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
   /* font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold; */
   font-size: 1.75em;
@@ -255,27 +269,20 @@
   text-decoration: underline;
 }
 
-.landing-howitworks-img2 {
-  width: 60%;
-  height: 45vh;
-  object-fit: cover;
-}
-
-@media (min-width: 1559px) {
-  .landing-subtitle {
-    font-size: 2em;
-  }
-}
-
-@media (max-width: 1170px) {
-  .landing-2-col-container {
-    width: 70%;
-  }
-}
-
 @media (max-width: 1125px) {
   .landing-title {
     font-size: 3.3em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .landing-item-img {
+    width: 160px;
+    height: 230px;
+  }
+
+  .landing-item-info {
+    width: 160px;
   }
 }
 
@@ -285,12 +292,20 @@
     line-height: 55px;
   }
 
+  .landing-philosophy-text {
+    font-size: 1.3em;
+  }
+
   .landing-subtitle {
     font-size: 1.5em;
   }
 
-  .landing-howitworks-desc {
-    font-size: 1em;
+  .landing-info-title {
+    font-size: 1.7em;
+  }
+
+  .landing-info-subtitle {
+    font-size: 0.95em;
   }
 }
 
@@ -298,6 +313,15 @@
   .landing-title {
     font-size: 2.5em;
     line-height: 45px;
+  }
+
+  .landing-content {
+    right: 20px;
+    bottom: 120px;
+  }
+
+  .landing-philosophy-text {
+    font-size: 1.2em;
   }
 }
 
@@ -309,6 +333,15 @@
   .landing-insta-img {
     width: 40%;
   }
+
+  .landing-item-img {
+    width: 140px;
+    height: 210px;
+  }
+
+  .landing-item-info {
+    width: 140px;
+  }
 }
 
 /* MOBILE WRAP */
@@ -318,18 +351,21 @@
     height: 300px;
   }
 
+  .landing-title-container {
+    height: 300px;
+  }
+
+  .landing-philosophy-text {
+    font-size: 1em;
+  }
+
   .landing-content {
-    padding-top: 300px;
-    width: 55%;
-    margin-left: 15%;
+    top: 50px;
+    right: 50px;
+    bottom: unset;
   }
 
-  .landing-callToAction-wrapper {
-    margin-left: 15%;
-    margin-top: 30px;
-  }
-
-  */ .landing-title {
+  .landing-title {
     font-size: 2.5em;
     line-height: 45px;
   }
@@ -337,101 +373,135 @@
   .landing-subtitle {
     font-size: 1.35em;
   }
+}
 
-  .landing-callToAction {
-    font-size: 1.35em;
-    padding: 50px 13px;
-  }
-  .landing-howitworks-img1 {
-    flex-basis: 20%;
+@media (max-width: 660px) {
+  .landing-item-img {
+    width: 120px;
+    height: 190px;
   }
 
-  .landing-howitworks-content {
-    flex-basis: 80%;
+  .landing-item-info {
+    width: 120px;
+  }
+
+  .landing-item-name {
+    font-size: 0.85em;
+  }
+
+  .landing-item-brand {
+    font-size: 0.7em;
+  }
+
+  .landing-link {
+    font-size: 1em;
   }
 }
 
 @media (max-width: 610px) {
   .landing-title {
     font-size: 2.3em;
+    margin-top: 10px;
   }
 
   .landing-subtitle {
     font-size: 1.25em;
   }
-}
-
-@media (max-width: 560px) {
-  .landing-content {
-    width: 70%;
+  .landing-info-title {
+    margin-top: 0px;
+    margin-bottom: 15px;
   }
-}
 
-@media (max-width: 460px) {
-  .landing-howitworks-img1 {
+  .landing-fitquiz {
+    font-size: 0.7em;
+    padding: 15px 18px;
+    margin-top: 20px;
+  }
+
+  .landing-philosophy-content {
+    width: 80%;
+  }
+
+  .landing-info-row {
+    flex-wrap: wrap;
+    height: unset;
+  }
+
+  .landing-row-2 {
+    flex-wrap: wrap-reverse;
+  }
+
+  .landing-info-content {
+    margin: 50px 0px;
+  }
+
+  .landing-info-pic {
+    flex-basis: 100%;
+    height: 200px;
+    background-position: center;
+  }
+
+  .landing-info-container {
+    flex-basis: 100%;
+  }
+
+  .landing-instagram-container {
+    margin: 70px 0px;
+  }
+
+  .landing-item-3 {
     display: none;
   }
 
-  .landing-howitworks-firstRow {
-    padding-top: 50px;
+  .landing-shop-content {
+    width: 90%;
   }
+}
 
-  .landing-howitworks-content {
-    flex-basis: 90%;
-  }
-
-  .landing-howitworks-firstRow {
-    margin-bottom: 50px;
-  }
-
+@media (max-width: 530px) {
   .landing-title {
-    font-size: 1.8em;
-    line-height: 35px;
+    font-size: 2em;
+    line-height: initial;
   }
 
-  .landing-2-title {
-    margin-bottom: 20px;
+  .landing-fitquiz {
+    padding: 12px 15px;
   }
 
-  .landing-subtitle {
-    font-size: 1.15em;
-  }
-
-  .landing-desc {
+  .landing-info-subtitle {
     font-size: 0.85em;
-    margin-bottom: 10px;
   }
 
-  .landing-callToAction {
-    padding: 50px 19px;
-    font-size: 1.15em;
+  .landing-item-img {
+    width: 110px;
+    height: 160px;
+  }
+
+  .landing-item-info {
+    width: 110px;
+  }
+
+  .landing-content {
+    right: 25px;
   }
 }
 
-@media (max-height: 680px) {
+@media (max-width: 485px) {
+  .landing-title {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 425px) {
+  .landing-content {
+    bottom: 15px;
+    right: 8px;
+    top: unset;
+    width: 50%;
+  }
+
   .landing-intro-img {
-    height: 250px;
-  }
-
-  .landing-content {
-    padding-top: 250px;
-  }
-}
-
-@media (max-height: 630px) {
-  .landing-intro-img {
-    height: 200px;
-  }
-
-  .landing-content {
-    padding-top: 200px;
-  }
-}
-
-@media (max-width: 400px) {
-  .landing-content {
-    width: 80%;
-    margin-left: 10%;
+    background-position: -10px;
   }
 }
 
