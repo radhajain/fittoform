@@ -295,6 +295,14 @@
     flex-direction: column;
   }
 
+  .howitworks-content {
+    text-align: left;
+  }
+
+  .howitworks-title {
+    text-align: left;
+  }
+
   .howitworks-titleCol {
     padding: 0px;
   }
@@ -324,9 +332,6 @@
   .howitworks-child-c1-flex {
     flex-wrap: wrap;
     padding-left: 10px;
-  }
-  .howitworks-content {
-    text-align: left;
   }
 
   .howitworks-child-c1-c {
