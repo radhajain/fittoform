@@ -31,7 +31,7 @@
 
 .shop-popup {
   position: fixed;
-  background-color: peachpuff;
+  background-color: #fef6f2;
   min-height: 50px;
   bottom: 50px;
   padding: 15px;
@@ -51,6 +51,12 @@
   color: black;
   cursor: pointer;
   margin-top: 30px;
+  transition: all 0.4s ease;
+}
+
+.shop-fitquiz:hover {
+  background-color: black;
+  color: white;
 }
 
 .shop-popup-inner {
@@ -73,7 +79,7 @@
 
 .shop-popup-title {
   font-family: 'Arial Narrow', sans-serif;
-  font-size: 2em;
+  font-size: 1.5em;
   margin-top: 10px;
   margin-bottom: 5px;
 }
@@ -84,8 +90,8 @@
 }
 
 .shop-img {
-  width: 310px !important;
-  height: 420px !important;
+  width: 330px !important;
+  height: 450px !important;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
   z-index: 1;
@@ -111,12 +117,6 @@
 
   .shop-item-info {
     width: 260px;
-  }
-}
-
-@media (max-width: 1385px) {
-  .shop-popup-title {
-    font-size: 1.85em;
   }
 }
 

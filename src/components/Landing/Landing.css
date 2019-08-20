@@ -41,7 +41,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url('../../assets/images/landing-img@2x.jpg');
+  background-image: url(https://fittoform-landing.s3.amazonaws.com/landing-img%402x.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top left;
