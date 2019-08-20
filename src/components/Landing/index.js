@@ -172,9 +172,9 @@ class Landing extends React.Component {
         dressLink: 'https://fave.co/2y0C5YJ',
         freeReturns: true,
         freeShippingAmount: 350,
-        img:
-          'https://cdn11.bigcommerce.com/s-233ct/images/stencil/759x1000/products/128/2630/rachel_edit9__08714.1512498405.500.659__67781__62737.1549337336.jpg?c=2',
         img2:
+          'https://cdn11.bigcommerce.com/s-233ct/images/stencil/759x1000/products/128/2631/CHRISTY_Sunflower_web_5__30121__81488.1549337336.jpg?c=2',
+        img:
           'https://cdn11.bigcommerce.com/s-233ct/images/stencil/759x1000/products/128/2627/BAMBI_ChristySunflower_2__81289.1512066675.500.659__96331__85005.1549337336.jpg?c=2',
         inStock: true,
         length: 'mini',
@@ -410,7 +410,7 @@ class Landing extends React.Component {
               })}
             </div>
           </div>
-          <Link to="/search" style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to="/shop" style={{ textDecoration: 'none', color: 'black' }}>
             <div className="landing-link-box">
               <p className="landing-link">SHOP ALL</p>
             </div>
@@ -420,10 +420,9 @@ class Landing extends React.Component {
           <div className="landing-philosophy-content">
             <p className="landing-typewriter">OUR PHILOSOPHY</p>
             <p className="landing-philosophy-text">
-              All bodies are made unique, and we want to help you find the clothes that will make
-              yours look best. Too many of us feel sizing is hit or miss. We show you something fits
-              in the most trustworthy way we know how, by only showing you items that look great on
-              someone else with the exact same body as you.
+              We know all bodies are made unique, and have different clothes that make them look
+              their best. There is too much diversity to fit into standard sizing: we want to help
+              you find the pieces that feel as if they were made for you.
             </p>
           </div>
         </div>
@@ -431,12 +430,10 @@ class Landing extends React.Component {
           <div className="landing-info-pic landing-pic1" />
           <div className="landing-info-container">
             <div className="landing-info-content">
-              <p className="landing-info-title">
-                Women with your measurements have tried these dresses on
-              </p>
+              <p className="landing-info-title">We try on so you don't have to</p>
               <p className="landing-info-subtitle">
-                Brands and even items can have inconsistent sizing. Every piece on our site has been
-                tried on by real women who are the same size as you.
+                Every piece in our collection has been tried on by real women with your exact
+                measurements, so we know what will fit you.
               </p>
               <Link to="/howitworks" style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="landing-link-box">
@@ -450,10 +447,10 @@ class Landing extends React.Component {
         <div className="landing-info-row landing-row-2">
           <div className="landing-info-container">
             <div className="landing-info-content">
-              <p className="landing-info-title">One place to shop all of your favorite brands</p>
+              <p className="landing-info-title">The Golden Trifecta</p>
               <p className="landing-info-subtitle">
-                Brands and even items can have inconsistent sizing. Every piece on our site has been
-                tried on by real women who are the same size as you.
+                Cute, fits perfectly and is affordable. Discover new brands and see what women your
+                size are wearing.
               </p>
               <Link to="/search">
                 <button className="landing-fitquiz">TAKE THE FIT QUIZ</button>

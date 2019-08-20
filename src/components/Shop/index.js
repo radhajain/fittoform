@@ -157,7 +157,7 @@ class Shop extends React.Component {
           <div className="shop-popup-inner">
             <div className="shop-popup-leftCol">
               <p className="shop-popup-title">
-                Answer 5 questions and see which dresses are going to look best on your body.{' '}
+                Answer 5 questions and see which dresses look best on your body.{' '}
               </p>
               <p className="shop-popup-subtitle">
                 Tried on and recommended by women with your measurements.
