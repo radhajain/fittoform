@@ -100,8 +100,6 @@ input:focus {
 .results-your-measurements {
   color: black;
   font-size: 1.1em;
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
   margin-bottom: 5px;
   margin-top: 0px;
   text-align: right;
@@ -114,7 +112,7 @@ input:focus {
 .results-input {
   border: none;
   text-align: right;
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', serif;
   color: black;
   font-size: 1.5em;
   background-color: unset;
@@ -124,9 +122,7 @@ input:focus {
 
 .results-match {
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
   font-size: 1.5em;
-  font-weight: bold;
 }
 
 .results-input::placeholder {
@@ -134,7 +130,7 @@ input:focus {
   text-align: right;
   font-size: 1em;
   opacity: 0.55;
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
 }
 
 .results-loadMore-wrapper {
@@ -151,7 +147,6 @@ input:focus {
   padding: 12px 20px;
   width: 20px;
   border: none;
-  font-family: 'Helvetiva Neue', sans-serif;
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -170,7 +165,6 @@ input:focus {
 
 .results-review {
   font-size: 0.9em;
-  font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
   color: black;
   text-decoration: underline;
@@ -182,8 +176,6 @@ input:focus {
 
 .results-review-text {
   font-size: 0.9em;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: bold;
   color: black;
   transition: all 0.4s ease;
   margin-top: 0px;
@@ -267,8 +259,6 @@ input:focus {
   text-decoration: none;
   transition: all 0.4s ease;
   color: white;
-  font-weight: bold;
-  font-family: 'Helvetica Neue', sans-serif;
   margin-top: 0px;
   margin-bottom: 1px;
   font-size: 0.9em;
@@ -289,27 +279,22 @@ input:focus {
 }
 
 .results-text {
-  font-weight: bold;
+  font-family: 'Arial Narrow', sans-serif;
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
   text-align: right;
   font-size: 1em;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .results-text-large {
-  font-weight: bold;
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
   text-align: right;
   font-size: 1.1em;
   margin-top: 0px;
 }
 
 .results-edit {
-  font-weight: bold;
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
   font-size: 1em;
   margin-top: 5px;
   text-align: right;
@@ -348,7 +333,7 @@ input:focus {
 
 .results-measurement-label {
   color: black;
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
   font-size: 2em;
   display: inline-block;
   margin: 0;
@@ -356,9 +341,8 @@ input:focus {
 
 .results-measurement {
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
+  font-family: 'Arial Narrow', sans-serif;
   font-size: 2em;
-  font-weight: bold;
   display: inline-block;
   margin: 0;
 }
@@ -366,16 +350,13 @@ input:focus {
 .results-price {
   bottom: 0;
   left: 0;
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
+  font-family: 'Arial Narrow', sans-serif;
   color: black;
   font-size: 1.15em;
   margin-top: 0;
 }
 
 .results-rating {
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
   color: black;
   margin-bottom: 5px;
   margin-top: 20px;
@@ -383,18 +364,17 @@ input:focus {
 }
 
 .results-color {
-  font-family: 'DM Serif Display', serif;
   color: black;
   margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 1em;
+  margin-top: 0px;
+  font-size: 0.9em;
 }
 
 .results-brand {
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 1.2em;
   color: black;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   margin-top: 5px;
 }
 
@@ -408,8 +388,8 @@ input:focus {
 }
 
 .results-your-measurements-label {
-  font-family: 'DM Serif Display';
-  font-size: 1.5em;
+  font-family: 'Arial Narrow', sans-serif;
+  font-size: 1.7em;
   margin: 2px 0px;
   text-align: right;
 }

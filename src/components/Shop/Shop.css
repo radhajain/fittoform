@@ -22,12 +22,11 @@
 }
 
 .shop-brand {
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
+  font-family: 'Arial Narrow', sans-serif;
   color: black;
   margin-bottom: 0px;
   margin-top: 5px;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .shop-img {
@@ -45,11 +44,9 @@
 }
 
 .shop-color {
-  font-family: 'DM Serif Display', serif;
-  color: black;
   margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 1em;
+  margin-top: 0px;
+  font-size: 0.9em;
 }
 
 @media (max-width: 1520px) {

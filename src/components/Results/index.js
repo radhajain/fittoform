@@ -932,7 +932,8 @@ class Results extends Component {
                         dressObj.dresses.length > 0 &&
                         dressObj.dresses.map((dress, key) => {
                           return (
-                            dress && (
+                            dress &&
+                            dress.inStock && (
                               <div key={key} id={parseInt(keyDressObj, 10) + 1}>
                                 {dress && (
                                   <div
@@ -1042,7 +1043,8 @@ class Results extends Component {
                         dressObj.dresses.length > 0 &&
                         dressObj.dresses.map((dress, key) => {
                           return (
-                            dress && (
+                            dress &&
+                            dress.inStock && (
                               <div key={key} id={parseInt(keyDressObj, 10) + 1}>
                                 {dress && (
                                   <div

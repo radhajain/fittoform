@@ -258,6 +258,7 @@ class NavigationNonAuth extends React.Component {
                 <Link to={ROUTES.SHOP} className="nav-profile-btn">
                   Shop
                 </Link>
+                <hr></hr>
                 <Link to={ROUTES.HOWITWORKS} className="nav-profile-btn">
                   How it works
                 </Link>

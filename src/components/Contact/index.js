@@ -29,7 +29,9 @@ class Contact extends React.Component {
           <div className="contactus-message">
             <p className="contactus-title">We'd love to hear from you!</p>
             <p style={{ fontSize: '1.2em' }}>
-              Email us at contact@thefittoform.com or DM us on Instagram @fit.to.form
+              Email us at{' '}
+              <span style={{ textDecoration: 'underline' }}>contact@thefittoform.com</span> or DM us
+              on Instagram <span style={{ textDecoration: 'underline' }}>@fit.to.form</span>
             </p>
           </div>
         </div>

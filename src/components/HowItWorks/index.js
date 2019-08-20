@@ -16,7 +16,7 @@ class HowItWorks extends React.Component {
     return (
       <div className="howitworks-parent">
         <div className="landing-fakeNav" />
-        <div className="howitworks-child">
+        <div className="howitworks-child howitworks-first-child">
           <div
             className="howitworks-child-inner"
             style={{ justifyContent: 'center', alignItems: 'center' }}
@@ -33,13 +33,9 @@ class HowItWorks extends React.Component {
                   </p>
                 </div>
               </div>
-              <div className="howitworks-callToAction-wrapper">
-                <Link to="/search">
-                  <button className="howitworks-callToAction">
-                    <div className="howitworks-btn-flexWrapper">Try it out</div>
-                  </button>
-                </Link>
-              </div>
+              <Link to="/search">
+                <button className="landing-fitquiz">TAKE THE FIT QUIZ</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -146,16 +142,14 @@ class HowItWorks extends React.Component {
               textAlign: 'center',
               display: 'flex',
               alignItems: 'center',
-              flexDirection: 'column'
+              justifyContent: 'flex-start',
+              flexDirection: 'column',
+              marginBottom: 70
             }}
           >
-            <div className="howitworks-callToAction-wrapper howitworks-callToAction-bottom">
-              <Link to="/search">
-                <button className="howitworks-callToAction">
-                  <div className="howitworks-btn-flexWrapper">Try it out</div>
-                </button>
-              </Link>
-            </div>
+            <Link to="/search">
+              <button className="landing-fitquiz">TAKE THE FIT QUIZ</button>
+            </Link>
           </div>
         </div>
         <FooterLarge />

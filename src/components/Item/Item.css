@@ -69,7 +69,7 @@
 }
 
 .itemView-item-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', serif;
   font-size: 1.65em;
   text-transform: capitalize;
   color: black;
@@ -82,7 +82,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
   text-transform: capitalize;
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', serif;
 }
 
 .itemView-item-price {
@@ -91,21 +91,19 @@
   font-weight: bold;
   margin-top: 7px;
   margin-bottom: 30px;
-  font-family: 'Helvetiva Neue', sans-serif;
 }
 
 .itemView-item-size {
   font-size: 1.15em;
   margin-top: 12px;
   margin-bottom: 10px;
-  font-weight: bold;
+  font-weight: bolder;
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
 }
 
 .itemView-review-title {
   color: black;
-  font-family: 'DM Serif Display', sans-serif;
+  font-family: 'Arial Narrow', sans-serif;
   margin-bottom: 0px;
   font-size: 1.2em;
 }
@@ -119,8 +117,6 @@
   margin-top: 0px;
   font-size: 1.1em;
   color: black;
-  font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -129,7 +125,7 @@
   border-radius: 50px;
   background-color: #ffd2ba;
   padding: 7px 30px;
-  font-family: 'DM Serif Display', sans-serif;
+  font-family: 'Arial Narrow', sans-serif;
   font-size: 1.25em;
   margin: 25px 0px;
   color: black;
@@ -190,7 +186,6 @@
   margin-bottom: 0px;
   margin-top: 0px;
   font-family: 'Helvetiva Neue', sans-serif;
-  font-weight: bold;
   color: black;
 }
 
@@ -208,16 +203,14 @@
 .itemView-review-name {
   width: 100%;
   color: black;
-  font-weight: bold;
   margin-top: 0px;
   margin-bottom: 5px;
   font-size: 1.1em;
   text-transform: capitalize;
-  font-family: 'Helvetiva Neue', sans-serif;
 }
 
 .itemView-comingback {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', serif;
   font-size: 1em;
   margin: 10px 0px;
 }
@@ -231,7 +224,7 @@
 }
 
 .itemView-shipping {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', serif;
   font-size: 1em;
   margin: 10px 0px;
   margin-bottom: 0px;
