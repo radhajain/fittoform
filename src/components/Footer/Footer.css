@@ -4,7 +4,6 @@
   font-size: 15px;
   line-height: 24px;
   color: #e8dcdc;
-  font-family: 'Helvetica', sans-serif;
   width: 100%;
 }
 
@@ -15,7 +14,7 @@
 }
 
 .footer-headers {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Arial Narrow', sans-serif;
   font-size: 1.3em;
   font-weight: bold;
   color: white;
@@ -34,11 +33,10 @@
 }
 
 .serif {
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Arial Narrow', sans-serif;
 }
 
 .sans-serif {
-  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .site-footer hr {
@@ -66,7 +64,6 @@
   text-decoration: none;
   color: white;
   font-size: 1em;
-  font-weight: bold;
 }
 
 .footer-links {

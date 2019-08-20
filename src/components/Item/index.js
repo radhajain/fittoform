@@ -420,7 +420,7 @@ class Item extends Component {
                   <p className="itemView-item-price">${this.state.item.price}</p>
                 </div>
                 <div className="itemView-c1-desc">
-                  {this.state.reviewsFound && (
+                  {this.state.reviewsFound && !this.state.fromShopAll && (
                     <p className="itemView-item-size">
                       Recommended size: {this.state.reviews[0].size}
                     </p>
